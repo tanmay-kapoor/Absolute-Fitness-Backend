@@ -1,10 +1,9 @@
 require("dotenv").config();
-
 const express = require("express");
-
 const bodyParser = require("body-parser");
 
-const routes = require("./routes/routes");
+const userRoutes = require("./routes/user");
+const gymRoutes = require("./routes/gym");
 
 const app = express();
 
@@ -22,6 +21,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/", routes);
+app.use("/user", userRoutes);
+app.use("/gym", gymRoutes);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
