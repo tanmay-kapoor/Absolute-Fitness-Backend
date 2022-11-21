@@ -53,14 +53,15 @@ exports.authenticate = async (req, res) => {
 };
 
 exports.addUser = async (req, res) => {
+    console.log(req.body);
     const details = {
         email: req.body.email,
-        name: req.body.name,
+        name: req.body.fname + req.body.lname,
         password: bcrypt.hashSync(req.body.password, salt),
         age: req.body.age,
         sex: req.body.sex,
         gymId: req.body.gymId,
-    };
+    };  
 
     try {
         await User.addUser(details);
