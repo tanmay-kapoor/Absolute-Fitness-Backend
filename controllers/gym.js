@@ -13,7 +13,7 @@ exports.getGym = async (req, res) => {
     const gymId = req.params["gymId"];
     try {
         const [gym] = await Gym.getGym(gymId);
-        if (gym.length == 0) {
+        if (gym.length === 0) {
             res.status(401).json({ msg: "Does not exist" });
         } else {
             res.json(gym[0]);

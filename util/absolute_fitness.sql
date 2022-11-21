@@ -10,15 +10,6 @@ location 		VARCHAR(50) 		NOT NULL	UNIQUE,
 membership_fee 	DECIMAL(10, 2) 		NOT NULL
 );
 
-DROP TABLE IF EXISTS health_records;
-CREATE TABLE health_records (
-record_id 			INT 			PRIMARY KEY 	AUTO_INCREMENT,
-height 				DECIMAL(3, 2) 	NOT NULL,
-weight 				DECIMAL(4, 2)	NOT NULL,
-date_calculated 	DATE 			NOT NULL,
-BMI 				DECIMAL(2,2) 	NOT NULL
-);
-
 DROP TABLE IF EXISTS news_letters;
 CREATE TABLE news_letters (
 letter_id 		INT 			PRIMARY KEY 	AUTO_INCREMENT,
@@ -64,4 +55,15 @@ sex 		ENUM("Male", "Female", "Unknown") 	NOT NULL,
 password	VARCHAR(100) 	NOT NULL,
 gym_id 		INT 			NOT NULL,
 FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS health_records;
+CREATE TABLE health_records (
+record_id 			INT 			PRIMARY KEY 	AUTO_INCREMENT,
+height 				DECIMAL 		NOT NULL,
+weight 				DECIMAL			NOT NULL,
+date_calculated 	DATE 			NOT NULL,
+BMI 				DECIMAL 	NOT NULL,
+email		 		VARCHAR(30)		NOT NULL,
+FOREIGN KEY (email) REFERENCES users (email)
 );

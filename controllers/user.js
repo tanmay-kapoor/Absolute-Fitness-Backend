@@ -15,7 +15,7 @@ exports.getUser = async (req, res) => {
     const email = req.params["email"];
     try {
         const [user] = await User.getUser(email);
-        if (user.length == 0) {
+        if (user.length === 0) {
             res.status(401).json({ msg: "User does not exist" });
         } else {
             res.json(user[0]);
