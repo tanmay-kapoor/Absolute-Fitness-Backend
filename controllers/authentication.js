@@ -55,12 +55,16 @@ const authenticate = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-    const email = req.body.email;
-    const name = req.body.name;
-    const password = bcrypt.hashSync(req.body.password, salt);
+    const details = {
+        email: req.body.email,
+        name: req.body.name,
+        password: bcrypt.hashSync(req.body.password, salt),
+        age: req.body.age,
+        sex: req.body.sex,
+    };
 
     try {
-        await User.addUser(email, name, password);
+        await User.addUser(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(404).json({
@@ -70,12 +74,16 @@ const addUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const email = req.params.email;
-    const name = req.body.name;
-    const password = bcrypt.hashSync(req.body.password, salt);
+    const details = {
+        email: req.params["email"],
+        name: req.body.name,
+        password: bcrypt.hashSync(req.body.password, salt),
+        age: req.body.age,
+        sex: req.body.sex,
+    };
 
     try {
-        await User.updateUser(email, name, password);
+        await User.updateUser(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({

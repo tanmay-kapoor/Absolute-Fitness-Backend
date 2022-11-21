@@ -9,17 +9,19 @@ module.exports = class User {
         return db.execute("SELECT * FROM users WHERE email = ?", [email]);
     }
 
-    static addUser(email, name, password) {
+    static addUser(details) {
+        const { email, name, age, sex, password } = details;
         return db.execute(
-            "INSERT INTO users (email, name, password) VALUES (?, ?, ?)",
-            [email, name, password]
+            "INSERT INTO users (email, name, age, sex, password) VALUES (?, ?, ?, ?, ?)",
+            [email, name, age, sex, password]
         );
     }
 
-    static updateUser(email, name, password) {
+    static updateUser(details) {
+        const { email, name, age, sex, password } = details;
         return db.execute(
-            "UPDATE users SET name = ?, password = ? WHERE email = ?",
-            [name, password, email]
+            "UPDATE users SET name = ?, age = ?, sex = ?, password = ? WHERE email = ?",
+            [name, age, sex, password, email]
         );
     }
 
