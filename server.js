@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const userRoutes = require("./routes/user");
 const gymRoutes = require("./routes/gym");
+const healthRecordRoutes = require("./routes/healthRecord");
 
 const app = express();
 
@@ -27,5 +28,6 @@ app.use((req, res, next) => {
 
 app.use("/user", userRoutes);
 app.use("/gym", gymRoutes);
+app.use("/healthRecord", healthRecordRoutes);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
