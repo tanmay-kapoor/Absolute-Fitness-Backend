@@ -1,13 +1,11 @@
-DROP DATABASE IF EXISTS absolute_fitness;
-CREATE DATABASE absolute_fitness;
-USE absolute_fitness;
+USE sql9579962;
 
 DROP TABLE IF EXISTS gyms;
 CREATE TABLE gyms (
 gym_id 			INT 				PRIMARY KEY 	AUTO_INCREMENT,
 phone 			VARCHAR(10) 		NOT NULL 	UNIQUE,
 location 		VARCHAR(50) 		NOT NULL	UNIQUE,
-membership_fee 	DECIMAL 		NOT NULL
+membership_fee 	DECIMAL(65,2) 		NOT NULL
 );
 
 DROP TABLE IF EXISTS news_letters;
@@ -43,7 +41,7 @@ staff_id 	INT 			PRIMARY KEY 	AUTO_INCREMENT,
 name 		VARCHAR(50) 	NOT NULL,
 phone 		VARCHAR(10) 	NOT NULL 		UNIQUE,
 part_time 	BOOL 			DEFAULT FALSE,
-salary 		DECIMAL 	NOT NULL 		CHECK(salary>0)
+salary 		DECIMAL(65, 2) 	NOT NULL 		CHECK(salary>0)
 );
 
 DROP TABLE IF EXISTS users;
@@ -60,11 +58,11 @@ FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 DROP TABLE IF EXISTS health_records;
 CREATE TABLE health_records (
-record_id 			INT 			PRIMARY KEY 	AUTO_INCREMENT,
-height 				DECIMAL 		NOT NULL,
-weight 				DECIMAL			NOT NULL,
-date_calculated 	DATE 			NOT NULL,
-BMI 				DECIMAL 	NOT NULL,
-email		 		VARCHAR(30)		NOT NULL,
+record_id 			INT 				PRIMARY KEY 	AUTO_INCREMENT,
+height 				DECIMAL(65, 2) 		NOT NULL,
+weight 				DECIMAL(65, 2)		NOT NULL,
+date_calculated 	DATE 				NOT NULL,
+BMI 				DECIMAL(65,2) 		NOT NULL,
+email		 		VARCHAR(30)			NOT NULL,
 FOREIGN KEY (email) REFERENCES users (email) ON UPDATE CASCADE ON DELETE CASCADE
 );
