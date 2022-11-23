@@ -76,12 +76,16 @@ exports.addUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
+        const ageDifMs = Date.now() - new Date(req.body.dob).getTime();
+        const ageDate = new Date(ageDifMs);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
         const details = {
             email: req.params["email"],
             name: req.body.name,
             phone: req.body.phone,
             password: bcrypt.hashSync(req.body.password, salt),
-            age: req.body.age,
+            age,
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
