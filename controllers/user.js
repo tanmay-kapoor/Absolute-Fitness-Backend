@@ -12,8 +12,8 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.getUser = async (req, res) => {
-    const email = req.params["email"];
     try {
+        const email = req.params["email"];
         const [user] = await User.getUser(email);
         if (user.length === 0) {
             res.status(401).json({ msg: "User does not exist" });
@@ -26,10 +26,10 @@ exports.getUser = async (req, res) => {
 };
 
 exports.authenticate = async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-
     try {
+        const email = req.body.email;
+        const password = req.body.password;
+
         let [user] = await User.getUser(email);
         if (user.length == 0) {
             res.status(404).json({
@@ -53,17 +53,19 @@ exports.authenticate = async (req, res) => {
 };
 
 exports.addUser = async (req, res) => {
-    console.log(req.body);
-    const details = {
-        email: req.body.email,
-        name: req.body.fname + req.body.lname,
-        password: bcrypt.hashSync(req.body.password, salt),
-        age: req.body.age,
-        sex: req.body.sex,
-        gymId: req.body.gymId,
-    };  
-
     try {
+        const ageDifMs = Date.now() - new Date(req.body.dob).getTime();
+        const ageDate = new Date(ageDifMs);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+        const details = {
+            email: req.body.email,
+            name: req.body.name,
+            password: bcrypt.hashSync(req.body.password, salt),
+            age,
+            sex: req.body.sex,
+            gymId: req.body.gymId,
+        };
         await User.addUser(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
@@ -72,16 +74,16 @@ exports.addUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-    const details = {
-        email: req.params["email"],
-        name: req.body.name,
-        password: bcrypt.hashSync(req.body.password, salt),
-        age: req.body.age,
-        sex: req.body.sex,
-        gymId: req.body.gymId,
-    };
-
     try {
+        const details = {
+            email: req.params["email"],
+            name: req.body.name,
+            password: bcrypt.hashSync(req.body.password, salt),
+            age: req.body.age,
+            sex: req.body.sex,
+            gymId: req.body.gymId,
+        };
+
         await User.updateUser(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
@@ -90,9 +92,8 @@ exports.updateUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-    const email = req.params.email;
-
     try {
+        const email = req.params.email;
         await User.deleteUser(email);
         res.status(200).json({ msg: "Success" });
     } catch (err) {

@@ -51,7 +51,7 @@ CREATE TABLE users (
 email		VARCHAR(30) 	PRIMARY KEY,
 name 		VARCHAR(50) 	NOT NULL,
 age 		INT 			NOT NULL 			CHECK(age>0),
-sex 		ENUM("Male", "Female", "Unknown") 	NOT NULL,
+sex 		ENUM("Male", "Female", "Other") 	NOT NULL,
 password	VARCHAR(100) 	NOT NULL,
 gym_id 		INT 			NOT NULL,
 FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE
