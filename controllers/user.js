@@ -5,6 +5,7 @@ const salt = bcrypt.genSaltSync(10);
 exports.getAllUsers = async (req, res) => {
     try {
         const [allUsers] = await User.getAllUsers();
+        allUsers.map((user) => delete user["password"]);
         res.status(200).json(allUsers);
     } catch (err) {
         res.status(500).json({ err: err.message });
@@ -18,6 +19,7 @@ exports.getUser = async (req, res) => {
         if (user.length === 0) {
             res.status(401).json({ msg: "User does not exist" });
         } else {
+            delete user[0]["password"];
             res.json(user[0]);
         }
     } catch (err) {
