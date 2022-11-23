@@ -5,23 +5,26 @@ module.exports = class User {
         return db.execute("SELECT * FROM users");
     }
 
-    static getUser(email) {
-        return db.execute("SELECT * FROM users WHERE email = ?", [email]);
+    static getUser(username) {
+        return db.execute("SELECT * FROM users WHERE email = ? OR phone = ?", [
+            username,
+            username,
+        ]);
     }
 
     static addUser(details) {
-        const { email, name, age, sex, gymId, password } = details;
+        const { email, name, age, phone, sex, gymId, password } = details;
         return db.execute(
-            "INSERT INTO users (email, name, age, sex, gym_id, password) VALUES (?, ?, ?, ?, ?, ?)",
-            [email, name, age, sex, gymId, password]
+            "INSERT INTO users (email, name, phone, age, sex, gym_id, password) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [email, name, phone, age, sex, gymId, password]
         );
     }
 
     static updateUser(details) {
-        const { email, name, age, sex, gymId, password } = details;
+        const { email, name, phone, age, sex, gymId, password } = details;
         return db.execute(
-            "UPDATE users SET name = ?, age = ?, sex = ?, gym_id = ? password = ? WHERE email = ?",
-            [name, age, sex, gymId, password, email]
+            "UPDATE users SET name = ?, phone = ?, age = ?, sex = ?, gym_id = ? password = ? WHERE email = ?",
+            [name, age, phone, sex, gymId, password, email]
         );
     }
 

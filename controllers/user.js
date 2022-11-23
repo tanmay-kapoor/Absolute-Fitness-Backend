@@ -27,13 +27,13 @@ exports.getUser = async (req, res) => {
 
 exports.authenticate = async (req, res) => {
     try {
-        const email = req.body.email;
+        const username = req.body.username;
         const password = req.body.password;
 
-        let [user] = await User.getUser(email);
+        let [user] = await User.getUser(username);
         if (user.length == 0) {
             res.status(404).json({
-                error: `User with email ${email} does not exist`,
+                error: `User does not exist`,
             });
         } else {
             user = user[0];
@@ -61,6 +61,7 @@ exports.addUser = async (req, res) => {
         const details = {
             email: req.body.email,
             name: req.body.name,
+            phone: req.body.phone,
             password: bcrypt.hashSync(req.body.password, salt),
             age,
             sex: req.body.sex,
@@ -78,6 +79,7 @@ exports.updateUser = async (req, res) => {
         const details = {
             email: req.params["email"],
             name: req.body.name,
+            phone: req.body.phone,
             password: bcrypt.hashSync(req.body.password, salt),
             age: req.body.age,
             sex: req.body.sex,

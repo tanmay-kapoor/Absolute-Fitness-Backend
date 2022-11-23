@@ -5,9 +5,9 @@ USE absolute_fitness;
 DROP TABLE IF EXISTS gyms;
 CREATE TABLE gyms (
 gym_id 			INT 				PRIMARY KEY 	AUTO_INCREMENT,
-phone 			VARCHAR(15) 		NOT NULL 	UNIQUE,
+phone 			VARCHAR(10) 		NOT NULL 	UNIQUE,
 location 		VARCHAR(50) 		NOT NULL	UNIQUE,
-membership_fee 	DECIMAL(10, 2) 		NOT NULL
+membership_fee 	DECIMAL 		NOT NULL
 );
 
 DROP TABLE IF EXISTS news_letters;
@@ -24,7 +24,7 @@ name 			VARCHAR(20) 	PRIMARY KEY,
 location 		INT 			NOT NULL,
 opening_time 	VARCHAR(20) 	NOT NULL,
 closing_time    VARCHAR(20) 	NOT NULL,
-FOREIGN KEY (location) REFERENCES gyms(gym_id) ON DELETE CASCADE
+FOREIGN KEY (location) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS equipments;
@@ -34,27 +34,28 @@ quantity		INT 			NOT NULL,
 last_serviced 	DATE,
 location 		INT 			NOT NULL,
 PRIMARY KEY (name, location),
-FOREIGN KEY (location) REFERENCES gyms(gym_id) ON DELETE CASCADE
+FOREIGN KEY (location) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS staff;
 CREATE TABLE staff (
 staff_id 	INT 			PRIMARY KEY 	AUTO_INCREMENT,
 name 		VARCHAR(50) 	NOT NULL,
-phone 		VARCHAR(15) 	NOT NULL 		UNIQUE,
+phone 		VARCHAR(10) 	NOT NULL 		UNIQUE,
 part_time 	BOOL 			DEFAULT FALSE,
-salary 		DECIMAL(10, 2) 	NOT NULL 		CHECK(salary>0)
+salary 		DECIMAL 	NOT NULL 		CHECK(salary>0)
 );
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
 email		VARCHAR(30) 	PRIMARY KEY,
 name 		VARCHAR(50) 	NOT NULL,
+phone 		VARCHAR(10) 	NOT NULL	 		UNIQUE,
 age 		INT 			NOT NULL 			CHECK(age>0),
 sex 		ENUM("Male", "Female", "Other") 	NOT NULL,
 password	VARCHAR(100) 	NOT NULL,
 gym_id 		INT 			NOT NULL,
-FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE
+FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS health_records;
@@ -65,5 +66,5 @@ weight 				DECIMAL			NOT NULL,
 date_calculated 	DATE 			NOT NULL,
 BMI 				DECIMAL 	NOT NULL,
 email		 		VARCHAR(30)		NOT NULL,
-FOREIGN KEY (email) REFERENCES users (email)
+FOREIGN KEY (email) REFERENCES users (email) ON UPDATE CASCADE ON DELETE CASCADE
 );
