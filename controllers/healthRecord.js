@@ -39,7 +39,7 @@ exports.getHealthRecordsForUser = async (req, res) => {
         const [healthRecords] = await HealthRecord.getHealthRecordsForUser(
             email
         );
-        res.status(200).json(healthRecords[0]);
+        res.status(200).json(healthRecords);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
