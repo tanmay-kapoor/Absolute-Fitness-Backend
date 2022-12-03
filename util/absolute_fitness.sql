@@ -89,7 +89,7 @@ record_id 			INT 				PRIMARY KEY 	AUTO_INCREMENT,
 height 				DECIMAL(65, 2) 		NOT NULL,
 weight 				DECIMAL(65, 2)		NOT NULL,
 date_calculated 	DATE 				NOT NULL,
-BMI 				DECIMAL(65,2) 		NOT NULL,
+bmi 				DECIMAL(65,2) 		NOT NULL,
 email		 		VARCHAR(30)			NOT NULL,
 FOREIGN KEY (email) REFERENCES users (email) ON UPDATE CASCADE ON DELETE CASCADE
 );
