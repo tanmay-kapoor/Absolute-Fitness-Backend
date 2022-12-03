@@ -18,4 +18,6 @@ router.delete("/:email", userController.deleteUser);
 
 router.get("/:email/healthRecords", userController.getHealthRecordsForUser);
 
+router.post("/:email/healthRecord", userController.addHealthRecordForUser);
+
 module.exports = router;

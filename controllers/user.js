@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const HealthRecord = require("../models/healthRecord");
+const healthRecordController = require("./healthRecord");
 
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
@@ -58,10 +58,6 @@ exports.authenticate = async (req, res) => {
 
 exports.addUser = async (req, res) => {
     try {
-        // const ageDifMs = Date.now() - new Date(req.body.dob).getTime();
-        // const ageDate = new Date(ageDifMs);
-        // const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
         const details = {
             email: req.body.email,
             name: req.body.name,
@@ -80,10 +76,6 @@ exports.addUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        // const ageDifMs = Date.now() - new Date(req.body.dob).getTime();
-        // const ageDate = new Date(ageDifMs);
-        // const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
         const details = {
             email: req.params["email"],
             name: req.body.name,
@@ -112,13 +104,9 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.getHealthRecordsForUser = async (req, res) => {
-    try {
-        const email = req.params["email"];
-        const [healthRecords] = await HealthRecord.getHealthRecordsForUser(
-            email
-        );
-        res.status(200).json(healthRecords[0]);
-    } catch (err) {
-        res.status(500).json({ msg: err.message });
-    }
+    return await healthRecordController.getHealthRecordsForUser(req, res);
+};
+
+exports.addHealthRecordForUser = async (req, res) => {
+    return await healthRecordController.addHealthRecord(req, res);
 };
