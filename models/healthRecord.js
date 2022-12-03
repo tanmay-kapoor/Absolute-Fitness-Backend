@@ -41,4 +41,10 @@ module.exports = class HealthRecord {
             recordId,
         ]);
     }
+
+    static getHealthRecordsForUser(email) {
+        return db.execute("SELECT * FROM health_records WHERE email = ?", [
+            email,
+        ]);
+    }
 };

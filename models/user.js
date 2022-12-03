@@ -28,7 +28,10 @@ module.exports = class User {
         );
     }
 
-    static deleteUser(email) {
-        return db.execute("DELETE FROM users WHERE email = ?", [email]);
+    static deleteUser(username) {
+        return db.execute("DELETE FROM users WHERE email = ? OR phone = ?", [
+            username,
+            username,
+        ]);
     }
 };

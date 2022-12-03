@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const HealthRecord = require("../models/healthRecord");
+
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 
@@ -104,6 +106,18 @@ exports.deleteUser = async (req, res) => {
         const email = req.params["email"];
         await User.deleteUser(email);
         res.status(200).json({ msg: "Success" });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.getHealthRecordsForUser = async (req, res) => {
+    try {
+        const email = req.params["email"];
+        const [healthRecords] = await HealthRecord.getHealthRecordsForUser(
+            email
+        );
+        res.status(200).json(healthRecords[0]);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
