@@ -10,5 +10,7 @@ router.post("/", gymController.addGym);
 router.put("/:gymId", gymController.updateGym);
 router.delete("/:gymId", gymController.deleteGym);
 router.get("/:gymId/facilities", gymController.getAllFacilities);
+router.get("/:gymId/equipments", gymController.getAllEquipments);
+router.get("/:gymId/trainers", gymController.getAllTrainers);
 
 module.exports = router;

@@ -32,4 +32,15 @@ module.exports = class Gym {
     static getAllFacilities(gymId) {
         return db.execute("SELECT * FROM facilities WHERE gym_id = ?", [gymId]);
     }
+
+    static getAllEquipments(gymId) {
+        return db.execute("SELECT * FROM equipments WHERE gym_id = ?", [gymId]);
+    }
+
+    static getAllTrainers(gymId) {
+        return db.execute(
+            "SELECT * FROM (staff s JOIN trainers t ON s.staff_id = t.staff_id) JOIN gyms g ON s.gym_id = g.gym_id HAVING g.gym_id = ?",
+            [gymId]
+        );
+    }
 };

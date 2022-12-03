@@ -74,3 +74,24 @@ exports.getAllFacilities = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
+
+exports.getAllEquipments = async (req, res) => {
+    try {
+        const gymId = req.params["gymId"];
+        const [allEquipments] = await Gym.getAllEquipments(gymId);
+        res.status(200).json(allEquipments);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.getAllTrainers = async (req, res) => {
+    try {
+        const gymId = req.params["gymId"];
+        const [allTrainers] = await Gym.getAllTrainers(gymId);
+        allTrainers.map((trainer) => delete trainer["password"]);
+        res.status(200).json(allTrainers);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
