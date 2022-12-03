@@ -7,7 +7,9 @@ module.exports = class HealthRecord {
 
     static getAllHealthRecordsWithName() {
         const query =
-            "SELECT * FROM health_records h LEFT JOIN users u ON h.email = u.email";
+            "SELECT * FROM " +
+            "health_records h LEFT JOIN users u " +
+            "ON h.email = u.email";
         return db.execute(query);
     }
 

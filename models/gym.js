@@ -19,10 +19,19 @@ module.exports = class Gym {
 
     static updateGym(details) {
         const { gymId, imageUrl, phone, location, membershipFee } = details;
-        return db.execute(
-            "UPDATE gyms SET image_url = ?, phone = ?, location = ?, membership_fee = ? WHERE gym_id = ?",
-            [imageUrl, phone, location, membershipFee, gymId]
-        );
+
+        const query =
+            "UPDATE gyms SET " +
+            "image_url = ?, phone = ?, location = ?, membership_fee = ? " +
+            "WHERE gym_id = ?";
+
+        return db.execute(query, [
+            imageUrl,
+            phone,
+            location,
+            membershipFee,
+            gymId,
+        ]);
     }
 
     static deleteGym(gymId) {
@@ -38,9 +47,14 @@ module.exports = class Gym {
     }
 
     static getAllTrainers(gymId) {
-        return db.execute(
-            "SELECT name, speciality, s.staff_id, years_of_exp, t.image_url, description, g.gym_id FROM (staff s JOIN trainers t ON s.staff_id = t.staff_id) JOIN gyms g ON s.gym_id = g.gym_id HAVING g.gym_id = ?",
-            [gymId]
-        );
+        const query =
+            "SELECT name, speciality, s.staff_id, years_of_exp, t.image_url, description, g.gym_id FROM " +
+            "(staff s JOIN trainers t " +
+            "ON s.staff_id = t.staff_id) " +
+            "JOIN gyms g " +
+            "ON s.gym_id = g.gym_id " +
+            "HAVING g.gym_id = ?";
+
+        return db.execute(query, [gymId]);
     }
 };
