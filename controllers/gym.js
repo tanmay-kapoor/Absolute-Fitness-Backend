@@ -5,7 +5,7 @@ exports.getAllGyms = async (req, res) => {
         const [allGyms] = await Gym.getAllGyms();
         res.status(200).json(allGyms);
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -20,13 +20,14 @@ exports.getGym = async (req, res) => {
             res.json(gym[0]);
         }
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
 exports.addGym = async (req, res) => {
     try {
         const details = {
+            imageUrl: req.body.imageUrl,
             phone: req.body.phone,
             location: req.body.location,
             membershipFee: req.body.membershipFee,
@@ -34,7 +35,7 @@ exports.addGym = async (req, res) => {
         await Gym.addGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -42,6 +43,7 @@ exports.updateGym = async (req, res) => {
     try {
         const details = {
             gymId: req.params["gymId"],
+            imageUrl: req.body.imageUrl,
             phone: req.body.phone,
             location: req.body.location,
             membershipFee: req.body.membershipFee,
@@ -49,7 +51,7 @@ exports.updateGym = async (req, res) => {
         await Gym.updateGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -59,6 +61,6 @@ exports.deleteGym = async (req, res) => {
         await Gym.deleteGym(gymId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };

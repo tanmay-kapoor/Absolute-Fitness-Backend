@@ -1,26 +1,26 @@
-const User = require("../models/user");
+const Staff = require("../models/staff");
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 
-exports.getAllUsers = async (req, res) => {
+exports.getAllStaff = async (req, res) => {
     try {
-        const [allUsers] = await User.getAllUsers();
-        allUsers.map((user) => delete user["password"]);
-        res.status(200).json(allUsers);
+        const [allStaff] = await Staff.getAllStaff();
+        allStaff.map((staff) => delete staff["password"]);
+        res.status(200).json(allStaff);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
 };
 
-exports.getUser = async (req, res) => {
+exports.getStaff = async (req, res) => {
     try {
-        const email = req.params["email"];
-        const [user] = await User.getUser(email);
-        if (user.length === 0) {
-            res.status(401).json({ msg: "User does not exist" });
+        const staffId = req.params["staffId"];
+        const [staff] = await Staff.getStaff(staffId);
+        if (staff.length === 0) {
+            res.status(401).json({ msg: "Staff does not exist" });
         } else {
-            delete user[0]["password"];
-            res.json(user[0]);
+            delete staff[0]["password"];
+            res.json(staff[0]);
         }
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -32,15 +32,13 @@ exports.authenticate = async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
 
-        let [user] = await User.getUser(username);
-        if (user.length == 0) {
+        let [staff] = await Staff.getStaff(username);
+        if (staff.length == 0) {
             res.status(404).json({
-                msg: `User does not exist`,
+                msg: `Staff does not exist`,
             });
         } else {
-            user = user[0];
-
-            bcrypt.compare(password, user.password, (err, found) => {
+            bcrypt.compare(password, staff[0].password, (err, found) => {
                 if (!found) {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
@@ -54,55 +52,56 @@ exports.authenticate = async (req, res) => {
     }
 };
 
-exports.addUser = async (req, res) => {
+exports.addStaff = async (req, res) => {
     try {
-        // const ageDifMs = Date.now() - new Date(req.body.dob).getTime();
-        // const ageDate = new Date(ageDifMs);
-        // const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
         const details = {
-            email: req.body.email,
+            staffId: req.body.staffId,
             name: req.body.name,
             phone: req.body.phone,
+            partTime:
+                req.body.partTime == "True" || req.body.partTime == "true"
+                    ? true
+                    : false,
+            salary: req.body.salary,
+            description: req.body.description,
             password: bcrypt.hashSync(req.body.password, salt),
-            dob: req.body.dob,
-            sex: req.body.sex,
             gymId: req.body.gymId,
         };
-        await User.addUser(details);
+        console.log(details.partTime);
+        await Staff.addStaff(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
 };
 
-exports.updateUser = async (req, res) => {
+exports.updateStaff = async (req, res) => {
     try {
-        // const ageDifMs = Date.now() - new Date(req.body.dob).getTime();
-        // const ageDate = new Date(ageDifMs);
-        // const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
         const details = {
-            email: req.params["email"],
+            staffId: req.params["staffId"],
             name: req.body.name,
             phone: req.body.phone,
+            partTime:
+                req.body.partTime === "True" || req.body.partTime === "true"
+                    ? true
+                    : false,
+            salary: req.body.salary,
+            description: req.body.description,
             password: bcrypt.hashSync(req.body.password, salt),
-            dob: req.body.dob,
-            sex: req.body.sex,
             gymId: req.body.gymId,
         };
 
-        await User.updateUser(details);
+        await Staff.updateStaff(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
 };
 
-exports.deleteUser = async (req, res) => {
+exports.deleteStaff = async (req, res) => {
     try {
-        const email = req.params["email"];
-        await User.deleteUser(email);
+        const staffId = req.params["staffId"];
+        await Staff.deleteStaff(staffId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });

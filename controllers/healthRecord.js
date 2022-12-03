@@ -5,7 +5,7 @@ exports.getAllHealthRecords = async (req, res) => {
         const [allHealthRecords] = await HealthRecord.getAllHealthRecords();
         res.status(200).json(allHealthRecords);
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -15,7 +15,7 @@ exports.getAllHealthRecordsWithName = async (req, res) => {
             await HealthRecord.getAllHealthRecordsWithName();
         res.status(200).json(allHealthRecordsWithName);
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -29,7 +29,7 @@ exports.getHealthRecord = async (req, res) => {
             res.status(200).json(healthRecord[0]);
         }
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -39,13 +39,14 @@ exports.addHealthRecord = async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             dateCalculated: req.body.dateCalculated,
-            bmi: req.body.bmi,
             email: req.body.email,
         };
+        details.bmi =
+            details.weight / ((details.height * details.height) / 10000);
         await HealthRecord.addHealthRecord(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
@@ -56,20 +57,23 @@ exports.updateHealthRecord = async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             dateCalculated: req.body.dateCalculated,
-            bmi: req.body.bmi,
             email: req.body.email,
         };
+        details.bmi =
+            details.weight / ((details.height * details.height) / 10000);
         await HealthRecord.updateHealthRecord(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };
 
 exports.deleteHealthRecord = async (req, res) => {
     try {
+        const recordId = req.params["recordId"];
+        await HealthRecord.deleteHealthRecord(recordId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
-        res.status(500).json({ err: err.message });
+        res.status(500).json({ msg: err.message });
     }
 };

@@ -20,7 +20,7 @@ module.exports = class HealthRecord {
     static addHealthRecord(details) {
         const { height, weight, dateCalculated, bmi, email } = details;
         return db.execute(
-            "INSERT INTO health_records (height, weight, date_calculated, BMI, email) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO health_records (height, weight, date_calculated, bmi, email) VALUES (?, ?, ?, ?, ?)",
             [height, weight, dateCalculated, bmi, email]
         );
     }
@@ -29,7 +29,7 @@ module.exports = class HealthRecord {
         const { recordId, height, weight, dateCalculated, bmi, email } =
             details;
         return db.execute(
-            "UPDATE health_records SET height = ?, weight = ?, date_calculated = ?, BMI = ?, email = ? WHERE record_id = ?",
+            "UPDATE health_records SET height = ?, weight = ?, date_calculated = ?, bmi = ?, email = ? WHERE record_id = ?",
             [height, weight, dateCalculated, bmi, email, recordId]
         );
     }
