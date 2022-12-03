@@ -36,9 +36,7 @@ exports.getHealthRecord = async (req, res) => {
 exports.getHealthRecordsForUser = async (req, res) => {
     try {
         const email = req.params["email"];
-        const [healthRecords] = await HealthRecord.getHealthRecordsForUser(
-            email
-        );
+        let [healthRecords] = await HealthRecord.getHealthRecordsForUser(email);
         res.status(200).json(healthRecords);
     } catch (err) {
         res.status(500).json({ msg: err.message });
