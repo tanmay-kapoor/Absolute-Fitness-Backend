@@ -28,4 +28,8 @@ module.exports = class Gym {
     static deleteGym(gymId) {
         return db.execute("DELETE FROM gyms WHERE gym_id = ?", [gymId]);
     }
+
+    static getAllFacilities(gymId) {
+        return db.execute("SELECT * FROM facilities WHERE gym_id = ?", [gymId]);
+    }
 };

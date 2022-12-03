@@ -64,3 +64,13 @@ exports.deleteGym = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
+
+exports.getAllFacilities = async (req, res) => {
+    try {
+        const gymId = req.params["gymId"];
+        const [allFacilities] = await Gym.getAllFacilities(gymId);
+        res.status(200).json(allFacilities);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};

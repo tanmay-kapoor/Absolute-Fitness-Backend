@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS facilities;
 CREATE TABLE facilities (
 name 			VARCHAR(20) 	PRIMARY KEY,
 image_url		VARCHAR(200)	NOT NULL,
-location 		INT 			NOT NULL,
+gym_id	 		INT 			NOT NULL,
 opening_time 	VARCHAR(20) 	NOT NULL,
 closing_time    VARCHAR(20) 	NOT NULL,
-FOREIGN KEY (location) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS equipments;
@@ -34,9 +34,9 @@ CREATE TABLE equipments (
 name 			VARCHAR(20) 	NOT NULL,
 quantity		INT 			NOT NULL,
 last_serviced 	DATE,
-location 		INT 			NOT NULL,
-PRIMARY KEY (name, location),
-FOREIGN KEY (location) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
+gym_id	 		INT 			NOT NULL,
+PRIMARY KEY (name, gym_id),
+FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS staff;
