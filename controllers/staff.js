@@ -67,7 +67,6 @@ exports.addStaff = async (req, res) => {
             password: bcrypt.hashSync(req.body.password, salt),
             gymId: req.body.gymId,
         };
-        console.log(details.partTime);
         await Staff.addStaff(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {

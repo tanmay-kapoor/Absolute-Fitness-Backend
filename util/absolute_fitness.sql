@@ -22,6 +22,7 @@ description 	VARCHAR(500) 	NOT NULL
 DROP TABLE IF EXISTS facilities;
 CREATE TABLE facilities (
 name 			VARCHAR(20) 	PRIMARY KEY,
+image_url		VARCHAR(200)	NOT NULL,
 location 		INT 			NOT NULL,
 opening_time 	VARCHAR(20) 	NOT NULL,
 closing_time    VARCHAR(20) 	NOT NULL,
