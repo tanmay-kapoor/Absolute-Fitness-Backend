@@ -38,7 +38,7 @@ module.exports = class User {
     static getHealthPlan() {
         const query =
             "SELECT u.email, u.name, " +
-            "t.staff_id as trainer_id, " +
+            "t.staff_id as trainer_id, t.image_url as trainer_url, " +
             "s.name as trainer_name, s.phone as trainer_phone, " +
             "w.plan_id as workout_plan_id, w.name as workout_plan_name, " +
             "w.description as workout_description, w.excercise_1, w.excercise_2, w.excercise_3, " +
