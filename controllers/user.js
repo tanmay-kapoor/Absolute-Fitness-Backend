@@ -110,3 +110,12 @@ exports.getHealthRecordsForUser = async (req, res) => {
 exports.addHealthRecordForUser = async (req, res) => {
     return await healthRecordController.addHealthRecord(req, res);
 };
+
+exports.getHealthPlan = async (req, res) => {
+    try {
+        const [healthPlan] = await User.getHealthPlan(req.params["email"]);
+        res.status(200).json(healthPlan[0]);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
