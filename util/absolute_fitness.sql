@@ -94,31 +94,65 @@ email		 		VARCHAR(30)			NOT NULL,
 FOREIGN KEY (email) REFERENCES users (email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS workout_plan;
-CREATE TABLE workout_plan (
-plan_id 		INT 			PRIMARY KEY		AUTO_INCREMENT,
-name			VARCHAR(32) 	NOT NULL 		UNIQUE,
-description  	VARCHAR(512) 	NOT NULL
+DROP TABLE IF EXISTS excercises;
+CREATE TABLE excercises (
+name			VARCHAR(32)		PRIMARY KEY,
+reps			INT 			NOT NULL	CHECK (sets > 0),
+sets			INT 			NOT NULL 	CHECK (reps > 0)
 );
 
-DROP TABLE IF EXISTS diet_plan;
-CREATE TABLE diet_plan (
-plan_id 		INT 			PRIMARY KEY 	AUTO_INCREMENT,
+-- INSERT INTO excercises VALUES ("Pushups", 5, 20);
+-- INSERT INTO excercises VALUES ("Pullups", 3, 15);
+-- INSERT INTO excercises VALUES ("Bench Press", 5, 40);
+
+DROP TABLE IF EXISTS workout_plans;
+CREATE TABLE workout_plans (
+plan_id 		INT 			PRIMARY KEY		AUTO_INCREMENT,
 name			VARCHAR(32) 	NOT NULL 		UNIQUE,
-descrption 		VARCHAR(512) 	NOT NULL
+description  	VARCHAR(512),
+excercise_1		VARCHAR(32),
+excercise_2		VARCHAR(32),
+excercise_3		VARCHAR(32),
+FOREIGN KEY (excercise_1) REFERENCES excercises (name),
+FOREIGN KEY (excercise_2) REFERENCES excercises (name),
+FOREIGN KEY (excercise_3) REFERENCES excercises (name)
+);
+
+DROP TABLE IF EXISTS meal_choices;
+CREATE TABLE meal_choices (
+meal		VARCHAR(100)	PRIMARY KEY,
+calories	INT 			NOT NULL		CHECK (calories > 0)
+);
+
+-- INSERT INTO meal_choices values ("Oats", 150);
+-- INSERT INTO meal_choices values ("Porridge", 95);
+-- INSERT INTO meal_choices values ("Chicken", 250);
+
+DROP TABLE IF EXISTS diet_plans;
+CREATE TABLE diet_plans (
+plan_id 			INT 				PRIMARY KEY 	AUTO_INCREMENT,
+name				VARCHAR(32) 		NOT NULL 		UNIQUE,
+description 		VARCHAR(512),
+breakfast			VARCHAR(100),
+lunch				VARCHAR(100),
+dinner				VARCHAR(100),
+FOREIGN KEY (breakfast) REFERENCES meal_choices (meal) ON UPDATE CASCADE ON DELETE SET NULL,
+FOREIGN KEY (lunch) REFERENCES meal_choices (meal) ON UPDATE CASCADE ON DELETE SET NULL,
+FOREIGN KEY (dinner) REFERENCES meal_choices (meal) ON UPDATE CASCADE ON DELETE SET NULL
 ); 
 
-DROP TABLE IF EXISTS health_plan;
-CREATE TABLE health_plan (
+DROP TABLE IF EXISTS health_plans;
+CREATE TABLE health_plans (
 plan_id 		INT 			PRIMARY KEY,
 trainer_id 		INT 			UNIQUE,
 email 			VARCHAR(100) 	NOT NULL 		UNIQUE,
-workout_plan 	INT 			NOT NULL,
+workout_plan 	INT,
 diet_plan 		INT,
+description		VARCHAR(512),
 FOREIGN KEY (trainer_id) REFERENCES trainers (staff_id) ON UPDATE CASCADE ON DELETE SET NULL,
 FOREIGN KEY (email) REFERENCES users (email) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (workout_plan) REFERENCES workout_plan (plan_id) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (diet_plan) REFERENCES diet_plan (plan_id) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (workout_plan) REFERENCES workout_plans (plan_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (diet_plan) REFERENCES diet_plans (plan_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS food_items;
