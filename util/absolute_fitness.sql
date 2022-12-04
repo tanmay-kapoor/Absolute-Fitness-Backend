@@ -66,7 +66,7 @@ DROP TABLE IF EXISTS trainers;
 CREATE TABLE trainers (
 staff_id  		INT 			PRIMARY KEY,
 image_url 		VARCHAR(200) 	NOT NULL,
-years_of_exp		INT 			NOT NULL 	CHECK (years_of_exp >= 0),
+years_of_exp	INT 			NOT NULL 	CHECK (years_of_exp >= 0),
 speciality		VARCHAR(30)		NOT NULL,
 FOREIGN KEY (staff_id) REFERENCES staff (staff_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
