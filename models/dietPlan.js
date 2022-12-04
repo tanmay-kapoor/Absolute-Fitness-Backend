@@ -2,7 +2,14 @@ const db = require("../util/database");
 
 module.exports = class DietPlan {
     static getAllDietPlans() {
-        return db.execute("SELECT * FROM diet_plans");
+        const query =
+            "SELECT d.*, m1.calories as breakfast_calories, m1.image_url as breakfast_url, " +
+            "m2.calories as lunch_calories, m2.image_url as lunch_url, " +
+            "m3.calories as dinner_calories, m3.image_url as dinner_url " +
+            "FROM ((diet_plans d LEFT JOIN meal_choices m1 on d.breakfast = m1.meal) " +
+            "LEFT JOIN meal_choices m2 ON d.lunch = m2.meal) " +
+            "LEFT JOIN meal_choices m3 ON d.dinner = m3.meal;";
+        return db.execute(query);
     }
 
     static addDietPlan(details) {

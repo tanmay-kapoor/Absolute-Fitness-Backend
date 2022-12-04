@@ -98,12 +98,13 @@ DROP TABLE IF EXISTS excercises;
 CREATE TABLE excercises (
 name			VARCHAR(32)		PRIMARY KEY,
 reps			INT 			NOT NULL	CHECK (sets > 0),
-sets			INT 			NOT NULL 	CHECK (reps > 0)
+sets			INT 			NOT NULL 	CHECK (reps > 0),
+image_url		VARCHAR(200)	NOT NULL
 );
 
--- INSERT INTO excercises VALUES ("Pushups", 5, 20);
--- INSERT INTO excercises VALUES ("Pullups", 3, 15);
--- INSERT INTO excercises VALUES ("Bench Press", 5, 40);
+-- INSERT INTO excercises VALUES ("Pushups", 5, 20, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
+-- INSERT INTO excercises VALUES ("Pullups", 3, 15, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
+-- INSERT INTO excercises VALUES ("Bench Press", 5, 40, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
 
 DROP TABLE IF EXISTS workout_plans;
 CREATE TABLE workout_plans (
@@ -121,12 +122,13 @@ FOREIGN KEY (excercise_3) REFERENCES excercises (name)
 DROP TABLE IF EXISTS meal_choices;
 CREATE TABLE meal_choices (
 meal		VARCHAR(100)	PRIMARY KEY,
-calories	INT 			NOT NULL		CHECK (calories > 0)
+calories	INT 			NOT NULL		CHECK (calories > 0),
+image_url	VARCHAR(200)	NOT NULL
 );
 
--- INSERT INTO meal_choices values ("Oats", 150);
--- INSERT INTO meal_choices values ("Porridge", 95);
--- INSERT INTO meal_choices values ("Chicken", 250);
+-- INSERT INTO meal_choices values ("Oats", 150, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
+-- INSERT INTO meal_choices values ("Porridge", 95, "https://insanelygoodrecipes.com/wp-content/uploads/2022/04/Oatmeal-Porridge-with-Nuts-and-Blueberries-in-a-Blue-Bowl.jpg");
+-- INSERT INTO meal_choices values ("Chicken", 250, "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/healthy-chicken-recipes-1641586837.jpeg?crop=1.00xw:0.498xh;0,0.285xh&resize=1200:*");
 
 DROP TABLE IF EXISTS diet_plans;
 CREATE TABLE diet_plans (
