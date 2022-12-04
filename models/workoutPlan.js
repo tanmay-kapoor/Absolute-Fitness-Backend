@@ -2,7 +2,17 @@ const db = require("../util/database");
 
 module.exports = class WorkoutPlan {
     static getAllWorkoutPlans() {
-        return db.execute("SELECT * FROM workout_plans");
+        const query =
+            "SELECT w.*, e1.image_url as e1_url, e1.sets as e1_sets, e1.reps as e1_reps, " +
+            "e2.image_url as e2_url, e2.sets as e2_sets, e2.reps as e2_reps, " +
+            "e3.image_url as e3_url, e3.sets as e3_sets, e3.reps as e3_reps FROM " +
+            "((workout_plans w LEFT JOIN excercises e1 " +
+            "ON w.excercise_1 = e1.name) " +
+            "LEFT JOIN excercises e2 " +
+            "ON w.excercise_2 = e2.name) " +
+            "LEFT JOIN excercises e3 " +
+            "ON w.excercise_3 = e3.name;";
+        return db.execute(query);
     }
 
     static addWorkoutPlan(details) {

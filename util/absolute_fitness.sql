@@ -102,9 +102,9 @@ sets			INT 			NOT NULL 	CHECK (reps > 0),
 image_url		VARCHAR(200)	NOT NULL
 );
 
--- INSERT INTO excercises VALUES ("Pushups", 5, 20, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
--- INSERT INTO excercises VALUES ("Pullups", 3, 15, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
--- INSERT INTO excercises VALUES ("Bench Press", 5, 40, "https://post.healthline.com/wp-content/uploads/2020/03/oats-oatmeal-732x549-thumbnail.jpg");
+-- INSERT INTO excercises VALUES ("Pushups", 5, 20, "https://blog.nasm.org/hubfs/power-pushups.jpg");
+-- INSERT INTO excercises VALUES ("Pullups", 3, 15, "https://post.healthline.com/wp-content/uploads/2019/09/pull-up-pullup-gym-1200x628-facebook.jpg");
+-- INSERT INTO excercises VALUES ("Bench Press", 5, 40, "https://cdn.mos.cms.futurecdn.net/pLaRi5jXSHDKu6WRydetBo.jpg");
 
 DROP TABLE IF EXISTS workout_plans;
 CREATE TABLE workout_plans (
