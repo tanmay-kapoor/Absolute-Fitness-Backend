@@ -41,6 +41,44 @@ exports.deleteWorkoutPlan = async (req, res) => {
     }
 };
 
+exports.getWorkoutPlanForUser = async (req, res) => {
+    try {
+        const [workoutPlan] = await WorkoutPlan.getWorkoutPlanForUser(
+            req.params["email"]
+        );
+        const data = workoutPlan[0];
+        const structuredData = {
+            email: data.email,
+            planId: data.plan_id,
+            name: data.name,
+            description: data.description,
+            excercises: [
+                {
+                    excercise: data.excercise_1,
+                    sets: data.e1_sets,
+                    reps: data.e1_reps,
+                    imageUrl: data.e1_url,
+                },
+                {
+                    excercise: data.excercise_2,
+                    sets: data.e2_sets,
+                    reps: data.e2_reps,
+                    imageUrl: data.e2_url,
+                },
+                {
+                    excercise: data.excercise_3,
+                    sets: data.e3_sets,
+                    reps: data.e3_reps,
+                    imageUrl: data.e3_url,
+                },
+            ],
+        };
+        res.status(200).json(structuredData);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 const setNullIfAbsent = (details) => {
     if (!details.excercise1) {
         details.excercise1 = null;
