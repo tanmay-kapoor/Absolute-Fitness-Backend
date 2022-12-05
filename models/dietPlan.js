@@ -43,4 +43,19 @@ module.exports = class DietPlan {
     static deleteDietPlan(planId) {
         return db.execute("DELETE FROM diet_plans WHERE plan_id = ?", [planId]);
     }
+
+    static getDietPlanForUser(email) {
+        const query =
+            "SELECT h.email, d.*, " +
+            "m1.calories as m1_calories, m1.image_url as m1_url, " +
+            "m2.calories as m2_calories, m2.image_url as m2_url, " +
+            "m3.calories as m3_calories, m3.image_url as m3_url FROM " +
+            "health_plans h LEFT JOIN diet_plans d " +
+            "ON h.diet_plan = d.plan_id " +
+            "LEFT JOIN meal_choices m1 ON d.breakfast = m1.meal " +
+            "LEFT JOIN meal_choices m2 ON d.lunch = m2.meal " +
+            "LEFT JOIN meal_choices m3 ON d.dinner = m3.meal " +
+            "HAVING h.email = ?";
+        return db.execute(query, [email]);
+    }
 };

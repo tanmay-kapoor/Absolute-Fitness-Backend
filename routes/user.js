@@ -24,4 +24,6 @@ router.get("/:email/healthPlan", userController.getHealthPlan);
 
 router.get("/:email/workoutPlan", userController.getWorkoutPlan);
 
+router.get("/:email/dietPlan", userController.getDietPlan);
+
 module.exports = router;

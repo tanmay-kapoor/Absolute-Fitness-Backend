@@ -41,6 +41,41 @@ exports.deleteDietPlan = async (req, res) => {
     }
 };
 
+exports.getDietPlanForUser = async (req, res) => {
+    try {
+        const [dietPlan] = await DietPlan.getDietPlanForUser(
+            req.params["email"]
+        );
+        const data = dietPlan[0];
+        const structuredData = {
+            email: data.email,
+            planId: data.plan_id,
+            name: data.name,
+            description: data.description,
+            meals: [
+                {
+                    meal: data.breakfast,
+                    calories: data.m1_calories,
+                    imageUrl: data.m1_url,
+                },
+                {
+                    meal: data.lunch,
+                    calories: data.m2_calories,
+                    imageUrl: data.m2_url,
+                },
+                {
+                    meal: data.dinner,
+                    calories: data.m3_calories,
+                    imageUrl: data.m3_url,
+                },
+            ],
+        };
+        res.status(200).json(structuredData);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 const setNullIfAbsent = (details) => {
     if (!details.description) {
         details.description = null;

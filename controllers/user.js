@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const healthRecordController = require("./healthRecord");
 const workoutPlanController = require("./workoutPlan");
+const dietPlanController = require("./dietPlan");
 
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
@@ -123,4 +124,8 @@ exports.getHealthPlan = async (req, res) => {
 
 exports.getWorkoutPlan = async (req, res) => {
     return workoutPlanController.getWorkoutPlanForUser(req, res);
+};
+
+exports.getDietPlan = async (req, res) => {
+    return dietPlanController.getDietPlanForUser(req, res);
 };
