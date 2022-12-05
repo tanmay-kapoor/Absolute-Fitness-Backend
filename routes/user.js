@@ -22,4 +22,6 @@ router.post("/:email/healthRecord", userController.addHealthRecordForUser);
 
 router.get("/:email/healthPlan", userController.getHealthPlan);
 
+router.get("/:email/workoutPlan", userController.getWorkoutPlan);
+
 module.exports = router;
