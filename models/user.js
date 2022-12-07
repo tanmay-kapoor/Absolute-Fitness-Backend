@@ -38,4 +38,8 @@ module.exports = class User {
     static getAllUsersForGym(gymId) {
         return db.execute("SELECT * FROM users WHERE gym_id = ?", [gymId]);
     }
+
+    static getAllStaffForGym(gymId) {
+        return db.execute("SELECT * FROM staff WHERE gym_id = ?", [gymId]);
+    }
 };

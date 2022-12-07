@@ -113,3 +113,17 @@ exports.getAllUsers = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
+
+exports.getAllStaff = async (req, res) => {
+    try {
+        const gymId = req.params["gymId"];
+        const [allStaff] = await User.getAllStaffForGym(gymId);
+        allStaff.map((staff) => {
+            delete staff["password"];
+            delete staff["gym_id"];
+        });
+        res.status(200).json(allStaff);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
