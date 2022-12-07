@@ -23,8 +23,8 @@ module.exports = class User {
     static updateUser(details) {
         const { email, name, phone, dob, sex, gymId, password } = details;
         return db.execute(
-            "UPDATE users SET name = ?, phone = ?, dob = ?, sex = ?, gym_id = ? password = ? WHERE email = ?",
-            [name, dob, phone, sex, gymId, password, email]
+            "UPDATE users SET name = ?, phone = ?, dob = ?, sex = ?, gym_id = ?, password = ? WHERE email = ?",
+            [name, phone, dob, sex, gymId, password, email]
         );
     }
 

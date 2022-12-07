@@ -114,9 +114,9 @@ description  	VARCHAR(512),
 excercise_1		VARCHAR(32),
 excercise_2		VARCHAR(32),
 excercise_3		VARCHAR(32),
-FOREIGN KEY (excercise_1) REFERENCES excercises (name),
-FOREIGN KEY (excercise_2) REFERENCES excercises (name),
-FOREIGN KEY (excercise_3) REFERENCES excercises (name)
+FOREIGN KEY (excercise_1) REFERENCES excercises (name) ON UPDATE CASCADE ON DELETE SET NULL,
+FOREIGN KEY (excercise_2) REFERENCES excercises (name) ON UPDATE CASCADE ON DELETE SET NULL,
+FOREIGN KEY (excercise_3) REFERENCES excercises (name) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 DROP TABLE IF EXISTS meal_choices;
@@ -157,6 +157,33 @@ FOREIGN KEY (workout_plan) REFERENCES workout_plans (plan_id) ON UPDATE CASCADE 
 FOREIGN KEY (diet_plan) REFERENCES diet_plans (plan_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP FUNCTION IF EXISTS getRandomTrainer;
+DELIMITER //
+CREATE FUNCTION getRandomTrainer(v_gym INT)
+RETURNS INT READS SQL DATA
+BEGIN
+	DECLARE random_trainer INT;
+    
+	SELECT s.gym_id, t.staff_id INTO random_trainer FROM 
+    trainers t JOIN staff s
+    ON t.staff_id = s.staff_id
+    HAVING s.gym_id = v_gym
+    LIMIT 1;
+    
+    RETURN random_trainer;
+END //
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS randomly_assign_health_plan;
+DELIMITER //
+CREATE TRIGGER randomly_assign_health_plan
+AFTER INSERT ON users FOR EACH ROW
+BEGIN
+	INSERT INTO health_plan (trainer_id, email, workout_plan, diet_plan, description) 
+    VALUES (getRandomTrainer(NEW.gym_id), NEW.email, 4, 4, "randomly assigned plan");
+END //
+DELIMITER ;
+
 DROP TABLE IF EXISTS food_items;
 CREATE TABLE food_items (
 item_id 			INT 			PRIMARY KEY 	AUTO_INCREMENT,
@@ -166,3 +193,30 @@ is_gluten_free		BOOLEAN 		NOT NULL,
 is_vegan			BOOLEAN 		NOT NULL,
 image_url 			VARCHAR(200)
 );
+
+-- DROP FUNCTION IF EXISTS getRandomTrainer;
+-- DELIMITER //
+-- CREATE FUNCTION getRandomTrainer(v_gym INT)
+-- RETURNS INT READS SQL DATA
+-- BEGIN
+-- 	DECLARE random_trainer INT;
+--     
+-- 	SELECT s.gym_id, t.staff_id INTO random_trainer FROM 
+--     trainers t JOIN staff s
+--     ON t.staff_id = s.staff_id
+--     HAVING s.gym_id = v_gym
+--     LIMIT 1;
+--     
+--     RETURN random_trainer;
+-- END //
+-- DELIMITER ;
+
+-- DROP TRIGGER IF EXISTS randomly_assign_health_plan;
+-- DELIMITER //
+-- CREATE TRIGGER randomly_assign_health_plan
+-- AFTER INSERT ON users FOR EACH ROW
+-- BEGIN
+-- 	INSERT INTO health_plans (trainer_id, email, workout_plan, diet_plan, description) 
+--     VALUES (getRandomTrainer(NEW.gym_id), NEW.email, 4, 4, "randomly assigned plan");
+-- END //
+-- DELIMITER ;

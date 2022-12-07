@@ -84,11 +84,16 @@ exports.updateUser = async (req, res) => {
             email: req.params["email"],
             name: req.body.name,
             phone: req.body.phone,
-            password: bcrypt.hashSync(req.body.password, salt),
             dob: req.body.dob,
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
+        if (!req.body.password) {
+            const [user] = await User.getUser(details.email);
+            details.password = user[0].password;
+        } else {
+            details.password = bcrypt.hashSync(req.body.password, salt);
+        }
 
         await User.updateUser(details);
         res.status(200).json({ msg: "Success" });
