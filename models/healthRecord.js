@@ -44,7 +44,7 @@ module.exports = class HealthRecord {
 
     static getHealthRecordsForUser(email) {
         return db.execute(
-            "SELECT * FROM health_records WHERE email = ? ORDER BY date_calculated ASC",
+            "SELECT * FROM health_records WHERE email = ? ORDER BY date_calculated DESC",
             [email]
         );
     }

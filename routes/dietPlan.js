@@ -12,4 +12,6 @@ router.put("/:planId", dietPlanController.updateDietPlan);
 
 router.delete("/:planId", dietPlanController.deleteDietPlan);
 
+router.get("/:email", dietPlanController.getDietPlanForUser);
+
 module.exports = router;
