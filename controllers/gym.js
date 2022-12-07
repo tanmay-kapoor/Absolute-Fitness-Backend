@@ -104,7 +104,10 @@ exports.getAllUsers = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
         const [allUsers] = await User.getAllUsersForGym(gymId);
-        allUsers.map((user) => delete user["password]"]);
+        allUsers.map((user) => {
+            delete user["password"];
+            delete user["gym_id"];
+        });
         res.status(200).json(allUsers);
     } catch (err) {
         res.status(500).json({ msg: err.message });
