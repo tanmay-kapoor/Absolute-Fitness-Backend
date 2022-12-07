@@ -20,7 +20,6 @@ module.exports = class Trainer {
     }
 
     static getAllUserHealthRecordsForTrainer(trainerId) {
-        console.log(trainerId);
         const query =
             "SELECT h.trainer_id, r.* FROM " +
             "health_plans h JOIN users u " +
