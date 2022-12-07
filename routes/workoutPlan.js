@@ -12,4 +12,6 @@ router.put("/:planId", workoutPlanController.updateWorkoutPlan);
 
 router.delete("/:planId", workoutPlanController.deleteWorkoutPlan);
 
+router.get("/:email", workoutPlanController.getWorkoutPlanForUser);
+
 module.exports = router;

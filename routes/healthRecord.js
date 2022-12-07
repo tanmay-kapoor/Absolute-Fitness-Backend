@@ -16,4 +16,6 @@ router.put("/:recordId", healthRecordController.updateHealthRecord);
 
 router.delete("/:recordId", healthRecordController.deleteHealthRecord);
 
+router.get("/:email", healthRecordController.getHealthRecordsForUser);
+
 module.exports = router;
