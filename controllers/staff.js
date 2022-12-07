@@ -1,5 +1,8 @@
 const Staff = require("../models/staff");
+const Admin = require("../models/admin");
+
 const bcrypt = require("bcryptjs");
+const Trainer = require("../models/trainer");
 const salt = bcrypt.genSaltSync(10);
 
 exports.getAllStaff = async (req, res) => {
@@ -19,8 +22,12 @@ exports.getStaff = async (req, res) => {
         if (staff.length === 0) {
             res.status(401).json({ msg: "Staff does not exist" });
         } else {
-            delete staff[0]["password"];
-            res.json(staff[0]);
+            const detailsToSend = staff[0];
+            delete detailsToSend["password"];
+            detailsToSend["type"] = await getStaffType(
+                detailsToSend["staff_id"]
+            );
+            res.json(detailsToSend);
         }
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -104,5 +111,18 @@ exports.deleteStaff = async (req, res) => {
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
+    }
+};
+
+const getStaffType = async (staffId) => {
+    let [details] = await Trainer.getTrainer(staffId);
+    if (details.length != 0) {
+        return "trainer";
+    } else {
+        [details] = await Admin.getAdmin(staffId);
+        if (details.length != 0) {
+            return "admin";
+        }
+        return "staff";
     }
 };
