@@ -20,6 +20,6 @@ router.get("/:gymId/equipments", gymController.getAllEquipments);
 
 router.get("/:gymId/trainers", gymController.getAllTrainers);
 
-router.get("/:gymId/users", gymController.getAllUsers);
+router.get("/:gymId/members", gymController.getAllUsers);
 
 module.exports = router;
