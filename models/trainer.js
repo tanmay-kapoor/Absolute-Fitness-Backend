@@ -27,7 +27,8 @@ module.exports = class Trainer {
             "ON h.email = u.email " +
             "JOIN health_records r " +
             "ON u.email = r.email " +
-            "HAVING h.trainer_id = ?";
+            "HAVING h.trainer_id = ? " +
+            "ORDER BY r.date_calculated ASC";
         return db.execute(query, [trainerId]);
     }
 };
