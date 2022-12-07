@@ -93,7 +93,6 @@ exports.updateStaff = async (req, res) => {
                     : false,
             salary: req.body.salary,
             description: req.body.description,
-            gymId: req.body.gymId,
         };
 
         if (!req.body.password) {

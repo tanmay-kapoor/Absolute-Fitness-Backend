@@ -44,20 +44,10 @@ module.exports = class Staff {
             salary,
             description,
             password,
-            gymId,
         } = details;
         return db.execute(
-            "UPDATE staff SET name = ?, phone = ?, part_time = ?, salary = ?, description = ?, password = ?, gym_id = ? WHERE staff_id = ?",
-            [
-                name,
-                phone,
-                partTime,
-                salary,
-                description,
-                password,
-                gymId,
-                staffId,
-            ]
+            "UPDATE staff SET name = ?, phone = ?, part_time = ?, salary = ?, description = ?, password = ? WHERE staff_id = ?",
+            [name, phone, partTime, salary, description, password, staffId]
         );
     }
 
