@@ -29,7 +29,6 @@ module.exports = class WorkoutPlan {
     }
 
     static updateWorkoutPlan(details) {
-        console.log(details);
         const query =
             "UPDATE workout_plans SET " +
             "name = ?, description = ?, excercise_1 = ?, excercise_2 = ?, excercise_3 = ? " +
