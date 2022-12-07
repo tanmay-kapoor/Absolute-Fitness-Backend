@@ -2,6 +2,7 @@ const Gym = require("../models/gym");
 const Trainer = require("../models/trainer");
 const Equipment = require("../models/equipment");
 const Facility = require("../models/facility");
+const User = require("../models/user");
 
 exports.getAllGyms = async (req, res) => {
     try {
@@ -94,6 +95,17 @@ exports.getAllTrainers = async (req, res) => {
         const [allTrainers] = await Trainer.getAllTrainersForGym(gymId);
         allTrainers.map((trainer) => delete trainer["password"]);
         res.status(200).json(allTrainers);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const gymId = req.params["gymId"];
+        const [allUsers] = await User.getAllUsersForGym(gymId);
+        allUsers.map((user) => delete user["password]"]);
+        res.status(200).json(allUsers);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
