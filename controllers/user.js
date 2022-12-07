@@ -23,8 +23,10 @@ exports.getUser = async (req, res) => {
         if (user.length === 0) {
             res.status(401).json({ msg: "User does not exist" });
         } else {
-            delete user[0]["password"];
-            res.json(user[0]);
+            const detailsToSend = user[0];
+            delete detailsToSend["password"];
+            detailsToSend["type"] = "member";
+            res.json(detailsToSend);
         }
     } catch (err) {
         res.status(500).json({ msg: err.message });
