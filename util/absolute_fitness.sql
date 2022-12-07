@@ -145,7 +145,7 @@ FOREIGN KEY (dinner) REFERENCES meal_choices (meal) ON UPDATE CASCADE ON DELETE 
 
 DROP TABLE IF EXISTS health_plans;
 CREATE TABLE health_plans (
-plan_id 		INT 			PRIMARY KEY,
+plan_id 		INT 			PRIMARY KEY		AUTO_INCREMENT,
 trainer_id 		INT 			UNIQUE,
 email 			VARCHAR(100) 	NOT NULL 		UNIQUE,
 workout_plan 	INT,

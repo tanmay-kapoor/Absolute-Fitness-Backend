@@ -18,4 +18,13 @@ module.exports = class Trainer {
 
         return db.execute(query, [gymId]);
     }
+
+    static getAllUsersForTrainer(trainerId) {
+        const query =
+            "SELECT h.trainer_id, u.* FROM " +
+            "health_plans h RIGHT JOIN users u " +
+            "ON h.email = u.email " +
+            "HAVING h.trainer_id = 11111";
+        return db.execute(query, [trainerId]);
+    }
 };
