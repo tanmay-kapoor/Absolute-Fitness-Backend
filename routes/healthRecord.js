@@ -8,7 +8,7 @@ router.get("/", healthRecordController.getAllHealthRecords);
 
 router.get("/withName", healthRecordController.getAllHealthRecordsWithName);
 
-router.get("/:recordId", healthRecordController.getHealthRecord);
+// router.get("/:recordId", healthRecordController.getHealthRecord);
 
 router.post("/", healthRecordController.addHealthRecord);
 
