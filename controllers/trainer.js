@@ -1,12 +1,14 @@
 const Trainer = require("../models/trainer");
 
-exports.getAllUsersForTrainer = async (req, res) => {
+exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
     try {
-        const trainerId = req.params["trainerId"];
-        const [users] = await Trainer.getAllUsersForTrainer(trainerId);
+        const trainerId = req.params["staffId"];
+        const [users] = await Trainer.getAllUserHealthRecordsForTrainer(
+            trainerId
+        );
         users.map((user) => {
-            delete user["password"];
             delete user["trainer_id"];
+            delete user["email"];
         });
         res.status(200).json(users);
     } catch (err) {

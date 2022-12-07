@@ -19,12 +19,15 @@ module.exports = class Trainer {
         return db.execute(query, [gymId]);
     }
 
-    static getAllUsersForTrainer(trainerId) {
+    static getAllUserHealthRecordsForTrainer(trainerId) {
+        console.log(trainerId);
         const query =
-            "SELECT h.trainer_id, u.* FROM " +
-            "health_plans h RIGHT JOIN users u " +
+            "SELECT h.trainer_id, r.* FROM " +
+            "health_plans h JOIN users u " +
             "ON h.email = u.email " +
-            "HAVING h.trainer_id = 11111";
+            "JOIN health_records r " +
+            "ON u.email = r.email " +
+            "HAVING h.trainer_id = ?";
         return db.execute(query, [trainerId]);
     }
 };
