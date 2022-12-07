@@ -111,28 +111,3 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
-
-// exports.getHealthRecordsForUser = async (req, res) => {
-//     return await healthRecordController.getHealthRecordsForUser(req, res);
-// };
-
-// exports.addHealthRecordForUser = async (req, res) => {
-//     return await healthRecordController.addHealthRecord(req, res);
-// };
-
-// exports.getHealthPlan = async (req, res) => {
-//     try {
-//         const [healthPlan] = await User.getHealthPlan(req.params["email"]);
-//         res.status(200).json(healthPlan[0]);
-//     } catch (err) {
-//         res.status(500).json({ msg: err.message });
-//     }
-// };
-
-// exports.getWorkoutPlan = async (req, res) => {
-//     return workoutPlanController.getWorkoutPlanForUser(req, res);
-// };
-
-// exports.getDietPlan = async (req, res) => {
-//     return dietPlanController.getDietPlanForUser(req, res);
-// };

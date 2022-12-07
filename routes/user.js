@@ -16,14 +16,4 @@ router.put("/:email", userController.updateUser);
 
 router.delete("/:email", userController.deleteUser);
 
-// router.get("/:email/healthRecords", userController.getHealthRecordsForUser);
-
-// router.post("/:email/healthRecord", userController.addHealthRecordForUser);
-
-// router.get("/:email/healthPlan", userController.getHealthPlan);
-
-// router.get("/:email/workoutPlan", userController.getWorkoutPlan);
-
-// router.get("/:email/dietPlan", userController.getDietPlan);
-
 module.exports = router;
