@@ -3,23 +3,23 @@ const Trainer = require("../models/trainer");
 exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
     try {
         const trainerId = req.params["staffId"];
-        const [users] = await Trainer.getAllUserHealthRecordsForTrainer(
+        const [usersData] = await Trainer.getAllUserHealthRecordsForTrainer(
             trainerId
         );
 
         let data = [];
         let healthRecords = [];
-        let email = users[0]["email"];
-        for (let i = 0; i < users.length; i++) {
-            if (users[i]["email"] === email) {
+        let email = usersData[0]["email"];
+        for (let i = 0; i < usersData.length; i++) {
+            if (usersData[i]["email"] === email) {
                 healthRecords = addStuffToHealthRecordArray(
-                    users[i],
+                    usersData[i],
                     healthRecords
                 );
             } else {
                 data = addKeyOrPushToExisting(data, healthRecords, email);
-                healthRecords = addStuffToHealthRecordArray(users[i], []);
-                email = users[i]["email"];
+                healthRecords = addStuffToHealthRecordArray(usersData[i], []);
+                email = usersData[i]["email"];
             }
         }
 

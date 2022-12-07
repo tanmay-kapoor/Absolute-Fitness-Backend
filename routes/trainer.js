@@ -5,7 +5,7 @@ const trainerController = require("../controllers/trainer");
 const router = express.Router();
 
 router.get(
-    "/:staffId/members",
+    "/:staffId/memberRecords",
     trainerController.getAllUserHealthRecordsForTrainer
 );
 
