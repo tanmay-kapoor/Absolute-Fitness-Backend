@@ -87,7 +87,7 @@ exports.updateStaff = async (req, res) => {
             staffId: req.params["staffId"],
             name: req.body.name,
             phone: req.body.phone,
-            partTime: req.body.partTime === 1 ? true : false,
+            partTime: req.body.partTime == 1 ? true : false,
             salary: req.body.salary,
             description: req.body.description,
         };
