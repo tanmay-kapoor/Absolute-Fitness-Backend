@@ -87,16 +87,13 @@ exports.updateStaff = async (req, res) => {
             staffId: req.params["staffId"],
             name: req.body.name,
             phone: req.body.phone,
-            partTime:
-                req.body.partTime === "True" || req.body.partTime === "true"
-                    ? true
-                    : false,
+            partTime: req.body.partTime === 1 ? true : false,
             salary: req.body.salary,
             description: req.body.description,
         };
 
         if (!req.body.password) {
-            const [staff] = await Staff.getStaff(details.email);
+            const [staff] = await Staff.getStaff(details.staffId);
             details.password = staff[0].password;
         } else {
             details.password = bcrypt.hashSync(req.body.password, salt);
