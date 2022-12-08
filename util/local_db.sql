@@ -366,7 +366,7 @@ DROP PROCEDURE IF EXISTS getHealthPlanForUser;
 DELIMITER //
 CREATE PROCEDURE getHealthPlanForUser(IN v_email VARCHAR(30))
 BEGIN 
-	SELECT u.email, u.name,
+	SELECT u.email, u.name, h.description as health_plan_description,
 			t.staff_id as trainer_id, t.image_url as trainer_url,
 			s.name as trainer_name, s.phone as trainer_phone, 
 			w.plan_id as workout_plan_id, w.name as workout_plan_name, 
