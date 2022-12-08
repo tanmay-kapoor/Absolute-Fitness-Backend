@@ -74,8 +74,15 @@ exports.addStaff = async (req, res) => {
             password: bcrypt.hashSync(req.body.password, salt),
             gymId: req.body.gymId,
         };
-        await Staff.addStaff(details);
-        res.status(200).json({ msg: "Success" });
+        const [staff] = await Staff.getStaff(details.staffId);
+        if (staff.length === 0) {
+            await Staff.addStaff(details);
+            res.status(200).json({ msg: "Success" });
+        } else {
+            res.status(409).json({
+                msg: "This staff id is already registered",
+            });
+        }
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
