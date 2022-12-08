@@ -9,10 +9,12 @@ module.exports = class DietPlan {
             "FROM ((diet_plans d LEFT JOIN meal_choices m1 on d.breakfast = m1.meal) " +
             "LEFT JOIN meal_choices m2 ON d.lunch = m2.meal) " +
             "LEFT JOIN meal_choices m3 ON d.dinner = m3.meal;";
+
+        // const query = "CALL getAllDietPlans()";
         return db.execute(query);
     }
 
-    static addDietPlan(details) {
+    static db(details) {
         return db.execute(
             "INSERT INTO diet_plans (name, description, breakfast, lunch, dinner) VALUES (?, ?, ?, ?, ?)",
             [
@@ -23,6 +25,14 @@ module.exports = class DietPlan {
                 details.dinner,
             ]
         );
+
+        // return db.execute("CALL addDietPlan (?, ?, ?, ?, ?)", [
+        //     details.name,
+        //     details.description,
+        //     details.breakfast,
+        //     details.lunch,
+        //     details.dinner,
+        // ]);
     }
 
     static updateDietPlan(details) {
@@ -30,6 +40,9 @@ module.exports = class DietPlan {
             "UPDATE diet_plans SET " +
             "name = ?, description = ?, breakfast = ?, lunch = ?, dinner = ? " +
             "WHERE plan_id = ?";
+
+        // const query = "CALL updateDietPlan(?, ?, ?, ?, ?, ?)";
+
         return db.execute(query, [
             details.name,
             details.description,
@@ -42,6 +55,7 @@ module.exports = class DietPlan {
 
     static deleteDietPlan(planId) {
         return db.execute("DELETE FROM diet_plans WHERE plan_id = ?", [planId]);
+        // return db.execute("CALL deleteDietPlan (?)", [planId]);
     }
 
     static getDietPlanForUser(email) {
@@ -56,6 +70,8 @@ module.exports = class DietPlan {
             "LEFT JOIN meal_choices m2 ON d.lunch = m2.meal " +
             "LEFT JOIN meal_choices m3 ON d.dinner = m3.meal " +
             "HAVING h.email = ?";
+
+        // const query = "CALL getDietPlanForUser(?)";
         return db.execute(query, [email]);
     }
 };

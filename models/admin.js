@@ -7,6 +7,8 @@ module.exports = class Admin {
             "staff s JOIN gym_admins a " +
             "ON s.staff_id = a.staff_id " +
             "HAVING a.staff_id = ?";
+
+        // const query = "CALL getAdmin(?)";
         return db.execute(query, [staffId]);
     }
 };

@@ -21,6 +21,8 @@ module.exports = class HealthPlan {
             "JOIN diet_plans d " +
             "ON h.diet_plan = d.plan_id " +
             "HAVING email = ?";
+
+        // const query = "CALL getHealthPlanForUser(?)";
         return db.execute(query, [email]);
     }
 };

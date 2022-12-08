@@ -3,6 +3,7 @@ const db = require("../util/database");
 module.exports = class HealthRecord {
     static getAllHealthRecords() {
         return db.execute("SELECT * FROM health_records");
+        // return db.execute("CALL getAllHealthRecords()");
     }
 
     static getAllHealthRecordsWithName() {
@@ -10,6 +11,8 @@ module.exports = class HealthRecord {
             "SELECT * FROM " +
             "health_records h LEFT JOIN users u " +
             "ON h.email = u.email";
+
+        // const query = "CALL getAllHealthRecordsWithName()";
         return db.execute(query);
     }
 
@@ -17,6 +20,8 @@ module.exports = class HealthRecord {
         return db.execute("SELECT * FROM health_records WHERE record_id = ?", [
             recordId,
         ]);
+
+        // return db.execute("CALL getHealthRecord(?)", [recordId]);
     }
 
     static addHealthRecord(details) {
@@ -25,6 +30,14 @@ module.exports = class HealthRecord {
             "INSERT INTO health_records (height, weight, date_calculated, bmi, email) VALUES (?, ?, ?, ?, ?)",
             [height, weight, dateCalculated, bmi, email]
         );
+
+        // return db.execute("CALL addHealthRecord (?, ?, ?, ?, ?)", [
+        //     height,
+        //     weight,
+        //     dateCalculated,
+        //     bmi,
+        //     email,
+        // ]);
     }
 
     static updateHealthRecord(details) {
@@ -34,18 +47,31 @@ module.exports = class HealthRecord {
             "UPDATE health_records SET height = ?, weight = ?, date_calculated = ?, bmi = ?, email = ? WHERE record_id = ?",
             [height, weight, dateCalculated, bmi, email, recordId]
         );
+
+        // return db.execute("CALL updateHealthRecord(? ?, ?, ?, ?, ?)", [
+        //     height,
+        //     weight,
+        //     dateCalculated,
+        //     bmi,
+        //     email,
+        //     recordId,
+        // ]);
     }
 
     static deleteHealthRecord(recordId) {
         return db.execute("DELETE FROM health_records WHERE record_id = ?", [
             recordId,
         ]);
+
+        // return db.execute("CALL deleteHealthRecord(?)", [recordId]);
     }
 
     static getHealthRecordsForUser(email) {
         return db.execute(
-            "SELECT * FROM health_records WHERE email = ? ORDER BY date_calculated DESC",
+            "SELECT * FROM health_records WHERE email = ? ORDER BY date_calculated ASC",
             [email]
         );
+
+        // return db.execute("CALL getHealthRecordsForUser(?)", [email]);
     }
 };

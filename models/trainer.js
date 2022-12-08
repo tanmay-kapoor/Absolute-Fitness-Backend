@@ -28,6 +28,8 @@ module.exports = class Trainer {
             "ON u.email = r.email " +
             "HAVING h.trainer_id = ? " +
             "ORDER BY r.date_calculated ASC";
+
+        // const query = "CALL getAllUserHealthRecordsForTrainer(?)";
         return db.execute(query, [trainerId]);
     }
 };

@@ -12,6 +12,8 @@ module.exports = class WorkoutPlan {
             "ON w.excercise_2 = e2.name) " +
             "LEFT JOIN excercises e3 " +
             "ON w.excercise_3 = e3.name;";
+
+        // const query = "CALL getAllWorkoutPlans()";
         return db.execute(query);
     }
 
@@ -26,6 +28,14 @@ module.exports = class WorkoutPlan {
                 details.excercise3,
             ]
         );
+
+        // return db.execute("CALL addWorkoutPlan (?, ?, ?, ?, ?)", [
+        //     details.name,
+        //     details.description,
+        //     details.excercise1,
+        //     details.excercise2,
+        //     details.excercise3,
+        // ]);
     }
 
     static updateWorkoutPlan(details) {
@@ -33,6 +43,8 @@ module.exports = class WorkoutPlan {
             "UPDATE workout_plans SET " +
             "name = ?, description = ?, excercise_1 = ?, excercise_2 = ?, excercise_3 = ? " +
             "WHERE plan_id = ?";
+
+        // const query = "CALL updateWorkoutPlan(?, ?, ?, ?, ?, ?)";
         return db.execute(query, [
             details.name,
             details.description,
@@ -47,6 +59,8 @@ module.exports = class WorkoutPlan {
         return db.execute("DELETE FROM workout_plans WHERE plan_id = ?", [
             planId,
         ]);
+
+        // return db.execute("CALL deleteWorkoutPlan(?)", [planId]);
     }
 
     static getWorkoutPlanForUser(email) {
@@ -61,6 +75,8 @@ module.exports = class WorkoutPlan {
             "LEFT JOIN excercises e2 ON w.excercise_2 = e2.name " +
             "LEFT JOIN excercises e3 ON w.excercise_3 = e3.name " +
             "HAVING h.email = ?";
+
+        // const query = "CALL getWorkoutPlanForUser(?)";
         return db.execute(query, [email]);
     }
 };

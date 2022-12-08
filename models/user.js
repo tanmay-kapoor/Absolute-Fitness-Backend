@@ -3,13 +3,12 @@ const db = require("../util/database");
 module.exports = class User {
     static getAllUsers() {
         return db.execute("SELECT * FROM users");
+        // return db.execute("CALL getAllUsers()");
     }
 
-    static getUser(username) {
-        return db.execute("SELECT * FROM users WHERE email = ? OR phone = ?", [
-            username,
-            username,
-        ]);
+    static getUser(email) {
+        return db.execute("SELECT * FROM users WHERE email = ?", [email]);
+        // return db.execute("CALL getUser(?)", [email]);
     }
 
     static addUser(details) {
@@ -18,6 +17,15 @@ module.exports = class User {
             "INSERT INTO users (email, name, phone, dob, sex, gym_id, password) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [email, name, phone, dob, sex, gymId, password]
         );
+        // return db.execute("CALL addUser(?, ?, ?, ?, ?, ?, ?)", [
+        //     email,
+        //     name,
+        //     phone,
+        //     dob,v
+        //     sex,
+        //     gymId,
+        //     password,
+        // ]);
     }
 
     static updateUser(details) {
@@ -26,20 +34,24 @@ module.exports = class User {
             "UPDATE users SET name = ?, phone = ?, dob = ?, sex = ?, gym_id = ?, password = ? WHERE email = ?",
             [name, phone, dob, sex, gymId, password, email]
         );
+        // return db.execute(
+        //     "CALL updateUser(?, ?, ?, ?, ?, ?, ?)",
+        //     [name, phone, dob, sex, gymId, password, email]
+        // );
     }
 
-    static deleteUser(username) {
-        return db.execute("DELETE FROM users WHERE email = ? OR phone = ?", [
-            username,
-            username,
-        ]);
+    static deleteUser(email) {
+        return db.execute("DELETE FROM users WHERE email = ?", [email]);
+        // return db.execute("CALL deleteUser(?)", [username]);
     }
 
     static getAllUsersForGym(gymId) {
         return db.execute("SELECT * FROM users WHERE gym_id = ?", [gymId]);
+        // return db.execute("CALL getAllUsersForGym(?)", [gymId]);
     }
 
     static getAllStaffForGym(gymId) {
         return db.execute("SELECT * FROM staff WHERE gym_id = ?", [gymId]);
+        // return db.execute("CALL getAllStaffForGym(?)", [gymId]);
     }
 };
