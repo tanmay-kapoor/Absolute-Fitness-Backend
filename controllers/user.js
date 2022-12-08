@@ -71,8 +71,15 @@ exports.addUser = async (req, res) => {
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
-        await User.addUser(details);
-        res.status(200).json({ msg: "Success" });
+        const [user] = await User.getUser(details.email);
+        if (user.length === 0) {
+            await User.addUser(details);
+            res.status(200).json({ msg: "Success" });
+        } else {
+            res.status(409).json({
+                msg: "User with this email already exists",
+            });
+        }
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
