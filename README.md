@@ -10,7 +10,7 @@ Follow the given steps in this order to start the server of the project
 npm i            to install dependencies
 ```
 
-Create a .env file with following variables
+Create a file named  `.env` in the root directory (the place where `server.js` file is present) with the following variables
 
 ```
 DB_HOST         database host name. "localhost" for local database
