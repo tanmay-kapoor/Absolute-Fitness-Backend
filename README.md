@@ -1,3 +1,5 @@
+Follow the given steps in this order to start the server of the project.
+
 ```
 npm i            to install dependencies
 ```
