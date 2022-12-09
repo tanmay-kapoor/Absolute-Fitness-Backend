@@ -9,22 +9,27 @@ exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
 
         let data = [];
         let healthRecords = [];
-        let email = usersData[0]["email"];
-        for (let i = 0; i < usersData.length; i++) {
-            if (usersData[i]["email"] === email) {
-                healthRecords = addStuffToHealthRecordArray(
-                    usersData[i],
-                    healthRecords
-                );
-            } else {
-                data = addKeyOrPushToExisting(data, healthRecords, email);
-                healthRecords = addStuffToHealthRecordArray(usersData[i], []);
-                email = usersData[i]["email"];
+        if (usersData.length !== 0) {
+            let email = usersData[0]["email"];
+            for (let i = 0; i < usersData.length; i++) {
+                if (usersData[i]["email"] === email) {
+                    healthRecords = addStuffToHealthRecordArray(
+                        usersData[i],
+                        healthRecords
+                    );
+                } else {
+                    data = addKeyOrPushToExisting(data, healthRecords, email);
+                    healthRecords = addStuffToHealthRecordArray(
+                        usersData[i],
+                        []
+                    );
+                    email = usersData[i]["email"];
+                }
             }
-        }
 
-        if (healthRecords.length !== 0) {
-            data = addKeyOrPushToExisting(data, healthRecords, email);
+            if (healthRecords.length !== 0) {
+                data = addKeyOrPushToExisting(data, healthRecords, email);
+            }
         }
         res.status(200).json(data);
     } catch (err) {
