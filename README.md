@@ -35,6 +35,10 @@ PASSWORD        password of the specified MySQL user
 PORT            5001
 ```
 
+The `.env` file's format should look like this 
+
+![image](util/sample_env.png)
+
 
 After doing all this,
 
