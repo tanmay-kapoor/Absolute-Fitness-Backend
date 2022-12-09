@@ -567,15 +567,15 @@ BEGIN
 			w.description as workout_description, w.excercise_1, w.excercise_2, w.excercise_3, 
 			d.plan_id as diet_plan_id, d.name as diet_name, d.description as diet_description, 
 			d.breakfast, d.lunch, d.dinner FROM 
-	((((users u JOIN health_plans h 
+	((((users u LEFT JOIN health_plans h 
 	ON h.email = u.email) 
-	JOIN trainers t 
+	LEFT JOIN trainers t 
 	ON h.trainer_id = t.staff_id) 
-	JOIN staff s 
+	LEFT JOIN staff s 
 	ON t.staff_id = s.staff_id)
-	JOIN workout_plans w  
+	LEFT JOIN workout_plans w  
 	ON h.workout_plan = w.plan_id) 
-	JOIN diet_plans d 
+	LEFT JOIN diet_plans d 
 	ON h.diet_plan = d.plan_id 
 	HAVING email = v_email;
 END //
@@ -796,7 +796,7 @@ BEGIN
 		   e1.sets as e1_sets, e1.reps as e1_reps, e1.image_url as e1_url, 
 		   e2.sets as e2_sets, e2.reps as e2_reps, e2.image_url as e2_url, 
 		   e3.sets as e3_sets, e3.reps as e3_reps, e3.image_url as e3_url FROM 
-	health_plans h JOIN workout_plans w ON 
+	health_plans h LEFT JOIN workout_plans w ON 
 	h.workout_plan = w.plan_id 
 	LEFT JOIN excercises e1 ON w.excercise_1 = e1.name 
 	LEFT JOIN excercises e2 ON w.excercise_2 = e2.name 
