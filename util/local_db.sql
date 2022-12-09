@@ -376,6 +376,27 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS getTrainer;
+DELIMITER //
+CREATE PROCEDURE getTrainer(IN v_staff_id INT)
+BEGIN 
+	SELECT * FROM trainers WHERE staff_id = v_staff_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getAlTrainersForGym;
+DELIMITER //
+CREATE PROCEDURE getAlTrainersForGym(IN v_gym_id INT)
+BEGIN
+	SELECT name, speciality, s.staff_id, years_of_exp, t.image_url, description, g.gym_id FROM 
+	(staff s JOIN trainers t 
+	ON s.staff_id = t.staff_id)
+	JOIN gyms g 
+	ON s.gym_id = g.gym_id 
+	HAVING g.gym_id = v_gym_id;
+END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS getGym;
 DELIMITER //
 CREATE PROCEDURE getGym(IN v_gym_id INT)
