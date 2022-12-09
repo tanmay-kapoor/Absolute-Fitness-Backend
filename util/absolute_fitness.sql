@@ -11,6 +11,8 @@ location 		VARCHAR(50) 		NOT NULL		UNIQUE,
 membership_fee 	DECIMAL(65,2) 		NOT NULL
 );
 
+update health_plans set trainer_id = 19995 where email = "selena@gmail.com";
+
 -- CALL addGym("https://bodyandstrength.com/Upload/site/wJSUa_cover.jpg", "2025550118", "55 Centre Avenue, #30, Austin, TX, 5634", 156.33);
 -- CALL addGym("https://www.encorefitness.ru/upload/resize/a8/a8709705bb195a5d68f8c72b2b76537f_1024x2000.jpg", "2025550308", "65-45 Otto Rd, Queens, NY 11385", 253.99);
 -- CALL addGym("https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg", "7097534584", "350 Tenth Ave, San Diego, CA 9210", 75);
@@ -861,15 +863,12 @@ AFTER INSERT ON users FOR EACH ROW
 BEGIN
 	SELECT getRandomTrainer(NEW.gym_id) INTO @trainer;
     SELECT getRandomWorkoutPlan() INTO @workout_plan;
-    SELECT getRandomDietPlan() INTO @diet_plan;
+	SELECT getRandomDietPlan() INTO @diet_plan;
     
 	INSERT INTO health_plans (trainer_id, email, workout_plan, diet_plan, description) 
     VALUES (@trainer, NEW.email, @workout_plan, @diet_plan, "Randomly assigned plan");
 END //
 DELIMITER ;
-
-select getRandomTrainer(1) into @idk;
-select @idk;
 
 DROP TRIGGER IF EXISTS admin_delete_check;
 DELIMITER //
