@@ -132,7 +132,7 @@ exports.updateEquipmentForGym = async (req, res) => {
             gymId: req.params["gymId"],
             equipmentId: req.params["equipmentId"],
             quantity: req.body.quantity,
-            lastServiced: req.body.lastServiced,
+            lastServiced: req.body.last_serviced,
         };
         await Equipment.updateEquipmentForGym(details);
         res.status(200).json({ msg: "Success" });
