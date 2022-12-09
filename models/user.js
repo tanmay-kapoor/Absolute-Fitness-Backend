@@ -38,7 +38,7 @@ module.exports = class User {
     }
 
     static deleteUser(email) {
-        return db.execute("CALL deleteUser(?)", [username]);
+        return db.execute("CALL deleteUser(?)", [email]);
     }
 
     static getAllUsersForGym(gymId) {
