@@ -471,6 +471,19 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS updateEquipmentForGym;
+DELIMITER //
+CREATE PROCEDURE updateEquipmentForGym(IN v_gym_id INT, 
+									   IN v_equipment_id INT, 
+                                       IN v_quantity INT, 
+                                       IN v_last_serviced DATE)
+BEGIN
+	UPDATE gym_equipments SET
+    quantity = v_quantity, last_serviced = v_last_serviced
+    WHERE gym_id = v_gym_id AND equipment_id = v_equipment_id;
+END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS getAllHealthRecords;
 DELIMITER //
 CREATE PROCEDURE getAllHealthRecords()

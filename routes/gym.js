@@ -24,4 +24,9 @@ router.get("/:gymId/members", gymController.getAllUsers);
 
 router.get("/:gymId/staff", gymController.getAllStaff);
 
+router.put(
+    "/:gymId/equipment/:equipmentId",
+    gymController.updateEquipmentForGym
+);
+
 module.exports = router;
