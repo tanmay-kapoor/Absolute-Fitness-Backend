@@ -86,7 +86,7 @@ exports.updateUser = async (req, res) => {
             email: req.params["email"],
             name: req.body.name,
             phone: req.body.phone,
-            dob: req.body.dob,
+            dob: req.body.dob.substring(0, 10),
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
