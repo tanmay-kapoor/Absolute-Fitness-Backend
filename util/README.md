@@ -1,5 +1,6 @@
 # Getting Started with Absolute Fitness Database
 
+## Download MySQL Server and MySQL Workbench [here](https://northeastern.instructure.com/courses/117472/pages/do-install-mysql-relational-data-database)
 ## Follow the steps below to setup the databse
 
 1. Execute the dump.sql file into your MySQL Workbench. 

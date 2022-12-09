@@ -1,8 +1,10 @@
 # Getting Started with Absolute Fitness Server
 
+## Download [node](https://nodejs.org/en/download/) in your local machine
+
 ## Available Scripts
 
-Follow the given steps in this order to start the server of the project.
+Follow the given steps in this order to start the server of the project
 
 ```
 npm i            to install dependencies
@@ -11,26 +13,26 @@ npm i            to install dependencies
 Create a .env file with following variables
 
 ```
-DB_HOST         database host name. "localhost" for local db.
+DB_HOST         database host name. "localhost" for local database
 ```
 
 
 ```
-DB_USER         user you want to create connection with (ex: root)
+DB_USER         user you want to create connection with (eg: root)
 ```
 
 
 ```
-DATABASE        database name you want to use (ex: absolute_fitness)
+DATABASE        name of the databse (absolute_fitness for this project)
 ```
 
 
 ```
-PASSWORD        password of the specified user
+PASSWORD        password of the specified MySQL user
 ```
 
 ```
-PORT            the port you want to server to listen on
+PORT            5001
 ```
 
 
