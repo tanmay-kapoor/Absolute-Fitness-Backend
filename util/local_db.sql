@@ -686,7 +686,7 @@ CREATE PROCEDURE addStaff(IN v_staff_id INT,
                           IN v_phone VARCHAR(10), 
                           IN v_part_time BOOLEAN, 
                           IN v_salary DECIMAL(65, 2), 
-                          IN v_description VARCHAR(100), 
+                          IN v_description VARCHAR(512), 
                           IN v_password VARCHAR(100), 
                           IN v_gymId INT)
 BEGIN
@@ -701,7 +701,7 @@ CREATE PROCEDURE updateStaff(IN v_name VARCHAR(50),
 						     IN v_phone VARCHAR(10), 
 						     IN v_part_time BOOLEAN, 
 						     IN v_salary DECIMAL(65, 2), 
-						     IN v_description VARCHAR(100), 
+						     IN v_description VARCHAR(512), 
 						     IN v_password VARCHAR(100),
                              IN v_staff_id INT)
 BEGIN
