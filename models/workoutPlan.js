@@ -28,7 +28,7 @@ module.exports = class WorkoutPlan {
             excercise2,
             excercise3,
             planId,
-        } = { details };
+        } = details;
 
         const query = "CALL updateWorkoutPlan(?, ?, ?, ?, ?, ?)";
         return db.execute(query, [

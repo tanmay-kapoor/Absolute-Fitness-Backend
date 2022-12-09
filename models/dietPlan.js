@@ -7,7 +7,7 @@ module.exports = class DietPlan {
     }
 
     static addDietPlan(details) {
-        const { name, description, breakfast, lunch, dinner } = { details };
+        const { name, description, breakfast, lunch, dinner } = details;
 
         return db.execute("CALL addDietPlan (?, ?, ?, ?, ?)", [
             name,
@@ -19,7 +19,7 @@ module.exports = class DietPlan {
     }
 
     static updateDietPlan(details) {
-        const { name, description, breakfast, lunch, db, planId } = { details };
+        const { name, description, breakfast, lunch, db, planId } = details;
 
         const query = "CALL updateDietPlan(?, ?, ?, ?, ?, ?)";
         return db.execute(query, [
