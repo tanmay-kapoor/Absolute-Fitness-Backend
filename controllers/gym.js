@@ -127,6 +127,7 @@ exports.getAllStaff = async (req, res) => {
 };
 
 exports.updateEquipmentForGym = async (req, res) => {
+    console.log(req.body);
     try {
         const details = {
             gymId: req.params["gymId"],
