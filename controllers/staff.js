@@ -7,8 +7,8 @@ const salt = bcrypt.genSaltSync(10);
 
 exports.getAllStaff = async (req, res) => {
     try {
-        const [[allStaff]] = await Staff.getAllStaff();
-        allStaff.map((staff) => delete staff["password"]);
+        let [[allStaff]] = await Staff.getAllStaff();
+        allStaff = await attachStaffType(allStaff);
         res.status(200).json(allStaff);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -120,6 +120,15 @@ exports.deleteStaff = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
+};
+
+const attachStaffType = (allStaff) => {
+    const promises = allStaff.map(async (staff) => {
+        delete staff["password"];
+        staff["type"] = await getStaffType(staff["staff_id"]);
+        return staff;
+    });
+    return Promise.all(promises);
 };
 
 const getStaffType = async (staffId) => {
