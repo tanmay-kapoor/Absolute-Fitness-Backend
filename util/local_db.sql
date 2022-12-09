@@ -688,7 +688,7 @@ CREATE PROCEDURE addStaff(IN v_staff_id INT,
                           IN v_salary DECIMAL(65, 2), 
                           IN v_description VARCHAR(512), 
                           IN v_password VARCHAR(100), 
-                          IN v_gymId INT)
+                          IN v_gym_id INT)
 BEGIN
 	INSERT INTO staff (staff_id, name, phone, part_time, salary, description, password, gym_id) 
     VALUES (v_staff_id, v_name, v_phone, v_part_time, v_salary, v_description, v_password, v_gym_id);
