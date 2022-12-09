@@ -7,7 +7,7 @@ const salt = bcrypt.genSaltSync(10);
 
 exports.getAllStaff = async (req, res) => {
     try {
-        const [allStaff] = await Staff.getAllStaff();
+        const [[allStaff]] = await Staff.getAllStaff();
         allStaff.map((staff) => delete staff["password"]);
         res.status(200).json(allStaff);
     } catch (err) {
@@ -18,7 +18,7 @@ exports.getAllStaff = async (req, res) => {
 exports.getStaff = async (req, res) => {
     try {
         const staffId = req.params["staffId"];
-        const [staff] = await Staff.getStaff(staffId);
+        const [[staff]] = await Staff.getStaff(staffId);
         if (staff.length === 0) {
             res.status(401).json({ msg: "Staff does not exist" });
         } else {
@@ -39,7 +39,7 @@ exports.authenticate = async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
 
-        let [staff] = await Staff.getStaff(username);
+        const [[staff]] = await Staff.getStaff(username);
         if (staff.length == 0) {
             res.status(404).json({
                 msg: `Staff does not exist`,
@@ -100,7 +100,7 @@ exports.updateStaff = async (req, res) => {
         };
 
         if (!req.body.password) {
-            const [staff] = await Staff.getStaff(details.staffId);
+            const [[staff]] = await Staff.getStaff(details.staffId);
             details.password = staff[0].password;
         } else {
             details.password = bcrypt.hashSync(req.body.password, salt);
@@ -123,11 +123,12 @@ exports.deleteStaff = async (req, res) => {
 };
 
 const getStaffType = async (staffId) => {
-    let [details] = await Trainer.getTrainer(staffId);
+    let [[details]] = await Trainer.getTrainer(staffId);
+
     if (details.length != 0) {
         return "trainer";
     } else {
-        [details] = await Admin.getAdmin(staffId);
+        [[details]] = await Admin.getAdmin(staffId);
         if (details.length != 0) {
             return "admin";
         }

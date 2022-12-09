@@ -3,7 +3,7 @@ const Trainer = require("../models/trainer");
 exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
     try {
         const trainerId = req.params["staffId"];
-        const [usersData] = await Trainer.getAllUserHealthRecordsForTrainer(
+        const [[usersData]] = await Trainer.getAllUserHealthRecordsForTrainer(
             trainerId
         );
 

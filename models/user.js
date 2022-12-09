@@ -2,56 +2,50 @@ const db = require("../util/database");
 
 module.exports = class User {
     static getAllUsers() {
-        return db.execute("SELECT * FROM users");
-        // return db.execute("CALL getAllUsers()");
+        return db.execute("CALL getAllUsers()");
     }
 
     static getUser(email) {
-        return db.execute("SELECT * FROM users WHERE email = ?", [email]);
-        // return db.execute("CALL getUser(?)", [email]);
+        return db.execute("CALL getUser(?)", [email]);
     }
 
     static addUser(details) {
         const { email, name, dob, phone, sex, gymId, password } = details;
-        return db.execute(
-            "INSERT INTO users (email, name, phone, dob, sex, gym_id, password) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            [email, name, phone, dob, sex, gymId, password]
-        );
-        // return db.execute("CALL addUser(?, ?, ?, ?, ?, ?, ?)", [
-        //     email,
-        //     name,
-        //     phone,
-        //     dob,v
-        //     sex,
-        //     gymId,
-        //     password,
-        // ]);
+
+        return db.execute("CALL addUser(?, ?, ?, ?, ?, ?, ?)", [
+            email,
+            name,
+            phone,
+            dob,
+            sex,
+            gymId,
+            password,
+        ]);
     }
 
     static updateUser(details) {
         const { email, name, phone, dob, sex, gymId, password } = details;
-        return db.execute(
-            "UPDATE users SET name = ?, phone = ?, dob = ?, sex = ?, gym_id = ?, password = ? WHERE email = ?",
-            [name, phone, dob, sex, gymId, password, email]
-        );
-        // return db.execute(
-        //     "CALL updateUser(?, ?, ?, ?, ?, ?, ?)",
-        //     [name, phone, dob, sex, gymId, password, email]
-        // );
+
+        return db.execute("CALL updateUser(?, ?, ?, ?, ?, ?, ?)", [
+            name,
+            phone,
+            dob,
+            sex,
+            gymId,
+            password,
+            email,
+        ]);
     }
 
     static deleteUser(email) {
-        return db.execute("DELETE FROM users WHERE email = ?", [email]);
-        // return db.execute("CALL deleteUser(?)", [username]);
+        return db.execute("CALL deleteUser(?)", [username]);
     }
 
     static getAllUsersForGym(gymId) {
-        return db.execute("SELECT * FROM users WHERE gym_id = ?", [gymId]);
-        // return db.execute("CALL getAllUsersForGym(?)", [gymId]);
+        return db.execute("CALL getAllUsersForGym(?)", [gymId]);
     }
 
     static getAllStaffForGym(gymId) {
-        return db.execute("SELECT * FROM staff WHERE gym_id = ?", [gymId]);
-        // return db.execute("CALL getAllStaffForGym(?)", [gymId]);
+        return db.execute("CALL getAllStaffForGym(?)", [gymId]);
     }
 };

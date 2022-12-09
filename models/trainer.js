@@ -2,34 +2,16 @@ const db = require("../util/database");
 
 module.exports = class Trainer {
     static getTrainer(staffId) {
-        return db.execute("SELECT * FROM trainers WHERE staff_id = ?", [
-            staffId,
-        ]);
+        return db.execute("CALL getTrainer(?)", [staffId]);
     }
 
     static getAllTrainersForGym(gymId) {
-        const query =
-            "SELECT name, speciality, s.staff_id, years_of_exp, t.image_url, description, g.gym_id FROM " +
-            "(staff s JOIN trainers t " +
-            "ON s.staff_id = t.staff_id) " +
-            "JOIN gyms g " +
-            "ON s.gym_id = g.gym_id " +
-            "HAVING g.gym_id = ?";
-
+        const query = "CALL getAllTrainersForGym(?)";
         return db.execute(query, [gymId]);
     }
 
     static getAllUserHealthRecordsForTrainer(trainerId) {
-        const query =
-            "SELECT h.trainer_id, r.* FROM " +
-            "health_plans h JOIN users u " +
-            "ON h.email = u.email " +
-            "JOIN health_records r " +
-            "ON u.email = r.email " +
-            "HAVING h.trainer_id = ? " +
-            "ORDER BY r.date_calculated ASC";
-
-        // const query = "CALL getAllUserHealthRecordsForTrainer(?)";
+        const query = "CALL getAllUserHealthRecordsForTrainer(?)";
         return db.execute(query, [trainerId]);
     }
 };

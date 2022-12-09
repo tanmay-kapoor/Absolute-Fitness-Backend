@@ -1,14 +1,11 @@
 const User = require("../models/user");
-const healthRecordController = require("./healthRecord");
-const workoutPlanController = require("./workoutPlan");
-const dietPlanController = require("./dietPlan");
 
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 
 exports.getAllUsers = async (req, res) => {
     try {
-        const [allUsers] = await User.getAllUsers();
+        const [[allUsers]] = await User.getAllUsers();
         allUsers.map((user) => delete user["password"]);
         res.status(200).json(allUsers);
     } catch (err) {
@@ -19,7 +16,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
     try {
         const email = req.params["email"];
-        const [user] = await User.getUser(email);
+        const [[user]] = await User.getUser(email);
         if (user.length === 0) {
             res.status(401).json({ msg: "User does not exist" });
         } else {
@@ -38,15 +35,13 @@ exports.authenticate = async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
 
-        let [user] = await User.getUser(username);
+        const [[user]] = await User.getUser(username);
         if (user.length == 0) {
             res.status(404).json({
                 msg: `User does not exist`,
             });
         } else {
-            user = user[0];
-
-            bcrypt.compare(password, user.password, (err, found) => {
+            bcrypt.compare(password, user[0].password, (err, found) => {
                 if (!found) {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
@@ -71,7 +66,7 @@ exports.addUser = async (req, res) => {
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
-        const [user] = await User.getUser(details.email);
+        const [[user]] = await User.getUser(details.email);
         if (user.length === 0) {
             await User.addUser(details);
             res.status(200).json({ msg: "Success" });
@@ -96,7 +91,7 @@ exports.updateUser = async (req, res) => {
             gymId: req.body.gymId,
         };
         if (!req.body.password) {
-            const [user] = await User.getUser(details.email);
+            const [[user]] = await User.getUser(details.email);
             details.password = user[0].password;
         } else {
             details.password = bcrypt.hashSync(req.body.password, salt);

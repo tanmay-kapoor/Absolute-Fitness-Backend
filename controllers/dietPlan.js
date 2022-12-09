@@ -2,7 +2,7 @@ const DietPlan = require("../models/dietPlan");
 
 exports.getAllDietPlans = async (req, res) => {
     try {
-        const [allDietPlans] = await DietPlan.getAllDietPlans();
+        const [[allDietPlans]] = await DietPlan.getAllDietPlans();
         res.status(200).json(allDietPlans);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -43,7 +43,7 @@ exports.deleteDietPlan = async (req, res) => {
 
 exports.getDietPlanForUser = async (req, res) => {
     try {
-        const [dietPlan] = await DietPlan.getDietPlanForUser(
+        const [[dietPlan]] = await DietPlan.getDietPlanForUser(
             req.params["email"]
         );
         const data = dietPlan[0];

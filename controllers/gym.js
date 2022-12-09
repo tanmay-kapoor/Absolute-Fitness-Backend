@@ -6,7 +6,7 @@ const User = require("../models/user");
 
 exports.getAllGyms = async (req, res) => {
     try {
-        const [allGyms] = await Gym.getAllGyms();
+        const [[allGyms]] = await Gym.getAllGyms();
         res.status(200).json(allGyms);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -16,8 +16,8 @@ exports.getAllGyms = async (req, res) => {
 exports.getGym = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
+        const [[gym]] = await Gym.getGym(gymId);
 
-        const [gym] = await Gym.getGym(gymId);
         if (gym.length === 0) {
             res.status(401).json({ msg: "Does not exist" });
         } else {
@@ -72,7 +72,7 @@ exports.deleteGym = async (req, res) => {
 exports.getAllFacilities = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
-        const [allFacilities] = await Facility.getAllFacilitiesForGym(gymId);
+        const [[allFacilities]] = await Facility.getAllFacilitiesForGym(gymId);
         res.status(200).json(allFacilities);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -82,7 +82,7 @@ exports.getAllFacilities = async (req, res) => {
 exports.getAllEquipments = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
-        const [allEquipments] = await Equipment.getAllEquipmentsForGym(gymId);
+        const [[allEquipments]] = await Equipment.getAllEquipmentsForGym(gymId);
         res.status(200).json(allEquipments);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -92,7 +92,7 @@ exports.getAllEquipments = async (req, res) => {
 exports.getAllTrainers = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
-        const [allTrainers] = await Trainer.getAllTrainersForGym(gymId);
+        const [[allTrainers]] = await Trainer.getAllTrainersForGym(gymId);
         allTrainers.map((trainer) => delete trainer["password"]);
         res.status(200).json(allTrainers);
     } catch (err) {
@@ -103,7 +103,7 @@ exports.getAllTrainers = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
-        const [allUsers] = await User.getAllUsersForGym(gymId);
+        const [[allUsers]] = await User.getAllUsersForGym(gymId);
         allUsers.map((user) => {
             delete user["password"];
             delete user["gym_id"];
@@ -117,7 +117,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getAllStaff = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
-        const [allStaff] = await User.getAllStaffForGym(gymId);
+        const [[allStaff]] = await User.getAllStaffForGym(gymId);
         allStaff.map((staff) => {
             delete staff["password"];
             delete staff["gym_id"];

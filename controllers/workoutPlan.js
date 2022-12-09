@@ -2,7 +2,7 @@ const WorkoutPlan = require("../models/workoutPlan");
 
 exports.getAllWorkoutPlans = async (req, res) => {
     try {
-        const [allWorkoutPlans] = await WorkoutPlan.getAllWorkoutPlans();
+        const [[allWorkoutPlans]] = await WorkoutPlan.getAllWorkoutPlans();
         res.status(200).json(allWorkoutPlans);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -43,7 +43,7 @@ exports.deleteWorkoutPlan = async (req, res) => {
 
 exports.getWorkoutPlanForUser = async (req, res) => {
     try {
-        const [workoutPlan] = await WorkoutPlan.getWorkoutPlanForUser(
+        const [[workoutPlan]] = await WorkoutPlan.getWorkoutPlanForUser(
             req.params["email"]
         );
         const data = workoutPlan[0];
