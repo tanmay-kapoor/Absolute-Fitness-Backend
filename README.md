@@ -1,3 +1,7 @@
+# Getting Started with Absolute Fitness Server
+
+## Available Scripts
+
 Follow the given steps in this order to start the server of the project.
 
 ```
