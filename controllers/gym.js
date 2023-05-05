@@ -4,6 +4,7 @@ const Equipment = require("../models/equipment");
 const Facility = require("../models/facility");
 const User = require("../models/user");
 const Admin = require("../models/admin");
+const { all } = require("../routes/user");
 
 exports.getAllGyms = async (req, res) => {
     try {

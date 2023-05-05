@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+//Internal API
 const userRoutes = require("./routes/user");
 const gymRoutes = require("./routes/gym");
 const healthRecordRoutes = require("./routes/healthRecord");
@@ -11,9 +12,12 @@ const workoutPlanRoutes = require("./routes/workoutPlan");
 const healthPlanRoutes = require("./routes/healthPlan");
 const trainerRoutes = require("./routes/trainer");
 
+//3rd Party API
+const stripeRoutes = require("./routes/stripe")
+
 const app = express();
 
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 5001;
 
 app.use(express.json()); //parsing http data
 app.use(express.json({ limit: "30mb", extended: true }));
@@ -38,5 +42,7 @@ app.use("/dietPlan", dietPlanRoutes);
 app.use("/workoutPlan", workoutPlanRoutes);
 app.use("/healthPlan", healthPlanRoutes);
 app.use("/trainer", trainerRoutes);
+
+app.use("/stripe", stripeRoutes);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
