@@ -10,4 +10,6 @@ router.get("/prices", stripeController.getAllPrices);
 
 router.get("/gym-membership-pricing", stripeController.getGymMembershipPricing);
 
+router.post("/create-subscription", stripeController.createSubscription);
+
 module.exports = router;

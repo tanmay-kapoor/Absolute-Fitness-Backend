@@ -10,6 +10,7 @@ exports.getAllProducts = async(req, res) => {
   }
 }
 
+
 exports.getAllPrices = async(req, res) => {
   try {
     const prices = await stripe.prices.list({})
@@ -20,6 +21,7 @@ exports.getAllPrices = async(req, res) => {
   }
 }
 
+
 exports.getGymMembershipPricing = async(req, res) => {
   try {
     const products = await stripe.products.list({});
@@ -27,10 +29,10 @@ exports.getGymMembershipPricing = async(req, res) => {
 
     // sort prices low to high
     const prices = priceList.data.sort((a, b) => {
-      return a.amount - b.amount;
+      return a.unit_amount - b.unit_amount;
     }).map(price => {
       // format price amounts
-      amount = formatAmount(price.amount)
+      amount = formatAmount(price.unit_amount)
       return {...price, amount};
     });
 
@@ -48,13 +50,49 @@ exports.getGymMembershipPricing = async(req, res) => {
       product.prices = filteredPrices;
     });
 
-    res.status(200).json(gymMembershipProducts);
+    res.status(200).json(gymMembershipProducts[0]);
 
   } catch (err) {
     res.status(500).json({ msg: err.message });
   } 
 }
 
+
+exports.createSubscription = async(req, res) => {
+  try {
+    // create a stripe customer
+    const customer = await stripe.customers.create({
+      name: req.body.name,
+      email: req.body.email,
+      payment_method: req.body.paymentMethod,
+      invoice_settings: {
+        default_payment_method: req.body.paymentMethod,
+      },
+    });
+
+    // create a stripe subscription
+    const subscription = await stripe.subscriptions.create({
+      customer: customer.id,
+      items: [{ price: req.body.priceId }],
+      payment_settings: { 
+        save_default_payment_method: 'on_subscription' 
+      },
+      expand: ['latest_invoice.payment_intent'],
+    });
+
+    // return the client secret and subscription id
+    res.status(200).json({
+      clientSecret: subscription.latest_invoice.payment_intent.client_secret,
+      subscriptionId: subscription.id,
+    });
+
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ msg: err.message });
+  }
+  
+}
+
 const formatAmount = (stripeAmount) => {
-  return `$${(stripeAmount / 100).toFixed(2)}`;
+  return `₹${stripeAmount/100}`;
 }
