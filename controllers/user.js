@@ -1,5 +1,6 @@
 const User = require("../models/user");
 
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 
@@ -45,8 +46,14 @@ exports.authenticate = async (req, res) => {
                 if (!found) {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
-                    res.status(200).json({ msg: "Success" });
                     // jwt stuff
+                    const user = { username, type: "member" };
+                    const accessToken = jwt.sign(
+                        user,
+                        process.env.ACCESS_TOKEN_SECRET,
+                        { expiresIn: "15s" }
+                    );
+                    res.status(200).json({ accessToken });
                 }
             });
         }

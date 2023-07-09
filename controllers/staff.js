@@ -1,6 +1,7 @@
 const Staff = require("../models/staff");
 const Admin = require("../models/admin");
 
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Trainer = require("../models/trainer");
 const salt = bcrypt.genSaltSync(10);
@@ -45,12 +46,21 @@ exports.authenticate = async (req, res) => {
                 msg: `Staff does not exist`,
             });
         } else {
-            bcrypt.compare(password, staff[0].password, (err, found) => {
+            bcrypt.compare(password, staff[0].password, async (err, found) => {
                 if (!found) {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
-                    res.status(200).json({ msg: "Success" });
                     // jwt stuff
+                    const user = {
+                        username,
+                        type: await getStaffType(staff[0]["staff_id"]),
+                    };
+                    const accessToken = jwt.sign(
+                        user,
+                        process.env.ACCESS_TOKEN_SECRET,
+                        { expiresIn: "15s" }
+                    );
+                    res.status(200).json({ accessToken });
                 }
             });
         }
