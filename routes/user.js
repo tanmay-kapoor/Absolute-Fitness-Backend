@@ -1,7 +1,11 @@
 const express = require("express");
 
 const userController = require("../controllers/user");
-const { verifyAdminPriviledge, verifyToken } = require("../util/middleware.js");
+const {
+    verifyAdminPriviledge,
+    verifyToken,
+    verifyMember,
+} = require("../util/middleware.js");
 
 const router = express.Router();
 
@@ -13,7 +17,7 @@ router.post("/login", userController.authenticate);
 
 router.post("/signup", userController.addUser);
 
-router.put("/:email", verifyToken, userController.updateUser);
+router.put("/:email", verifyMember, userController.updateUser);
 
 router.delete("/:email", verifyToken, userController.deleteUser);
 

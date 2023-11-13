@@ -83,6 +83,12 @@ exports.updateHealthRecord = async (req, res) => {
 exports.deleteHealthRecord = async (req, res) => {
     try {
         const recordId = req.params["recordId"];
+        const [[healthRecord]] = await HealthRecord.getHealthRecord(recordId);
+        if (healthRecord.email !== req.user.username) {
+            res.status(403).json({
+                msg: "Incorrect authorization. Login with user you want to delete the record of.",
+            });
+        }
         await HealthRecord.deleteHealthRecord(recordId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {

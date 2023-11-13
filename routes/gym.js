@@ -27,15 +27,15 @@ router.get(
 
 router.get(
     "/:gymId/equipments",
-    verifyLoggedIn,
+    verifyAdminPriviledge,
     gymController.getAllEquipments
 );
 
 router.get("/:gymId/trainers", verifyLoggedIn, gymController.getAllTrainers);
 
-router.get("/:gymId/members", verifyLoggedIn, gymController.getAllUsers);
+router.get("/:gymId/members", verifyAdminPriviledge, gymController.getAllUsers);
 
-router.get("/:gymId/staff", verifyLoggedIn, gymController.getAllStaff);
+router.get("/:gymId/staff", verifyAdminPriviledge, gymController.getAllStaff);
 
 router.put(
     "/:gymId/equipment/:equipmentId",

@@ -1,19 +1,44 @@
 const express = require("express");
 
 const healthRecordController = require("../controllers/healthRecord");
+const {
+    verifyToken,
+    verifyMember,
+    verifyAdminPriviledge,
+} = require("../util/middleware");
 
 const router = express.Router();
 
-router.get("/", healthRecordController.getAllHealthRecords);
+router.get(
+    "/",
+    verifyAdminPriviledge,
+    healthRecordController.getAllHealthRecords
+);
 
-router.get("/withName", healthRecordController.getAllHealthRecordsWithName);
+router.get(
+    "/withName",
+    verifyAdminPriviledge,
+    healthRecordController.getAllHealthRecordsWithName
+);
 
-router.post("/", healthRecordController.addHealthRecord);
+router.post("/", verifyMember, healthRecordController.addHealthRecord);
 
-router.put("/:recordId", healthRecordController.updateHealthRecord);
+router.put(
+    "/:recordId",
+    verifyMember,
+    healthRecordController.updateHealthRecord
+);
 
-router.delete("/:recordId", healthRecordController.deleteHealthRecord);
+router.delete(
+    "/:recordId",
+    verifyMemberWithoutEmail,
+    healthRecordController.deleteHealthRecord
+);
 
-router.get("/:email", healthRecordController.getHealthRecordsForUser);
+router.get(
+    "/:email",
+    verifyToken,
+    healthRecordController.getHealthRecordsForUser
+);
 
 module.exports = router;
