@@ -1,20 +1,27 @@
-const express = require("express");
+import { Router } from "express";
 
-const staffController = require("../controllers/staff");
-const { verifyEmployee, verifyAdminPriviledge } = require("../util/middleware");
+import {
+    getAllStaff,
+    getStaff,
+    authenticate,
+    addStaff,
+    updateStaff,
+    deleteStaff,
+} from "../controllers/staff";
+import { verifyEmployee, verifyAdminPriviledge } from "../util/middleware";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/", verifyAdminPriviledge, staffController.getAllStaff);
+router.get("/", verifyAdminPriviledge, getAllStaff);
 
-router.get("/:staffId", verifyEmployee, staffController.getStaff);
+router.get("/:staffId", verifyEmployee, getStaff);
 
-router.post("/login", staffController.authenticate);
+router.post("/login", authenticate);
 
-router.post("/signup", verifyAdminPriviledge, staffController.addStaff);
+router.post("/signup", verifyAdminPriviledge, addStaff);
 
-router.put("/:staffId", verifyEmployee, staffController.updateStaff);
+router.put("/:staffId", verifyEmployee, updateStaff);
 
-router.delete("/:staffId", verifyEmployee, staffController.deleteStaff);
+router.delete("/:staffId", verifyEmployee, deleteStaff);
 
-module.exports = router;
+export default router;

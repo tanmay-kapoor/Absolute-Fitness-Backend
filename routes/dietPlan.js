@@ -1,26 +1,24 @@
-const express = require("express");
+import { Router } from "express";
 
-const dietPlanController = require("../controllers/dietPlan");
-const { verifyAdminPriviledge, verifyToken } = require("../util/middleware");
+import {
+    getAllDietPlans,
+    addDietPlan,
+    updateDietPlan,
+    deleteDietPlan,
+    getDietPlanForUser,
+} from "../controllers/dietPlan";
+import { verifyAdminPriviledge, verifyToken } from "../util/middleware";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/", verifyAdminPriviledge, dietPlanController.getAllDietPlans);
+router.get("/", verifyAdminPriviledge, getAllDietPlans);
 
-router.post("/", verifyAdminPriviledge, dietPlanController.addDietPlan);
+router.post("/", verifyAdminPriviledge, addDietPlan);
 
-router.put(
-    "/:planId",
-    verifyAdminPriviledge,
-    dietPlanController.updateDietPlan
-);
+router.put("/:planId", verifyAdminPriviledge, updateDietPlan);
 
-router.delete(
-    "/:planId",
-    verifyAdminPriviledge,
-    dietPlanController.deleteDietPlan
-);
+router.delete("/:planId", verifyAdminPriviledge, deleteDietPlan);
 
-router.get("/:email", verifyToken, dietPlanController.getDietPlanForUser);
+router.get("/:email", verifyToken, getDietPlanForUser);
 
-module.exports = router;
+export default router;

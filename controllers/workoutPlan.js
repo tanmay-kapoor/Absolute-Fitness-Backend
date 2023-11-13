@@ -1,28 +1,34 @@
-const WorkoutPlan = require("../models/workoutPlan");
+import {
+    getAllWorkoutPlans,
+    addWorkoutPlan,
+    updateWorkoutPlan,
+    deleteWorkoutPlan,
+    getWorkoutPlanForUser,
+} from "../models/workoutPlan";
 
-exports.getAllWorkoutPlans = async (req, res) => {
+export async function getAllWorkoutPlans(req, res) {
     try {
-        const [[allWorkoutPlans]] = await WorkoutPlan.getAllWorkoutPlans();
+        const [[allWorkoutPlans]] = await getAllWorkoutPlans();
         res.status(200).json(allWorkoutPlans);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.addWorkoutPlan = async (req, res) => {
+export async function addWorkoutPlan(req, res) {
     try {
         const details = setNullIfAbsent(req.body);
-        await WorkoutPlan.addWorkoutPlan(details);
+        await addWorkoutPlan(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.updateWorkoutPlan = async (req, res) => {
+export async function updateWorkoutPlan(req, res) {
     try {
         const details = setNullIfAbsent(req.body);
-        await WorkoutPlan.updateWorkoutPlan({
+        await updateWorkoutPlan({
             planId: req.params["planId"],
             ...details,
         });
@@ -30,20 +36,20 @@ exports.updateWorkoutPlan = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.deleteWorkoutPlan = async (req, res) => {
+export async function deleteWorkoutPlan(req, res) {
     try {
-        await WorkoutPlan.deleteWorkoutPlan(req.params["planId"]);
+        await deleteWorkoutPlan(req.params["planId"]);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getWorkoutPlanForUser = async (req, res) => {
+export async function getWorkoutPlanForUser(req, res) {
     try {
-        const [[workoutPlan]] = await WorkoutPlan.getWorkoutPlanForUser(
+        const [[workoutPlan]] = await getWorkoutPlanForUser(
             req.params["email"]
         );
         const data = workoutPlan[0];
@@ -77,7 +83,7 @@ exports.getWorkoutPlanForUser = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
 const setNullIfAbsent = (details) => {
     if (!details.excercise1) {

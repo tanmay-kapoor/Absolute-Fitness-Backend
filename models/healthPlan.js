@@ -1,8 +1,8 @@
-const db = require("../util/database");
+import { execute } from "../util/database";
 
-module.exports = class HealthPlan {
+export default class HealthPlan {
     static getHealthPlanForUser(email) {
         const query = "CALL getHealthPlanForUser(?)";
-        return db.execute(query, [email]);
+        return execute(query, [email]);
     }
-};
+}

@@ -1,15 +1,15 @@
-const db = require("../util/database");
+import { execute } from "../util/database";
 
-module.exports = class DietPlan {
+export default class DietPlan {
     static getAllDietPlans() {
         const query = "CALL getAllDietPlans()";
-        return db.execute(query);
+        return execute(query);
     }
 
     static addDietPlan(details) {
         const { name, description, breakfast, lunch, dinner } = details;
 
-        return db.execute("CALL addDietPlan (?, ?, ?, ?, ?)", [
+        return execute("CALL addDietPlan (?, ?, ?, ?, ?)", [
             name,
             description,
             breakfast,
@@ -33,11 +33,11 @@ module.exports = class DietPlan {
     }
 
     static deleteDietPlan(planId) {
-        return db.execute("CALL deleteDietPlan (?)", [planId]);
+        return execute("CALL deleteDietPlan (?)", [planId]);
     }
 
     static getDietPlanForUser(email) {
         const query = "CALL getDietPlanForUser(?)";
-        return db.execute(query, [email]);
+        return execute(query, [email]);
     }
-};
+}

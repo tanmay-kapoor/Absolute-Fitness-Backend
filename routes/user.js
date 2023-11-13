@@ -1,24 +1,31 @@
-const express = require("express");
+import { Router } from "express";
 
-const userController = require("../controllers/user");
-const {
+import {
+    getAllUsers,
+    getUser,
+    authenticate,
+    addUser,
+    updateUser,
+    deleteUser,
+} from "../controllers/user";
+import {
     verifyAdminPriviledge,
     verifyToken,
     verifyMember,
-} = require("../util/middleware.js");
+} from "../util/middleware.js";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/", verifyAdminPriviledge, userController.getAllUsers);
+router.get("/", verifyAdminPriviledge, getAllUsers);
 
-router.get("/:email", verifyToken, userController.getUser);
+router.get("/:email", verifyToken, getUser);
 
-router.post("/login", userController.authenticate);
+router.post("/login", authenticate);
 
-router.post("/signup", userController.addUser);
+router.post("/signup", addUser);
 
-router.put("/:email", verifyMember, userController.updateUser);
+router.put("/:email", verifyMember, updateUser);
 
-router.delete("/:email", verifyToken, userController.deleteUser);
+router.delete("/:email", verifyToken, deleteUser);
 
-module.exports = router;
+export default router;

@@ -1,18 +1,18 @@
-const db = require("../util/database");
+import { execute } from "../util/database";
 
-module.exports = class Gym {
+export default class Gym {
     static getAllGyms() {
-        return db.execute("CALL getAllGyms");
+        return execute("CALL getAllGyms");
     }
 
     static getGym(gymId) {
-        return db.execute("CALL getGym(?)", [gymId]);
+        return execute("CALL getGym(?)", [gymId]);
     }
 
     static addGym(details) {
         const { imageUrl, phone, location, membershipFee } = details;
 
-        return db.execute("CALL addGym (?, ?, ?, ?)", [
+        return execute("CALL addGym (?, ?, ?, ?)", [
             imageUrl,
             phone,
             location,
@@ -24,7 +24,7 @@ module.exports = class Gym {
         const { gymId, imageUrl, phone, location, membershipFee } = details;
 
         const query = "CALL updateGym(?, ?, ?, ?, ?)";
-        return db.execute(query, [
+        return execute(query, [
             imageUrl,
             phone,
             location,
@@ -34,6 +34,6 @@ module.exports = class Gym {
     }
 
     static deleteGym(gymId) {
-        return db.execute("CALL deleteGym(?)", [gymId]);
+        return execute("CALL deleteGym(?)", [gymId]);
     }
-};
+}

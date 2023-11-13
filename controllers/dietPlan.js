@@ -1,28 +1,34 @@
-const DietPlan = require("../models/dietPlan");
+import {
+    getAllDietPlans,
+    addDietPlan,
+    updateDietPlan,
+    deleteDietPlan,
+    getDietPlanForUser,
+} from "../models/dietPlan";
 
-exports.getAllDietPlans = async (req, res) => {
+export async function getAllDietPlans(req, res) {
     try {
-        const [[allDietPlans]] = await DietPlan.getAllDietPlans();
+        const [[allDietPlans]] = await getAllDietPlans();
         res.status(200).json(allDietPlans);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.addDietPlan = async (req, res) => {
+export async function addDietPlan(req, res) {
     try {
         const details = setNullIfAbsent(req.body);
-        await DietPlan.addDietPlan(details);
+        await addDietPlan(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.updateDietPlan = async (req, res) => {
+export async function updateDietPlan(req, res) {
     try {
         const details = setNullIfAbsent(req.body);
-        await DietPlan.updateDietPlan({
+        await updateDietPlan({
             planId: req.params["planId"],
             ...details,
         });
@@ -30,22 +36,20 @@ exports.updateDietPlan = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.deleteDietPlan = async (req, res) => {
+export async function deleteDietPlan(req, res) {
     try {
-        await DietPlan.deleteDietPlan(req.params["planId"]);
+        await deleteDietPlan(req.params["planId"]);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getDietPlanForUser = async (req, res) => {
+export async function getDietPlanForUser(req, res) {
     try {
-        const [[dietPlan]] = await DietPlan.getDietPlanForUser(
-            req.params["email"]
-        );
+        const [[dietPlan]] = await getDietPlanForUser(req.params["email"]);
         const data = dietPlan[0];
         const structuredData = {
             email: data.email,
@@ -74,7 +78,7 @@ exports.getDietPlanForUser = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
 const setNullIfAbsent = (details) => {
     if (!details.description) {

@@ -1,17 +1,17 @@
-const db = require("../util/database");
+import { execute } from "../util/database";
 
-module.exports = class Equipment {
+export default class Equipment {
     static getAllEquipmentsForGym(gymId) {
-        return db.execute("CALL getAllEquipmentsForGym(?)", [gymId]);
+        return execute("CALL getAllEquipmentsForGym(?)", [gymId]);
     }
 
     static updateEquipmentForGym(details) {
         const { gymId, equipmentId, quantity, lastServiced } = details;
-        return db.execute("CALL updateEquipmentForGym(?, ?, ?, ?)", [
+        return execute("CALL updateEquipmentForGym(?, ?, ?, ?)", [
             gymId,
             equipmentId,
             quantity,
             lastServiced,
         ]);
     }
-};
+}

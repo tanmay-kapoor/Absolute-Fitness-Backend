@@ -1,23 +1,23 @@
-const db = require("../util/database");
+import { execute } from "../util/database";
 
-module.exports = class HealthRecord {
+export default class HealthRecord {
     static getAllHealthRecords() {
-        return db.execute("CALL getAllHealthRecords()");
+        return execute("CALL getAllHealthRecords()");
     }
 
     static getAllHealthRecordsWithName() {
         const query = "CALL getAllHealthRecordsWithName()";
-        return db.execute(query);
+        return execute(query);
     }
 
     static getHealthRecord(recordId) {
-        return db.execute("CALL getHealthRecord(?)", [recordId]);
+        return execute("CALL getHealthRecord(?)", [recordId]);
     }
 
     static addHealthRecord(details) {
         const { height, weight, dateCalculated, bmi, email } = details;
 
-        return db.execute("CALL addHealthRecord (?, ?, ?, ?, ?)", [
+        return execute("CALL addHealthRecord (?, ?, ?, ?, ?)", [
             height,
             weight,
             dateCalculated,
@@ -30,7 +30,7 @@ module.exports = class HealthRecord {
         const { recordId, height, weight, dateCalculated, bmi, email } =
             details;
 
-        return db.execute("CALL updateHealthRecord(? ?, ?, ?, ?, ?)", [
+        return execute("CALL updateHealthRecord(? ?, ?, ?, ?, ?)", [
             height,
             weight,
             dateCalculated,
@@ -41,10 +41,10 @@ module.exports = class HealthRecord {
     }
 
     static deleteHealthRecord(recordId) {
-        return db.execute("CALL deleteHealthRecord(?)", [recordId]);
+        return execute("CALL deleteHealthRecord(?)", [recordId]);
     }
 
     static getHealthRecordsForUser(email) {
-        return db.execute("CALL getHealthRecordsForUser(?)", [email]);
+        return execute("CALL getHealthRecordsForUser(?)", [email]);
     }
-};
+}

@@ -1,13 +1,13 @@
-const jwt = require("jsonwebtoken");
+import { verify } from "jsonwebtoken";
 
-exports.verifyAdminPriviledge = async (req, res, next) => {
+export async function verifyAdminPriviledge(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (user.type !== "admin")
             return res.status(403).json({
@@ -16,16 +16,16 @@ exports.verifyAdminPriviledge = async (req, res, next) => {
         req.user = user;
         next();
     });
-};
+}
 
-exports.verifyToken = async (req, res, next) => {
+export async function verifyToken(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
             user.type === "admin" ||
@@ -39,30 +39,30 @@ exports.verifyToken = async (req, res, next) => {
             msg: "Incorrect authorization. Should be admin or user you want details of.",
         });
     });
-};
+}
 
-exports.verifyLoggedIn = async (req, res, next) => {
+export async function verifyLoggedIn(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         req.user = user;
         next();
     });
-};
+}
 
-exports.verifyMember = async (req, res, next) => {
+export async function verifyMember(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
             user.type !== "member" ||
@@ -75,16 +75,16 @@ exports.verifyMember = async (req, res, next) => {
         req.user = user;
         next();
     });
-};
+}
 
-exports.verifyMemberWithoutEmail = async (req, res, next) => {
+export async function verifyMemberWithoutEmail(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (user.type !== "member")
             return res.status(403).json({
@@ -93,16 +93,16 @@ exports.verifyMemberWithoutEmail = async (req, res, next) => {
         req.user = user;
         next();
     });
-};
+}
 
-exports.verifyEmployee = async (req, res, next) => {
+export async function verifyEmployee(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (!isValidEmployee(user))
             return res.status(403).json({
@@ -111,16 +111,16 @@ exports.verifyEmployee = async (req, res, next) => {
         req.user = user;
         next();
     });
-};
+}
 
-exports.verifyEmployeeNotSpecific = async (req, res, next) => {
+export async function verifyEmployeeNotSpecific(req, res, next) {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (!isValidEmployeeNotSpecific(user))
             return res.status(403).json({
@@ -129,7 +129,7 @@ exports.verifyEmployeeNotSpecific = async (req, res, next) => {
         req.user = user;
         next();
     });
-};
+}
 
 const isValidEmployee = (user) => {
     if (user.type === "admin") return true;

@@ -1,24 +1,32 @@
-const Gym = require("../models/gym");
-const Trainer = require("../models/trainer");
-const Equipment = require("../models/equipment");
-const Facility = require("../models/facility");
-const User = require("../models/user");
-const Admin = require("../models/admin");
-const { all } = require("../routes/user");
+import {
+    getAllGyms,
+    getGym,
+    addGym,
+    updateGym,
+    deleteGym,
+} from "../models/gym";
+import { getAllTrainersForGym, getTrainer } from "../models/trainer";
+import {
+    getAllEquipmentsForGym,
+    updateEquipmentForGym,
+} from "../models/equipment";
+import { getAllFacilitiesForGym } from "../models/facility";
+import { getAllUsersForGym, getAllStaffForGym } from "../models/user";
+import { getAdmin } from "../models/admin";
 
-exports.getAllGyms = async (req, res) => {
+export async function getAllGyms(req, res) {
     try {
-        const [[allGyms]] = await Gym.getAllGyms();
+        const [[allGyms]] = await getAllGyms();
         res.status(200).json(allGyms);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getGym = async (req, res) => {
+export async function getGym(req, res) {
     try {
         const gymId = req.params["gymId"];
-        const [[gym]] = await Gym.getGym(gymId);
+        const [[gym]] = await getGym(gymId);
 
         if (gym.length === 0) {
             res.status(401).json({ msg: "Does not exist" });
@@ -28,9 +36,9 @@ exports.getGym = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.addGym = async (req, res) => {
+export async function addGym(req, res) {
     try {
         const details = {
             imageUrl: req.body.imageUrl,
@@ -38,14 +46,14 @@ exports.addGym = async (req, res) => {
             location: req.body.location,
             membershipFee: req.body.membershipFee,
         };
-        await Gym.addGym(details);
+        await addGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.updateGym = async (req, res) => {
+export async function updateGym(req, res) {
     try {
         const details = {
             gymId: req.params["gymId"],
@@ -54,58 +62,58 @@ exports.updateGym = async (req, res) => {
             location: req.body.location,
             membershipFee: req.body.membershipFee,
         };
-        await Gym.updateGym(details);
+        await updateGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.deleteGym = async (req, res) => {
+export async function deleteGym(req, res) {
     try {
         const gymId = req.params["gymId"];
-        await Gym.deleteGym(gymId);
+        await deleteGym(gymId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getAllFacilities = async (req, res) => {
+export async function getAllFacilities(req, res) {
     try {
         const gymId = req.params["gymId"];
-        const [[allFacilities]] = await Facility.getAllFacilitiesForGym(gymId);
+        const [[allFacilities]] = await getAllFacilitiesForGym(gymId);
         res.status(200).json(allFacilities);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getAllEquipments = async (req, res) => {
+export async function getAllEquipments(req, res) {
     try {
         const gymId = req.params["gymId"];
-        const [[allEquipments]] = await Equipment.getAllEquipmentsForGym(gymId);
+        const [[allEquipments]] = await getAllEquipmentsForGym(gymId);
         res.status(200).json(allEquipments);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getAllTrainers = async (req, res) => {
+export async function getAllTrainers(req, res) {
     try {
         const gymId = req.params["gymId"];
-        const [[allTrainers]] = await Trainer.getAllTrainersForGym(gymId);
+        const [[allTrainers]] = await getAllTrainersForGym(gymId);
         allTrainers.map((trainer) => delete trainer["password"]);
         res.status(200).json(allTrainers);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getAllUsers = async (req, res) => {
+export async function getAllUsers(req, res) {
     try {
         const gymId = req.params["gymId"];
-        const [[allUsers]] = await User.getAllUsersForGym(gymId);
+        const [[allUsers]] = await getAllUsersForGym(gymId);
         allUsers.map((user) => {
             delete user["password"];
             delete user["gym_id"];
@@ -114,20 +122,20 @@ exports.getAllUsers = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getAllStaff = async (req, res) => {
+export async function getAllStaff(req, res) {
     try {
         const gymId = req.params["gymId"];
-        let [[allStaff]] = await User.getAllStaffForGym(gymId);
+        let [[allStaff]] = await getAllStaffForGym(gymId);
         allStaff = await attachStaffType(allStaff);
         res.status(200).json(allStaff);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.updateEquipmentForGym = async (req, res) => {
+export async function updateEquipmentForGym(req, res) {
     try {
         const details = {
             gymId: req.params["gymId"],
@@ -135,12 +143,12 @@ exports.updateEquipmentForGym = async (req, res) => {
             quantity: req.body.quantity,
             lastServiced: req.body.last_serviced,
         };
-        await Equipment.updateEquipmentForGym(details);
+        await updateEquipmentForGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
 const attachStaffType = (allStaff) => {
     const promises = allStaff.map(async (staff) => {
@@ -153,12 +161,12 @@ const attachStaffType = (allStaff) => {
 };
 
 const getStaffType = async (staffId) => {
-    let [[details]] = await Trainer.getTrainer(staffId);
+    let [[details]] = await getTrainer(staffId);
 
     if (details.length != 0) {
         return "trainer";
     } else {
-        [[details]] = await Admin.getAdmin(staffId);
+        [[details]] = await getAdmin(staffId);
         if (details.length != 0) {
             return "admin";
         }

@@ -1,14 +1,14 @@
-const express = require("express");
+import { Router } from "express";
 
-const trainerController = require("../controllers/trainer");
-const { verifyLoggedIn } = require("../util/middleware");
+import { getAllUserHealthRecordsForTrainer } from "../controllers/trainer";
+import { verifyLoggedIn } from "../util/middleware";
 
-const router = express.Router();
+const router = Router();
 
 router.get(
     "/:staffId/memberRecords",
     verifyLoggedIn,
-    trainerController.getAllUserHealthRecordsForTrainer
+    getAllUserHealthRecordsForTrainer
 );
 
-module.exports = router;
+export default router;

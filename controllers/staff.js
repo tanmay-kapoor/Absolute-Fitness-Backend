@@ -1,25 +1,31 @@
-const Staff = require("../models/staff");
-const Admin = require("../models/admin");
+import {
+    getAllStaff,
+    getStaff,
+    addStaff,
+    updateStaff,
+    deleteStaff,
+} from "../models/staff";
+import { getAdmin } from "../models/admin";
 
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const Trainer = require("../models/trainer");
-const salt = bcrypt.genSaltSync(10);
+import { sign } from "jsonwebtoken";
+import { genSaltSync, compare, hashSync } from "bcryptjs";
+import { getTrainer } from "../models/trainer";
+const salt = genSaltSync(10);
 
-exports.getAllStaff = async (req, res) => {
+export async function getAllStaff(req, res) {
     try {
-        let [[allStaff]] = await Staff.getAllStaff();
+        let [[allStaff]] = await getAllStaff();
         allStaff = await attachStaffType(allStaff);
         res.status(200).json(allStaff);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.getStaff = async (req, res) => {
+export async function getStaff(req, res) {
     try {
         const staffId = req.params["staffId"];
-        const [[staff]] = await Staff.getStaff(staffId);
+        const [[staff]] = await getStaff(staffId);
         if (staff.length === 0) {
             res.status(401).json({ msg: "Staff does not exist" });
         } else {
@@ -33,20 +39,20 @@ exports.getStaff = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.authenticate = async (req, res) => {
+export async function authenticate(req, res) {
     try {
         const username = req.body.username;
         const password = req.body.password;
 
-        const [[staff]] = await Staff.getStaff(username);
+        const [[staff]] = await getStaff(username);
         if (staff.length == 0) {
             res.status(404).json({
                 msg: `Staff does not exist`,
             });
         } else {
-            bcrypt.compare(password, staff[0].password, async (err, found) => {
+            compare(password, staff[0].password, async (err, found) => {
                 if (!found) {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
@@ -55,7 +61,7 @@ exports.authenticate = async (req, res) => {
                         username,
                         type: await getStaffType(staff[0]["staff_id"]),
                     };
-                    const accessToken = jwt.sign(
+                    const accessToken = sign(
                         user,
                         process.env.ACCESS_TOKEN_SECRET,
                         { expiresIn: "7d" }
@@ -67,9 +73,9 @@ exports.authenticate = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.addStaff = async (req, res) => {
+export async function addStaff(req, res) {
     try {
         const details = {
             staffId: req.body.staffId,
@@ -81,12 +87,12 @@ exports.addStaff = async (req, res) => {
                     : false,
             salary: req.body.salary,
             description: req.body.description,
-            password: bcrypt.hashSync(req.body.password, salt),
+            password: hashSync(req.body.password, salt),
             gymId: req.body.gymId,
         };
-        const [[staff]] = await Staff.getStaff(details.staffId);
+        const [[staff]] = await getStaff(details.staffId);
         if (staff.length === 0) {
-            await Staff.addStaff(details);
+            await addStaff(details);
             res.status(200).json({ msg: "Success" });
         } else {
             res.status(409).json({
@@ -96,9 +102,9 @@ exports.addStaff = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.updateStaff = async (req, res) => {
+export async function updateStaff(req, res) {
     try {
         const details = {
             staffId: req.params["staffId"],
@@ -110,27 +116,27 @@ exports.updateStaff = async (req, res) => {
         };
 
         if (!req.body.password) {
-            const [[staff]] = await Staff.getStaff(details.staffId);
+            const [[staff]] = await getStaff(details.staffId);
             details.password = staff[0].password;
         } else {
-            details.password = bcrypt.hashSync(req.body.password, salt);
+            details.password = hashSync(req.body.password, salt);
         }
-        await Staff.updateStaff(details);
+        await updateStaff(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
-exports.deleteStaff = async (req, res) => {
+export async function deleteStaff(req, res) {
     try {
         const staffId = req.params["staffId"];
-        await Staff.deleteStaff(staffId);
+        await deleteStaff(staffId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-};
+}
 
 const attachStaffType = (allStaff) => {
     const promises = allStaff.map(async (staff) => {
@@ -142,12 +148,12 @@ const attachStaffType = (allStaff) => {
 };
 
 const getStaffType = async (staffId) => {
-    let [[details]] = await Trainer.getTrainer(staffId);
+    let [[details]] = await getTrainer(staffId);
 
     if (details.length != 0) {
         return "trainer";
     } else {
-        [[details]] = await Admin.getAdmin(staffId);
+        [[details]] = await getAdmin(staffId);
         if (details.length != 0) {
             return "admin";
         }

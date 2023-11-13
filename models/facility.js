@@ -1,7 +1,7 @@
-const db = require("../util/database");
+import { execute } from "../util/database";
 
-module.exports = class Facility {
+export default class Facility {
     static getAllFacilitiesForGym(gymId) {
-        return db.execute("CALL getAllFacilitiesForGym(?)", [gymId]);
+        return execute("CALL getAllFacilitiesForGym(?)", [gymId]);
     }
-};
+}

@@ -1,41 +1,24 @@
-const express = require("express");
+import { Router } from "express";
 
-const workoutPlanController = require("../controllers/workoutPlan");
-const {
-    verifyMember,
-    verifyEmployeeNotSpecific,
-} = require("../util/middleware");
+import {
+    getAllWorkoutPlans,
+    addWorkoutPlan,
+    updateWorkoutPlan,
+    deleteWorkoutPlan,
+    getWorkoutPlanForUser,
+} from "../controllers/workoutPlan";
+import { verifyMember, verifyEmployeeNotSpecific } from "../util/middleware";
 
-const router = express.Router();
+const router = Router();
 
-router.get(
-    "/",
-    verifyEmployeeNotSpecific,
-    workoutPlanController.getAllWorkoutPlans
-);
+router.get("/", verifyEmployeeNotSpecific, getAllWorkoutPlans);
 
-router.post(
-    "/",
-    verifyEmployeeNotSpecific,
-    workoutPlanController.addWorkoutPlan
-);
+router.post("/", verifyEmployeeNotSpecific, addWorkoutPlan);
 
-router.put(
-    "/:planId",
-    verifyEmployeeNotSpecific,
-    workoutPlanController.updateWorkoutPlan
-);
+router.put("/:planId", verifyEmployeeNotSpecific, updateWorkoutPlan);
 
-router.delete(
-    "/:planId",
-    verifyEmployeeNotSpecific,
-    workoutPlanController.deleteWorkoutPlan
-);
+router.delete("/:planId", verifyEmployeeNotSpecific, deleteWorkoutPlan);
 
-router.get(
-    "/:email",
-    verifyMember,
-    workoutPlanController.getWorkoutPlanForUser
-);
+router.get("/:email", verifyMember, getWorkoutPlanForUser);
 
-module.exports = router;
+export default router;
