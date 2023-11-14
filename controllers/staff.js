@@ -45,7 +45,6 @@ exports.authenticate = async (req, res) => {
         msg: `Staff does not exist`,
       });
     } else {
-      console.log(staff);
       bcrypt.compare(password, staff[0].password, async (err, found) => {
         if (!found) {
           res.status(401).json({ msg: "Incorrect password" });
