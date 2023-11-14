@@ -47,6 +47,18 @@ FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 FOREIGN KEY (equipment_id) REFERENCES equipments(equipment_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+email		VARCHAR(30) 	PRIMARY KEY,
+name 		VARCHAR(50) 	NOT NULL,
+phone 		VARCHAR(10) 	NOT NULL	 		UNIQUE,
+dob			DATE			NOT NULL			CHECK(dob>="1900-01-01"),
+sex 		ENUM("Male", "Female", "Other") 	NOT NULL,
+password	VARCHAR(100) 	NOT NULL,
+gym_id 		INT 			NOT NULL,
+FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 DROP TABLE IF EXISTS staff;
 CREATE TABLE staff (
 staff_id 	INT 			PRIMARY KEY,
@@ -76,18 +88,6 @@ image_url 		VARCHAR(200) 	NOT NULL,
 years_of_exp	INT 			NOT NULL 	CHECK (years_of_exp >= 0),
 speciality		VARCHAR(30)		NOT NULL,
 FOREIGN KEY (staff_id) REFERENCES staff (staff_id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
-email		VARCHAR(30) 	PRIMARY KEY,
-name 		VARCHAR(50) 	NOT NULL,
-phone 		VARCHAR(10) 	NOT NULL	 		UNIQUE,
-dob			DATE			NOT NULL			CHECK(dob>="1900-01-01"),
-sex 		ENUM("Male", "Female", "Other") 	NOT NULL,
-password	VARCHAR(100) 	NOT NULL,
-gym_id 		INT 			NOT NULL,
-FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS health_records;
