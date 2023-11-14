@@ -35,7 +35,6 @@ exports.getStaff = async (req, res) => {
 
 exports.authenticate = async (req, res) => {
   try {
-    console.log(1);
     const username = req.body.username;
     const password = req.body.password;
 

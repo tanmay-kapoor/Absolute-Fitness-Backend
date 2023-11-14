@@ -37,17 +37,12 @@ exports.authenticate = async (req, res) => {
   try {
     const username = req.body.username;
     const password = req.body.password;
-    // console.log("1");
     const [[user]] = await User.getUser(username);
-    console.log("2");
     if (user.length == 0) {
-      //   console.log(3);
       res.status(404).json({
         msg: `User does not exist`,
       });
     } else {
-      //   console.log(4);
-
       bcrypt.compare(password, user[0].password, (err, found) => {
         if (!found) {
           res.status(401).json({ msg: "Incorrect password" });
