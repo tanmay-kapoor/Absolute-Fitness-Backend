@@ -179,12 +179,12 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
-exports.isValidToken = async (req, res) => {
+exports.isValidResetToken = async (req, res) => {
     try {
         const details = { token: req.body.token, email: req.body.email };
 
-        const isValidToken = await ResetToken.isValidToken(details);
-        if (!isValidToken) {
+        const isValidResetToken = await ResetToken.isValidResetToken(details);
+        if (!isValidResetToken) {
             res.status(404).json({ msg: "Invalid token" });
         } else {
             res.status(200).json({ msg: "Valid token" });

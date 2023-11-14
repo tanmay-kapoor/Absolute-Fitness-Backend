@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", verifyAdminPriviledge, userController.getAllUsers);
 
-router.get("/isValidToken", userController.isValidToken);
+router.get("/isValidResetToken", userController.isValidResetToken);
 
 router.get("/:email", verifyToken, userController.getUser);
 

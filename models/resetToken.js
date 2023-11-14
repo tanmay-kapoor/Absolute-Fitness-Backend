@@ -23,7 +23,7 @@ module.exports = class ResetToken {
         return token;
     }
 
-    static async isValidToken(details) {
+    static async isValidResetToken(details) {
         const { token, email } = details;
         const [[[res]]] = await db.execute("CALL getTokenExpiry(?, ?)", [
             token,

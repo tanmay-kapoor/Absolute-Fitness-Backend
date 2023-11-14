@@ -41,7 +41,7 @@ module.exports = class User {
     static resetPassword(details) {
         const { email, token, password } = details;
 
-        if (!ResetToken.isValidToken({ email, token })) {
+        if (!ResetToken.isValidResetToken({ email, token })) {
             throw new Error("Invalid token");
         }
 
