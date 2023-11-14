@@ -156,6 +156,31 @@ FOREIGN KEY (workout_plan) REFERENCES workout_plans (plan_id) ON UPDATE CASCADE 
 FOREIGN KEY (diet_plan) REFERENCES diet_plans (plan_id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
+DROP TABLE IF EXISTS tokens;
+CREATE TABLE tokens (
+token	VARCHAR(36)		PRIMARY KEY,
+email	VARCHAR(30)		NOT NULL,
+expiry 	DATETIME 		NOT NULL
+);
+
+DROP PROCEDURE IF EXISTS addResetToken;
+DELIMITER //
+CREATE PROCEDURE addResetToken(IN v_token VARCHAR(36), 
+							   IN v_email VARCHAR(30), 
+                               IN v_exp_date DATETIME)
+BEGIN
+	INSERT INTO tokens VALUES (v_token, v_email, v_exp_date);
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS deleteOldTokens;
+DELIMITER //
+CREATE PROCEDURE deleteOldTokens(IN v_email VARCHAR(30))
+BEGIN
+	DELETE FROM tokens WHERE email = v_email;
+END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS getAllUsers;
 DELIMITER //
 CREATE PROCEDURE getAllUsers()
