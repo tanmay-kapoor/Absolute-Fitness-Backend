@@ -173,11 +173,29 @@ BEGIN
 END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS deleteOldTokens;
+DROP PROCEDURE IF EXISTS deleteOldResetTokens;
 DELIMITER //
-CREATE PROCEDURE deleteOldTokens(IN v_email VARCHAR(30))
+CREATE PROCEDURE deleteOldResetTokens(IN v_email VARCHAR(30))
 BEGIN
 	DELETE FROM tokens WHERE email = v_email;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS resetPassword;
+DELIMITER //
+CREATE PROCEDURE resetPassword(IN v_email VARCHAR(30), IN v_password VARCHAR(100))
+BEGIN
+	UPDATE users SET password = v_password 
+    WHERE email = v_email;
+END //
+DELIMIER;
+
+DROP PROCEDURE IF EXISTS getTokenExpiry;
+DELIMITER //
+CREATE PROCEDURE getTokenExpiry(IN v_token VARCHAR(36), IN v_email VARCHAR(30))
+BEGIN
+	SELECT expiry from tokens 
+    WHERE token = v_token AND email = v_email;
 END //
 DELIMITER ;
 

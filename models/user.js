@@ -1,4 +1,5 @@
 const db = require("../util/database");
+const ResetToken = require("./resetToken");
 
 module.exports = class User {
     static getAllUsers() {
@@ -35,6 +36,16 @@ module.exports = class User {
             password,
             email,
         ]);
+    }
+
+    static resetPassword(details) {
+        const { email, token, password } = details;
+
+        if (!ResetToken.isValidToken({ email, token })) {
+            throw new Error("Invalid token");
+        }
+
+        return db.execute("CALL resetPassword(?, ?)", [email, password]);
     }
 
     static deleteUser(email) {

@@ -1,5 +1,7 @@
 const User = require("../models/user");
-const Token = require("../models/token");
+const ResetToken = require("../models/resetToken");
+const transporter = require("../util/email");
+const jwt = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
@@ -87,7 +89,7 @@ exports.addUser = async (req, res) => {
     }
 };
 
-exports.resetPassword = async (req, res) => {
+exports.generateResetToken = async (req, res) => {
     try {
         const email = req.body.email;
         const [[user]] = await User.getUser(email);
@@ -96,12 +98,49 @@ exports.resetPassword = async (req, res) => {
                 msg: "User does not exist",
             });
         } else {
-            await Token.addResetToken(email);
+            const token = await ResetToken.addResetToken(email);
+
             // send email to user with link to reset password
-            res.status(200).json({
-                msg: "Check email for link to set new password",
+            const mailOptions = {
+                from: process.env.SENDER_EMAIL,
+                to: email,
+                subject: "Reset password for Absolute Fitness account",
+                html: `Dear client, 
+                       <br /><br />
+                       To reset your password, click 
+                       <a href="${process.env.CLIENT_URL}/user/${email}/resetPassword/${token}">here</a>
+                       <br /><br />
+                       This is a one-time usable link and will expire in 30 minutes.
+                       <br /><br />
+                       Regards,<br />
+                       Absolute Fitness Team.`,
+            };
+
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) throw err;
+
+                res.status(200).json({
+                    msg: "Check email for link to set new password",
+                });
             });
         }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const { email, token } = req.params;
+        const password = req.body.password;
+        const details = {
+            email,
+            token,
+            password: bcrypt.hashSync(password, salt),
+        };
+        await User.resetPassword(details);
+        await ResetToken.deleteOldResetTokens(email);
+        res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
@@ -136,6 +175,20 @@ exports.deleteUser = async (req, res) => {
         const email = req.params["email"];
         await User.deleteUser(email);
         res.status(200).json({ msg: "Success" });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+exports.isValidToken = async (req, res) => {
+    try {
+        const details = { token: req.body.token, email: req.body.email };
+
+        const isValidToken = await ResetToken.isValidToken(details);
+        if (!isValidToken) {
+            res.status(404).json({ msg: "Invalid token" });
+        } else {
+            res.status(200).json({ msg: "Valid token" });
+        }
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
