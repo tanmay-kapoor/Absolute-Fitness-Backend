@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer")
 
 const transporter = nodemailer.createTransport({
     port: 465,
@@ -8,6 +8,6 @@ const transporter = nodemailer.createTransport({
         pass: process.env.SENDER_PASSWORD,
     },
     secure: true,
-});
+})
 
-module.exports = transporter;
+module.exports = transporter
