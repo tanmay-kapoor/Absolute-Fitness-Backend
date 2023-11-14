@@ -1,31 +1,45 @@
-import { Router } from "express";
+const express = require("express");
 
-import {
-    getAllHealthRecords,
-    getAllHealthRecordsWithName,
-    addHealthRecord,
-    updateHealthRecord,
-    deleteHealthRecord,
-    getHealthRecordsForUser,
-} from "../controllers/healthRecord";
-import {
+const healthRecordController = require("../controllers/healthRecord");
+const {
     verifyToken,
     verifyMember,
     verifyAdminPriviledge,
-} from "../util/middleware";
+    verifyMemberWithoutEmail,
+} = require("../util/middleware");
 
-const router = Router();
+const router = express.Router();
 
-router.get("/", verifyAdminPriviledge, getAllHealthRecords);
+router.get(
+    "/",
+    verifyAdminPriviledge,
+    healthRecordController.getAllHealthRecords
+);
 
-router.get("/withName", verifyAdminPriviledge, getAllHealthRecordsWithName);
+router.get(
+    "/withName",
+    verifyAdminPriviledge,
+    healthRecordController.getAllHealthRecordsWithName
+);
 
-router.post("/", verifyMember, addHealthRecord);
+router.post("/", verifyMember, healthRecordController.addHealthRecord);
 
-router.put("/:recordId", verifyMember, updateHealthRecord);
+router.put(
+    "/:recordId",
+    verifyMember,
+    healthRecordController.updateHealthRecord
+);
 
-router.delete("/:recordId", verifyMemberWithoutEmail, deleteHealthRecord);
+router.delete(
+    "/:recordId",
+    verifyMemberWithoutEmail,
+    healthRecordController.deleteHealthRecord
+);
 
-router.get("/:email", verifyToken, getHealthRecordsForUser);
+router.get(
+    "/:email",
+    verifyToken,
+    healthRecordController.getHealthRecordsForUser
+);
 
-export default router;
+module.exports = router;

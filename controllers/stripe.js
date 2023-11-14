@@ -1,25 +1,25 @@
 const STRIPE_API_KEY = process.env.STRIPE_API_KEY;
 const stripe = require("stripe")(STRIPE_API_KEY);
 
-export async function getAllProducts(req, res) {
+exports.getAllProducts = async (req, res) => {
     try {
         const products = await stripe.products.list({});
         res.status(200).json(products.data);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function getAllPrices(req, res) {
+exports.getAllPrices = async (req, res) => {
     try {
         const prices = await stripe.prices.list({});
         res.status(200).json(prices.data);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function getGymMembershipPricing(req, res) {
+exports.getGymMembershipPricing = async (req, res) => {
     try {
         const products = await stripe.products.list({});
         const priceList = await stripe.prices.list({});
@@ -53,9 +53,9 @@ export async function getGymMembershipPricing(req, res) {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function createSubscription(req, res) {
+exports.createSubscription = async (req, res) => {
     try {
         // create a stripe customer
         const customer = await stripe.customers.create({
@@ -87,7 +87,7 @@ export async function createSubscription(req, res) {
         console.log(err.message);
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
 const formatAmount = (stripeAmount) => {
     return `₹${stripeAmount / 100}`;

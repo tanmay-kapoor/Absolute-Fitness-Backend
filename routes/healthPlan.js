@@ -1,10 +1,10 @@
-import { Router } from "express";
+const express = require("express");
 
-import { getHealthPlanForUser } from "../controllers/healthPlan";
-import { verifyMember } from "../util/middleware.js";
+const healthPlanController = require("../controllers/healthPlan");
+const { verifyMember } = require("../util/middleware.js");
 
-const router = Router();
+const router = express.Router();
 
-router.get("/:email", verifyMember, getHealthPlanForUser);
+router.get("/:email", verifyMember, healthPlanController.getHealthPlanForUser);
 
-export default router;
+module.exports = router;

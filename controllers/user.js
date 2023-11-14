@@ -1,28 +1,22 @@
-import {
-    getAllUsers,
-    getUser,
-    addUser,
-    updateUser,
-    deleteUser,
-} from "../models/user";
+const User = require("../models/user");
 
-import { genSaltSync, compare, hashSync } from "bcryptjs";
-const salt = genSaltSync(10);
+const bcrypt = require("bcryptjs");
+const salt = bcrypt.genSaltSync(10);
 
-export async function getAllUsers(req, res) {
+exports.getAllUsers = async (req, res) => {
     try {
-        const [[allUsers]] = await getAllUsers();
+        const [[allUsers]] = await User.getAllUsers();
         allUsers.map((user) => delete user["password"]);
         res.status(200).json(allUsers);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function getUser(req, res) {
+exports.getUser = async (req, res) => {
     try {
         const email = req.params["email"];
-        const [[user]] = await getUser(email);
+        const [[user]] = await User.getUser(email);
         if (user.length === 0) {
             res.status(401).json({ msg: "User does not exist" });
         } else {
@@ -34,20 +28,20 @@ export async function getUser(req, res) {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function authenticate(req, res) {
+exports.authenticate = async (req, res) => {
     try {
         const username = req.body.username;
         const password = req.body.password;
 
-        const [[user]] = await getUser(username);
+        const [[user]] = await User.getUser(username);
         if (user.length == 0) {
             res.status(404).json({
                 msg: `User does not exist`,
             });
         } else {
-            compare(password, user[0].password, (err, found) => {
+            bcrypt.compare(password, user[0].password, (err, found) => {
                 if (!found) {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
@@ -65,22 +59,22 @@ export async function authenticate(req, res) {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function addUser(req, res) {
+exports.addUser = async (req, res) => {
     try {
         const details = {
             email: req.body.email,
             name: req.body.name,
             phone: req.body.phone,
-            password: hashSync(req.body.password, salt),
+            password: bcrypt.hashSync(req.body.password, salt),
             dob: req.body.dob,
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
-        const [[user]] = await getUser(details.email);
+        const [[user]] = await User.getUser(details.email);
         if (user.length === 0) {
-            await addUser(details);
+            await User.addUser(details);
             res.status(200).json({ msg: "Success" });
         } else {
             res.status(409).json({
@@ -90,9 +84,29 @@ export async function addUser(req, res) {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function updateUser(req, res) {
+exports.resetPassword = async (req, res) => {
+    try {
+        const email = req.body.email;
+        const [[user]] = await User.getUser(email);
+        if (user.length === 0) {
+            res.status(404).json({
+                msg: "User does not exist",
+            });
+        } else {
+            await Token.addResetToken(email);
+            // send email to user with link to reset password
+            res.status(200).json({
+                msg: "Check email for link to set new password",
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.updateUser = async (req, res) => {
     try {
         const details = {
             email: req.params["email"],
@@ -103,25 +117,25 @@ export async function updateUser(req, res) {
             gymId: req.body.gymId,
         };
         if (!req.body.password) {
-            const [[user]] = await getUser(details.email);
+            const [[user]] = await User.getUser(details.email);
             details.password = user[0].password;
         } else {
-            details.password = hashSync(req.body.password, salt);
+            details.password = bcrypt.hashSync(req.body.password, salt);
         }
 
-        await updateUser(details);
+        await User.updateUser(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function deleteUser(req, res) {
+exports.deleteUser = async (req, res) => {
     try {
         const email = req.params["email"];
-        await deleteUser(email);
+        await User.deleteUser(email);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};

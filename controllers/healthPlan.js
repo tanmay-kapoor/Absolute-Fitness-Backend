@@ -1,10 +1,12 @@
-import { getHealthPlanForUser } from "../models/healthPlan";
+const HealthPlan = require("../models/healthPlan");
 
-export async function getHealthPlanForUser(req, res) {
+exports.getHealthPlanForUser = async (req, res) => {
     try {
-        const [[healthPlan]] = await getHealthPlanForUser(req.params["email"]);
+        const [[healthPlan]] = await HealthPlan.getHealthPlanForUser(
+            req.params["email"]
+        );
         res.status(200).json(healthPlan[0]);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};

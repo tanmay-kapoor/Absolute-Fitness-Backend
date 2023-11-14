@@ -1,20 +1,15 @@
-import { Router } from "express";
+const express = require("express");
 
-import {
-    getAllProducts,
-    getAllPrices,
-    getGymMembershipPricing,
-    createSubscription,
-} from "../controllers/stripe";
+const stripeController = require("../controllers/stripe");
 
-const router = Router();
+const router = express.Router();
 
-router.get("/products", getAllProducts);
+router.get("/products", stripeController.getAllProducts);
 
-router.get("/prices", getAllPrices);
+router.get("/prices", stripeController.getAllPrices);
 
-router.get("/gym-membership-pricing", getGymMembershipPricing);
+router.get("/gym-membership-pricing", stripeController.getGymMembershipPricing);
 
-router.post("/create-subscription", createSubscription);
+router.post("/create-subscription", stripeController.createSubscription);
 
-export default router;
+module.exports = router;

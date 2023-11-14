@@ -1,9 +1,9 @@
-import { getAllUserHealthRecordsForTrainer } from "../models/trainer";
+const Trainer = require("../models/trainer");
 
-export async function getAllUserHealthRecordsForTrainer(req, res) {
+exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
     try {
         const trainerId = req.params["staffId"];
-        const [[usersData]] = await getAllUserHealthRecordsForTrainer(
+        const [[usersData]] = await Trainer.getAllUserHealthRecordsForTrainer(
             trainerId
         );
 
@@ -35,7 +35,7 @@ export async function getAllUserHealthRecordsForTrainer(req, res) {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
 const addStuffToHealthRecordArray = (user, healthRecords) => {
     healthRecords.push({

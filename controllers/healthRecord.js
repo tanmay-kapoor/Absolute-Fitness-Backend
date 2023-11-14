@@ -1,36 +1,28 @@
-import {
-    getAllHealthRecords,
-    getAllHealthRecordsWithName,
-    getHealthRecord,
-    getHealthRecordsForUser,
-    addHealthRecord,
-    updateHealthRecord,
-    deleteHealthRecord,
-} from "../models/healthRecord";
+const HealthRecord = require("../models/healthRecord");
 
-export async function getAllHealthRecords(req, res) {
+exports.getAllHealthRecords = async (req, res) => {
     try {
-        const [[allHealthRecords]] = await getAllHealthRecords();
+        const [[allHealthRecords]] = await HealthRecord.getAllHealthRecords();
         res.status(200).json(allHealthRecords);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function getAllHealthRecordsWithName(req, res) {
+exports.getAllHealthRecordsWithName = async (req, res) => {
     try {
         const [[allHealthRecordsWithName]] =
-            await getAllHealthRecordsWithName();
+            await HealthRecord.getAllHealthRecordsWithName();
         res.status(200).json(allHealthRecordsWithName);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function getHealthRecord(req, res) {
+exports.getHealthRecord = async (req, res) => {
     try {
         const recordId = req.params["recordId"];
-        const [[healthRecord]] = await getHealthRecord(recordId);
+        const [[healthRecord]] = await HealthRecord.getHealthRecord(recordId);
         if (healthRecord.length === 0) {
             res.status(401).json({ msg: "Does not exist" });
         } else {
@@ -39,19 +31,21 @@ export async function getHealthRecord(req, res) {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function getHealthRecordsForUser(req, res) {
+exports.getHealthRecordsForUser = async (req, res) => {
     try {
         const email = req.params["email"];
-        let [[healthRecords]] = await getHealthRecordsForUser(email);
+        let [[healthRecords]] = await HealthRecord.getHealthRecordsForUser(
+            email
+        );
         res.status(200).json(healthRecords);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function addHealthRecord(req, res) {
+exports.addHealthRecord = async (req, res) => {
     try {
         const details = {
             height: req.body.height,
@@ -61,14 +55,14 @@ export async function addHealthRecord(req, res) {
         };
         details.bmi =
             details.weight / ((details.height * details.height) / 10000);
-        await addHealthRecord(details);
+        await HealthRecord.addHealthRecord(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function updateHealthRecord(req, res) {
+exports.updateHealthRecord = async (req, res) => {
     try {
         const details = {
             recordId: req.params["recordId"],
@@ -79,25 +73,25 @@ export async function updateHealthRecord(req, res) {
         };
         details.bmi =
             details.weight / ((details.height * details.height) / 10000);
-        await updateHealthRecord(details);
+        await HealthRecord.updateHealthRecord(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};
 
-export async function deleteHealthRecord(req, res) {
+exports.deleteHealthRecord = async (req, res) => {
     try {
         const recordId = req.params["recordId"];
-        const [[healthRecord]] = await getHealthRecord(recordId);
+        const [[healthRecord]] = await HealthRecord.getHealthRecord(recordId);
         if (healthRecord.email !== req.user.username) {
             res.status(403).json({
                 msg: "Incorrect authorization. Login with user you want to delete the record of.",
             });
         }
-        await deleteHealthRecord(recordId);
+        await HealthRecord.deleteHealthRecord(recordId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
-}
+};

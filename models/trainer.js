@@ -1,17 +1,17 @@
-import { execute } from "../util/database";
+const db = require("../util/database");
 
-export default class Trainer {
+module.exports = class Trainer {
     static getTrainer(staffId) {
-        return execute("CALL getTrainer(?)", [staffId]);
+        return db.execute("CALL getTrainer(?)", [staffId]);
     }
 
     static getAllTrainersForGym(gymId) {
         const query = "CALL getAllTrainersForGym(?)";
-        return execute(query, [gymId]);
+        return db.execute(query, [gymId]);
     }
 
     static getAllUserHealthRecordsForTrainer(trainerId) {
         const query = "CALL getAllUserHealthRecordsForTrainer(?)";
-        return execute(query, [trainerId]);
+        return db.execute(query, [trainerId]);
     }
-}
+};

@@ -1,9 +1,9 @@
-import { execute } from "../util/database";
+const db = require("../util/database");
 
-export default class WorkoutPlan {
+module.exports = class WorkoutPlan {
     static getAllWorkoutPlans() {
         const query = "CALL getAllWorkoutPlans()";
-        return execute(query);
+        return db.execute(query);
     }
 
     static addWorkoutPlan(details) {
@@ -11,7 +11,7 @@ export default class WorkoutPlan {
             details,
         };
 
-        return execute("CALL addWorkoutPlan (?, ?, ?, ?, ?)", [
+        return db.execute("CALL addWorkoutPlan (?, ?, ?, ?, ?)", [
             name,
             description,
             excercise1,
@@ -31,7 +31,7 @@ export default class WorkoutPlan {
         } = details;
 
         const query = "CALL updateWorkoutPlan(?, ?, ?, ?, ?, ?)";
-        return execute(query, [
+        return db.execute(query, [
             name,
             description,
             excercise1,
@@ -42,11 +42,11 @@ export default class WorkoutPlan {
     }
 
     static deleteWorkoutPlan(planId) {
-        return execute("CALL deleteWorkoutPlan(?)", [planId]);
+        return db.execute("CALL deleteWorkoutPlan(?)", [planId]);
     }
 
     static getWorkoutPlanForUser(email) {
         const query = "CALL getWorkoutPlanForUser(?)";
-        return execute(query, [email]);
+        return db.execute(query, [email]);
     }
-}
+};

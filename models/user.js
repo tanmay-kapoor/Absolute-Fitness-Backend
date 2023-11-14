@@ -1,18 +1,18 @@
-import { execute } from "../util/database";
+const db = require("../util/database");
 
-export default class User {
+module.exports = class User {
     static getAllUsers() {
-        return execute("CALL getAllUsers()");
+        return db.execute("CALL getAllUsers()");
     }
 
     static getUser(email) {
-        return execute("CALL getUser(?)", [email]);
+        return db.execute("CALL getUser(?)", [email]);
     }
 
     static addUser(details) {
         const { email, name, dob, phone, sex, gymId, password } = details;
 
-        return execute("CALL addUser(?, ?, ?, ?, ?, ?, ?)", [
+        return db.execute("CALL addUser(?, ?, ?, ?, ?, ?, ?)", [
             email,
             name,
             phone,
@@ -26,7 +26,7 @@ export default class User {
     static updateUser(details) {
         const { email, name, phone, dob, sex, gymId, password } = details;
 
-        return execute("CALL updateUser(?, ?, ?, ?, ?, ?, ?)", [
+        return db.execute("CALL updateUser(?, ?, ?, ?, ?, ?, ?)", [
             name,
             phone,
             dob,
@@ -38,14 +38,14 @@ export default class User {
     }
 
     static deleteUser(email) {
-        return execute("CALL deleteUser(?)", [email]);
+        return db.execute("CALL deleteUser(?)", [email]);
     }
 
     static getAllUsersForGym(gymId) {
-        return execute("CALL getAllUsersForGym(?)", [gymId]);
+        return db.execute("CALL getAllUsersForGym(?)", [gymId]);
     }
 
     static getAllStaffForGym(gymId) {
-        return execute("CALL getAllStaffForGym(?)", [gymId]);
+        return db.execute("CALL getAllStaffForGym(?)", [gymId]);
     }
-}
+};

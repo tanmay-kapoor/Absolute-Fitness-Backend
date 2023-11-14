@@ -1,50 +1,46 @@
-import { Router } from "express";
+const express = require("express");
 
-import {
-    getAllGyms,
-    getGym,
-    addGym,
-    updateGym,
-    deleteGym,
-    getAllFacilities,
-    getAllEquipments,
-    getAllTrainers,
-    getAllUsers,
-    getAllStaff,
-    updateEquipmentForGym,
-} from "../controllers/gym";
-import {
+const gymController = require("../controllers/gym");
+const {
     verifyAdminPriviledge,
     verifyToken,
     verifyLoggedIn,
-} from "../util/middleware.js";
+} = require("../util/middleware.js");
 
-const router = Router();
+const router = express.Router();
 
-router.get("/", verifyLoggedIn, getAllGyms);
+router.get("/", verifyLoggedIn, gymController.getAllGyms);
 
-router.get("/:gymId", verifyLoggedIn, getGym);
+router.get("/:gymId", verifyLoggedIn, gymController.getGym);
 
-router.post("/", verifyAdminPriviledge, addGym);
+router.post("/", verifyAdminPriviledge, gymController.addGym);
 
-router.put("/:gymId", verifyAdminPriviledge, updateGym);
+router.put("/:gymId", verifyAdminPriviledge, gymController.updateGym);
 
-router.delete("/:gymId", verifyAdminPriviledge, deleteGym);
+router.delete("/:gymId", verifyAdminPriviledge, gymController.deleteGym);
 
-router.get("/:gymId/facilities", verifyLoggedIn, getAllFacilities);
+router.get(
+    "/:gymId/facilities",
+    verifyLoggedIn,
+    gymController.getAllFacilities
+);
 
-router.get("/:gymId/equipments", verifyAdminPriviledge, getAllEquipments);
+router.get(
+    "/:gymId/equipments",
+    verifyAdminPriviledge,
+    gymController.getAllEquipments
+);
 
-router.get("/:gymId/trainers", verifyLoggedIn, getAllTrainers);
+router.get("/:gymId/trainers", verifyLoggedIn, gymController.getAllTrainers);
 
-router.get("/:gymId/members", verifyAdminPriviledge, getAllUsers);
+router.get("/:gymId/members", verifyAdminPriviledge, gymController.getAllUsers);
 
-router.get("/:gymId/staff", verifyAdminPriviledge, getAllStaff);
+router.get("/:gymId/staff", verifyAdminPriviledge, gymController.getAllStaff);
 
 router.put(
     "/:gymId/equipment/:equipmentId",
     verifyAdminPriviledge,
-    updateEquipmentForGym
+    gymController.updateEquipmentForGym
 );
 
-export default router;
+module.exports = router;

@@ -1,8 +1,8 @@
-import { execute } from "../util/database";
+const db = require("../util/database");
 
-export default class Admin {
+module.exports = class Admin {
     static getAdmin(staffId) {
         const query = "CALL getAdmin(?)";
-        return execute(query, [staffId]);
+        return db.execute(query, [staffId]);
     }
-}
+};

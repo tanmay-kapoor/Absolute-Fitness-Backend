@@ -1,12 +1,12 @@
-import { execute } from "../util/database";
+const db = require("../util/database");
 
-export default class Staff {
+module.exports = class Staff {
     static getAllStaff() {
-        return execute("CALL getAllStaff()");
+        return db.execute("CALL getAllStaff()");
     }
 
     static getStaff(staffId) {
-        return execute("CALL getStaff(?)", [staffId]);
+        return db.execute("CALL getStaff(?)", [staffId]);
     }
 
     static addStaff(details) {
@@ -21,7 +21,7 @@ export default class Staff {
             gymId,
         } = details;
 
-        return execute("CALL addStaff (?, ?, ?, ?, ?, ?, ?, ?)", [
+        return db.execute("CALL addStaff (?, ?, ?, ?, ?, ?, ?, ?)", [
             staffId,
             name,
             phone,
@@ -44,7 +44,7 @@ export default class Staff {
             password,
         } = details;
 
-        return execute("CALL updateStaff(?, ?, ?, ?, ?, ?, ?)", [
+        return db.execute("CALL updateStaff(?, ?, ?, ?, ?, ?, ?)", [
             name,
             phone,
             partTime,
@@ -56,6 +56,6 @@ export default class Staff {
     }
 
     static deleteStaff(staffId) {
-        return execute("CALL deleteStaff(?)", [staffId]);
+        return db.execute("CALL deleteStaff(?)", [staffId]);
     }
-}
+};
