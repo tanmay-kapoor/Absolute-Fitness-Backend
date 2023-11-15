@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const ResetToken = require("../models/resetToken");
-const transporter = require("../util/email");
-const jwt = require("jsonwebtoken");
+const helpers = require("../util/helpers");
+const transporter = helpers.transporter;
 
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
@@ -33,41 +33,6 @@ exports.getUser = async (req, res) => {
     }
 };
 
-exports.authenticate = async (req, res) => {
-    try {
-        const username = req.body.username;
-        const password = req.body.password;
-
-        const [[user]] = await User.getUser(username);
-        if (user.length == 0) {
-            res.status(404).json({
-                msg: `User does not exist`,
-            });
-        } else {
-            bcrypt.compare(password, user[0].password, (err, found) => {
-                if (!found) {
-                    res.status(401).json({ msg: "Incorrect password" });
-                } else {
-                    // jwt stuff
-                    const userOb = { username, type: "member" };
-                    const accessToken = jwt.sign(
-                        userOb,
-                        process.env.ACCESS_TOKEN_SECRET,
-                        {
-                            expiresIn: "7d",
-                        }
-                    );
-                    const userInfo = { ...user[0] };
-                    delete userInfo["password"];
-                    res.status(200).json({ ...userInfo, accessToken });
-                }
-            });
-        }
-    } catch (err) {
-        res.status(500).json({ msg: err.message });
-    }
-};
-
 exports.addUser = async (req, res) => {
     try {
         const details = {
@@ -82,7 +47,13 @@ exports.addUser = async (req, res) => {
         const [[user]] = await User.getUser(details.email);
         if (user.length === 0) {
             await User.addUser(details);
-            res.status(200).json({ msg: "Success" });
+
+            const accessToken = helpers.generateAccessToken({
+                username: details.email,
+                type: "member",
+            });
+
+            res.status(200).json({ accessToken });
         } else {
             res.status(409).json({
                 msg: "User with this email already exists",

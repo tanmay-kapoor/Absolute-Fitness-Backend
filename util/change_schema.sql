@@ -18,10 +18,6 @@ update staff
 set type = "admin" 
 where staff_id in (select staff_id from gym_admins);
 
-select email as username, name, phone, dob, sex, "member" as type, password, gym_id from users
-union
-select staff_id as username, name, phone, dob, sex, type, password, gym_id from staff;
-
 -- select * from staff;
 -- insert into staff values ("1@2.com", "fname sname", 0987654321, "1994-12-12", "Male", "staff", False, 25000.46, "desc", "$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu", 1);
 
@@ -178,7 +174,18 @@ update staff
 set staff_id = concat(staff_id, "@gmail.com");
 
 
-
+DROP PROCEDURE IF EXISTS getEntryForLogin;
+DELIMITER //
+CREATE PROCEDURE getEntryForLogin(IN v_username VARCHAR(30))
+BEGIN
+	with entries as (
+		select email as username, name, phone, dob, sex, "member" as type, password, gym_id from users
+		union
+		select staff_id as username, name, phone, dob, sex, type, password, gym_id from staff
+	)
+	select * from entries where username = v_username;
+END //
+DELIMITER ;
 
 
 

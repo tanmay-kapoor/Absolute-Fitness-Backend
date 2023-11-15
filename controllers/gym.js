@@ -119,7 +119,10 @@ exports.getAllStaff = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
         let [[allStaff]] = await User.getAllStaffForGym(gymId);
-        allStaff = await attachStaffType(allStaff);
+        allStaff.map((staff) => {
+            delete staff["password"];
+            delete staff["gym_id"];
+        });
         res.status(200).json(allStaff);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -138,29 +141,5 @@ exports.updateEquipmentForGym = async (req, res) => {
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
-    }
-};
-
-const attachStaffType = (allStaff) => {
-    const promises = allStaff.map(async (staff) => {
-        delete staff["password"];
-        delete staff["gym_id"];
-        staff["type"] = await getStaffType(staff["staff_id"]);
-        return staff;
-    });
-    return Promise.all(promises);
-};
-
-const getStaffType = async (staffId) => {
-    let [[details]] = await Trainer.getTrainer(staffId);
-
-    if (details.length != 0) {
-        return "trainer";
-    } else {
-        [[details]] = await Admin.getAdmin(staffId);
-        if (details.length != 0) {
-            return "admin";
-        }
-        return "staff";
     }
 };

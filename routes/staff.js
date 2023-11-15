@@ -9,8 +9,6 @@ router.get("/", verifyAdminPriviledge, staffController.getAllStaff);
 
 router.get("/:staffId", verifyEmployee, staffController.getStaff);
 
-router.post("/login", staffController.authenticate);
-
 router.post("/signup", verifyAdminPriviledge, staffController.addStaff);
 
 router.put("/:staffId", verifyEmployee, staffController.updateStaff);
