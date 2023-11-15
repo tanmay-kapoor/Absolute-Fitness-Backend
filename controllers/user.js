@@ -57,7 +57,9 @@ exports.authenticate = async (req, res) => {
                             expiresIn: "7d",
                         }
                     );
-                    res.status(200).json({ ...user[0], accessToken });
+                    const userInfo = { ...user[0] };
+                    delete userInfo["password"];
+                    res.status(200).json({ ...userInfo, accessToken });
                 }
             });
         }
