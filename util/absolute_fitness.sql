@@ -5,7 +5,7 @@ USE absolute_fitness;
 DROP TABLE IF EXISTS gyms;
 CREATE TABLE gyms (
 gym_id 			INT 				PRIMARY KEY 	AUTO_INCREMENT,
-image_url 		VARCHAR(200) 		NOT NULL, 		
+image_url 		VARCHAR(200) 		NOT NULL, 		-- change done
 phone 			VARCHAR(10) 		NOT NULL 		UNIQUE,
 location 		VARCHAR(50) 		NOT NULL		UNIQUE,
 membership_fee 	DECIMAL(65,2) 		NOT NULL
@@ -61,7 +61,7 @@ FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 DROP TABLE IF EXISTS staff;
 CREATE TABLE staff (
-staff_id 	INT 			PRIMARY KEY, -- change done
+staff_id 	INT 			PRIMARY KEY, 
 name 		VARCHAR(50) 	NOT NULL,
 phone 		VARCHAR(10) 	NOT NULL 		UNIQUE,
 part_time 	BOOLEAN 		DEFAULT FALSE,
@@ -74,7 +74,7 @@ FOREIGN KEY (gym_id) REFERENCES gyms (gym_id) ON UPDATE CASCADE ON DELETE CASCAD
 
 DROP TABLE IF EXISTS gym_admins;
 CREATE TABLE gym_admins (
-staff_id 	INT  	NOT NULL, -- change done 
+staff_id 	INT  	NOT NULL, 
 gym_id 		INT 	NOT NULL,
 PRIMARY KEY (staff_id, gym_id),
 FOREIGN KEY (staff_id) REFERENCES staff (staff_id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -83,7 +83,7 @@ FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 DROP TABLE IF EXISTS trainers;
 CREATE TABLE trainers (
-staff_id  		INT 			PRIMARY KEY, -- change done
+staff_id  		INT 			PRIMARY KEY, 
 image_url 		VARCHAR(200) 	NOT NULL,
 years_of_exp	INT 			NOT NULL 	CHECK (years_of_exp >= 0),
 speciality		VARCHAR(30)		NOT NULL,
@@ -145,7 +145,7 @@ FOREIGN KEY (dinner) REFERENCES meal_choices (meal) ON UPDATE CASCADE ON DELETE 
 DROP TABLE IF EXISTS health_plans;
 CREATE TABLE health_plans (
 plan_id 		INT 			PRIMARY KEY		AUTO_INCREMENT,
-trainer_id 		INT, -- change done
+trainer_id 		INT, 
 email 			VARCHAR(30) 	NOT NULL 		UNIQUE,
 workout_plan 	INT,
 diet_plan 		INT,
@@ -266,7 +266,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getAllGyms;
 DELIMITER //
-CREATE PROCEDURE getAllGyms()
+CREATE PROCEDURE getAllGyms() -- change (in endpoint get urls also)
 BEGIN
 	SELECT * FROM gyms;
 END //
@@ -274,7 +274,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getTrainer;
 DELIMITER //
-CREATE PROCEDURE getTrainer(IN v_staff_id INT) -- change done
+CREATE PROCEDURE getTrainer(IN v_staff_id INT) 
 BEGIN 
 	SELECT * FROM trainers WHERE staff_id = v_staff_id;
 END //
@@ -297,13 +297,13 @@ DROP PROCEDURE IF EXISTS getGym;
 DELIMITER //
 CREATE PROCEDURE getGym(IN v_gym_id INT)
 BEGIN
-	SELECT * FROM gyms WHERE gym_id = v_gym_id;
+	SELECT * FROM gyms WHERE gym_id = v_gym_id; -- change (in endpoint add extra procedure call to get array of images)
 END //
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS addGym;
 DELIMITER //
-CREATE PROCEDURE addGym(IN v_image_url VARCHAR(200), 
+CREATE PROCEDURE addGym(IN v_image_url VARCHAR(200), -- change (remove this and add extra proc call in endpoint)
 						IN v_phone VARCHAR(10), 
                         IN v_location VARCHAR(50), 
                         IN v_membership_fee DECIMAL(65, 2))
@@ -315,7 +315,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS updateGym;
 DELIMITER //
-CREATE PROCEDURE updateGym(IN v_image_url VARCHAR(200), 
+CREATE PROCEDURE updateGym(IN v_image_url VARCHAR(200), -- change (in endpoint)
 						IN v_phone VARCHAR(10), 
                         IN v_location VARCHAR(50), 
                         IN v_membership_fee DECIMAL(65, 2),
@@ -337,7 +337,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getAdmin;
 DELIMITER //
-CREATE PROCEDURE getAdmin (IN v_staff_id INT) -- change done
+CREATE PROCEDURE getAdmin (IN v_staff_id INT) 
 BEGIN 
 	SELECT * FROM 
     staff s JOIN gym_admins a
@@ -560,7 +560,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getAllUserHealthRecordsForTrainer;
 DELIMITER //
-CREATE PROCEDURE getAllUserHealthRecordsForTrainer(IN v_trainer_id INT) -- change done
+CREATE PROCEDURE getAllUserHealthRecordsForTrainer(IN v_trainer_id INT) 
 BEGIN
 	SELECT h.trainer_id, r.* FROM 
 	health_plans h JOIN users u 
@@ -582,15 +582,15 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getStaff;
 DELIMITER //
-CREATE PROCEDURE getStaff(IN v_staff_id INT) -- change done
+CREATE PROCEDURE getStaff(IN v_staff_id INT) 
 BEGIN
 	SELECT * FROM staff WHERE staff_id = v_staff_id;
 END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS addStaff; -- change
+DROP PROCEDURE IF EXISTS addStaff; 
 DELIMITER //
-CREATE PROCEDURE addStaff(IN v_staff_id INT, -- change done
+CREATE PROCEDURE addStaff(IN v_staff_id INT, 
 						  IN v_name VARCHAR(50), 
                           IN v_phone VARCHAR(10), 
                           IN v_part_time BOOLEAN, 
@@ -612,7 +612,7 @@ CREATE PROCEDURE updateStaff(IN v_name VARCHAR(50),
 						     IN v_salary DECIMAL(65, 2), 
 						     IN v_description VARCHAR(512), 
 						     IN v_password VARCHAR(100),
-                             IN v_staff_id INT) -- change done
+                             IN v_staff_id INT) 
 BEGIN
 	UPDATE staff SET 
 		name = v_name, phone = v_phone, 
@@ -626,7 +626,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS deleteStaff;
 DELIMITER //
-CREATE PROCEDURE deleteStaff(IN v_staff_id INT) -- change done
+CREATE PROCEDURE deleteStaff(IN v_staff_id INT) 
 BEGIN
 	DELETE FROM staff WHERE staff_id = v_staff_id;
 END //
@@ -704,9 +704,9 @@ DELIMITER ;
 DROP FUNCTION IF EXISTS getRandomTrainer;
 DELIMITER //
 CREATE FUNCTION getRandomTrainer(v_gym INT)
-RETURNS INT READS SQL DATA -- change done
+RETURNS INT READS SQL DATA 
 BEGIN
-	DECLARE random_trainer INT; -- change done
+	DECLARE random_trainer INT;
     DECLARE temp INT;
     
 	SELECT s.gym_id, t.staff_id INTO temp, random_trainer FROM 

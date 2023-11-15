@@ -59,7 +59,7 @@ foreign key (staff_id) references staff (staff_id) on update cascade on delete c
 
 
 
-
+-- change all procedures that use staff_id as int and redefine with varchar
 
 DROP PROCEDURE IF EXISTS getTrainer;
 DELIMITER //
@@ -187,6 +187,38 @@ BEGIN
 END //
 DELIMITER ;
 
+-- change gyms table and add new table for gym_image_urls (1 gym can have many photos now)
+DROP TABLE IF EXISTS gym_image_urls;
+CREATE TABLE gym_image_urls (
+image_url 		VARCHAR(200)	NOT NULL,
+gym_id 			INT 			NOT NULL,
+PRIMARY KEY (image_url, gym_id),
+FOREIGN KEY (gym_id) REFERENCES gyms (gym_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO gym_image_urls (
+	SELECT image_url, gym_id from gyms
+);
+
+ALTER TABLE gyms
+DROP COLUMN image_url;
+
+DROP PROCEDURE IF EXISTS getAllGyms;
+DELIMITER //
+CREATE PROCEDURE getAllGyms()
+BEGIN
+	SELECT * FROM 
+    gyms g JOIN gym_image_urls u
+    ON g.gym_id = u.gym_id;
+END //
+DELIMITER ;
+
+DROP TABLE IF EXISTS temp;
+CREATE TABLE temp (
+image_url 		VARCHAR(200)	PRIMARY KEY,
+gym_id 			INT 			NOT NULL,
+FOREIGN KEY (gym_id) REFERENCES gyms (gym_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 
 

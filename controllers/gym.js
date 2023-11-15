@@ -7,7 +7,20 @@ const Admin = require("../models/admin");
 
 exports.getAllGyms = async (req, res) => {
     try {
-        const [[allGyms]] = await Gym.getAllGyms();
+        const [[rows]] = await Gym.getAllGyms();
+
+        const gyms = {};
+
+        rows.forEach((row) => {
+            const { gym_id, ...data } = row;
+            delete data["image_url"];
+            if (!gyms[gym_id]) {
+                gyms[gym_id] = { gym_id, ...data, image_urls: [] };
+            }
+            gyms[gym_id].image_urls.push(row.image_url);
+        });
+
+        const allGyms = Object.values(gyms);
         res.status(200).json(allGyms);
     } catch (err) {
         res.status(500).json({ msg: err.message });
