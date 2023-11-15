@@ -49,15 +49,15 @@ exports.authenticate = async (req, res) => {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
                     // jwt stuff
-                    const user = { username, type: "member" };
+                    const userOb = { username, type: "member" };
                     const accessToken = jwt.sign(
-                        user,
+                        userOb,
                         process.env.ACCESS_TOKEN_SECRET,
                         {
                             expiresIn: "7d",
                         }
                     );
-                    res.status(200).json({ accessToken });
+                    res.status(200).json({ ...user[0], accessToken });
                 }
             });
         }
