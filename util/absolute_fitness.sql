@@ -61,7 +61,7 @@ FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 DROP TABLE IF EXISTS staff;
 CREATE TABLE staff (
-staff_id 	INT 			PRIMARY KEY,
+staff_id 	INT 			PRIMARY KEY, -- change done
 name 		VARCHAR(50) 	NOT NULL,
 phone 		VARCHAR(10) 	NOT NULL 		UNIQUE,
 part_time 	BOOLEAN 		DEFAULT FALSE,
@@ -74,7 +74,7 @@ FOREIGN KEY (gym_id) REFERENCES gyms (gym_id) ON UPDATE CASCADE ON DELETE CASCAD
 
 DROP TABLE IF EXISTS gym_admins;
 CREATE TABLE gym_admins (
-staff_id 	INT  	NOT NULL,
+staff_id 	INT  	NOT NULL, -- change done 
 gym_id 		INT 	NOT NULL,
 PRIMARY KEY (staff_id, gym_id),
 FOREIGN KEY (staff_id) REFERENCES staff (staff_id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -83,7 +83,7 @@ FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 DROP TABLE IF EXISTS trainers;
 CREATE TABLE trainers (
-staff_id  		INT 			PRIMARY KEY,
+staff_id  		INT 			PRIMARY KEY, -- change done
 image_url 		VARCHAR(200) 	NOT NULL,
 years_of_exp	INT 			NOT NULL 	CHECK (years_of_exp >= 0),
 speciality		VARCHAR(30)		NOT NULL,
@@ -145,7 +145,7 @@ FOREIGN KEY (dinner) REFERENCES meal_choices (meal) ON UPDATE CASCADE ON DELETE 
 DROP TABLE IF EXISTS health_plans;
 CREATE TABLE health_plans (
 plan_id 		INT 			PRIMARY KEY		AUTO_INCREMENT,
-trainer_id 		INT,
+trainer_id 		INT, -- change done
 email 			VARCHAR(30) 	NOT NULL 		UNIQUE,
 workout_plan 	INT,
 diet_plan 		INT,
@@ -188,7 +188,7 @@ BEGIN
 	UPDATE users SET password = v_password 
     WHERE email = v_email;
 END //
-DELIMIER;
+DELIMITER;
 
 DROP PROCEDURE IF EXISTS getTokenExpiry;
 DELIMITER //
@@ -274,7 +274,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getTrainer;
 DELIMITER //
-CREATE PROCEDURE getTrainer(IN v_staff_id INT)
+CREATE PROCEDURE getTrainer(IN v_staff_id INT) -- change done
 BEGIN 
 	SELECT * FROM trainers WHERE staff_id = v_staff_id;
 END //
@@ -337,7 +337,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getAdmin;
 DELIMITER //
-CREATE PROCEDURE getAdmin (IN v_staff_id INT)
+CREATE PROCEDURE getAdmin (IN v_staff_id INT) -- change done
 BEGIN 
 	SELECT * FROM 
     staff s JOIN gym_admins a
@@ -560,7 +560,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getAllUserHealthRecordsForTrainer;
 DELIMITER //
-CREATE PROCEDURE getAllUserHealthRecordsForTrainer(IN v_trainer_id INT)
+CREATE PROCEDURE getAllUserHealthRecordsForTrainer(IN v_trainer_id INT) -- change done
 BEGIN
 	SELECT h.trainer_id, r.* FROM 
 	health_plans h JOIN users u 
@@ -582,15 +582,15 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getStaff;
 DELIMITER //
-CREATE PROCEDURE getStaff(IN v_staff_id INT)
+CREATE PROCEDURE getStaff(IN v_staff_id INT) -- change done
 BEGIN
 	SELECT * FROM staff WHERE staff_id = v_staff_id;
 END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS addStaff;
+DROP PROCEDURE IF EXISTS addStaff; -- change
 DELIMITER //
-CREATE PROCEDURE addStaff(IN v_staff_id INT, 
+CREATE PROCEDURE addStaff(IN v_staff_id INT, -- change done
 						  IN v_name VARCHAR(50), 
                           IN v_phone VARCHAR(10), 
                           IN v_part_time BOOLEAN, 
@@ -612,7 +612,7 @@ CREATE PROCEDURE updateStaff(IN v_name VARCHAR(50),
 						     IN v_salary DECIMAL(65, 2), 
 						     IN v_description VARCHAR(512), 
 						     IN v_password VARCHAR(100),
-                             IN v_staff_id INT)
+                             IN v_staff_id INT) -- change done
 BEGIN
 	UPDATE staff SET 
 		name = v_name, phone = v_phone, 
@@ -626,7 +626,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS deleteStaff;
 DELIMITER //
-CREATE PROCEDURE deleteStaff(IN v_staff_id INT)
+CREATE PROCEDURE deleteStaff(IN v_staff_id INT) -- change done
 BEGIN
 	DELETE FROM staff WHERE staff_id = v_staff_id;
 END //
@@ -704,9 +704,9 @@ DELIMITER ;
 DROP FUNCTION IF EXISTS getRandomTrainer;
 DELIMITER //
 CREATE FUNCTION getRandomTrainer(v_gym INT)
-RETURNS INT READS SQL DATA
+RETURNS INT READS SQL DATA -- change done
 BEGIN
-	DECLARE random_trainer INT;
+	DECLARE random_trainer INT; -- change done
     DECLARE temp INT;
     
 	SELECT s.gym_id, t.staff_id INTO temp, random_trainer FROM 
