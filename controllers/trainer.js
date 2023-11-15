@@ -1,4 +1,19 @@
 const Trainer = require("../models/trainer");
+const Staff = require("../models/staff");
+
+exports.getTrainer = async (req, res) => {
+    try {
+        const staffId = req.params["staffId"];
+        const [[trainer]] = await Trainer.getTrainer(staffId);
+        if (trainer.length === 0) {
+            res.status(401).json({ msg: "Trainer does not exist" });
+        } else {
+            res.json(trainer[0]);
+        }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
 
 exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
     try {
@@ -46,6 +61,7 @@ exports.addTrainer = async (req, res) => {
             dob: req.body.dob,
             sex: req.body.sex,
             partTime:
+                req.body.partTime == 1 ||
                 req.body.partTime === "True" ||
                 req.body.partTime === "true" ||
                 req.body.partTime === true
@@ -69,6 +85,42 @@ exports.addTrainer = async (req, res) => {
                 msg: "This trainer id is already registered",
             });
         }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.updateTrainer = async (req, res) => {
+    try {
+        const details = {
+            staffId: req.params["staffId"],
+            name: req.body.name,
+            phone: req.body.phone,
+            dob: req.body.dob,
+            sex: req.body.sex,
+            partTime:
+                req.body.partTime == 1 ||
+                req.body.partTime === "True" ||
+                req.body.partTime === "true" ||
+                req.body.partTime === true
+                    ? true
+                    : false,
+            salary: req.body.salary,
+            description: req.body.description,
+            password: "", // because no login flow for trainer
+            imageUrl: req.body.imageUrl,
+            yearsOfExp: req.body.yearsOfExp,
+            speciality: req.body.speciality,
+        };
+
+        if (!req.body.password) {
+            const [[staff]] = await Staff.getStaff(details.staffId);
+            details.password = staff[0].password;
+        } else {
+            details.password = bcrypt.hashSync(req.body.password, salt);
+        }
+        await Trainer.updateTrainer(details);
+        res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }

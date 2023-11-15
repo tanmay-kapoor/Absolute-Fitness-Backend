@@ -38,7 +38,10 @@ exports.addStaff = async (req, res) => {
             name: req.body.name,
             phone: req.body.phone,
             partTime:
-                req.body.partTime == "True" || req.body.partTime == "true"
+                req.body.partTime == 1 ||
+                req.body.partTime === "True" ||
+                req.body.partTime === "true" ||
+                req.body.partTime === true
                     ? true
                     : false,
             salary: req.body.salary,
@@ -70,7 +73,13 @@ exports.updateStaff = async (req, res) => {
             staffId: req.params["staffId"],
             name: req.body.name,
             phone: req.body.phone,
-            partTime: req.body.partTime == 1 ? true : false,
+            partTime:
+                req.body.partTime == 1 ||
+                req.body.partTime === "True" ||
+                req.body.partTime === "true" ||
+                req.body.partTime === true
+                    ? true
+                    : false,
             salary: req.body.salary,
             description: req.body.description,
         };

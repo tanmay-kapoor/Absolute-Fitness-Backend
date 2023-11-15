@@ -108,16 +108,16 @@ CREATE PROCEDURE addStaff(IN v_staff_id VARCHAR(30),
 						  IN v_name VARCHAR(50), 
                           IN v_phone VARCHAR(10), 
                           IN v_dob DATE,
-                          IN sex ENUM("Male", "Female", "Other"),
-                          IN type ENUM("staff", "trainer", "admin"),
+                          IN v_sex ENUM("Male", "Female", "Other"),
+                          IN v_type ENUM("staff", "trainer", "admin"),
                           IN v_part_time BOOLEAN, 
                           IN v_salary DECIMAL(65, 2), 
                           IN v_description VARCHAR(512), 
                           IN v_password VARCHAR(100), 
                           IN v_gym_id INT)
 BEGIN
-	INSERT INTO staff (staff_id, name, phone, part_time, salary, description, password, gym_id) 
-    VALUES (v_staff_id, v_name, v_phone, v_part_time, v_salary, v_description, v_password, v_gym_id);
+	INSERT INTO staff (staff_id, name, phone, sex, type, part_time, salary, description, password, gym_id) 
+    VALUES (v_staff_id, v_name, v_phone, v_sex, v_type, v_part_time, v_salary, v_description, v_password, v_gym_id);
 END //
 DELIMITER ;
 
@@ -125,6 +125,9 @@ DROP PROCEDURE IF EXISTS updateStaff;
 DELIMITER //
 CREATE PROCEDURE updateStaff(IN v_name VARCHAR(50), 
 						     IN v_phone VARCHAR(10), 
+                             IN v_dob DATE,
+                             IN v_sex ENUM("Male", "Female", "Other"),
+                             IN v_type ENUM("staff", "trainer", "admin"),
 						     IN v_part_time BOOLEAN, 
 						     IN v_salary DECIMAL(65, 2), 
 						     IN v_description VARCHAR(512), 
@@ -133,6 +136,7 @@ CREATE PROCEDURE updateStaff(IN v_name VARCHAR(50),
 BEGIN
 	UPDATE staff SET 
 		name = v_name, phone = v_phone, 
+        dob = v_dob, sex = v_sex, type = v_type,
         part_time = v_part_time, 
         salary = v_salary, 
         description = v_description, 
@@ -218,22 +222,48 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS addTrainer;
 DELIMITER //
 CREATE PROCEDURE addTrainer (IN v_staff_id VARCHAR(30),
-						  IN v_name VARCHAR(50), 
-                          IN v_phone VARCHAR(10), 
-                          IN v_dob DATE,
-                          IN v_sex ENUM("Male", "Female", "Other"),
-                          IN v_part_time BOOLEAN, 
-                          IN v_salary DECIMAL(65, 2), 
-                          IN v_description VARCHAR(512), 
-                          IN v_password VARCHAR(100), 
-                          IN v_gym_id INT, -- staff fields till here
-                          IN v_image_url VARCHAR(200),
-                          IN v_years_of_exp INT,
-                          IN v_speciality VARCHAR(30))
+							 IN v_name VARCHAR(50), 
+							 IN v_phone VARCHAR(10), 
+							 IN v_dob DATE,
+							 IN v_sex ENUM("Male", "Female", "Other"),
+							 IN v_part_time BOOLEAN, 
+							 IN v_salary DECIMAL(65, 2), 
+							 IN v_description VARCHAR(512), 
+							 IN v_password VARCHAR(100), 
+							 IN v_gym_id INT, -- staff fields till here
+							 IN v_image_url VARCHAR(200),
+							 IN v_years_of_exp INT,
+							 IN v_speciality VARCHAR(30))
 BEGIN
 	CALL addStaff(v_staff_id, v_name, v_phone, v_dob, v_sex, "trainer", v_part_time, v_salary, v_description, "not needed", v_gym_id);
     INSERT INTO trainers VALUES (v_staff_id, v_image_url, v_years_of_exp, v_speciality);
 END //
 DELIMITER ;
 
+select * from trainers;
+
+DROP PROCEDURE IF EXISTS updateTrainer;
+DELIMITER //
+CREATE PROCEDURE updateTrainer(IN v_staff_id VARCHAR(30),
+							   IN v_name VARCHAR(50), 
+                               IN v_phone VARCHAR(10), 
+                               IN v_dob DATE,
+                               IN v_sex ENUM("Male", "Female", "Other"),
+                               IN v_part_time BOOLEAN, 
+                               IN v_salary DECIMAL(65, 2), 
+                               IN v_description VARCHAR(512), 
+                               IN v_password VARCHAR(100),  -- staff fields till here
+                               IN v_image_url VARCHAR(200),
+                               IN v_years_of_exp INT,
+                               IN v_speciality VARCHAR(30))
+BEGIN
+	CALL updateStaff(v_name, v_phone, v_dob, v_sex, "trainer", v_part_time, v_salary, v_description, "not needed", v_staff_id);
+    
+    UPDATE trainers
+    SET image_url = v_image_url, years_of_exp = v_years_of_exp, speciality = v_speciality
+    WHERE staff_id = v_staff_id;
+END //
+DELIMITER ;
+
+select * from trainers;
 
