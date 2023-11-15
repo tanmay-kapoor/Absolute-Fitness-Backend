@@ -1,7 +1,6 @@
 const Staff = require("../models/staff");
 const Admin = require("../models/admin");
-
-const jwt = require("jsonwebtoken");
+const helpers = require("../util/helpers");
 const bcrypt = require("bcryptjs");
 const Trainer = require("../models/trainer");
 const salt = bcrypt.genSaltSync(10);
@@ -50,7 +49,11 @@ exports.addStaff = async (req, res) => {
         const [[staff]] = await Staff.getStaff(details.staffId);
         if (staff.length === 0) {
             await Staff.addStaff(details);
-            res.status(200).json({ msg: "Success" });
+            const accessToken = helpers.generateAccessToken({
+                username: details.staffId,
+                type: "staff",
+            });
+            res.status(200).json({ accessToken });
         } else {
             res.status(409).json({
                 msg: "This staff id is already registered",
