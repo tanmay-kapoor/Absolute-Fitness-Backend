@@ -37,6 +37,43 @@ exports.getAllUserHealthRecordsForTrainer = async (req, res) => {
     }
 };
 
+exports.addTrainer = async (req, res) => {
+    try {
+        const details = {
+            staffId: req.body.staffId,
+            name: req.body.name,
+            phone: req.body.phone,
+            dob: req.body.dob,
+            sex: req.body.sex,
+            partTime:
+                req.body.partTime === "True" ||
+                req.body.partTime === "true" ||
+                req.body.partTime === true
+                    ? true
+                    : false,
+            salary: req.body.salary,
+            description: req.body.description,
+            password: "", // because no login flow for trainer
+            gymId: req.body.gymId,
+            imageUrl: req.body.imageUrl,
+            yearsOfExp: req.body.yearsOfExp,
+            speciality: req.body.speciality,
+        };
+
+        const [[trainer]] = await Trainer.getTrainer(details.staffId);
+        if (trainer.length === 0) {
+            await Trainer.addTrainer(details);
+            res.status(200).json({ msg: "Success" });
+        } else {
+            res.status(409).json({
+                msg: "This trainer id is already registered",
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 const addStuffToHealthRecordArray = (user, healthRecords) => {
     healthRecords.push({
         dateCalculated: user["date_calculated"],

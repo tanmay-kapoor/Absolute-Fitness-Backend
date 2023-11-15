@@ -214,6 +214,26 @@ END //
 DELIMITER ;
 
 
-
+-- add trainer option
+DROP PROCEDURE IF EXISTS addTrainer;
+DELIMITER //
+CREATE PROCEDURE addTrainer (IN v_staff_id VARCHAR(30),
+						  IN v_name VARCHAR(50), 
+                          IN v_phone VARCHAR(10), 
+                          IN v_dob DATE,
+                          IN v_sex ENUM("Male", "Female", "Other"),
+                          IN v_part_time BOOLEAN, 
+                          IN v_salary DECIMAL(65, 2), 
+                          IN v_description VARCHAR(512), 
+                          IN v_password VARCHAR(100), 
+                          IN v_gym_id INT, -- staff fields till here
+                          IN v_image_url VARCHAR(200),
+                          IN v_years_of_exp INT,
+                          IN v_speciality VARCHAR(30))
+BEGIN
+	CALL addStaff(v_staff_id, v_name, v_phone, v_dob, v_sex, "trainer", v_part_time, v_salary, v_description, "not needed", v_gym_id);
+    INSERT INTO trainers VALUES (v_staff_id, v_image_url, v_years_of_exp, v_speciality);
+END //
+DELIMITER ;
 
 

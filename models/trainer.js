@@ -5,6 +5,40 @@ module.exports = class Trainer {
         return db.execute("CALL getTrainer(?)", [staffId]);
     }
 
+    static addTrainer(details) {
+        const {
+            staffId,
+            name,
+            phone,
+            dob,
+            sex,
+            partTime,
+            salary,
+            description,
+            password,
+            gymId,
+            imageUrl,
+            yearsOfExp,
+            speciality,
+        } = details;
+
+        return db.execute("CALL addTrainer(?,?,?,?,?,?,?,?,?,?,?,?,?)", [
+            staffId,
+            name,
+            phone,
+            dob,
+            sex,
+            partTime,
+            salary,
+            description,
+            password,
+            gymId,
+            imageUrl,
+            yearsOfExp,
+            speciality,
+        ]);
+    }
+
     static getAllTrainersForGym(gymId) {
         const query = "CALL getAllTrainersForGym(?)";
         return db.execute(query, [gymId]);
