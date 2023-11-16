@@ -71,7 +71,7 @@ exports.addTrainer = async (req, res) => {
             description: req.body.description,
             password: "", // because no login flow for trainer
             gymId: req.body.gymId,
-            imageUrl: req.body.imageUrl,
+            imageUrl: req.body.image_url,
             yearsOfExp: req.body.yearsOfExp,
             speciality: req.body.speciality,
         };
