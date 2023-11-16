@@ -79,7 +79,9 @@ exports.addTrainer = async (req, res) => {
         const [[trainer]] = await Trainer.getTrainer(details.staffId);
         if (trainer.length === 0) {
             await Trainer.addTrainer(details);
-            res.status(200).json({ msg: "Success" });
+            details.image_url = details.imageUrl;
+            delete details.imageUrl;
+            res.status(200).json(details);
         } else {
             res.status(409).json({
                 msg: "This trainer id is already registered",
