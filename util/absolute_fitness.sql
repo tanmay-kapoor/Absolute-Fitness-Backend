@@ -156,49 +156,6 @@ FOREIGN KEY (workout_plan) REFERENCES workout_plans (plan_id) ON UPDATE CASCADE 
 FOREIGN KEY (diet_plan) REFERENCES diet_plans (plan_id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-DROP TABLE IF EXISTS tokens;
-CREATE TABLE tokens (
-token	VARCHAR(36)		PRIMARY KEY,
-email	VARCHAR(30)		NOT NULL,
-expiry 	DATETIME 		NOT NULL
-);
-
-DROP PROCEDURE IF EXISTS addResetToken;
-DELIMITER //
-CREATE PROCEDURE addResetToken(IN v_token VARCHAR(36), 
-							   IN v_email VARCHAR(30), 
-                               IN v_exp_date DATETIME)
-BEGIN
-	INSERT INTO tokens VALUES (v_token, v_email, v_exp_date);
-END //
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS deleteOldResetTokens;
-DELIMITER //
-CREATE PROCEDURE deleteOldResetTokens(IN v_email VARCHAR(30))
-BEGIN
-	DELETE FROM tokens WHERE email = v_email;
-END //
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS resetPassword;
-DELIMITER //
-CREATE PROCEDURE resetPassword(IN v_email VARCHAR(30), IN v_password VARCHAR(100))
-BEGIN
-	UPDATE users SET password = v_password 
-    WHERE email = v_email;
-END //
-DELIMITER;
-
-DROP PROCEDURE IF EXISTS getTokenExpiry;
-DELIMITER //
-CREATE PROCEDURE getTokenExpiry(IN v_token VARCHAR(36), IN v_email VARCHAR(30))
-BEGIN
-	SELECT expiry from tokens 
-    WHERE token = v_token AND email = v_email;
-END //
-DELIMITER ;
-
 DROP PROCEDURE IF EXISTS getAllUsers;
 DELIMITER //
 CREATE PROCEDURE getAllUsers()

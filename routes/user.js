@@ -11,15 +11,9 @@ const router = express.Router();
 
 router.get("/", verifyAdminPriviledge, userController.getAllUsers);
 
-router.get("/isValidResetToken", userController.isValidResetToken);
-
 router.get("/:email", verifyToken, userController.getUser);
 
 router.post("/signup", userController.addUser);
-
-router.post("/resetPassword", userController.generateResetToken);
-
-router.post("/:email/resetPassword/:token", userController.resetPassword);
 
 router.put("/:email", verifyMember, userController.updateUser);
 

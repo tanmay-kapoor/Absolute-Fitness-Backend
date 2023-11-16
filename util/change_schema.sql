@@ -1,5 +1,60 @@
 use af3;
 
+DROP TABLE IF EXISTS tokens;
+CREATE TABLE tokens (
+token		VARCHAR(36)										PRIMARY KEY,
+username	VARCHAR(30)										NOT NULL,
+type		ENUM("member", "staff", "trainer", "admin")		NOT NULL,
+expiry 		DATETIME 										NOT NULL
+);
+
+DROP PROCEDURE IF EXISTS addResetToken;
+DELIMITER //
+CREATE PROCEDURE addResetToken(IN v_token VARCHAR(36), 
+							   IN v_username VARCHAR(30), 
+                               IN v_type ENUM("member", "staff", "trainer", "admin"),
+                               IN v_exp_date DATETIME)
+BEGIN
+	INSERT INTO tokens VALUES (v_token, v_username, v_type, v_exp_date);
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS deleteOldResetTokens;
+DELIMITER //
+CREATE PROCEDURE deleteOldResetTokens(IN v_username VARCHAR(30))
+BEGIN
+	DELETE FROM tokens WHERE username = v_username;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS resetPassword;
+DELIMITER //
+CREATE PROCEDURE resetPassword(IN v_username VARCHAR(30), IN v_password VARCHAR(100))
+BEGIN
+	DECLARE v_type ENUM("member", "staff", "trainer", "admin");
+	
+    SELECT type into v_type from tokens
+    WHERE username = v_username;
+    
+    IF v_type = "member" THEN
+		UPDATE users SET password = v_password 
+		WHERE email = v_username;
+    ELSEIF v_type = "admin" THEN
+		UPDATE staff SET password = v_password 
+		WHERE staff_id = v_username;
+    END IF;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getTokenExpiry;
+DELIMITER //
+CREATE PROCEDURE getTokenExpiry(IN v_token VARCHAR(36), IN v_username VARCHAR(30))
+BEGIN
+	SELECT expiry from tokens 
+    WHERE token = v_token AND username = v_username;
+END //
+DELIMITER ;
+
 alter table staff
 add column type enum("staff", "trainer", "admin") not null default "staff" after phone,
 add column sex enum("Male", "Female", "Other") not null default "Male" after phone,
@@ -177,7 +232,6 @@ set sql_safe_updates = 0;
 update staff
 set staff_id = concat(staff_id, "@gmail.com");
 
-
 DROP PROCEDURE IF EXISTS getEntryForLogin;
 DELIMITER //
 CREATE PROCEDURE getEntryForLogin(IN v_username VARCHAR(30))
@@ -190,6 +244,7 @@ BEGIN
 	select * from entries where username = v_username;
 END //
 DELIMITER ;
+
 
 -- change gyms table and add new table for gym_image_urls (1 gym can have many photos now)
 DROP TABLE IF EXISTS gym_image_urls;
@@ -265,5 +320,7 @@ BEGIN
 END //
 DELIMITER ;
 
-select * from trainers;
+CALL temp("tanmay.skater@gmail.com", @a,@b,@c,@d,@e,@f,@g,@h);
+CALL getEntryForLogin("tanmay.skater@gmail.com");
 
+select @f;

@@ -39,13 +39,13 @@ module.exports = class User {
     }
 
     static resetPassword(details) {
-        const { email, token, password } = details;
+        const { username, token, password } = details;
 
-        if (!ResetToken.isValidResetToken({ email, token })) {
+        if (!ResetToken.isValidResetToken({ username, token })) {
             throw new Error("Invalid token");
         }
 
-        return db.execute("CALL resetPassword(?, ?)", [email, password]);
+        return db.execute("CALL resetPassword(?, ?)", [username, password]);
     }
 
     static deleteUser(email) {

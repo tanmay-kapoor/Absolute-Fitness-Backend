@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 //Internal API
-const loginRoutes = require("./routes/login");
+const authenticationRoutes = require("./routes/authentication");
 const userRoutes = require("./routes/user");
 const gymRoutes = require("./routes/gym");
 const healthRecordRoutes = require("./routes/healthRecord");
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/login", loginRoutes);
+app.use("/authentication", authenticationRoutes);
 app.use("/user", userRoutes);
 app.use("/gym", gymRoutes);
 app.use("/healthRecord", healthRecordRoutes);
