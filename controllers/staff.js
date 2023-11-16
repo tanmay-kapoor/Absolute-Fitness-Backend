@@ -37,6 +37,9 @@ exports.addStaff = async (req, res) => {
             staffId: req.body.staffId,
             name: req.body.name,
             phone: req.body.phone,
+            dob: req.body.dob,
+            sex: req.body.sex,
+            type: "staff",
             partTime:
                 req.body.partTime == 1 ||
                 req.body.partTime === "True" ||

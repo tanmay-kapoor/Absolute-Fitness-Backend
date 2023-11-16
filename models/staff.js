@@ -14,6 +14,9 @@ module.exports = class Staff {
             staffId,
             name,
             phone,
+            dob,
+            sex,
+            type,
             partTime,
             salary,
             description,
@@ -21,10 +24,13 @@ module.exports = class Staff {
             gymId,
         } = details;
 
-        return db.execute("CALL addStaff (?, ?, ?, ?, ?, ?, ?, ?)", [
+        return db.execute("CALL addStaff (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
             staffId,
             name,
             phone,
+            dob,
+            sex,
+            type,
             partTime,
             salary,
             description,
@@ -38,15 +44,21 @@ module.exports = class Staff {
             staffId,
             name,
             phone,
+            dob,
+            sex,
+            type,
             partTime,
             salary,
             description,
             password,
         } = details;
 
-        return db.execute("CALL updateStaff(?, ?, ?, ?, ?, ?, ?)", [
+        return db.execute("CALL updateStaff(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
             name,
             phone,
+            dob,
+            sex,
+            type,
             partTime,
             salary,
             description,
