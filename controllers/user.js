@@ -50,9 +50,11 @@ exports.addUser = async (req, res) => {
             const accessToken = helpers.generateAccessToken({
                 username: details.email,
                 type: "member",
+                gymId: details.gymId,
             });
 
-            res.status(200).json({ accessToken });
+            const [[[newUser]]] = await User.getUser(details.email);
+            res.status(200).json({ ...newUser, accessToken });
         } else {
             res.status(409).json({
                 msg: "User with this email already exists",

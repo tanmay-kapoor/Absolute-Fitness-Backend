@@ -1,15 +1,28 @@
 const express = require("express");
 
 const stripeController = require("../controllers/stripe");
+const { verifyMemberWithoutEmail } = require("../util/middleware");
 
 const router = express.Router();
 
-router.get("/products", stripeController.getAllProducts);
+router.get(
+    "/products",
+    verifyMemberWithoutEmail,
+    stripeController.getAllProducts
+);
 
-router.get("/prices", stripeController.getAllPrices);
+router.get("/prices", verifyMemberWithoutEmail, stripeController.getAllPrices);
 
-router.get("/gym-membership-pricing", stripeController.getGymMembershipPricing);
+router.get(
+    "/gym-membership-pricing",
+    verifyMemberWithoutEmail,
+    stripeController.getGymMembershipPricing
+);
 
-router.post("/create-subscription", stripeController.createSubscription);
+router.post(
+    "/create-subscription",
+    verifyMemberWithoutEmail,
+    stripeController.createSubscription
+);
 
 module.exports = router;

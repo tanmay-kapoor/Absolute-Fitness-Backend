@@ -23,9 +23,11 @@ exports.authenticate = async (req, res) => {
                     const accessToken = helpers.generateAccessToken({
                         username,
                         type: entry[0].type,
+                        gymId: entry[0].gym_id,
                     });
                     const entryInfo = { ...entry[0] };
                     delete entryInfo["password"];
+                    delete entryInfo["type"];
                     res.status(200).json({ ...entryInfo, accessToken });
                 }
             });
