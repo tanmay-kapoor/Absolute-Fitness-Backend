@@ -80,7 +80,7 @@ exports.updateStaff = async (req, res) => {
             phone: req.body.phone,
             dob: req.body.dob,
             sex: req.body.sex,
-            type: req.body.type,
+            type: "staff",
             partTime:
                 req.body.partTime == 1 ||
                 req.body.partTime === "True" ||
