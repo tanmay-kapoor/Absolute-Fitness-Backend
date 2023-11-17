@@ -2,10 +2,10 @@ const express = require("express");
 
 const gymController = require("../controllers/gym");
 const {
-  verifyAdminPriviledge,
-  verifyToken,
-  verifyLoggedIn,
-} = require("../util/middleware.js");
+    verifyAdminPriviledge,
+    verifyToken,
+    verifyLoggedIn,
+} = require("../util/middlewares/authentication.js");
 
 const router = express.Router();
 
@@ -28,9 +28,9 @@ router.post("/", verifyAdminPriviledge, gymController.addGym);
 router.put("/:gymId", verifyAdminPriviledge, gymController.updateGym);
 
 router.put(
-  "/:gymId/equipment/:equipmentId",
-  verifyAdminPriviledge,
-  gymController.updateEquipmentForGym
+    "/:gymId/equipment/:equipmentId",
+    verifyAdminPriviledge,
+    gymController.updateEquipmentForGym
 );
 
 router.delete("/:gymId", verifyAdminPriviledge, gymController.deleteGym);

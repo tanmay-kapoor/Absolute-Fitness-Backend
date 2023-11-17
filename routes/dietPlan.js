@@ -1,7 +1,10 @@
 const express = require("express");
 
 const dietPlanController = require("../controllers/dietPlan");
-const { verifyAdminPriviledge, verifyToken } = require("../util/middleware");
+const {
+    verifyAdminPriviledge,
+    verifyToken,
+} = require("../util/middlewares/authentication");
 
 const router = express.Router();
 

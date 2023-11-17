@@ -5,7 +5,7 @@ const {
     verifyAdminPriviledge,
     verifyToken,
     verifyMember,
-} = require("../util/middleware.js");
+} = require("../util/middlewares/authentication.js");
 
 const router = express.Router();
 
