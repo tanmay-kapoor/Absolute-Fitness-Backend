@@ -18,7 +18,7 @@ router.get("/:gymId", verifyLoggedIn, gymController.getGym);
 
 router.get("/:gymId/facilities", gymController.getAllFacilities);
 
-router.get("/:gymId/equipments", gymController.getAllEquipments);
+router.get("/:gymId/equipments", gymController.getAllEquipmentsForGym);
 
 router.get("/:gymId/trainers", gymController.getAllTrainers);
 

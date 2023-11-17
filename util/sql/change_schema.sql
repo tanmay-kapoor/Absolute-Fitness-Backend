@@ -364,3 +364,40 @@ BEGIN
     WHERE gym_id = v_gym_id AND equipment_id = v_equipment_id;
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getAllEquipments;
+DELIMITER //
+CREATE PROCEDURE getAllEquipments()
+BEGIN
+	SELECT * FROM equipments;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getEquipment;
+DELIMITER //
+CREATE PROCEDURE getEquipment(IN v_equipment_id INT)
+BEGIN
+	SELECT * FROM equipments WHERE equipment = v_equipment_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS updateEquipment;
+DELIMITER //
+CREATE PROCEDURE updateEquipment(IN v_equipment_id INT, 
+								 IN v_name VARCHAR(20), 
+                                 IN v_image_url VARCHAR(512))
+BEGIN
+	UPDATE equipments
+    SET name = v_name, image_url = v_image_url
+    WHERE equipment_id = v_equipment_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS deleteEquipment;
+DELIMITER //
+CREATE PROCEDURE deleteEquipment(IN v_equipment_id INT)
+BEGIN
+	DELETE FROM equipments WHERE equipment = v_equipment_id;
+END //
+DELIMITER ;
+

@@ -129,7 +129,7 @@ exports.getAllFacilities = async (req, res) => {
     }
 };
 
-exports.getAllEquipments = async (req, res) => {
+exports.getAllEquipmentsForGym = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
         const [[allEquipments]] = await Equipment.getAllEquipmentsForGym(gymId);
