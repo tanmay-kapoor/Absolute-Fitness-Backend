@@ -324,10 +324,11 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS addEquipment;
 DELIMITER //
 CREATE PROCEDURE addEquipment(IN v_name VARCHAR(20),
-							  IN v_image_url VARCHAR(512))
-BEGIN
-	INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
-    SELECT LAST_INSERT_ID() as equipment_id;
+							  IN v_image_url VARCHAR(512),
+                              OUT equipment_id INT)
+BEGIN	
+    INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
+    SELECT LAST_INSERT_ID() INTO equipment_id;
 END //
 DELIMITER ;
 
@@ -335,10 +336,31 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS addEquipmentForGym;
 DELIMITER //
 CREATE PROCEDURE addEquipmentForGym(IN v_gym_id INT,
-									IN v_equipment_id INT,
+									INOUT v_equipment_id INT,
+                                    IN v_name VARCHAR(20),
+                                    IN v_image_url VARCHAR(512),
                                     IN v_quantity INT,
                                     IN v_last_serviced DATE)
 BEGIN
-	INSERT INTO gym_equipments VALUES (v_gym_id, v_equipment_id, v_quantity, v_last_serviced);
+	IF v_equipment_id IS NULL THEN 
+		CALL addEquipment(v_name, v_image_url, v_equipment_id);
+    END IF;
+    
+    INSERT INTO gym_equipments VALUES (v_gym_id, v_equipment_id, v_quantity, v_last_serviced);
+    
+	SELECT e.*, g.gym_id, g.quantity, g.last_serviced FROM 
+    equipments e JOIN gym_equipments g
+    ON e.equipment_id = g.equipment_id
+    WHERE e.equipment_id = v_equipment_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS deleteEquipmentForGym;
+DELIMITER //
+CREATE PROCEDURE deleteEquipmentForGym(IN v_gym_id INT,
+									   IN v_equipment_id INT)
+BEGIN
+	DELETE FROM gym_equipments 
+    WHERE gym_id = v_gym_id AND equipment_id = v_equipment_id;
 END //
 DELIMITER ;

@@ -11,10 +11,13 @@ module.exports = class Equipment {
     }
 
     static addEquipmentForGym(details) {
-        const { gymId, equipmentId, quantity, lastServiced } = details;
-        return db.execute("CALL addEquipmentForGym(?, ?, ?, ?)", [
+        const { gymId, equipmentId, name, imageUrl, quantity, lastServiced } =
+            details;
+        return db.execute("CALL addEquipmentForGym(?, ?, ?, ?, ?, ?)", [
             gymId,
             equipmentId,
+            name,
+            imageUrl,
             quantity,
             lastServiced,
         ]);
@@ -27,6 +30,14 @@ module.exports = class Equipment {
             equipmentId,
             quantity,
             lastServiced,
+        ]);
+    }
+
+    static deleteEquipmentForGym(details) {
+        const { gymId, equipmentId } = details;
+        return db.execute("CALL deleteEquipmentForGym(?, ?)", [
+            gymId,
+            equipmentId,
         ]);
     }
 };

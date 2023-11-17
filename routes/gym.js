@@ -36,13 +36,19 @@ router.post(
     gymController.addEquipmentForGym
 );
 
-router.put("/:gymId", verifyAdminPriviledge, gymController.updateGym);
-
 router.put(
     "/:gymId/equipment/:equipmentId",
-    verifyAdminPriviledge,
+    verifyAdminPriviledgeOfSameGym,
     gymController.updateEquipmentForGym
 );
+
+router.delete(
+    "/:gymId/equipment/:equipmentId",
+    verifyAdminPriviledgeOfSameGym,
+    gymController.deleteEquipmentForGym
+);
+
+router.put("/:gymId", verifyAdminPriviledge, gymController.updateGym);
 
 router.delete("/:gymId", verifyAdminPriviledge, gymController.deleteGym);
 

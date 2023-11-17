@@ -83,27 +83,37 @@ exports.deleteGym = async (req, res) => {
     }
 };
 
+exports.addEquipment = async (req, res) => {
+    try {
+        const details = {
+            name: req.body.name,
+            imageUrl: req.body.image_url,
+        };
+        const [[[result]]] = await Equipment.addEquipment(details);
+        const newEquipment = {
+            equipmentId: result.equipment_id,
+            name: details.name,
+            image_url: details.imageUrl,
+        };
+        res.status(200).json(newEquipment);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.addEquipmentForGym = async (req, res) => {
     try {
-        let equipmentId = req.body.equipmentId;
-        if (!equipmentId) {
-            // add to equipments table and return equipmentId
-            const newEquipmentDetails = {
-                name: req.body.name,
-                imageUrl: req.body.image_url, // either you will get url or upload to s3 and get url
-            };
-            [[[result]]] = await Equipment.addEquipment(newEquipmentDetails);
-            equipmentId = result.equipment_id;
-        }
         const details = {
             gymId: req.params["gymId"],
-            equipmentId,
+            equipmentId: req.body.equipmentId || null,
+            name: req.body.name || null,
+            imageUrl: req.body.image_url || null,
             quantity: req.body.quantity,
             lastServiced: req.body.lastServiced || null,
         };
-        // add to gym_equipments table
-        await Equipment.addEquipmentForGym(details);
-        res.status(200).json({ msg: "Success" });
+
+        const [[[result]]] = await Equipment.addEquipmentForGym(details);
+        res.status(200).json(result);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
@@ -174,9 +184,21 @@ exports.updateEquipmentForGym = async (req, res) => {
             gymId: req.params["gymId"],
             equipmentId: req.params["equipmentId"],
             quantity: req.body.quantity,
-            lastServiced: req.body.last_serviced,
+            lastServiced: req.body.last_serviced || null,
         };
         await Equipment.updateEquipmentForGym(details);
+        res.status(200).json({ msg: "Success" });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+exports.deleteEquipmentForGym = async (req, res) => {
+    try {
+        const details = {
+            gymId: req.params["gymId"],
+            equipmentId: req.params["equipmentId"],
+        };
+        await Equipment.deleteEquipmentForGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
