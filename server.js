@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const { PORT } = require("./util/constants");
 
 //Internal API
 const authenticationRoutes = require("./routes/authentication");
@@ -17,8 +18,6 @@ const trainerRoutes = require("./routes/trainer");
 const stripeRoutes = require("./routes/stripe");
 
 const app = express();
-
-const port = process.env.PORT || 5001;
 
 app.use(express.json()); //parsing http data
 app.use(express.json({ limit: "30mb", extended: true }));
@@ -47,4 +46,4 @@ app.use("/trainer", trainerRoutes);
 
 app.use("/stripe", stripeRoutes);
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));

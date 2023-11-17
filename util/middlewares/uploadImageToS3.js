@@ -1,13 +1,19 @@
 const crypto = require("crypto");
+const {
+    AWS_S3_BUCKET_NAME,
+    AWS_REGION,
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY,
+} = require("../constants");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 
-const bucketName = process.env.AWS_S3_BUCKET_NAME;
+const bucketName = AWS_S3_BUCKET_NAME;
 
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION,
+    region: AWS_REGION,
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        accessKeyId: AWS_ACCESS_KEY_ID,
+        secretAccessKey: AWS_SECRET_ACCESS_KEY,
     },
 });
 

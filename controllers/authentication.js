@@ -5,6 +5,7 @@ const helpers = require("../util/helpers");
 const ResetToken = require("../models/resetToken");
 const salt = bcrypt.genSaltSync(10);
 const User = require("../models/user");
+const { SENDER_EMAIL, CLIENT_URL } = require("../util/constants");
 
 exports.authenticate = async (req, res) => {
     try {
@@ -55,13 +56,13 @@ exports.generateResetToken = async (req, res) => {
 
             // send email to user/admin with link to reset password
             const mailOptions = {
-                from: process.env.SENDER_EMAIL,
+                from: SENDER_EMAIL,
                 to: email,
                 subject: "Reset password for your Absolute Fitness account",
                 html: `Dear ${user.name},
                        <br /><br />
                        To reset your password, click
-                       <a href="${process.env.CLIENT_URL}/user/${email}/resetPassword/${token}">here</a>
+                       <a href="${CLIENT_URL}/user/${email}/resetPassword/${token}">here</a>
                        <br /><br />
                        This is a one-time usable link and will expire in 30 minutes.
                        <br /><br />
