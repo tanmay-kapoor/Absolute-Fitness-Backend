@@ -1,4 +1,4 @@
-const crypto = require("crypto");
+const { v4: uuidv4 } = require("uuid");
 const {
     AWS_S3_BUCKET_NAME,
     AWS_REGION,
@@ -27,7 +27,7 @@ const uploadImageToS3 = async (req, res, next) => {
                 msg: "Should either upload an image or provide an image url, not both",
             });
         } else {
-            const fileName = crypto.randomBytes(32).toString("hex");
+            const fileName = uuidv4();
 
             const uploadParams = {
                 Bucket: bucketName,

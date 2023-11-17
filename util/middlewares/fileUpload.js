@@ -5,7 +5,7 @@ const upload = multer({
     storage: multer.memoryStorage(),
     fileFilter: (req, file, callback) => {
         const ext = path.extname(file.originalname);
-        if (!ext.match(/.(jpg|png|jpeg)$/gi)) {
+        if (!ext.match(/.(jpg|png|jpeg|gif|bmp|svg)$/gi)) {
             const err = new Error("Only images are allowed");
             err.code = 422;
             return callback(err);

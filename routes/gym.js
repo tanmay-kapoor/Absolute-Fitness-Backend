@@ -1,10 +1,13 @@
 const express = require("express");
 
 const gymController = require("../controllers/gym");
+const upload = require("../util/middlewares/fileUpload");
+const uploadImageToS3 = require("../util/middlewares/uploadImageToS3");
 const {
     verifyAdminPriviledge,
     verifyToken,
     verifyLoggedIn,
+    verifyAdminPriviledgeOfSameGym,
 } = require("../util/middlewares/authentication.js");
 
 const router = express.Router();
@@ -24,6 +27,14 @@ router.get("/:gymId/members", verifyAdminPriviledge, gymController.getAllUsers);
 router.get("/:gymId/staff", verifyAdminPriviledge, gymController.getAllStaff);
 
 router.post("/", verifyAdminPriviledge, gymController.addGym);
+
+router.post(
+    "/:gymId/equipment",
+    verifyAdminPriviledgeOfSameGym,
+    upload.single("image"),
+    uploadImageToS3,
+    gymController.addEquipmentForGym
+);
 
 router.put("/:gymId", verifyAdminPriviledge, gymController.updateGym);
 

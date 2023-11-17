@@ -320,7 +320,25 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL temp("tanmay.skater@gmail.com", @a,@b,@c,@d,@e,@f,@g,@h);
-CALL getEntryForLogin("tanmay.skater@gmail.com");
+-- add equipment in equipment table
+DROP PROCEDURE IF EXISTS addEquipment;
+DELIMITER //
+CREATE PROCEDURE addEquipment(IN v_name VARCHAR(20),
+							  IN v_image_url VARCHAR(512))
+BEGIN
+	INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
+    SELECT LAST_INSERT_ID() as equipment_id;
+END //
+DELIMITER ;
 
-select @f;
+-- add new equipment and gym realtion
+DROP PROCEDURE IF EXISTS addEquipmentForGym;
+DELIMITER //
+CREATE PROCEDURE addEquipmentForGym(IN v_gym_id INT,
+									IN v_equipment_id INT,
+                                    IN v_quantity INT,
+                                    IN v_last_serviced DATE)
+BEGIN
+	INSERT INTO gym_equipments VALUES (v_gym_id, v_equipment_id, v_quantity, v_last_serviced);
+END //
+DELIMITER ;

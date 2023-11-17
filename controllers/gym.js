@@ -83,6 +83,32 @@ exports.deleteGym = async (req, res) => {
     }
 };
 
+exports.addEquipmentForGym = async (req, res) => {
+    try {
+        let equipmentId = req.body.equipmentId;
+        if (!equipmentId) {
+            // add to equipments table and return equipmentId
+            const newEquipmentDetails = {
+                name: req.body.name,
+                imageUrl: req.body.image_url, // either you will get url or upload to s3 and get url
+            };
+            [[[result]]] = await Equipment.addEquipment(newEquipmentDetails);
+            equipmentId = result.equipment_id;
+        }
+        const details = {
+            gymId: req.params["gymId"],
+            equipmentId,
+            quantity: req.body.quantity,
+            lastServiced: req.body.lastServiced || null,
+        };
+        // add to gym_equipments table
+        await Equipment.addEquipmentForGym(details);
+        res.status(200).json({ msg: "Success" });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.getAllFacilities = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
