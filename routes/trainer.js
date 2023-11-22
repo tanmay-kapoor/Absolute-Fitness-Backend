@@ -1,14 +1,14 @@
-const express = require("express");
-
 const trainerController = require("../controllers/trainer");
+const upload = require("../util/middlewares/fileUpload");
+const uploadImageToS3 = require("../util/middlewares/uploadImageToS3");
 const {
     verifyLoggedIn,
-    verifyAdminPriviledge,
     verifyAdminPriviledgeOfSameGym,
     verifyEmployeeOrAdminOfSameGym,
     verifyEmployee,
-} = require("../util/middleware");
+} = require("../util/middlewares/authentication");
 
+const express = require("express");
 const router = express.Router();
 
 router.get(
@@ -19,7 +19,13 @@ router.get(
 
 router.get("/:staffId", verifyEmployee, trainerController.getTrainer);
 
-router.post("/", verifyAdminPriviledgeOfSameGym, trainerController.addTrainer);
+router.post(
+    "/",
+    verifyAdminPriviledgeOfSameGym,
+    upload.single("image"),
+    uploadImageToS3,
+    trainerController.addTrainer
+);
 
 router.put(
     "/:staffId",

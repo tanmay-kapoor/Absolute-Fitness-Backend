@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const stripe = require("stripe")(STRIPE_SECRET_KEY);
+=======
+const { STRIPE_API_KEY } = require("../util/constants");
+const stripe = require("stripe")(STRIPE_API_KEY);
+>>>>>>> 96f96caea171db86f95651fc28d3b288702dc639
 
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await stripe.products.list({});
+<<<<<<< HEAD
         console.log(products.data);
+=======
+>>>>>>> 96f96caea171db86f95651fc28d3b288702dc639
         res.status(200).json(products.data);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -85,7 +93,10 @@ exports.createSubscription = async (req, res) => {
             subscriptionId: subscription.id,
         });
     } catch (err) {
+<<<<<<< HEAD
         console.log(err.message);
+=======
+>>>>>>> 96f96caea171db86f95651fc28d3b288702dc639
         res.status(500).json({ msg: err.message });
     }
 };

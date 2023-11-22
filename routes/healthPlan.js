@@ -1,7 +1,7 @@
 const express = require("express");
 
 const healthPlanController = require("../controllers/healthPlan");
-const { verifyMember } = require("../util/middleware.js");
+const { verifyMember } = require("../util/middlewares/authentication.js");
 
 const router = express.Router();
 

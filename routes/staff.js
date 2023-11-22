@@ -1,7 +1,10 @@
 const express = require("express");
 
 const staffController = require("../controllers/staff");
-const { verifyEmployee, verifyAdminPriviledge } = require("../util/middleware");
+const {
+    verifyEmployee,
+    verifyAdminPriviledge,
+} = require("../util/middlewares/authentication");
 
 const router = express.Router();
 

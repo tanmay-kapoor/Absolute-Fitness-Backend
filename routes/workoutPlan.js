@@ -4,7 +4,7 @@ const workoutPlanController = require("../controllers/workoutPlan");
 const {
     verifyMember,
     verifyEmployeeNotSpecific,
-} = require("../util/middleware");
+} = require("../util/middlewares/authentication");
 
 const router = express.Router();
 

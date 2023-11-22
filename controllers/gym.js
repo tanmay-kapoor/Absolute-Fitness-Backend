@@ -83,6 +83,42 @@ exports.deleteGym = async (req, res) => {
     }
 };
 
+exports.addEquipment = async (req, res) => {
+    try {
+        const details = {
+            name: req.body.name,
+            imageUrl: req.body.image_url,
+        };
+        const [[[result]]] = await Equipment.addEquipment(details);
+        const newEquipment = {
+            equipmentId: result.equipment_id,
+            name: details.name,
+            image_url: details.imageUrl,
+        };
+        res.status(200).json(newEquipment);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.addEquipmentForGym = async (req, res) => {
+    try {
+        const details = {
+            gymId: req.params["gymId"],
+            equipmentId: req.body.equipmentId || null,
+            name: req.body.name || null,
+            imageUrl: req.body.image_url || null,
+            quantity: req.body.quantity,
+            lastServiced: req.body.lastServiced || null,
+        };
+
+        const [[[result]]] = await Equipment.addEquipmentForGym(details);
+        res.status(200).json(result);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.getAllFacilities = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
@@ -93,7 +129,7 @@ exports.getAllFacilities = async (req, res) => {
     }
 };
 
-exports.getAllEquipments = async (req, res) => {
+exports.getAllEquipmentsForGym = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
         const [[allEquipments]] = await Equipment.getAllEquipmentsForGym(gymId);
@@ -148,9 +184,21 @@ exports.updateEquipmentForGym = async (req, res) => {
             gymId: req.params["gymId"],
             equipmentId: req.params["equipmentId"],
             quantity: req.body.quantity,
-            lastServiced: req.body.last_serviced,
+            lastServiced: req.body.last_serviced || null,
         };
         await Equipment.updateEquipmentForGym(details);
+        res.status(200).json({ msg: "Success" });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+exports.deleteEquipmentForGym = async (req, res) => {
+    try {
+        const details = {
+            gymId: req.params["gymId"],
+            equipmentId: req.params["equipmentId"],
+        };
+        await Equipment.deleteEquipmentForGym(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });

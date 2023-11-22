@@ -1,7 +1,9 @@
 const express = require("express");
 
 const stripeController = require("../controllers/stripe");
-const { verifyMemberWithoutEmail } = require("../util/middleware");
+const {
+    verifyMemberWithoutEmail,
+} = require("../util/middlewares/authentication");
 
 const router = express.Router();
 

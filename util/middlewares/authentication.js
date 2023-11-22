@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { ACCESS_TOKEN_SECRET } = require("../constants");
 
 exports.verifyAdminPriviledge = async (req, res, next) => {
     const authHeader =
@@ -7,7 +8,7 @@ exports.verifyAdminPriviledge = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (user.type !== "admin")
             return res.status(403).json({
@@ -25,9 +26,13 @@ exports.verifyAdminPriviledgeOfSameGym = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
-        if (user.type !== "admin" || user.gymId !== req.body.gymId)
+        if (
+            user.type !== "admin" ||
+            (user.gymId !== req.body.gymId &&
+                user.gymId !== parseInt(req.params["gymId"]))
+        )
             return res.status(403).json({
                 msg: "Incorrect authorization. Need admin priviledge of same gym.",
             });
@@ -43,7 +48,7 @@ exports.verifyEmployeeOrAdminOfSameGym = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
 
         const [[[staff]]] = await Staff.getGymId(req.params["staffId"]);
@@ -72,7 +77,7 @@ exports.verifyToken = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
             user.type === "admin" ||
@@ -95,7 +100,7 @@ exports.verifyLoggedIn = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         req.user = user;
         next();
@@ -109,7 +114,7 @@ exports.verifyMember = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
             user.type !== "member" ||
@@ -131,7 +136,7 @@ exports.verifyMemberWithoutEmail = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (user.type !== "member")
             return res.status(403).json({
@@ -149,7 +154,7 @@ exports.verifyEmployee = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (!isValidEmployee(user))
             return res.status(403).json({
@@ -167,7 +172,7 @@ exports.verifyEmployeeNotSpecific = async (req, res, next) => {
     if (token == null)
         return res.status(401).json({ msg: "No authorization provided." });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (!isValidEmployeeNotSpecific(user))
             return res.status(403).json({
