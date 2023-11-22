@@ -65,7 +65,7 @@ CREATE TABLE `equipments` (
   `image_url` varchar(512) NOT NULL,
   PRIMARY KEY (`equipment_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `equipments` (
 
 LOCK TABLES `equipments` WRITE;
 /*!40000 ALTER TABLE `equipments` DISABLE KEYS */;
-INSERT INTO `equipments` VALUES (1,'Chest Press Machine','https://www.technogym.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/M/G/MG1500_purestrength_inclinechestpress_hero_01_22.jpg'),(2,'Seated Dip Machine','https://www.precor.com/sites/default/files/styles/product_image/public/ds_seateddip.png?itok=2ZLBsUsN'),(3,'Treadmill','https://cdn.shopify.com/s/files/1/2422/9487/products/1Stride_iPadFullproduct_600x.png?v=1657895735'),(4,'Excercise Bike','https://res.cloudinary.com/iconfitness/image/upload/dpr_3.0,f_auto,q_auto,w_500/v1/site--6/PFEX16718_1-01068.jpg'),(5,'Dumbbells','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/210310_Dumbbells_2270x1500_d524e6c4-85b9-4244-abad-2e3e876e4a84_600x.jpg?v=1645084642'),(6,'Barbell','https://www.mensjournal.com/wp-content/uploads/mf/barbell_abs_main.jpg?w=1188&h=630&crop=1&quality=86&strip=all'),(7,'Leg press machine','https://truefitness.com/wp-content/uploads/2019/11/SPL0300-Acrylic-Alabaster_960-1.png'),(8,'Pullup bar','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/XGYM-LSR-3.0-01-F07_main_1035x@2x.jpg?v=1669753609%202x'),(9,'Kettle bells','https://m.media-amazon.com/images/I/41luBUoSyFL._AC_SY1000_.jpg'),(10,'Pec fly machine','https://www.titan.fitness/dw/image/v2/BDBZ_PRD/on/demandware.static/-/Sites-masterCatalog_Titan/default/dw5058b97d/images/hi-res/Fitness/401494_01.jpg?sw=1001&sh=1000');
+INSERT INTO `equipments` VALUES (1,'Chest Press Machine','https://www.technogym.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/M/G/MG1500_purestrength_inclinechestpress_hero_01_22.jpg'),(2,'Seated Dip Machine','https://www.precor.com/sites/default/files/styles/product_image/public/ds_seateddip.png?itok=2ZLBsUsN'),(3,'Treadmill','https://cdn.shopify.com/s/files/1/2422/9487/products/1Stride_iPadFullproduct_600x.png?v=1657895735'),(4,'Excercise Bike','https://res.cloudinary.com/iconfitness/image/upload/dpr_3.0,f_auto,q_auto,w_500/v1/site--6/PFEX16718_1-01068.jpg'),(5,'Dumbbells','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/210310_Dumbbells_2270x1500_d524e6c4-85b9-4244-abad-2e3e876e4a84_600x.jpg?v=1645084642'),(6,'Barbell','https://www.mensjournal.com/wp-content/uploads/mf/barbell_abs_main.jpg?w=1188&h=630&crop=1&quality=86&strip=all'),(7,'Leg press machine','https://truefitness.com/wp-content/uploads/2019/11/SPL0300-Acrylic-Alabaster_960-1.png'),(8,'Pullup bar','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/XGYM-LSR-3.0-01-F07_main_1035x@2x.jpg?v=1669753609%202x'),(9,'Kettle bells','https://m.media-amazon.com/images/I/41luBUoSyFL._AC_SY1000_.jpg'),(10,'Pec fly machine','https://www.titan.fitness/dw/image/v2/BDBZ_PRD/on/demandware.static/-/Sites-masterCatalog_Titan/default/dw5058b97d/images/hi-res/Fitness/401494_01.jpg?sw=1001&sh=1000'),(28,'Rowing Machine','https://absolute-fitness-tk.s3.amazonaws.com/6bcaf682-2250-4fdb-869d-ef9cda6acf94');
 /*!40000 ALTER TABLE `equipments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `gym_image_urls` (
 
 LOCK TABLES `gym_image_urls` WRITE;
 /*!40000 ALTER TABLE `gym_image_urls` DISABLE KEYS */;
-INSERT INTO `gym_image_urls` VALUES ('https://bodyandstrength.com/Upload/site/wJSUa_cover.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',1),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',1),('https://www.encorefitness.ru/upload/resize/a8/a8709705bb195a5d68f8c72b2b76537f_1024x2000.jpg',2),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',4),('https://gymmboxx.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-09-at-6.32.11-PM.jpeg',5),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',6);
+INSERT INTO `gym_image_urls` VALUES ('https://bodyandstrength.com/Upload/site/wJSUa_cover.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',1),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',2),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',4),('https://gymmboxx.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-09-at-6.32.11-PM.jpeg',5),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',6);
 /*!40000 ALTER TABLE `gym_image_urls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +304,7 @@ CREATE TABLE `health_plans` (
 
 LOCK TABLES `health_plans` WRITE;
 /*!40000 ALTER TABLE `health_plans` DISABLE KEYS */;
-INSERT INTO `health_plans` VALUES (6,'69999@gmail.com','tanmay.skater@gmail.com',3,2,'Randomly assigned plan'),(8,NULL,'rand@rand.com',3,2,'Randomly assigned plan'),(10,'19995@gmail.com','david@gmail.com',2,5,'Randomly assigned plan'),(11,'19995@gmail.com','ariana@gmail.com',2,2,'Randomly assigned plan'),(12,'19995@gmail.com','selena@gmail.com',3,2,'Randomly assigned plan'),(13,'29999@gmail.com','simon@gmail.com',2,2,'Randomly assigned plan'),(14,'29997@gmail.com','rikc.2000@gmail.com',3,6,'Randomly assigned plan'),(16,'29999@gmail.com','shashwat@gmail.com',2,5,'Randomly assigned plan'),(17,'19998@gmail.com','michelle@gmail.com',2,2,'Randomly assigned plan'),(18,'19999@gmail.com','robert@gmail.com',2,2,'Randomly assigned plan'),(20,'19994@gmail.com','emma@gmail.com',3,2,'Randomly assigned plan'),(21,'19994@gmail.com','ross@gmail.com',2,2,'Randomly assigned plan'),(22,'19994@gmail.com','parth@gmail.com',3,2,'Randomly assigned plan'),(23,'19994@gmail.com','arpan@gmail.com',2,5,'Randomly assigned plan'),(26,'19996@gmail.com','paritosh@gmail.com',1,1,'Randomly assigned plan'),(27,'19996@gmail.com','girish@gmail.com',3,6,'Randomly assigned plan'),(28,'19996@gmail.com','cook@gmail.com',1,2,'Randomly assigned plan'),(29,'29996@gmail.com','alex@gmail.com',3,5,'Randomly assigned plan'),(30,'29996@gmail.com','louis@gmail.com',1,6,'Randomly assigned plan'),(31,'49999@gmail.com','kaldon@hotmail.com',1,5,'Randomly assigned plan'),(32,'49999@gmail.com','kelly@neu.com',1,6,'Randomly assigned plan'),(33,'59999@gmail.com','ziya@google.com',2,1,'Randomly assigned plan'),(34,'29997@gmail.com','mark@gmail.com',1,2,'Randomly assigned plan'),(35,'39996@gmail.com','iggy@gmail.com',3,6,'Randomly assigned plan'),(36,'39996@gmail.com','britney@gmail.com',3,5,'Randomly assigned plan'),(37,'69999@gmail.com','katy@gmail.com',2,5,'Randomly assigned plan'),(38,'19999@gmail.com','john@gmail.com',2,1,'Randomly assigned plan'),(39,'19994@gmail.com','tom@gmail.com',1,2,'Randomly assigned plan'),(40,'19998@gmail.com','tim@gmail.com',2,2,'Randomly assigned plan'),(41,'39994@gmail.com','4@5.com',1,5,'Randomly assigned plan'),(42,'39998@gmail.com','9@9.com',1,1,'Randomly assigned plan');
+INSERT INTO `health_plans` VALUES (6,NULL,'tanmay.skater@gmail.com',3,2,'Randomly assigned plan'),(8,NULL,'rand@rand.com',3,2,'Randomly assigned plan'),(10,'19995@gmail.com','david@gmail.com',2,5,'Randomly assigned plan'),(11,'19995@gmail.com','ariana@gmail.com',2,2,'Randomly assigned plan'),(12,'19995@gmail.com','selena@gmail.com',3,2,'Randomly assigned plan'),(13,'29999@gmail.com','simon@gmail.com',2,2,'Randomly assigned plan'),(14,'29997@gmail.com','rikc.2000@gmail.com',3,6,'Randomly assigned plan'),(16,'29999@gmail.com','shashwat@gmail.com',2,5,'Randomly assigned plan'),(17,'19998@gmail.com','michelle@gmail.com',2,2,'Randomly assigned plan'),(18,'19999@gmail.com','robert@gmail.com',2,2,'Randomly assigned plan'),(20,'19994@gmail.com','emma@gmail.com',3,2,'Randomly assigned plan'),(21,'19994@gmail.com','ross@gmail.com',2,2,'Randomly assigned plan'),(22,'19994@gmail.com','parth@gmail.com',3,2,'Randomly assigned plan'),(23,'19994@gmail.com','arpan@gmail.com',2,5,'Randomly assigned plan'),(26,'19996@gmail.com','paritosh@gmail.com',1,1,'Randomly assigned plan'),(27,'19996@gmail.com','girish@gmail.com',3,6,'Randomly assigned plan'),(28,'19996@gmail.com','cook@gmail.com',1,2,'Randomly assigned plan'),(29,'29996@gmail.com','alex@gmail.com',3,5,'Randomly assigned plan'),(30,'29996@gmail.com','louis@gmail.com',1,6,'Randomly assigned plan'),(31,'49999@gmail.com','kaldon@hotmail.com',1,5,'Randomly assigned plan'),(32,'49999@gmail.com','kelly@neu.com',1,6,'Randomly assigned plan'),(33,'59999@gmail.com','ziya@google.com',2,1,'Randomly assigned plan'),(34,'29997@gmail.com','mark@gmail.com',1,2,'Randomly assigned plan'),(35,'39996@gmail.com','iggy@gmail.com',3,6,'Randomly assigned plan'),(36,'39996@gmail.com','britney@gmail.com',3,5,'Randomly assigned plan'),(37,NULL,'katy@gmail.com',2,5,'Randomly assigned plan'),(38,'19999@gmail.com','john@gmail.com',2,1,'Randomly assigned plan'),(39,'19994@gmail.com','tom@gmail.com',1,2,'Randomly assigned plan'),(40,'19998@gmail.com','tim@gmail.com',2,2,'Randomly assigned plan'),(41,'39994@gmail.com','4@5.com',1,5,'Randomly assigned plan'),(42,'39998@gmail.com','9@9.com',1,1,'Randomly assigned plan');
 /*!40000 ALTER TABLE `health_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,7 +325,7 @@ CREATE TABLE `health_records` (
   PRIMARY KEY (`record_id`),
   KEY `email` (`email`),
   CONSTRAINT `health_records_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,7 +334,7 @@ CREATE TABLE `health_records` (
 
 LOCK TABLES `health_records` WRITE;
 /*!40000 ALTER TABLE `health_records` DISABLE KEYS */;
-INSERT INTO `health_records` VALUES (1,185.00,89.00,'2022-12-08',26.00,'tanmay.skater@gmail.com'),(2,185.00,97.00,'2022-08-26',28.34,'tanmay.skater@gmail.com'),(3,185.00,95.15,'2022-09-11',27.80,'tanmay.skater@gmail.com'),(4,185.00,95.80,'2022-09-18',27.99,'tanmay.skater@gmail.com'),(5,185.00,95.35,'2022-09-23',27.86,'tanmay.skater@gmail.com'),(6,185.00,93.10,'2022-11-01',27.20,'tanmay.skater@gmail.com'),(7,185.00,91.15,'2022-11-23',26.63,'tanmay.skater@gmail.com'),(8,185.00,90.65,'2022-12-04',26.49,'tanmay.skater@gmail.com'),(13,175.00,107.00,'2018-06-05',34.94,'david@gmail.com'),(14,175.00,117.00,'2019-03-28',38.20,'david@gmail.com'),(15,175.00,112.00,'2019-04-06',36.57,'david@gmail.com'),(16,175.00,92.00,'2020-01-15',30.04,'david@gmail.com'),(17,175.00,85.00,'2021-10-20',27.76,'david@gmail.com'),(18,175.00,90.00,'2022-12-09',29.39,'david@gmail.com'),(19,167.00,52.20,'2020-08-14',18.72,'ariana@gmail.com'),(20,167.00,49.90,'2021-01-14',17.89,'ariana@gmail.com'),(21,167.00,53.00,'2021-02-15',19.00,'ariana@gmail.com'),(22,167.00,54.00,'2021-03-15',19.36,'ariana@gmail.com'),(23,167.00,54.80,'2021-05-15',19.65,'ariana@gmail.com'),(24,167.00,60.00,'2021-09-22',21.51,'ariana@gmail.com'),(25,167.00,60.60,'2021-12-31',21.73,'ariana@gmail.com'),(26,167.00,60.40,'2022-02-28',21.66,'ariana@gmail.com'),(27,172.00,53.99,'2019-05-09',18.25,'selena@gmail.com'),(28,175.00,78.20,'2021-01-01',25.53,'selena@gmail.com'),(29,175.00,87.32,'2021-07-21',28.51,'selena@gmail.com'),(30,178.00,81.00,'2021-09-22',25.56,'selena@gmail.com'),(31,178.00,79.24,'2021-10-11',25.01,'selena@gmail.com'),(32,178.00,72.00,'2021-12-21',22.72,'selena@gmail.com'),(33,178.00,70.90,'2022-03-25',22.38,'selena@gmail.com'),(34,188.00,164.00,'2022-02-17',46.40,'simon@gmail.com'),(35,188.00,144.00,'2022-05-18',40.74,'simon@gmail.com'),(36,188.00,104.00,'2022-08-20',29.43,'simon@gmail.com'),(37,188.00,95.30,'2022-10-25',26.96,'simon@gmail.com'),(38,188.00,87.20,'2022-11-29',24.67,'simon@gmail.com'),(39,169.00,69.00,'2019-11-09',24.16,'rikc.2000@gmail.com'),(40,174.00,74.00,'2020-02-20',24.44,'rikc.2000@gmail.com'),(41,174.00,76.40,'2020-05-07',25.23,'rikc.2000@gmail.com'),(42,174.00,75.90,'2020-07-16',25.07,'rikc.2000@gmail.com'),(43,174.00,76.20,'2020-08-12',25.17,'rikc.2000@gmail.com'),(44,174.00,75.88,'2021-10-14',25.06,'rikc.2000@gmail.com'),(45,174.00,75.29,'2022-06-23',24.87,'rikc.2000@gmail.com'),(46,174.00,76.33,'2022-12-02',25.21,'rikc.2000@gmail.com'),(53,157.00,52.00,'2022-04-06',21.10,'shashwat@gmail.com'),(54,157.00,54.00,'2022-06-15',21.91,'shashwat@gmail.com'),(55,157.00,54.60,'2022-07-21',22.15,'shashwat@gmail.com'),(56,157.00,56.90,'2022-08-11',23.08,'shashwat@gmail.com'),(57,157.00,58.00,'2022-10-13',23.53,'shashwat@gmail.com'),(58,157.00,58.30,'2022-11-17',23.65,'shashwat@gmail.com'),(59,157.00,56.40,'2022-11-30',22.88,'shashwat@gmail.com'),(60,174.00,89.00,'2020-01-06',29.40,'robert@gmail.com'),(61,174.00,97.00,'2020-05-14',32.04,'robert@gmail.com'),(62,174.00,98.60,'2020-08-03',32.57,'robert@gmail.com'),(63,174.00,92.00,'2020-09-30',30.39,'robert@gmail.com'),(64,174.00,88.35,'2020-10-21',29.18,'robert@gmail.com'),(65,174.00,87.59,'2020-11-25',28.93,'robert@gmail.com'),(66,174.00,85.98,'2020-12-30',28.40,'robert@gmail.com'),(67,174.00,81.45,'2021-04-30',26.90,'robert@gmail.com'),(68,174.00,79.59,'2021-07-21',26.29,'robert@gmail.com'),(77,172.56,45.77,'2021-12-22',15.37,'emma@gmail.com'),(78,172.56,49.55,'2022-02-18',16.64,'emma@gmail.com'),(79,175.80,54.00,'2022-03-23',17.47,'emma@gmail.com'),(80,177.00,57.65,'2022-05-31',18.40,'emma@gmail.com'),(81,179.00,67.00,'2022-07-30',20.91,'emma@gmail.com'),(82,179.00,67.44,'2022-09-27',21.05,'emma@gmail.com'),(83,181.33,68.33,'2022-12-07',20.78,'emma@gmail.com'),(84,181.33,69.39,'2022-12-09',21.10,'emma@gmail.com'),(85,194.00,78.33,'2020-06-13',20.81,'ross@gmail.com'),(86,194.00,82.54,'2020-08-04',21.93,'ross@gmail.com'),(87,194.00,98.00,'2021-06-08',26.04,'ross@gmail.com'),(88,194.00,96.26,'2021-07-14',25.58,'ross@gmail.com'),(89,194.00,99.00,'2021-09-13',26.30,'ross@gmail.com'),(90,194.00,95.36,'2021-11-08',25.34,'ross@gmail.com'),(91,194.00,90.24,'2022-02-26',23.98,'ross@gmail.com'),(92,194.00,89.26,'2022-03-15',23.72,'ross@gmail.com'),(93,194.00,84.98,'2022-05-26',22.58,'ross@gmail.com'),(94,194.00,86.29,'2022-06-24',22.93,'ross@gmail.com'),(95,194.00,87.27,'2022-07-22',23.19,'ross@gmail.com'),(96,186.29,89.98,'2022-05-02',25.93,'parth@gmail.com'),(97,186.29,87.49,'2022-05-26',25.21,'parth@gmail.com'),(98,186.29,86.47,'2022-06-08',24.92,'parth@gmail.com'),(99,186.29,85.29,'2022-06-15',24.58,'parth@gmail.com'),(100,186.29,82.22,'2022-06-30',23.69,'parth@gmail.com'),(101,186.29,81.12,'2022-07-08',23.37,'parth@gmail.com'),(102,186.29,79.30,'2022-07-21',22.85,'parth@gmail.com'),(103,186.29,75.19,'2022-08-26',21.67,'parth@gmail.com'),(104,186.29,71.20,'2022-10-25',20.52,'parth@gmail.com'),(105,186.29,73.29,'2022-11-09',21.12,'parth@gmail.com'),(106,182.39,77.00,'2021-07-12',23.15,'arpan@gmail.com'),(107,182.39,78.29,'2021-07-31',23.53,'arpan@gmail.com'),(108,182.39,78.19,'2021-09-09',23.50,'arpan@gmail.com'),(109,182.39,78.27,'2021-09-24',23.53,'arpan@gmail.com'),(110,182.39,78.17,'2021-09-30',23.50,'arpan@gmail.com'),(111,182.39,78.87,'2021-10-28',23.71,'arpan@gmail.com'),(112,182.39,77.79,'2021-11-05',23.38,'arpan@gmail.com'),(113,182.39,78.21,'2021-11-19',23.51,'arpan@gmail.com'),(114,182.00,67.00,'2021-06-18',20.23,'paritosh@gmail.com'),(115,182.00,69.20,'2021-08-19',20.89,'paritosh@gmail.com'),(116,182.00,71.90,'2021-08-24',21.71,'paritosh@gmail.com'),(117,182.00,73.24,'2021-09-28',22.11,'paritosh@gmail.com'),(118,182.00,75.00,'2021-10-31',22.64,'paritosh@gmail.com'),(119,182.00,79.20,'2021-11-12',23.91,'paritosh@gmail.com'),(120,182.00,73.22,'2022-10-15',22.10,'paritosh@gmail.com'),(121,169.29,96.22,'2021-07-06',33.57,'girish@gmail.com'),(122,169.29,98.90,'2021-07-30',34.51,'girish@gmail.com'),(123,170.29,99.67,'2021-09-24',34.37,'girish@gmail.com'),(124,170.29,97.37,'2021-10-27',33.58,'girish@gmail.com'),(125,170.29,95.20,'2021-11-25',32.83,'girish@gmail.com'),(126,170.29,94.20,'2022-02-21',32.48,'girish@gmail.com'),(127,170.29,92.10,'2022-05-24',31.76,'girish@gmail.com'),(128,170.29,93.90,'2022-06-21',32.38,'girish@gmail.com'),(129,170.29,87.28,'2022-10-25',30.10,'girish@gmail.com'),(130,173.98,49.29,'2021-06-09',16.28,'cook@gmail.com'),(131,175.00,51.99,'2021-08-19',16.98,'cook@gmail.com'),(132,175.25,55.90,'2021-09-22',18.20,'cook@gmail.com'),(133,175.25,58.00,'2021-10-27',18.88,'cook@gmail.com'),(134,175.25,59.20,'2021-11-16',19.28,'cook@gmail.com'),(135,175.25,63.20,'2021-12-15',20.58,'cook@gmail.com'),(136,175.25,63.82,'2022-02-16',20.78,'cook@gmail.com'),(137,175.25,68.00,'2022-04-18',22.14,'cook@gmail.com'),(138,175.25,78.00,'2022-05-19',25.40,'cook@gmail.com'),(139,176.28,75.29,'2022-06-22',24.23,'cook@gmail.com'),(140,176.28,78.22,'2022-07-26',25.17,'cook@gmail.com'),(141,176.28,81.57,'2022-09-28',26.25,'cook@gmail.com'),(142,184.93,74.29,'2022-01-01',21.72,'alex@gmail.com'),(143,187.00,79.76,'2022-03-15',22.81,'alex@gmail.com'),(144,188.00,80.39,'2022-05-03',22.75,'alex@gmail.com'),(145,182.00,98.20,'2020-06-18',29.65,'alex@gmail.com'),(146,189.22,81.20,'2022-06-14',22.68,'alex@gmail.com'),(147,189.22,85.00,'2022-08-18',23.74,'alex@gmail.com'),(148,189.22,89.00,'2022-09-22',24.86,'alex@gmail.com'),(149,189.22,98.20,'2022-11-24',27.43,'alex@gmail.com'),(154,178.29,34.28,'2021-02-16',10.78,'louis@gmail.com'),(155,178.29,42.85,'2021-04-13',13.48,'louis@gmail.com'),(156,179.28,48.73,'2021-06-22',15.16,'louis@gmail.com'),(157,179.28,58.28,'2021-07-21',18.13,'louis@gmail.com'),(158,179.28,62.18,'2021-08-25',19.35,'louis@gmail.com'),(159,179.28,70.27,'2021-08-31',21.86,'louis@gmail.com'),(160,179.28,75.28,'2021-12-01',23.42,'louis@gmail.com'),(161,179.28,87.21,'2022-01-19',27.13,'louis@gmail.com'),(162,179.28,97.20,'2022-03-02',30.24,'louis@gmail.com'),(163,196.00,92.70,'2018-08-15',24.13,'mark@gmail.com'),(164,196.00,98.22,'2018-10-18',25.57,'mark@gmail.com'),(165,196.00,94.29,'2022-03-01',24.54,'mark@gmail.com'),(166,196.00,92.18,'2022-04-19',23.99,'mark@gmail.com'),(167,196.00,93.28,'2022-05-26',24.28,'mark@gmail.com'),(168,173.34,98.27,'2021-05-06',32.71,'iggy@gmail.com'),(169,173.34,104.28,'2021-07-22',34.71,'iggy@gmail.com'),(170,173.34,108.27,'2021-09-16',36.03,'iggy@gmail.com'),(171,173.34,106.37,'2021-10-20',35.40,'iggy@gmail.com'),(172,173.34,102.46,'2021-12-10',34.10,'iggy@gmail.com'),(173,173.34,96.39,'2022-03-16',32.08,'iggy@gmail.com'),(174,173.34,92.53,'2022-06-22',30.80,'iggy@gmail.com'),(175,168.71,53.92,'2022-09-13',18.94,'britney@gmail.com'),(176,168.71,54.82,'2022-10-12',19.26,'britney@gmail.com'),(177,168.71,60.38,'2022-11-16',21.21,'britney@gmail.com'),(178,168.71,60.38,'2022-12-09',21.21,'britney@gmail.com'),(179,182.88,74.29,'2022-12-06',22.21,'britney@gmail.com'),(180,162.29,56.29,'2021-07-01',21.37,'katy@gmail.com'),(181,162.29,58.97,'2021-07-29',22.39,'katy@gmail.com'),(182,162.29,61.28,'2021-08-18',23.27,'katy@gmail.com'),(183,162.29,57.19,'2021-09-09',21.71,'katy@gmail.com'),(184,162.29,58.26,'2021-10-19',22.12,'katy@gmail.com'),(185,170.00,70.00,'2022-12-05',24.22,'tom@gmail.com'),(186,175.00,75.00,'2022-12-07',24.49,'tom@gmail.com'),(187,175.00,68.00,'2022-12-09',22.20,'tom@gmail.com'),(188,170.00,70.00,'2022-12-04',24.22,'tim@gmail.com'),(189,175.00,75.00,'2022-12-07',24.49,'tim@gmail.com'),(190,175.00,85.00,'2022-12-10',27.76,'tim@gmail.com');
+INSERT INTO `health_records` VALUES (1,185.00,89.00,'2022-12-08',26.00,'tanmay.skater@gmail.com'),(2,185.00,97.00,'2022-08-26',28.34,'tanmay.skater@gmail.com'),(3,185.00,95.15,'2022-09-11',27.80,'tanmay.skater@gmail.com'),(4,185.00,95.80,'2022-09-18',27.99,'tanmay.skater@gmail.com'),(5,185.00,95.35,'2022-09-23',27.86,'tanmay.skater@gmail.com'),(6,185.00,93.10,'2022-11-01',27.20,'tanmay.skater@gmail.com'),(7,185.00,91.15,'2022-11-23',26.63,'tanmay.skater@gmail.com'),(8,185.00,90.65,'2022-12-04',26.49,'tanmay.skater@gmail.com'),(13,175.00,107.00,'2018-06-05',34.94,'david@gmail.com'),(14,175.00,117.00,'2019-03-28',38.20,'david@gmail.com'),(15,175.00,112.00,'2019-04-06',36.57,'david@gmail.com'),(16,175.00,92.00,'2020-01-15',30.04,'david@gmail.com'),(17,175.00,85.00,'2021-10-20',27.76,'david@gmail.com'),(18,175.00,90.00,'2022-12-09',29.39,'david@gmail.com'),(19,167.00,52.20,'2020-08-14',18.72,'ariana@gmail.com'),(20,167.00,49.90,'2021-01-14',17.89,'ariana@gmail.com'),(21,167.00,53.00,'2021-02-15',19.00,'ariana@gmail.com'),(22,167.00,54.00,'2021-03-15',19.36,'ariana@gmail.com'),(23,167.00,54.80,'2021-05-15',19.65,'ariana@gmail.com'),(24,167.00,60.00,'2021-09-22',21.51,'ariana@gmail.com'),(25,167.00,60.60,'2021-12-31',21.73,'ariana@gmail.com'),(26,167.00,60.40,'2022-02-28',21.66,'ariana@gmail.com'),(27,172.00,53.99,'2019-05-09',18.25,'selena@gmail.com'),(28,175.00,78.20,'2021-01-01',25.53,'selena@gmail.com'),(29,175.00,87.32,'2021-07-21',28.51,'selena@gmail.com'),(30,178.00,81.00,'2021-09-22',25.56,'selena@gmail.com'),(31,178.00,79.24,'2021-10-11',25.01,'selena@gmail.com'),(32,178.00,72.00,'2021-12-21',22.72,'selena@gmail.com'),(33,178.00,70.90,'2022-03-25',22.38,'selena@gmail.com'),(34,188.00,164.00,'2022-02-17',46.40,'simon@gmail.com'),(35,188.00,144.00,'2022-05-18',40.74,'simon@gmail.com'),(36,188.00,104.00,'2022-08-20',29.43,'simon@gmail.com'),(37,188.00,95.30,'2022-10-25',26.96,'simon@gmail.com'),(38,188.00,87.20,'2022-11-29',24.67,'simon@gmail.com'),(39,169.00,69.00,'2019-11-09',24.16,'rikc.2000@gmail.com'),(40,174.00,74.00,'2020-02-20',24.44,'rikc.2000@gmail.com'),(41,174.00,76.40,'2020-05-07',25.23,'rikc.2000@gmail.com'),(42,174.00,75.90,'2020-07-16',25.07,'rikc.2000@gmail.com'),(43,174.00,76.20,'2020-08-12',25.17,'rikc.2000@gmail.com'),(44,174.00,75.88,'2021-10-14',25.06,'rikc.2000@gmail.com'),(45,174.00,75.29,'2022-06-23',24.87,'rikc.2000@gmail.com'),(46,174.00,76.33,'2022-12-02',25.21,'rikc.2000@gmail.com'),(53,157.00,52.00,'2022-04-06',21.10,'shashwat@gmail.com'),(54,157.00,54.00,'2022-06-15',21.91,'shashwat@gmail.com'),(55,157.00,54.60,'2022-07-21',22.15,'shashwat@gmail.com'),(56,157.00,56.90,'2022-08-11',23.08,'shashwat@gmail.com'),(57,157.00,58.00,'2022-10-13',23.53,'shashwat@gmail.com'),(58,157.00,58.30,'2022-11-17',23.65,'shashwat@gmail.com'),(59,157.00,56.40,'2022-11-30',22.88,'shashwat@gmail.com'),(60,174.00,89.00,'2020-01-06',29.40,'robert@gmail.com'),(61,174.00,97.00,'2020-05-14',32.04,'robert@gmail.com'),(62,174.00,98.60,'2020-08-03',32.57,'robert@gmail.com'),(63,174.00,92.00,'2020-09-30',30.39,'robert@gmail.com'),(64,174.00,88.35,'2020-10-21',29.18,'robert@gmail.com'),(65,174.00,87.59,'2020-11-25',28.93,'robert@gmail.com'),(66,174.00,85.98,'2020-12-30',28.40,'robert@gmail.com'),(67,174.00,81.45,'2021-04-30',26.90,'robert@gmail.com'),(68,174.00,79.59,'2021-07-21',26.29,'robert@gmail.com'),(77,172.56,45.77,'2021-12-22',15.37,'emma@gmail.com'),(78,172.56,49.55,'2022-02-18',16.64,'emma@gmail.com'),(79,175.80,54.00,'2022-03-23',17.47,'emma@gmail.com'),(80,177.00,57.65,'2022-05-31',18.40,'emma@gmail.com'),(81,179.00,67.00,'2022-07-30',20.91,'emma@gmail.com'),(82,179.00,67.44,'2022-09-27',21.05,'emma@gmail.com'),(83,181.33,68.33,'2022-12-07',20.78,'emma@gmail.com'),(84,181.33,69.39,'2022-12-09',21.10,'emma@gmail.com'),(85,194.00,78.33,'2020-06-13',20.81,'ross@gmail.com'),(86,194.00,82.54,'2020-08-04',21.93,'ross@gmail.com'),(87,194.00,98.00,'2021-06-08',26.04,'ross@gmail.com'),(88,194.00,96.26,'2021-07-14',25.58,'ross@gmail.com'),(89,194.00,99.00,'2021-09-13',26.30,'ross@gmail.com'),(90,194.00,95.36,'2021-11-08',25.34,'ross@gmail.com'),(91,194.00,90.24,'2022-02-26',23.98,'ross@gmail.com'),(92,194.00,89.26,'2022-03-15',23.72,'ross@gmail.com'),(93,194.00,84.98,'2022-05-26',22.58,'ross@gmail.com'),(94,194.00,86.29,'2022-06-24',22.93,'ross@gmail.com'),(95,194.00,87.27,'2022-07-22',23.19,'ross@gmail.com'),(96,186.29,89.98,'2022-05-02',25.93,'parth@gmail.com'),(97,186.29,87.49,'2022-05-26',25.21,'parth@gmail.com'),(98,186.29,86.47,'2022-06-08',24.92,'parth@gmail.com'),(99,186.29,85.29,'2022-06-15',24.58,'parth@gmail.com'),(100,186.29,82.22,'2022-06-30',23.69,'parth@gmail.com'),(101,186.29,81.12,'2022-07-08',23.37,'parth@gmail.com'),(102,186.29,79.30,'2022-07-21',22.85,'parth@gmail.com'),(103,186.29,75.19,'2022-08-26',21.67,'parth@gmail.com'),(104,186.29,71.20,'2022-10-25',20.52,'parth@gmail.com'),(105,186.29,73.29,'2022-11-09',21.12,'parth@gmail.com'),(106,182.39,77.00,'2021-07-12',23.15,'arpan@gmail.com'),(107,182.39,78.29,'2021-07-31',23.53,'arpan@gmail.com'),(108,182.39,78.19,'2021-09-09',23.50,'arpan@gmail.com'),(109,182.39,78.27,'2021-09-24',23.53,'arpan@gmail.com'),(110,182.39,78.17,'2021-09-30',23.50,'arpan@gmail.com'),(111,182.39,78.87,'2021-10-28',23.71,'arpan@gmail.com'),(112,182.39,77.79,'2021-11-05',23.38,'arpan@gmail.com'),(113,182.39,78.21,'2021-11-19',23.51,'arpan@gmail.com'),(114,182.00,67.00,'2021-06-18',20.23,'paritosh@gmail.com'),(115,182.00,69.20,'2021-08-19',20.89,'paritosh@gmail.com'),(116,182.00,71.90,'2021-08-24',21.71,'paritosh@gmail.com'),(117,182.00,73.24,'2021-09-28',22.11,'paritosh@gmail.com'),(118,182.00,75.00,'2021-10-31',22.64,'paritosh@gmail.com'),(119,182.00,79.20,'2021-11-12',23.91,'paritosh@gmail.com'),(120,182.00,73.22,'2022-10-15',22.10,'paritosh@gmail.com'),(121,169.29,96.22,'2021-07-06',33.57,'girish@gmail.com'),(122,169.29,98.90,'2021-07-30',34.51,'girish@gmail.com'),(123,170.29,99.67,'2021-09-24',34.37,'girish@gmail.com'),(124,170.29,97.37,'2021-10-27',33.58,'girish@gmail.com'),(125,170.29,95.20,'2021-11-25',32.83,'girish@gmail.com'),(126,170.29,94.20,'2022-02-21',32.48,'girish@gmail.com'),(127,170.29,92.10,'2022-05-24',31.76,'girish@gmail.com'),(128,170.29,93.90,'2022-06-21',32.38,'girish@gmail.com'),(129,170.29,87.28,'2022-10-25',30.10,'girish@gmail.com'),(130,173.98,49.29,'2021-06-09',16.28,'cook@gmail.com'),(131,175.00,51.99,'2021-08-19',16.98,'cook@gmail.com'),(132,175.25,55.90,'2021-09-22',18.20,'cook@gmail.com'),(133,175.25,58.00,'2021-10-27',18.88,'cook@gmail.com'),(134,175.25,59.20,'2021-11-16',19.28,'cook@gmail.com'),(135,175.25,63.20,'2021-12-15',20.58,'cook@gmail.com'),(136,175.25,63.82,'2022-02-16',20.78,'cook@gmail.com'),(137,175.25,68.00,'2022-04-18',22.14,'cook@gmail.com'),(138,175.25,78.00,'2022-05-19',25.40,'cook@gmail.com'),(139,176.28,75.29,'2022-06-22',24.23,'cook@gmail.com'),(140,176.28,78.22,'2022-07-26',25.17,'cook@gmail.com'),(141,176.28,81.57,'2022-09-28',26.25,'cook@gmail.com'),(142,184.93,74.29,'2022-01-01',21.72,'alex@gmail.com'),(143,187.00,79.76,'2022-03-15',22.81,'alex@gmail.com'),(144,188.00,80.39,'2022-05-03',22.75,'alex@gmail.com'),(145,182.00,98.20,'2020-06-18',29.65,'alex@gmail.com'),(146,189.22,81.20,'2022-06-14',22.68,'alex@gmail.com'),(147,189.22,85.00,'2022-08-18',23.74,'alex@gmail.com'),(148,189.22,89.00,'2022-09-22',24.86,'alex@gmail.com'),(149,189.22,98.20,'2022-11-24',27.43,'alex@gmail.com'),(154,178.29,34.28,'2021-02-16',10.78,'louis@gmail.com'),(155,178.29,42.85,'2021-04-13',13.48,'louis@gmail.com'),(156,179.28,48.73,'2021-06-22',15.16,'louis@gmail.com'),(157,179.28,58.28,'2021-07-21',18.13,'louis@gmail.com'),(158,179.28,62.18,'2021-08-25',19.35,'louis@gmail.com'),(159,179.28,70.27,'2021-08-31',21.86,'louis@gmail.com'),(160,179.28,75.28,'2021-12-01',23.42,'louis@gmail.com'),(161,179.28,87.21,'2022-01-19',27.13,'louis@gmail.com'),(162,179.28,97.20,'2022-03-02',30.24,'louis@gmail.com'),(163,196.00,92.70,'2018-08-15',24.13,'mark@gmail.com'),(164,196.00,98.22,'2018-10-18',25.57,'mark@gmail.com'),(165,196.00,94.29,'2022-03-01',24.54,'mark@gmail.com'),(166,196.00,92.18,'2022-04-19',23.99,'mark@gmail.com'),(167,196.00,93.28,'2022-05-26',24.28,'mark@gmail.com'),(168,173.34,98.27,'2021-05-06',32.71,'iggy@gmail.com'),(169,173.34,104.28,'2021-07-22',34.71,'iggy@gmail.com'),(170,173.34,108.27,'2021-09-16',36.03,'iggy@gmail.com'),(171,173.34,106.37,'2021-10-20',35.40,'iggy@gmail.com'),(172,173.34,102.46,'2021-12-10',34.10,'iggy@gmail.com'),(173,173.34,96.39,'2022-03-16',32.08,'iggy@gmail.com'),(174,173.34,92.53,'2022-06-22',30.80,'iggy@gmail.com'),(175,168.71,53.92,'2022-09-13',18.94,'britney@gmail.com'),(176,168.71,54.82,'2022-10-12',19.26,'britney@gmail.com'),(177,168.71,60.38,'2022-11-16',21.21,'britney@gmail.com'),(178,168.71,60.38,'2022-12-09',21.21,'britney@gmail.com'),(179,182.88,74.29,'2022-12-06',22.21,'britney@gmail.com'),(180,162.29,56.29,'2021-07-01',21.37,'katy@gmail.com'),(181,162.29,58.97,'2021-07-29',22.39,'katy@gmail.com'),(182,162.29,61.28,'2021-08-18',23.27,'katy@gmail.com'),(183,162.29,57.19,'2021-09-09',21.71,'katy@gmail.com'),(184,162.29,58.26,'2021-10-19',22.12,'katy@gmail.com'),(185,170.00,70.00,'2022-12-05',24.22,'tom@gmail.com'),(186,175.00,75.00,'2022-12-07',24.49,'tom@gmail.com'),(187,175.00,68.00,'2022-12-09',22.20,'tom@gmail.com'),(188,170.00,70.00,'2022-12-04',24.22,'tim@gmail.com'),(189,175.00,75.00,'2022-12-07',24.49,'tim@gmail.com'),(190,175.00,85.00,'2022-12-10',27.76,'tim@gmail.com'),(191,187.00,85.00,'2023-11-16',24.31,'tanmay.skater@gmail.com');
 /*!40000 ALTER TABLE `health_records` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -397,7 +397,7 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES ('1@2.com@gmail.com','fname sname','987654321','1994-12-12','Male','staff',0,25000.46,'desc','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('11111@gmail.com','Harvey Smith','1122112211','1985-10-10','Male','admin',0,45000.00,'Manages all staff of his gym. Responsible for ensuring all facilities of gym are working and in good condition. Can analyze trainer performance.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('19994@gmail.com','Krissy Margot','5499449945','1985-10-10','Male','trainer',0,9999.30,'Trains all the members under him as well as other people working out at the gym','$2a$10$1Kxh7hojgwtOuwU7cjG08un/.ZC67w32dMtKY8nIx9G5FEHvFqtEW',1),('19995@gmail.com','Anjaneya Gurjar','4499449944','1985-10-10','Male','trainer',0,23322.99,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuCwxVal6AYHpCT0KEatAJ9KCcjp4a2Vy',1),('19996@gmail.com','Kylie Monnet','1100110011','1985-10-10','Male','trainer',0,34342.29,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuDwWRh4kbXXv0SEELVjQo10Mag02pzg6',1),('19997@gmail.com','Janet Andrews','1001100110','1985-10-10','Male','trainer',0,34342.22,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtu2OyHVGaJSjs5t1Vrj.7yLzC04ZDCPh6',1),('19998@gmail.com','Sabrina Mason','8787878787','1985-10-10','Male','trainer',0,11004.33,'Helps in building complex workout routines for members.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuG/4SvUoYETqMt8p620orGST6XiuJ8Fm',1),('19999@gmail.com','Thomas Cook','7878787878','1985-10-10','Male','trainer',0,12000.00,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQZCA3alY1UH60TXmoVY.oqXjUl.sKgG',1),('22222@gmail.com','Mike Ross','1234554321','1985-10-10','Male','admin',0,52000.00,'Supervises over the entire gym staff. Ensure trainer performance, how happy the customers are as well as regularly updates gym facilities and equipment.s.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',2),('29996@gmail.com','Georgie Bennet','1155228890','1985-10-10','Male','trainer',0,25640.70,'Conducts yoga classes for the interested members as well personal training sessions.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuwUfQgbEVAJXol0aJID6RMgS0zOjheJO',2),('29997@gmail.com','Misa Amane','5499449940','1985-10-10','Male','trainer',0,19000.00,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuJnAiIf/o/iy/XMcUp4d1YCQHNup9p.a',2),('29998@gmail.com','Susan Volkov','5499449941','1985-10-10','Male','trainer',0,11243.30,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtutyXEG.ckpq8m5BCJraIVas/bUBZkkWe',2),('29999@gmail.com','Liam Payne','5499449942','1985-10-10','Male','trainer',0,11243.30,'Helps all the members at the gym in figuring out the best workout plan for them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubCOsAKwc.p.84.VEfEC7tiCOx1WPASq',2),('33333@gmail.com','Rachel Zane','2323232323','1985-10-10','Male','admin',0,37346.44,'Manages other employees of the gym. Responsible for regularly adding newly hired staff to the gym\'s database.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',3),('39994@gmail.com','Christina Perez','1155228891','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9qbzxHdHVCr/QVR5NpYUal3r0Voe5fy',3),('39995@gmail.com','Sergio Messi','1155228895','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9mrn.PIauuba0Yn34PgPFRxJkQ5mXn.',3),('39996@gmail.com','Max Ricciardo','1155228894','1985-10-10','Male','trainer',0,35640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuFhzgbsmIY8VrIzj7WW2219JsRW8vJ2e',3),('39998@gmail.com','Sebastian Vettel','1152522888','1985-10-10','Male','trainer',0,18454.00,'Deisgns custom workout plans for all members of the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQxFFEJwyIjpczeB2yVkVVi6epZneKi.',3),('39999@gmail.com','Charles Leclerc','1152522887','1985-10-10','Male','trainer',0,18454.00,'Helps in muscle gain and flexibility.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu23.4fsUK/jdT/C9QsfMqKCtsYjbe4ia',3),('44444@gmail.com','Donna Paulsen','9889988998','1985-10-10','Male','admin',0,27465.88,'First one from the gym staff to be contacted whenever the higher authorities decide to incorporate any changes. Is responsible fo conveying all info to other subordinates and managing them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',4),('49997@gmail.com','Charlie Puth','1152522886','1985-10-10','Male','trainer',0,21000.00,'Helps in building the correct posture for workouts.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubj3ntkYz9bFdKid4OEiykkPjAl/Aoni',4),('49998@gmail.com','Daniel Hardman','1152522885','1985-10-10','Male','trainer',0,21000.00,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuEtZwHkBVmhF9zGgbgZofns5ccysMI0u',4),('49999@gmail.com','Colson Baker','1152522884','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuTVxS/1TZB/Qsv0UHrRDSb0kOku6klji',4),('55555@gmail.com','Alex Williams','9869833298','1985-10-10','Male','admin',0,46847.14,'Responsible for managing staff, getting the equipment serviced regularly as well adding new equipments to the website whenever needed. Can fire staff if performance is not up to the mark.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',5),('59999@gmail.com','Chris Martin','1152522881','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu19a3IoEPpyCM1KesBc4z8sAkyw8.BvW',5),('61111@gmail.com','Dua Lipa','3548764890','1985-10-10','Male','staff',1,9054.33,'Assists the trainer during yoga class.','$2a$10$0TuGb94iZDd85WkG07QdLeUxJJt8DBTR2Itn1byg3B12hQvuxeGom',6),('66666@gmail.com','Samantha Wheeler','3885379522','1985-10-10','Male','admin',0,75953.20,'Delegates tasks to lower level staff. Makes sure all facilities are open by the required time and also closed for servicing whenever needed. Can hire/fire staff.','$2a$10$7oX5rXE3GYE5QkpyD50Mz.JppDVSriA.hsGb1ExDXZ6oXgiyqpHLK',6),('66667@gmail.com','test','3333333330','1985-10-10','Male','admin',0,33.00,'test','test',6),('69999@gmail.com','Anita Gibbs','1152522844','1985-10-10','Male','trainer',0,2437.99,'Trains how to do complex workouts for experienced members.','$2a$10$1Kxh7hojgwtOuwU7cjG08un/.ZC67w32dMtKY8nIx9G5FEHvFqtEW',6),('85638@gmail.com','Steve Tanaka','9563856375','1985-10-10','Male','staff',0,35000.99,'Manages all the facilitiy\'s billings and schedules appointments with walk in customers','$2a$10$XW0FEDooXV.bKyk9lau6Zu0QEEMo21DrMP6c1xy86zlooObUsJPz6',5);
+INSERT INTO `staff` VALUES ('1@2.com@gmail.com','fname sname','987654321','1994-12-12','Male','staff',0,25000.46,'desc','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('11111@gmail.com','Harvey Smith','1122112211','1985-10-10','Male','admin',0,45000.00,'Manages all staff of his gym. Responsible for ensuring all facilities of gym are working and in good condition. Can analyze trainer performance.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('19994@gmail.com','New Name','5050505051','1975-12-12','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',1),('19995@gmail.com','Anjaneya Gurjar','4499449944','1985-10-10','Male','trainer',0,23322.99,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuCwxVal6AYHpCT0KEatAJ9KCcjp4a2Vy',1),('19996@gmail.com','Kylie Monnet','1100110011','1985-10-10','Male','trainer',0,34342.29,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuDwWRh4kbXXv0SEELVjQo10Mag02pzg6',1),('19997@gmail.com','Janet Andrews','1001100110','1985-10-10','Male','trainer',0,34342.22,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtu2OyHVGaJSjs5t1Vrj.7yLzC04ZDCPh6',1),('19998@gmail.com','Sabrina Mason','8787878787','1985-10-10','Male','trainer',0,11004.33,'Helps in building complex workout routines for members.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuG/4SvUoYETqMt8p620orGST6XiuJ8Fm',1),('19999@gmail.com','Thomas Cook','7878787878','1985-10-10','Male','trainer',0,12000.00,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQZCA3alY1UH60TXmoVY.oqXjUl.sKgG',1),('22222@gmail.com','Mike Ross','1234554321','1985-10-10','Male','admin',0,52000.00,'Supervises over the entire gym staff. Ensure trainer performance, how happy the customers are as well as regularly updates gym facilities and equipment.s.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',2),('29996@gmail.com','Georgie Bennet','1155228890','1985-10-10','Male','trainer',0,25640.70,'Conducts yoga classes for the interested members as well personal training sessions.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuwUfQgbEVAJXol0aJID6RMgS0zOjheJO',2),('29997@gmail.com','Misa Amane','5499449940','1985-10-10','Male','trainer',0,19000.00,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuJnAiIf/o/iy/XMcUp4d1YCQHNup9p.a',2),('29998@gmail.com','Susan Volkov','5499449941','1985-10-10','Male','trainer',0,11243.30,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtutyXEG.ckpq8m5BCJraIVas/bUBZkkWe',2),('29999@gmail.com','Liam Payne','5499449942','1985-10-10','Male','trainer',0,11243.30,'Helps all the members at the gym in figuring out the best workout plan for them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubCOsAKwc.p.84.VEfEC7tiCOx1WPASq',2),('33333@gmail.com','Rachel Zane','2323232323','1985-10-10','Male','admin',0,37346.44,'Manages other employees of the gym. Responsible for regularly adding newly hired staff to the gym\'s database.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',3),('39994@gmail.com','Christina Perez','1155228891','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9qbzxHdHVCr/QVR5NpYUal3r0Voe5fy',3),('39995@gmail.com','Sergio Messi','1155228895','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9mrn.PIauuba0Yn34PgPFRxJkQ5mXn.',3),('39996@gmail.com','Max Ricciardo','1155228894','1985-10-10','Male','trainer',0,35640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuFhzgbsmIY8VrIzj7WW2219JsRW8vJ2e',3),('39998@gmail.com','Sebastian Vettel','1152522888','1985-10-10','Male','trainer',0,18454.00,'Deisgns custom workout plans for all members of the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQxFFEJwyIjpczeB2yVkVVi6epZneKi.',3),('39999@gmail.com','Charles Leclerc','1152522887','1985-10-10','Male','trainer',0,18454.00,'Helps in muscle gain and flexibility.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu23.4fsUK/jdT/C9QsfMqKCtsYjbe4ia',3),('44444@gmail.com','Donna Paulsen','9889988998','1985-10-10','Male','admin',0,27465.88,'First one from the gym staff to be contacted whenever the higher authorities decide to incorporate any changes. Is responsible fo conveying all info to other subordinates and managing them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',4),('49997@gmail.com','Charlie Puth','1152522886','1985-10-10','Male','trainer',0,21000.00,'Helps in building the correct posture for workouts.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubj3ntkYz9bFdKid4OEiykkPjAl/Aoni',4),('49998@gmail.com','Daniel Hardman','1152522885','1985-10-10','Male','trainer',0,21000.00,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuEtZwHkBVmhF9zGgbgZofns5ccysMI0u',4),('49999@gmail.com','Colson Baker','1152522884','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuTVxS/1TZB/Qsv0UHrRDSb0kOku6klji',4),('50@cent.com','50 Cent','5050505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('50@cent2.com','50 Cent2','5051505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('51@cent2.com','51 Cent2','5151505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('512@cent2.com','512 Cent2','5351505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('5123@cent2.com','5123 Cent2','5951505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('52@cent.com','52 Cent','6050505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('55555@gmail.com','Alex Williams','9869833298','1985-10-10','Male','admin',0,46847.14,'Responsible for managing staff, getting the equipment serviced regularly as well adding new equipments to the website whenever needed. Can fire staff if performance is not up to the mark.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',5),('59999@gmail.com','Chris Martin','1152522881','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu19a3IoEPpyCM1KesBc4z8sAkyw8.BvW',5),('61111@gmail.com','Dua Lipa','3548764890','1985-10-10','Male','staff',1,9054.33,'Assists the trainer during yoga class.','$2a$10$0TuGb94iZDd85WkG07QdLeUxJJt8DBTR2Itn1byg3B12hQvuxeGom',6),('66666@gmail.com','Samantha Wheeler','3885379522','1985-10-10','Male','admin',0,75953.20,'Delegates tasks to lower level staff. Makes sure all facilities are open by the required time and also closed for servicing whenever needed. Can hire/fire staff.','$2a$10$7oX5rXE3GYE5QkpyD50Mz.JppDVSriA.hsGb1ExDXZ6oXgiyqpHLK',6),('66667@gmail.com','test','3333333330','1985-10-10','Male','admin',0,33.00,'test','test',6),('69999@mail.com','Anita Gibbs','1152522848','1985-10-10','Female','staff',0,2437.99,'Trains how to do complex workouts for experienced members.','$2a$10$CQTRGg1vWewqTNA9XIi1iermvHA6p8XW6ABILDK5K9NMpS4CU3FW6',6),('85638@gmail.com','Steve Tanaka','9563856375','1985-10-10','Male','staff',0,35000.99,'Manages all the facilitiy\'s billings and schedules appointments with walk in customers','$2a$10$XW0FEDooXV.bKyk9lau6Zu0QEEMo21DrMP6c1xy86zlooObUsJPz6',5),('liam@af.com','Liam Smith','9999900000','1985-10-10','Male','trainer',1,10203.00,'afdf sfsfsd fsdf sd f sdf ds f sd f sdf ds f sd f sd fsd fsdf','not needed',1),('liam2@af.com','Liam Smith','9900990099','1985-10-10','Male','trainer',1,213123.00,'eqw ewqe qw e qw e qwe qw e qw e wqe qw e qw eqw e wq e wq e qwe qw eqw e qwe qw e qwe','not needed',1),('r@x.com','ddd','1122112233','1985-10-10','Male','trainer',0,343434.00,'ergregerg','not needed',1),('random@1.com','random','1122333322','1985-10-10','Female','trainer',0,4453.44,'does everything','not needed',1);
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -455,7 +455,8 @@ DROP TABLE IF EXISTS `tokens`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tokens` (
   `token` varchar(36) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `type` enum('member','staff','trainer','admin') NOT NULL DEFAULT (_utf8mb4'member'),
   `expiry` datetime NOT NULL,
   PRIMARY KEY (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -467,6 +468,7 @@ CREATE TABLE `tokens` (
 
 LOCK TABLES `tokens` WRITE;
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
+INSERT INTO `tokens` VALUES ('a9c2d5db-f99c-4fb2-82df-6c61094d640f','tanmay.skater@gmail.com','member','2023-11-16 03:54:22');
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -494,7 +496,7 @@ CREATE TABLE `trainers` (
 
 LOCK TABLES `trainers` WRITE;
 /*!40000 ALTER TABLE `trainers` DISABLE KEYS */;
-INSERT INTO `trainers` VALUES ('19994@gmail.com','https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3ltJTIwdHJhaW5lcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',2,'Muscle building'),('19995@gmail.com','https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',12,'Muscle building'),('19996@gmail.com','https://images.unsplash.com/photo-1518617840859-acd542e13a99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1504&q=80',22,'Weight loss'),('19997@gmail.com','https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',10,'Calisthenics'),('19998@gmail.com','https://images.unsplash.com/photo-1546817372-628669db4655?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA3fHxneW0lMjB0cmFpbmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',1,'Flexibility'),('19999@gmail.com','https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTAyfHxneW0lMjB0cmFpbmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',3,'Calisthenics'),('29996@gmail.com','https://media.istockphoto.com/id/1040495528/photo/portrait-of-a-female-personal-trainer-in-the-gym.jpg?s=170667a&w=0&k=20&c=i3MQQ76eZHGYd6_POIWVtprwOnGOommulDUl3f57sMc=',1,'Flexibility'),('29997@gmail.com','https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTB8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',11,'Calisthenics'),('29998@gmail.com','https://images.unsplash.com/photo-1546749876-2088f8b19e09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTF8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',7,'Flexibility'),('29999@gmail.com','https://www.healthywomen.org/media-library/what-to-look-for-in-a-personal-trainer.jpg?id=25210949&width=980',4,'Weight loss'),('39994@gmail.com','https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',5,'Flexibility'),('39995@gmail.com','https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',2,'Calisthenics'),('39996@gmail.com','https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjJ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',9,'Weight loss'),('39998@gmail.com','https://media.istockphoto.com/id/852401732/photo/happy-personal-trainer-working-at-the-gym.jpg?s=170667a&w=0&k=20&c=y-lm4ekP6DgpFGVD1S4q-WVJBYwlVcnXtLAQVJCZyoc=',7,'Muscle building'),('39999@gmail.com','https://images.unsplash.com/photo-1579758629938-03607ccdbaba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',8,'Muscle building'),('49997@gmail.com','https://hips.hearstapps.com/amv-prod-gp.s3.amazonaws.com/gearpatrol/wp-content/uploads/2019/03/How-Three-Personal-Trainers-Dress-for-the-Gym-Gear-Patrol-mat.jpg?resize=480:*',8,'Calisthenics'),('49998@gmail.com','https://media.istockphoto.com/id/675179390/photo/muscular-trainer-writing-on-clipboard.jpg?s=612x612&w=0&k=20&c=9NKx1AwVMpPY0YBlk5H-hxx2vJSCu1Wc78BKRM9wFq0=',9,'Weight loss'),('49999@gmail.com','https://images.unsplash.com/photo-1597347324655-f99149f2e285?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',3,'Muscle building'),('59999@gmail.com','https://media.istockphoto.com/id/1324042769/photo/confident-gym-owner.jpg?b=1&s=170667a&w=0&k=20&c=iuz1kcCB1w8CBf44nub1mYr-F--88dLRjJvM-5uPahY=',6,'Flexibility'),('69999@gmail.com','https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',25,'Weight loss');
+INSERT INTO `trainers` VALUES ('19994@gmail.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Muscle Building'),('19995@gmail.com','https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',12,'Muscle building'),('19996@gmail.com','https://images.unsplash.com/photo-1518617840859-acd542e13a99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1504&q=80',22,'Weight loss'),('19997@gmail.com','https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',10,'Calisthenics'),('19998@gmail.com','https://images.unsplash.com/photo-1546817372-628669db4655?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA3fHxneW0lMjB0cmFpbmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',1,'Flexibility'),('19999@gmail.com','https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTAyfHxneW0lMjB0cmFpbmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',3,'Calisthenics'),('29996@gmail.com','https://media.istockphoto.com/id/1040495528/photo/portrait-of-a-female-personal-trainer-in-the-gym.jpg?s=170667a&w=0&k=20&c=i3MQQ76eZHGYd6_POIWVtprwOnGOommulDUl3f57sMc=',1,'Flexibility'),('29997@gmail.com','https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTB8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',11,'Calisthenics'),('29998@gmail.com','https://images.unsplash.com/photo-1546749876-2088f8b19e09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTF8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',7,'Flexibility'),('29999@gmail.com','https://www.healthywomen.org/media-library/what-to-look-for-in-a-personal-trainer.jpg?id=25210949&width=980',4,'Weight loss'),('39994@gmail.com','https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',5,'Flexibility'),('39995@gmail.com','https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',2,'Calisthenics'),('39996@gmail.com','https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjJ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',9,'Weight loss'),('39998@gmail.com','https://media.istockphoto.com/id/852401732/photo/happy-personal-trainer-working-at-the-gym.jpg?s=170667a&w=0&k=20&c=y-lm4ekP6DgpFGVD1S4q-WVJBYwlVcnXtLAQVJCZyoc=',7,'Muscle building'),('39999@gmail.com','https://images.unsplash.com/photo-1579758629938-03607ccdbaba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',8,'Muscle building'),('49997@gmail.com','https://hips.hearstapps.com/amv-prod-gp.s3.amazonaws.com/gearpatrol/wp-content/uploads/2019/03/How-Three-Personal-Trainers-Dress-for-the-Gym-Gear-Patrol-mat.jpg?resize=480:*',8,'Calisthenics'),('49998@gmail.com','https://media.istockphoto.com/id/675179390/photo/muscular-trainer-writing-on-clipboard.jpg?s=612x612&w=0&k=20&c=9NKx1AwVMpPY0YBlk5H-hxx2vJSCu1Wc78BKRM9wFq0=',9,'Weight loss'),('49999@gmail.com','https://images.unsplash.com/photo-1597347324655-f99149f2e285?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',3,'Muscle building'),('50@cent.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Weight Loss + Nutrition'),('50@cent2.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Weight Loss + Nutrition'),('51@cent2.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Weight Loss + Nutrition'),('512@cent2.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Weight Loss + Nutrition'),('5123@cent2.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Weight Loss + Nutrition'),('52@cent.com','https://www.muscleandfitness.com/wp-content/uploads/2018/12/Personal-Trainer-Training-Partner-GettyImages-654427364.jpg?quality=86&strip=all',2,'Weight Loss + Nutrition'),('59999@gmail.com','https://media.istockphoto.com/id/1324042769/photo/confident-gym-owner.jpg?b=1&s=170667a&w=0&k=20&c=iuz1kcCB1w8CBf44nub1mYr-F--88dLRjJvM-5uPahY=',6,'Flexibility'),('liam@af.com','https://i.pinimg.com/736x/05/90/73/059073c66b81a2bb93a3d576c3a10094.jpg',2,'Fat Loss'),('liam2@af.com','https://i.pinimg.com/736x/05/90/73/059073c66b81a2bb93a3d576c3a10094.jpg',1,'Fat Loss'),('r@x.com','https://hips.hearstapps.com/hmg-prod/images/mh-trainer-2-1533576998.png',44,'ddd'),('random@1.com','https://hips.hearstapps.com/hmg-prod/images/mh-trainer-2-1533576998.png',13,'muscle gain');
 /*!40000 ALTER TABLE `trainers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,7 +529,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('4@5.com','four five','0000000001','1950-02-06','Female','$2a$10$qy/cgMjaQ3hbep2euAd6dubJ51sYfTxZrUv7PVDGxBYGxokCPu9w6',3),('9@9.com','four five','0000000002','1950-02-06','Female','$2a$10$nvOW3uasHN.RI.OvjmnwjuXhJHa.xOREFtz7nLvLvk7IW5yjQep5C',3),('alex@gmail.com','Alex Williams','2244223322','1998-11-12','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('ariana@gmail.com','Ariana Grande','4848484848','1996-10-15','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('arpan@gmail.com','Arpan Patel','2892407243','1994-05-14','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('britney@gmail.com','Britney Spears','2288882266','1979-07-23','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('cook@gmail.com','Samantha Cook','2288440099','1993-06-15','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('david@gmail.com','David Johnson','2344322344','1985-04-10','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('emma@gmail.com','Emma James','7744993322','2003-01-15','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('girish@gmail.com','Girish Mahajan','2288993300','1977-03-16','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('iggy@gmail.com','Iggy Azalea','5676389188','2001-05-24','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('john@gmail.com','John Doe','7564856386','2007-01-10','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('kaldon@hotmail.com','Kaldon Disaint','7563777449','2005-03-31','Male','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('katy@gmail.com','Katy Perry','2288663300','1985-10-24','Female','$2a$10$UxgbriENtd2gJrG9WSsk5u1H0iOYd2ND.2h69UIBPmq/cLU7FbVui',6),('kelly@neu.com','Kelly Termont','5768679321','2007-01-31','Female','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('louis@gmail.com','Louis Litt','2288339900','1985-03-14','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('mark@gmail.com','Mark Johnson','2288447722','1998-06-19','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('michelle@gmail.com','Michelle Ross','7744668833','1993-05-31','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('paritosh@gmail.com','Paritosh Chaudhuri','3388009988','1963-07-08','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('parth@gmail.com','Parth Parikh','8833889944','2000-05-25','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('rand@rand.com','rand','5555566666','2022-12-09','Female','$2a$10$Zr.Wq5MQb0sBU3oOtC9S7e4u.KHog7WGG0LUs5vfl8HsvIQvsAXLa',3),('rikc.2000@gmail.com','Supratik Chaudhuri','3883388338','2000-05-11','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('robert@gmail.com','Robert Zane','3454234543','1967-07-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('ross@gmail.com','Ross Geller','3746383682','1969-06-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('selena@gmail.com','Selena Gomez','8778877833','1993-01-07','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('shashwat@gmail.com','Shashwat Kumar','3399220099','2000-08-05','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('simon@gmail.com','Simon Cowell','2020202020','1968-06-03','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('tanmay.skater@gmail.com','Tanmay Kapoor','6179358069','2000-12-11','Male','$2a$10$nPzRAilg7Cl5oHfzSTvJwO2QwP.y04F3hPOuIEjsfOb7hcM6ziUja',6),('tim@gmail.com','Tim','8765783725','2007-02-14','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('tom@gmail.com','Tom Doe','7564982645','2002-06-11','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('ziya@google.com','Ziya Quereshi','9580567387','2000-08-08','Female','$2a$10$wQ9mFBDLVhohO7emFunjTeBVp/uWO4OlAERRs8wBNzAInTy6etXm.',5);
+INSERT INTO `users` VALUES ('4@5.com','four five','0000000001','1950-02-06','Female','$2a$10$qy/cgMjaQ3hbep2euAd6dubJ51sYfTxZrUv7PVDGxBYGxokCPu9w6',3),('9@9.com','four five','0000000002','1950-02-06','Female','$2a$10$nvOW3uasHN.RI.OvjmnwjuXhJHa.xOREFtz7nLvLvk7IW5yjQep5C',3),('alex@gmail.com','Alex Williams','2244223322','1998-11-12','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('ariana@gmail.com','Ariana Grande','4848484848','1996-10-15','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('arpan@gmail.com','Arpan Patel','2892407243','1994-05-14','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('britney@gmail.com','Britney Spears','2288882266','1979-07-23','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('cook@gmail.com','Samantha Cook','2288440099','1993-06-15','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('david@gmail.com','David Johnson','2344322344','1985-04-10','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('emma@gmail.com','Emma James','7744993322','2003-01-15','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('girish@gmail.com','Girish Mahajan','2288993300','1977-03-16','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('iggy@gmail.com','Iggy Azalea','5676389188','2001-05-24','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('john@gmail.com','John Doe','7564856386','2007-01-10','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('kaldon@hotmail.com','Kaldon Disaint','7563777449','2005-03-31','Male','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('katy@gmail.com','Katy Perry','2288663300','1985-10-24','Female','$2a$10$UxgbriENtd2gJrG9WSsk5u1H0iOYd2ND.2h69UIBPmq/cLU7FbVui',6),('kelly@neu.com','Kelly Termont','5768679321','2007-01-31','Female','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('louis@gmail.com','Louis Litt','2288339900','1985-03-14','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('mark@gmail.com','Mark Johnson','2288447722','1998-06-19','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('michelle@gmail.com','Michelle Ross','7744668833','1993-05-31','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('paritosh@gmail.com','Paritosh Chaudhuri','3388009988','1963-07-08','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('parth@gmail.com','Parth Parikh','8833889944','2000-05-25','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('rand@rand.com','rand','5555566666','2022-12-09','Female','$2a$10$Zr.Wq5MQb0sBU3oOtC9S7e4u.KHog7WGG0LUs5vfl8HsvIQvsAXLa',3),('rikc.2000@gmail.com','Supratik Chaudhuri','3883388338','2000-05-11','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('robert@gmail.com','Robert Zane','3454234543','1967-07-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('ross@gmail.com','Ross Geller','3746383682','1969-06-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('selena@gmail.com','Selena Gomez','8778877833','1993-01-07','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('shashwat@gmail.com','Shashwat Kumar','3399220099','2000-08-05','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('simon@gmail.com','Simon Cowell','2020202020','1968-06-03','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('tanmay.skater@gmail.com','Tanmay Kapoor','6179358069','2000-12-11','Male','$2a$10$eVl29DKDquxYvEUTIocdKuh8eOaw0TVh36ImLYiG1MiY5igAM92mi',6),('tim@gmail.com','Tim','8765783725','2007-02-14','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('tom@gmail.com','Tom Doe','7564982645','2002-06-11','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('ziya@google.com','Ziya Quereshi','9580567387','2000-08-08','Female','$2a$10$wQ9mFBDLVhohO7emFunjTeBVp/uWO4OlAERRs8wBNzAInTy6etXm.',5);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -701,6 +703,39 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addEquipmentForGym` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addEquipmentForGym`(IN v_gym_id INT,
+									INOUT v_equipment_id INT,
+                                    IN v_name VARCHAR(20),
+                                    IN v_image_url VARCHAR(512),
+                                    IN v_quantity INT,
+                                    IN v_last_serviced DATE)
+BEGIN
+	IF v_equipment_id IS NULL THEN 
+		CALL addEquipment(v_name, v_image_url, v_equipment_id);
+    END IF;
+    
+    INSERT INTO gym_equipments VALUES (v_gym_id, v_equipment_id, v_quantity, v_last_serviced);
+    
+	SELECT e.*, g.gym_id, g.quantity, g.last_serviced FROM 
+    equipments e JOIN gym_equipments g
+    ON e.equipment_id = g.equipment_id
+    WHERE e.equipment_id = v_equipment_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `addGym` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -759,10 +794,11 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addResetToken`(IN v_token VARCHAR(36), 
-							   IN v_email VARCHAR(30), 
+							   IN v_username VARCHAR(30), 
+                               IN v_type ENUM("member", "staff", "trainer", "admin"),
                                IN v_exp_date DATETIME)
 BEGIN
-	INSERT INTO tokens VALUES (v_token, v_email, v_exp_date);
+	INSERT INTO tokens VALUES (v_token, v_username, v_type, v_exp_date);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -783,16 +819,48 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addStaff`(IN v_staff_id VARCHAR(30)
 						  IN v_name VARCHAR(50), 
                           IN v_phone VARCHAR(10), 
                           IN v_dob DATE,
-                          IN sex ENUM("Male", "Female", "Other"),
-                          IN type ENUM("staff", "trainer", "admin"),
+                          IN v_sex ENUM("Male", "Female", "Other"),
+                          IN v_type ENUM("staff", "trainer", "admin"),
                           IN v_part_time BOOLEAN, 
                           IN v_salary DECIMAL(65, 2), 
                           IN v_description VARCHAR(512), 
                           IN v_password VARCHAR(100), 
                           IN v_gym_id INT)
 BEGIN
-	INSERT INTO staff (staff_id, name, phone, part_time, salary, description, password, gym_id) 
-    VALUES (v_staff_id, v_name, v_phone, v_part_time, v_salary, v_description, v_password, v_gym_id);
+	INSERT INTO staff (staff_id, name, phone, sex, type, part_time, salary, description, password, gym_id) 
+    VALUES (v_staff_id, v_name, v_phone, v_sex, v_type, v_part_time, v_salary, v_description, v_password, v_gym_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addTrainer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTrainer`(IN v_staff_id VARCHAR(30),
+						  IN v_name VARCHAR(50), 
+                          IN v_phone VARCHAR(10), 
+                          IN v_dob DATE,
+                          IN v_sex ENUM("Male", "Female", "Other"),
+                          IN v_part_time BOOLEAN, 
+                          IN v_salary DECIMAL(65, 2), 
+                          IN v_description VARCHAR(512), 
+                          IN v_password VARCHAR(100), 
+                          IN v_gym_id INT, -- staff fields till here
+                          IN v_image_url VARCHAR(200),
+                          IN v_years_of_exp INT,
+                          IN v_speciality VARCHAR(30))
+BEGIN
+	CALL addStaff(v_staff_id, v_name, v_phone, v_dob, v_sex, "trainer", v_part_time, v_salary, v_description, "not needed", v_gym_id);
+    INSERT INTO trainers VALUES (v_staff_id, v_image_url, v_years_of_exp, v_speciality);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -865,6 +933,46 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `deleteEquipment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEquipment`(IN v_equipment_id INT)
+BEGIN
+	DELETE FROM equipments WHERE equipment = v_equipment_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `deleteEquipmentForGym` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEquipmentForGym`(IN v_gym_id INT,
+									   IN v_equipment_id INT)
+BEGIN
+	DELETE FROM gym_equipments 
+    WHERE gym_id = v_gym_id AND equipment_id = v_equipment_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `deleteGym` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -913,9 +1021,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOldResetTokens`(IN v_email VARCHAR(30))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOldResetTokens`(IN v_username VARCHAR(30))
 BEGIN
-	DELETE FROM tokens WHERE email = v_email;
+	DELETE FROM tokens WHERE username = v_username;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1020,6 +1128,25 @@ BEGIN
     on d.breakfast = m1.meal) 
 	LEFT JOIN meal_choices m2 ON d.lunch = m2.meal) 
 	LEFT JOIN meal_choices m3 ON d.dinner = m3.meal;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllEquipments` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllEquipments`()
+BEGIN
+	SELECT * FROM equipments;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1358,6 +1485,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getEquipment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getEquipment`(IN v_equipment_id INT)
+BEGIN
+	SELECT * FROM equipments WHERE equipment = v_equipment_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getGym` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1480,10 +1626,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getTokenExpiry`(IN v_token VARCHAR(36), IN v_email VARCHAR(30))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getTokenExpiry`(IN v_token VARCHAR(36), IN v_username VARCHAR(30))
 BEGIN
 	SELECT expiry from tokens 
-    WHERE token = v_token AND email = v_email;
+    WHERE token = v_token AND username = v_username;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1566,10 +1712,20 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `resetPassword`(IN v_email VARCHAR(30), IN v_password VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `resetPassword`(IN v_username VARCHAR(30), IN v_password VARCHAR(100))
 BEGIN
-	UPDATE users SET password = v_password 
-    WHERE email = v_email;
+	DECLARE v_type ENUM("member", "staff", "trainer", "admin");
+	
+    SELECT type into v_type from tokens
+    WHERE username = v_username;
+    
+    IF v_type = "member" THEN
+		UPDATE users SET password = v_password 
+		WHERE email = v_username;
+    ELSEIF v_type = "admin" THEN
+		UPDATE staff SET password = v_password 
+		WHERE staff_id = v_username;
+    END IF;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1596,6 +1752,29 @@ BEGIN
 	UPDATE diet_plans SET
 	name = v_name, description = v_description, breakfast = v_breakfast, lunch = v_lunch, dinner = v_dinner
 	WHERE plan_id = v_plan_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updateEquipment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEquipment`(IN v_equipment_id INT, 
+								 IN v_name VARCHAR(20), 
+                                 IN v_image_url VARCHAR(512))
+BEGIN
+	UPDATE equipments
+    SET name = v_name, image_url = v_image_url
+    WHERE equipment_id = v_equipment_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1691,6 +1870,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStaff`(IN v_name VARCHAR(50), 
 						     IN v_phone VARCHAR(10), 
+                             IN v_dob DATE,
+                             IN v_sex ENUM("Male", "Female", "Other"),
+                             IN v_type ENUM("staff", "trainer", "admin"),
 						     IN v_part_time BOOLEAN, 
 						     IN v_salary DECIMAL(65, 2), 
 						     IN v_description VARCHAR(512), 
@@ -1699,11 +1881,46 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStaff`(IN v_name VARCHAR(50),
 BEGIN
 	UPDATE staff SET 
 		name = v_name, phone = v_phone, 
+        dob = v_dob, sex = v_sex, type = v_type,
         part_time = v_part_time, 
         salary = v_salary, 
         description = v_description, 
         password = v_password 
 	WHERE staff_id = v_staff_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updateTrainer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTrainer`(IN v_staff_id VARCHAR(30),
+							   IN v_name VARCHAR(50), 
+                               IN v_phone VARCHAR(10), 
+                               IN v_dob DATE,
+                               IN v_sex ENUM("Male", "Female", "Other"),
+                               IN v_part_time BOOLEAN, 
+                               IN v_salary DECIMAL(65, 2), 
+                               IN v_description VARCHAR(512), 
+                               IN v_password VARCHAR(100),  -- staff fields till here
+                               IN v_image_url VARCHAR(200),
+                               IN v_years_of_exp INT,
+                               IN v_speciality VARCHAR(30))
+BEGIN
+	CALL updateStaff(v_name, v_phone, v_dob, v_sex, "trainer", v_part_time, v_salary, v_description, "not needed", v_staff_id);
+    
+    UPDATE trainers
+    SET image_url = v_image_url, years_of_exp = v_years_of_exp, speciality = v_speciality
+    WHERE staff_id = v_staff_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1770,4 +1987,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-15 16:43:37
+-- Dump completed on 2023-11-22 17:33:39
