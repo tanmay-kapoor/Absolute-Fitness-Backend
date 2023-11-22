@@ -4,6 +4,7 @@ const stripe = require("stripe")(STRIPE_API_KEY);
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await stripe.products.list({});
+        console.log(products.data);
         res.status(200).json(products.data);
     } catch (err) {
         res.status(500).json({ msg: err.message });
