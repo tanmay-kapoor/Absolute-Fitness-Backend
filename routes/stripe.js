@@ -21,10 +21,15 @@ router.get(
     stripeController.getGymMembershipPricing
 );
 
+// router.post(
+//     "/create-subscription",
+//     verifyMemberWithoutEmail,
+//     stripeController.createSubscription
+// );
+
 router.post(
-    "/create-subscription",
-    verifyMemberWithoutEmail,
-    stripeController.createSubscription
+    "/create-checkout-session/:priceId",
+    stripeController.createCheckoutSession
 );
 
 module.exports = router;
