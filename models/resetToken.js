@@ -1,5 +1,4 @@
 const db = require("../util/database");
-const { v4: uuidv4 } = require("uuid");
 const moment = require("moment-timezone");
 const helpers = require("../util/helpers");
 
