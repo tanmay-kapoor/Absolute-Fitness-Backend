@@ -8,11 +8,6 @@ router.post("/login", authenticationController.authenticate);
 
 router.post("/resetPassword", authenticationController.generateResetToken);
 
-router.get("/isValidResetToken", authenticationController.isValidResetToken);
-
-router.post(
-    "/resetPassword/:username/:token",
-    authenticationController.resetPassword
-);
+router.post("/resetPassword/:token", authenticationController.resetPassword);
 
 module.exports = router;

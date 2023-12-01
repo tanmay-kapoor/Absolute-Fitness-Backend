@@ -6,13 +6,21 @@ module.exports = class UnionStuff {
         return db.execute("CALL getEntryForLogin(?)", [username]);
     }
 
-    static resetPassword(details) {
-        const { username, token, password } = details;
-
-        if (!ResetToken.isValidResetToken({ username, token })) {
+    static async resetPassword(details) {
+        const { token, exp } = details;
+        const isValidResetToken = await ResetToken.isValidResetToken({
+            token,
+            exp,
+        });
+        if (!isValidResetToken) {
             throw new Error("Invalid token");
         }
 
-        return db.execute("CALL resetPassword(?, ?)", [username, password]);
+        const { username, password, type } = details;
+        return db.execute("CALL resetPassword(?, ?, ?)", [
+            username,
+            password,
+            type,
+        ]);
     }
 };

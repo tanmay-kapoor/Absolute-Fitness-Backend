@@ -21,3 +21,9 @@ exports.generateAccessToken = (payload) => {
         expiresIn: "7d",
     });
 };
+
+exports.generateResetToken = (payload) => {
+    return jwt.sign(payload, ACCESS_TOKEN_SECRET, {
+        expiresIn: "30m",
+    });
+};

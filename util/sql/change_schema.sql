@@ -2,20 +2,24 @@ use af3;
 
 DROP TABLE IF EXISTS tokens;
 CREATE TABLE tokens (
-token		VARCHAR(36)										PRIMARY KEY,
-username	VARCHAR(30)										NOT NULL,
-type		ENUM("member", "staff", "trainer", "admin")		NOT NULL,
-expiry 		DATETIME 										NOT NULL
+	token		VARCHAR(512)										PRIMARY KEY,
+	username	VARCHAR(30)										NOT NULL
 );
 
 DROP PROCEDURE IF EXISTS addResetToken;
 DELIMITER //
-CREATE PROCEDURE addResetToken(IN v_token VARCHAR(36), 
-							   IN v_username VARCHAR(30), 
-                               IN v_type ENUM("member", "staff", "trainer", "admin"),
-                               IN v_exp_date DATETIME)
+CREATE PROCEDURE addResetToken(IN v_token VARCHAR(512), 
+							   IN v_username VARCHAR(30))
 BEGIN
-	INSERT INTO tokens VALUES (v_token, v_username, v_type, v_exp_date);
+	INSERT INTO tokens VALUES (v_token, v_username);
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getResetToken;
+DELIMITER //
+CREATE PROCEDURE getResetToken(IN v_token VARCHAR(512))
+BEGIN
+	SELECT * FROM tokens WHERE token = v_token;
 END //
 DELIMITER ;
 
@@ -29,13 +33,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS resetPassword;
 DELIMITER //
-CREATE PROCEDURE resetPassword(IN v_username VARCHAR(30), IN v_password VARCHAR(100))
+CREATE PROCEDURE resetPassword(IN v_username VARCHAR(30), 
+							   IN v_password VARCHAR(100), 
+							   IN v_type ENUM("member", "staff", "trainer", "admin"))
 BEGIN
-	DECLARE v_type ENUM("member", "staff", "trainer", "admin");
-	
-    SELECT type into v_type from tokens
-    WHERE username = v_username;
-    
     IF v_type = "member" THEN
 		UPDATE users SET password = v_password 
 		WHERE email = v_username;
@@ -43,15 +44,6 @@ BEGIN
 		UPDATE staff SET password = v_password 
 		WHERE staff_id = v_username;
     END IF;
-END //
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS getTokenExpiry;
-DELIMITER //
-CREATE PROCEDURE getTokenExpiry(IN v_token VARCHAR(36), IN v_username VARCHAR(30))
-BEGIN
-	SELECT expiry from tokens 
-    WHERE token = v_token AND username = v_username;
 END //
 DELIMITER ;
 
@@ -401,3 +393,12 @@ BEGIN
 END //
 DELIMITER ;
 
+use af3;
+select * from tokens;
+
+create table tokens2 (
+	token varchar(512) primary key,
+    username varchar(30),
+    type enum ("member, staff, trainer, admin")
+);
+select * from tokens2;

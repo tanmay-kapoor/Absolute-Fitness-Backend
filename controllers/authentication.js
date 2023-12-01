@@ -5,7 +5,11 @@ const helpers = require("../util/helpers");
 const ResetToken = require("../models/resetToken");
 const salt = bcrypt.genSaltSync(10);
 const User = require("../models/user");
-const { SENDER_EMAIL, CLIENT_URL } = require("../util/constants");
+const {
+    SENDER_EMAIL,
+    CLIENT_URL,
+    ACCESS_TOKEN_SECRET,
+} = require("../util/constants");
 
 exports.authenticate = async (req, res) => {
     try {
@@ -62,7 +66,7 @@ exports.generateResetToken = async (req, res) => {
                 html: `Dear ${user.name},
                        <br /><br />
                        To reset your password, click
-                       <a href="${CLIENT_URL}/user/${email}/resetPassword/${token}">here</a>
+                       <a href="${CLIENT_URL}/resetPassword/${token}">here</a>
                        <br /><br />
                        This is a one-time usable link and will expire in 30 minutes.
                        <br /><br />
@@ -83,32 +87,34 @@ exports.generateResetToken = async (req, res) => {
     }
 };
 
-exports.isValidResetToken = async (req, res) => {
-    try {
-        const details = { token: req.body.token, username: req.body.username };
-
-        const isValidResetToken = await ResetToken.isValidResetToken(details);
-        if (!isValidResetToken) {
-            res.status(404).json({ msg: "Invalid token" });
-        } else {
-            res.status(200).json({ msg: "Valid token" });
-        }
-    } catch (err) {
-        res.status(500).json({ msg: err.message });
-    }
+const getUserFromToken = async (token) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, user) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(user);
+        });
+    });
 };
 
 exports.resetPassword = async (req, res) => {
     try {
-        const { username, token } = req.params;
-        const password = req.body.password;
+        const { token } = req.params;
+
+        const user = await getUserFromToken(token).catch((err) => {
+            res.status(403).json({ msg: err.message });
+        });
+
         const details = {
-            username,
+            ...user,
+            password: bcrypt.hashSync(req.body.password, salt),
             token,
-            password: bcrypt.hashSync(password, salt),
         };
+        delete details["iat"];
+
         await UnionStuff.resetPassword(details);
-        await ResetToken.deleteOldResetTokens(username);
+        await ResetToken.deleteOldResetTokens(details.username);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
