@@ -57,7 +57,6 @@ exports.generateResetToken = async (req, res) => {
             });
 
             const [[[user]]] = await User.getUser(email);
-
             // send email to user/admin with link to reset password
             const mailOptions = {
                 from: SENDER_EMAIL,
