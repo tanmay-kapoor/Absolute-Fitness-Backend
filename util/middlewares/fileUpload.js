@@ -6,7 +6,9 @@ const upload = multer({
     fileFilter: (req, file, callback) => {
         const ext = path.extname(file.originalname);
         if (!ext.match(/.(jpg|png|jpeg|gif|bmp|svg)$/gi)) {
-            const err = new Error("Only images are allowed");
+            const err = new Error(
+                "Invalid file type, Accepted: jpg, png, jpeg, gif, bmp, svg"
+            );
             err.code = 422;
             return callback(err);
         }

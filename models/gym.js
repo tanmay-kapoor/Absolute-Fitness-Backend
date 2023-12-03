@@ -9,15 +9,21 @@ module.exports = class Gym {
         return db.execute("CALL getGym(?)", [gymId]);
     }
 
-    static addGym(details) {
-        const { imageUrl, phone, location, membershipFee } = details;
+    static async addGym(details) {
+        const { branch, pincode, phone, location, membershipFee } = details;
 
-        return db.execute("CALL addGym (?, ?, ?, ?)", [
-            imageUrl,
+        await db.execute("CALL addGym (?, ?, ?, ?, ?, @gym_id)", [
+            branch,
+            pincode,
             phone,
             location,
             membershipFee,
         ]);
+        return db.execute("SELECT @gym_id AS gym_id");
+    }
+
+    static addImageUrlForGym(imageUrl, gymId) {
+        return db.execute("CALL addImageUrlForGym(?, ?)", [imageUrl, gymId]);
     }
 
     static updateGym(details) {

@@ -49,3 +49,5 @@ app.use("/equipment", equipmentRoutes);
 app.use("/stripe", stripeRoutes);
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+
+//TODO: remove gym_admins table

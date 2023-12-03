@@ -35,12 +35,12 @@ DROP PROCEDURE IF EXISTS resetPassword;
 DELIMITER //
 CREATE PROCEDURE resetPassword(IN v_username VARCHAR(30), 
 							   IN v_password VARCHAR(100), 
-							   IN v_type ENUM("member", "staff", "trainer", "admin"))
+							   IN v_type ENUM("member", "staff", "trainer", "admin", "root"))
 BEGIN
     IF v_type = "member" THEN
 		UPDATE users SET password = v_password 
 		WHERE email = v_username;
-    ELSEIF v_type = "admin" THEN
+    ELSEIF v_type in ("admin", "root") THEN
 		UPDATE staff SET password = v_password 
 		WHERE staff_id = v_username;
     END IF;
@@ -174,7 +174,7 @@ CREATE PROCEDURE updateStaff(IN v_name VARCHAR(50),
 						     IN v_phone VARCHAR(10), 
                              IN v_dob DATE,
                              IN v_sex ENUM("Male", "Female", "Other"),
-                             IN v_type ENUM("staff", "trainer", "admin"),
+                             IN v_type ENUM("staff", "trainer", "admin", "root"),
 						     IN v_part_time BOOLEAN, 
 						     IN v_salary DECIMAL(65, 2), 
 						     IN v_description VARCHAR(512), 
@@ -258,9 +258,21 @@ DROP PROCEDURE IF EXISTS getAllGyms;
 DELIMITER //
 CREATE PROCEDURE getAllGyms()
 BEGIN
+	SELECT g.*, u.image_url FROM 
+    gyms g LEFT JOIN gym_image_urls u
+    ON g.gym_id = u.gym_id
+    WHERE g.gym_id != 0;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getGym;
+DELIMITER //
+CREATE PROCEDURE getGym(IN v_gym_id INT)
+BEGIN
 	SELECT * FROM 
-    gyms g JOIN gym_image_urls u
-    ON g.gym_id = u.gym_id;
+    gyms g LEFT JOIN gym_image_urls u
+    ON g.gym_id = u.gym_id
+    WHERE g.gym_id = v_gym_id;
 END //
 DELIMITER ;
 
@@ -369,7 +381,7 @@ DROP PROCEDURE IF EXISTS getEquipment;
 DELIMITER //
 CREATE PROCEDURE getEquipment(IN v_equipment_id INT)
 BEGIN
-	SELECT * FROM equipments WHERE equipment = v_equipment_id;
+	SELECT * FROM equipments WHERE equipment_id = v_equipment_id;
 END //
 DELIMITER ;
 
@@ -393,12 +405,48 @@ BEGIN
 END //
 DELIMITER ;
 
-use af3;
-select * from tokens;
+alter table staff
+modify column type enum ("staff", "trainer", "admin", "root");
 
-create table tokens2 (
-	token varchar(512) primary key,
-    username varchar(30),
-    type enum ("member, staff, trainer, admin")
-);
-select * from tokens2;
+insert into staff values ("root@absolutefitness.com", "Toto Wolff", 6176732882, "1972-01-12", "Male", "root", 0, 1500000, "Root user. Can add new gyms, staff and assign admins.", "$2a$10$MKaHMW71SBA5bOWoVqVGq.bGC7by3abRw44g7FCzTXCjhmKmNCuia", 0);
+
+alter table gyms
+add column branch varchar(50) not null default("jp") after gym_id;
+
+alter table gyms
+modify column branch varchar(50);
+
+alter table gyms
+add column pincode varchar(5) not null default "00000" after branch;
+
+DROP PROCEDURE IF EXISTS addGym;
+DELIMITER //
+CREATE PROCEDURE addGym(IN v_branch VARCHAR(50), 
+						IN v_pincode VARCHAR(5),
+						IN v_phone VARCHAR(10), 
+                        IN v_location VARCHAR(50), 
+                        IN v_membership_fee DECIMAL(65, 2),
+                        OUT gym_id INT)
+BEGIN
+	INSERT INTO gyms (branch, pincode, phone, location, membership_fee) 
+    VALUES (v_branch, v_pincode, v_phone, v_location, v_membership_fee);
+    
+    SELECT LAST_INSERT_ID() INTO gym_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS addImageUrlForGym;
+DELIMITER //
+CREATE PROCEDURE addImageUrlForGym(IN v_image_url VARCHAR(200), 
+								   IN v_gym_id INT)
+BEGIN
+	INSERT INTO gym_image_urls VALUES (v_image_url, v_gym_id);
+END //
+DELIMITER ;
+
+select * from gyms;
+delete from gyms where gym_id = 35;
+
+use af3;
+call getGym(36);
+call getAllGyms();

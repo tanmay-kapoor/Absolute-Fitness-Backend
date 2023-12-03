@@ -9,9 +9,13 @@ module.exports = class Equipment {
         return db.execute("CALL getEquipment(?)", [equipmentId]);
     }
 
-    static addEquipment(details) {
+    static async addEquipment(details) {
         const { name, imageUrl } = details;
-        return db.execute("CALL addEquipment(?, ?, ?)", [name, imageUrl, null]);
+        await db.execute("CALL addEquipment(?, ?, @equipment_id)", [
+            name,
+            imageUrl,
+        ]);
+        return db.execute("SELECT @equipment_id AS equipment_id");
     }
 
     static updateEquipment(details) {

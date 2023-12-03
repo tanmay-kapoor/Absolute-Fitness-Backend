@@ -4,23 +4,13 @@ const Equipment = require("../models/equipment");
 const Facility = require("../models/facility");
 const User = require("../models/user");
 const Admin = require("../models/admin");
+const stockImage =
+    "https://absolute-fitness-tk.s3.amazonaws.com/stock_image.jpeg";
 
 exports.getAllGyms = async (req, res) => {
     try {
         const [[rows]] = await Gym.getAllGyms();
-
-        const gyms = {};
-
-        rows.forEach((row) => {
-            const { gym_id, ...data } = row;
-            delete data["image_url"];
-            if (!gyms[gym_id]) {
-                gyms[gym_id] = { gym_id, ...data, image_urls: [] };
-            }
-            gyms[gym_id].image_urls.push(row.image_url);
-        });
-
-        const allGyms = Object.values(gyms);
+        const allGyms = formImageUrlsArray(rows);
         res.status(200).json(allGyms);
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -30,12 +20,12 @@ exports.getAllGyms = async (req, res) => {
 exports.getGym = async (req, res) => {
     try {
         const gymId = req.params["gymId"];
-        const [[gym]] = await Gym.getGym(gymId);
-
-        if (gym.length === 0) {
-            res.status(401).json({ msg: "Does not exist" });
+        const [[rows]] = await Gym.getGym(gymId);
+        if (rows.length === 0) {
+            res.status(404).json({ msg: "Does not exist" });
         } else {
-            res.json(gym[0]);
+            const gym = formImageUrlsArray(rows)[0];
+            res.json(gym);
         }
     } catch (err) {
         res.status(500).json({ msg: err.message });
@@ -45,13 +35,25 @@ exports.getGym = async (req, res) => {
 exports.addGym = async (req, res) => {
     try {
         const details = {
-            imageUrl: req.body.imageUrl,
+            branch: req.body.branch || null,
+            pincode: req.body.pincode,
             phone: req.body.phone,
             location: req.body.location,
             membershipFee: req.body.membershipFee,
         };
-        await Gym.addGym(details);
-        res.status(200).json({ msg: "Success" });
+        const [[result]] = await Gym.addGym(details);
+        const [[[newGym]]] = await Gym.getGym(result.gym_id);
+        delete newGym["image_url"];
+        await Promise.all(
+            req.body.image_urls.map((imageUrl) =>
+                Gym.addImageUrlForGym(imageUrl, newGym.gym_id)
+            )
+        );
+        newGym.image_urls =
+            !req.body.image_urls || req.body.image_urls.length === 0
+                ? [stockImage]
+                : req.body.image_urls;
+        res.status(200).json(newGym);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
@@ -192,6 +194,7 @@ exports.updateEquipmentForGym = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
+
 exports.deleteEquipmentForGym = async (req, res) => {
     try {
         const details = {
@@ -203,4 +206,23 @@ exports.deleteEquipmentForGym = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
+};
+
+const formImageUrlsArray = (rows) => {
+    const gyms = {};
+
+    rows.forEach((row) => {
+        const { gym_id, ...data } = row;
+        delete data["image_url"];
+        if (!gyms[gym_id]) {
+            gyms[gym_id] = { gym_id, ...data, image_urls: [stockImage] };
+        }
+        if (row.image_url !== null) {
+            if (gyms[gym_id].image_urls === stockImage)
+                gyms[gym_id].image_urls = [];
+            gyms[gym_id].image_urls.push(row.image_url);
+        }
+    });
+
+    return Object.values(gyms);
 };

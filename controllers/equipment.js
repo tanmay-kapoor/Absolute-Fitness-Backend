@@ -25,7 +25,7 @@ exports.addEquipment = async (req, res) => {
         const { name, image_url } = req.body;
         const [[result]] = await Equipment.addEquipment({
             name,
-            image_url,
+            imageUrl: image_url,
         });
         const [[[newEquipment]]] = await Equipment.getEquipment(
             result.equipment_id

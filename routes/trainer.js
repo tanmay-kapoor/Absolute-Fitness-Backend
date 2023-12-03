@@ -1,6 +1,6 @@
 const trainerController = require("../controllers/trainer");
 const upload = require("../util/middlewares/fileUpload");
-const uploadImageToS3 = require("../util/middlewares/uploadImageToS3");
+const uploadImagesToS3 = require("../util/middlewares/uploadImagesToS3");
 const {
     verifyLoggedIn,
     verifyAdminPriviledgeOfSameGym,
@@ -23,7 +23,7 @@ router.post(
     "/",
     verifyAdminPriviledgeOfSameGym,
     upload.single("image"),
-    uploadImageToS3,
+    uploadImagesToS3,
     trainerController.addTrainer
 );
 

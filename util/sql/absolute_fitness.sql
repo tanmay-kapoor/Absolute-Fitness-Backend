@@ -223,7 +223,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS getAllGyms;
 DELIMITER //
-CREATE PROCEDURE getAllGyms() -- change (in endpoint get urls also)
+CREATE PROCEDURE getAllGyms() -- change done (in endpoint get urls also)
 BEGIN
 	SELECT * FROM gyms;
 END //
@@ -254,7 +254,7 @@ DROP PROCEDURE IF EXISTS getGym;
 DELIMITER //
 CREATE PROCEDURE getGym(IN v_gym_id INT)
 BEGIN
-	SELECT * FROM gyms WHERE gym_id = v_gym_id; -- change (in endpoint add extra procedure call to get array of images)
+	SELECT * FROM gyms WHERE gym_id = v_gym_id; -- change done (in endpoint add extra procedure call to get array of images)
 END //
 DELIMITER ;
 
