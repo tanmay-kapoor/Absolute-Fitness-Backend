@@ -348,14 +348,14 @@ END //
 DELIMITER ;
 
 -- add equipment in equipment table
-DROP PROCEDURE IF EXISTS addEquipment;
+DROP FUNCTION IF EXISTS addEquipment;
 DELIMITER //
-CREATE PROCEDURE addEquipment(IN v_name VARCHAR(20),
-							  IN v_image_url VARCHAR(512),
-                              OUT equipment_id INT)
-BEGIN	
-    INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
-    SELECT LAST_INSERT_ID() INTO equipment_id;
+CREATE FUNCTION addEquipment(v_name VARCHAR(20), 
+								 v_image_url VARCHAR(512))
+RETURNS INT READS SQL DATA 
+BEGIN
+	INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
+    RETURN LAST_INSERT_ID();
 END //
 DELIMITER ;
 

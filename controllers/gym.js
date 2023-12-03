@@ -84,23 +84,23 @@ exports.deleteGym = async (req, res) => {
     }
 };
 
-exports.addEquipment = async (req, res) => {
-    try {
-        const details = {
-            name: req.body.name,
-            imageUrl: req.body.image_url,
-        };
-        const [[[result]]] = await Equipment.addEquipment(details);
-        const newEquipment = {
-            equipmentId: result.equipment_id,
-            name: details.name,
-            image_url: details.imageUrl,
-        };
-        res.status(200).json(newEquipment);
-    } catch (err) {
-        res.status(500).json({ msg: err.message });
-    }
-};
+// exports.addEquipment = async (req, res) => {
+//     try {
+//         const details = {
+//             name: req.body.name,
+//             imageUrl: req.body.image_url,
+//         };
+//         const [[[result]]] = await Equipment.addEquipment(details);
+//         const newEquipment = {
+//             equipmentId: result.equipment_id,
+//             name: details.name,
+//             image_url: details.imageUrl,
+//         };
+//         res.status(200).json(newEquipment);
+//     } catch (err) {
+//         res.status(500).json({ msg: err.message });
+//     }
+// };
 
 exports.addEquipmentForGym = async (req, res) => {
     try {
