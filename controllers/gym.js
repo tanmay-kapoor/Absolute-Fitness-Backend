@@ -218,7 +218,7 @@ const formImageUrlsArray = (rows) => {
             gyms[gym_id] = { gym_id, ...data, image_urls: [stockImage] };
         }
         if (row.image_url !== null) {
-            if (gyms[gym_id].image_urls === stockImage)
+            if (gyms[gym_id].image_urls[0] === stockImage)
                 gyms[gym_id].image_urls = [];
             gyms[gym_id].image_urls.push(row.image_url);
         }
