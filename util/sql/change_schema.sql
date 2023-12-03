@@ -269,7 +269,7 @@ DROP PROCEDURE IF EXISTS getGym;
 DELIMITER //
 CREATE PROCEDURE getGym(IN v_gym_id INT)
 BEGIN
-	SELECT * FROM 
+	SELECT g.*, u.image_url FROM 
     gyms g LEFT JOIN gym_image_urls u
     ON g.gym_id = u.gym_id
     WHERE g.gym_id = v_gym_id;
@@ -443,10 +443,3 @@ BEGIN
 	INSERT INTO gym_image_urls VALUES (v_image_url, v_gym_id);
 END //
 DELIMITER ;
-
-select * from gyms;
-delete from gyms where gym_id = 35;
-
-use af3;
-call getGym(36);
-call getAllGyms();
