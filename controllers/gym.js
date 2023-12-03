@@ -44,15 +44,14 @@ exports.addGym = async (req, res) => {
         const [[result]] = await Gym.addGym(details);
         const [[[newGym]]] = await Gym.getGym(result.gym_id);
         delete newGym["image_url"];
+        const imageUrls = req.body.image_urls || [];
         await Promise.all(
-            req.body.image_urls.map((imageUrl) =>
+            imageUrls.map((imageUrl) =>
                 Gym.addImageUrlForGym(imageUrl, newGym.gym_id)
             )
         );
         newGym.image_urls =
-            !req.body.image_urls || req.body.image_urls.length === 0
-                ? [stockImage]
-                : req.body.image_urls;
+            !imageUrls || imageUrls.length === 0 ? [stockImage] : imageUrls;
         res.status(200).json(newGym);
     } catch (err) {
         res.status(500).json({ msg: err.message });

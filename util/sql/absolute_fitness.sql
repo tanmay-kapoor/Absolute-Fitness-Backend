@@ -413,24 +413,8 @@ DROP PROCEDURE IF EXISTS getHealthPlanForUser;
 DELIMITER //
 CREATE PROCEDURE getHealthPlanForUser(IN v_email VARCHAR(30))
 BEGIN 
-	SELECT u.email, u.name, h.description as health_plan_description,
-			t.staff_id as trainer_id, t.image_url as trainer_url,
-			s.name as trainer_name, s.phone as trainer_phone, 
-			w.plan_id as workout_plan_id, w.name as workout_plan_name, 
-			w.description as workout_description, w.excercise_1, w.excercise_2, w.excercise_3, 
-			d.plan_id as diet_plan_id, d.name as diet_name, d.description as diet_description, 
-			d.breakfast, d.lunch, d.dinner FROM 
-	((((users u LEFT JOIN health_plans h 
-	ON h.email = u.email) 
-	LEFT JOIN trainers t 
-	ON h.trainer_id = t.staff_id) 
-	LEFT JOIN staff s 
-	ON t.staff_id = s.staff_id)
-	LEFT JOIN workout_plans w  
-	ON h.workout_plan = w.plan_id) 
-	LEFT JOIN diet_plans d 
-	ON h.diet_plan = d.plan_id 
-	HAVING email = v_email;
+	SELECT * FROM user_health_plan_details
+    WHERE email = v_email;
 END //
 DELIMITER ;
 
@@ -489,16 +473,8 @@ DROP PROCEDURE IF EXISTS getDietPlanForUser;
 DELIMITER //
 CREATE PROCEDURE getDietPlanForUser (IN v_email VARCHAR(30))
 BEGIN 
-	SELECT h.email, d.*, 
-			m1.calories as m1_calories, m1.image_url as m1_url, 
-			m2.calories as m2_calories, m2.image_url as m2_url, 
-			m3.calories as m3_calories, m3.image_url as m3_url FROM 
-	health_plans h LEFT JOIN diet_plans d 
-	ON h.diet_plan = d.plan_id
-	LEFT JOIN meal_choices m1 ON d.breakfast = m1.meal 
-	LEFT JOIN meal_choices m2 ON d.lunch = m2.meal 
-	LEFT JOIN meal_choices m3 ON d.dinner = m3.meal 
-	HAVING h.email = v_email;
+	SELECT * FROM diet_plan_details
+    WHERE email = v_email;
 END // 
 DELIMITER ;
 

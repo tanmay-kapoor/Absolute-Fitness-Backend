@@ -442,19 +442,19 @@ modify column branch varchar(50);
 alter table gyms
 add column pincode varchar(5) not null default "00000" after branch;
 
-DROP PROCEDURE IF EXISTS addGym;
+DROP FUNCTION IF EXISTS addGym;
 DELIMITER //
-CREATE PROCEDURE addGym(IN v_branch VARCHAR(50), 
-						IN v_pincode VARCHAR(5),
-						IN v_phone VARCHAR(10), 
-                        IN v_location VARCHAR(50), 
-                        IN v_membership_fee DECIMAL(65, 2),
-                        OUT gym_id INT)
+CREATE FUNCTION addGym(v_branch VARCHAR(50), 
+						   v_pincode VARCHAR(5),
+                           v_phone VARCHAR(10), 
+                           v_location VARCHAR(50), 
+                           v_membership_fee DECIMAL(65, 2))
+RETURNS INT READS SQL DATA 
 BEGIN
 	INSERT INTO gyms (branch, pincode, phone, location, membership_fee) 
     VALUES (v_branch, v_pincode, v_phone, v_location, v_membership_fee);
     
-    SELECT LAST_INSERT_ID() INTO gym_id;
+    RETURN LAST_INSERT_ID();
 END //
 DELIMITER ;
 
@@ -466,3 +466,36 @@ BEGIN
 	INSERT INTO gym_image_urls VALUES (v_image_url, v_gym_id);
 END //
 DELIMITER ;
+
+DROP VIEW IF EXISTS user_health_plan_details;
+CREATE VIEW user_health_plan_details AS
+SELECT u.email, u.name, h.description as health_plan_description,
+		t.staff_id as trainer_id, t.image_url as trainer_url,
+		s.name as trainer_name, s.phone as trainer_phone, 
+		w.plan_id as workout_plan_id, w.name as workout_plan_name, 
+		w.description as workout_description, w.excercise_1, w.excercise_2, w.excercise_3, 
+		d.plan_id as diet_plan_id, d.name as diet_name, d.description as diet_description, 
+		d.breakfast, d.lunch, d.dinner FROM 
+((((users u LEFT JOIN health_plans h 
+ON h.email = u.email) 
+LEFT JOIN trainers t 
+ON h.trainer_id = t.staff_id) 
+LEFT JOIN staff s 
+ON t.staff_id = s.staff_id)
+LEFT JOIN workout_plans w  
+ON h.workout_plan = w.plan_id) 
+LEFT JOIN diet_plans d 
+ON h.diet_plan = d.plan_id;
+
+DROP VIEW IF EXISTS diet_plan_details;
+CREATE VIEW diet_plan_details AS
+SELECT h.email, d.*, 
+		m1.calories as m1_calories, m1.image_url as m1_url, 
+		m2.calories as m2_calories, m2.image_url as m2_url, 
+		m3.calories as m3_calories, m3.image_url as m3_url FROM 
+health_plans h LEFT JOIN diet_plans d 
+ON h.diet_plan = d.plan_id
+LEFT JOIN meal_choices m1 ON d.breakfast = m1.meal 
+LEFT JOIN meal_choices m2 ON d.lunch = m2.meal 
+LEFT JOIN meal_choices m3 ON d.dinner = m3.meal;
+
