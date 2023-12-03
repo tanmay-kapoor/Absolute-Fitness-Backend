@@ -2,8 +2,8 @@ use af3;
 
 DROP TABLE IF EXISTS tokens;
 CREATE TABLE tokens (
-	token		VARCHAR(512)										PRIMARY KEY,
-	username	VARCHAR(30)										NOT NULL
+	token		VARCHAR(512)	PRIMARY KEY,
+	username	VARCHAR(30)		NOT NULL
 );
 
 DROP PROCEDURE IF EXISTS addResetToken;
@@ -116,14 +116,37 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS getAllAdmins;
+DELIMITER //
+CREATE PROCEDURE getAllAdmins()
+BEGIN
+	SELECT * FROM staff WHERE type = "admin";
+END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS getAdmin;
 DELIMITER //
 CREATE PROCEDURE getAdmin (IN v_staff_id VARCHAR(30))
 BEGIN 
-	SELECT * FROM 
-    staff s JOIN gym_admins a
-	ON s.staff_id = a.staff_id
-    HAVING a.staff_id = v_staff_id;
+	SELECT * FROM staff 
+    WHERE staff_id = v_staff_id AND type = "admin";
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getAllAdminsForGym;
+DELIMITER //
+CREATE PROCEDURE getAllAdminsForGym (IN v_gym_id INT)
+BEGIN 
+	SELECT * FROM staff 
+    WHERE type = "admin" AND gym_id = v_gym_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS addAdminForGym;
+DELIMITER //
+CREATE PROCEDURE addAdminForGym(IN v_staff_id VARCHAR(30), IN v_gym_id INT)
+BEGIN
+	INSERT INTO gym_admins VALUES (v_staff_id, v_gym_id);
 END //
 DELIMITER ;
 

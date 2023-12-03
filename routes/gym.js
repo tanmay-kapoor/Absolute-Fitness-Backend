@@ -4,6 +4,8 @@ const gymController = require("../controllers/gym");
 const upload = require("../util/middlewares/fileUpload");
 const uploadImagesToS3 = require("../util/middlewares/uploadImagesToS3.js");
 const {
+    verifyRootPriviledge,
+    verifyRootOrAdminPriviledgeOfSameGym,
     verifyAdminPriviledge,
     verifyToken,
     verifyLoggedIn,
@@ -28,7 +30,7 @@ router.get("/:gymId/staff", verifyAdminPriviledge, gymController.getAllStaff);
 
 router.post(
     "/",
-    verifyAdminPriviledge,
+    verifyRootPriviledge,
     upload.array("images"),
     uploadImagesToS3,
     gymController.addGym
@@ -54,8 +56,12 @@ router.delete(
     gymController.deleteEquipmentForGym
 );
 
-router.put("/:gymId", verifyAdminPriviledge, gymController.updateGym);
+router.put(
+    "/:gymId",
+    verifyRootOrAdminPriviledgeOfSameGym,
+    gymController.updateGym
+);
 
-router.delete("/:gymId", verifyAdminPriviledge, gymController.deleteGym);
+router.delete("/:gymId", verifyRootPriviledge, gymController.deleteGym);
 
 module.exports = router;

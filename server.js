@@ -14,6 +14,7 @@ const workoutPlanRoutes = require("./routes/workoutPlan");
 const healthPlanRoutes = require("./routes/healthPlan");
 const trainerRoutes = require("./routes/trainer");
 const equipmentRoutes = require("./routes/equipment");
+const adminRoutes = require("./routes/admin");
 
 //3rd Party API
 const stripeRoutes = require("./routes/stripe");
@@ -45,6 +46,7 @@ app.use("/workoutPlan", workoutPlanRoutes);
 app.use("/healthPlan", healthPlanRoutes);
 app.use("/trainer", trainerRoutes);
 app.use("/equipment", equipmentRoutes);
+app.use("/admin", adminRoutes);
 
 app.use("/stripe", stripeRoutes);
 

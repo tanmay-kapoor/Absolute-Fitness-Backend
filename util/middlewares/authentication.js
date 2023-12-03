@@ -1,6 +1,50 @@
 const jwt = require("jsonwebtoken");
 const { ACCESS_TOKEN_SECRET } = require("../constants");
 
+exports.verifyRootPriviledge = async (req, res, next) => {
+    const authHeader =
+        req.headers["Authorization"] || req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (token == null)
+        return res.status(401).json({ msg: "No authorization provided." });
+
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ msg: err.message });
+        if (user.type !== "root")
+            return res.status(403).json({
+                msg: "Incorrect authorization. Need root priviledge.",
+            });
+        req.user = user;
+        next();
+    });
+};
+
+exports.verifyRootOrAdminPriviledgeOfSameGym = async (req, res, next) => {
+    const authHeader =
+        req.headers["Authorization"] || req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+    if (token == null)
+        return res.status(401).json({ msg: "No authorization provided." });
+
+    jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, user) => {
+        if (err) return res.status(403).json({ msg: err.message });
+        if (
+            user.type === "root" ||
+            (user.type === "admin" &&
+                (user.gymId === req.params.gymId ||
+                    user.gymId === req.body.gymId))
+        ) {
+            req.user = user;
+            return next();
+        } else {
+            return res.status(403).json({
+                msg: "Incorrect authorization. Need root priviledge or admin priviledge of same gym.",
+            });
+        }
+    });
+};
+
 exports.verifyAdminPriviledge = async (req, res, next) => {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];

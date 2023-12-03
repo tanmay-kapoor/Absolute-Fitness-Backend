@@ -56,29 +56,10 @@ exports.generateResetToken = async (req, res) => {
                 type: entry[0].type,
             });
 
-            const [[[user]]] = await User.getUser(email);
             // send email to user/admin with link to reset password
-            const mailOptions = {
-                from: SENDER_EMAIL,
-                to: email,
-                subject: "Reset password for your Absolute Fitness account",
-                html: `Dear ${user.name},
-                       <br /><br />
-                       To reset your password, click
-                       <a href="${CLIENT_URL}/resetPassword/${token}">here</a>
-                       <br /><br />
-                       This is a one-time usable link and will expire in 30 minutes.
-                       <br /><br />
-                       Regards,<br />
-                       Absolute Fitness Team.`,
-            };
-
-            helpers.transporter.sendMail(mailOptions, (err, info) => {
-                if (err) throw err;
-
-                res.status(200).json({
-                    msg: "Check email for link to set new password",
-                });
+            await helpers.sendMail({ to: email, name: entry[0].name, token });
+            res.status(200).json({
+                msg: "Check email for link to set new password",
             });
         }
     } catch (err) {
