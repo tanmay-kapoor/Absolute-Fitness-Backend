@@ -5,11 +5,12 @@ const {
     verifyAdminPriviledge,
     verifyToken,
     verifyMember,
+    verifyRootPriviledge,
 } = require("../util/middlewares/authentication.js");
 
 const router = express.Router();
 
-router.get("/", verifyAdminPriviledge, userController.getAllUsers);
+router.get("/", verifyRootPriviledge, userController.getAllUsers);
 
 router.get("/:email", verifyToken, userController.getUser);
 

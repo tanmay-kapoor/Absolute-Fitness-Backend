@@ -24,9 +24,17 @@ router.get("/:gymId/equipments", gymController.getAllEquipmentsForGym);
 
 router.get("/:gymId/trainers", gymController.getAllTrainers);
 
-router.get("/:gymId/members", verifyAdminPriviledge, gymController.getAllUsers);
+router.get(
+    "/:gymId/members",
+    verifyAdminPriviledgeOfSameGym,
+    gymController.getAllUsers
+);
 
-router.get("/:gymId/staff", verifyAdminPriviledge, gymController.getAllStaff);
+router.get(
+    "/:gymId/staff",
+    verifyAdminPriviledgeOfSameGym,
+    gymController.getAllStaff
+);
 
 router.post(
     "/",

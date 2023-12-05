@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { ACCESS_TOKEN_SECRET } = require("../constants");
+const Staff = require("../../models/staff");
 
 exports.verifyRootPriviledge = async (req, res, next) => {
     const authHeader =

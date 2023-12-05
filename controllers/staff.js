@@ -80,7 +80,7 @@ exports.updateStaff = async (req, res) => {
             phone: req.body.phone,
             dob: req.body.dob,
             sex: req.body.sex,
-            type: "staff",
+            type: req.body.type || req.user.type,
             partTime:
                 req.body.partTime == 1 ||
                 req.body.partTime === "True" ||
@@ -92,12 +92,28 @@ exports.updateStaff = async (req, res) => {
             description: req.body.description,
         };
 
-        if (!req.body.password) {
-            const [[staff]] = await Staff.getStaff(details.staffId);
-            details.password = staff[0].password;
+        if (req.user.username === details.staffId) {
+            details.type = req.body.type || req.user.type;
         } else {
-            details.password = bcrypt.hashSync(req.body.password, salt);
+            details.type = req.body.type || getStaff(details.staffId).type;
         }
+
+        details.password = req.body.password
+            ? bcrypt.hashSync(req.body.password, salt)
+            : getStaff(details.staffId).password;
+
+        details.partTime = req.body.partTime
+            ? getPartTimeValue(req.body.partTime)
+            : getStaff(details.staffId).partTime;
+
+        details.salary = req.body.salary
+            ? req.body.salary
+            : getStaff(details.staffId).salary;
+
+        details.description = req.body.description
+            ? req.body.description
+            : getStaff(details.staffId).description;
+
         await Staff.updateStaff(details);
         res.status(200).json({ msg: "Success" });
     } catch (err) {
@@ -113,4 +129,21 @@ exports.deleteStaff = async (req, res) => {
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
+};
+
+let staffMember;
+const getStaff = async (staffId) => {
+    if (!staffMember) {
+        [[[staffMember]]] = await Staff.getStaff(staffId);
+    }
+    return staffMember;
+};
+
+const getPartTimeValue = (partTime) => {
+    return (
+        partTime == 1 ||
+        partTime === "True" ||
+        partTime === "true" ||
+        partTime === true
+    );
 };

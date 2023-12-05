@@ -4,18 +4,36 @@ const staffController = require("../controllers/staff");
 const {
     verifyEmployee,
     verifyAdminPriviledge,
+    verifyEmployeeOrAdminOfSameGym,
+    verifyAdminPriviledgeOfSameGym,
 } = require("../util/middlewares/authentication");
 
 const router = express.Router();
 
-router.get("/", verifyAdminPriviledge, staffController.getAllStaff);
+router.get("/", verifyAdminPriviledgeOfSameGym, staffController.getAllStaff);
 
-router.get("/:staffId", verifyEmployee, staffController.getStaff);
+router.get(
+    "/:staffId",
+    verifyEmployeeOrAdminOfSameGym,
+    staffController.getStaff
+);
 
-router.post("/signup", verifyAdminPriviledge, staffController.addStaff);
+router.post(
+    "/signup",
+    verifyAdminPriviledgeOfSameGym,
+    staffController.addStaff
+);
 
-router.put("/:staffId", verifyEmployee, staffController.updateStaff);
+router.put(
+    "/:staffId",
+    verifyEmployeeOrAdminOfSameGym,
+    staffController.updateStaff
+);
 
-router.delete("/:staffId", verifyEmployee, staffController.deleteStaff);
+router.delete(
+    "/:staffId",
+    verifyEmployeeOrAdminOfSameGym,
+    staffController.deleteStaff
+);
 
 module.exports = router;

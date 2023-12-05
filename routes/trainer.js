@@ -17,7 +17,11 @@ router.get(
     trainerController.getAllUserHealthRecordsForTrainer
 );
 
-router.get("/:staffId", verifyEmployee, trainerController.getTrainer);
+router.get(
+    "/:staffId",
+    verifyEmployeeOrAdminOfSameGym,
+    trainerController.getTrainer
+);
 
 router.post(
     "/",
