@@ -75,12 +75,16 @@ exports.updateUser = async (req, res) => {
             sex: req.body.sex,
             gymId: req.body.gymId,
         };
+        const updatedUser = { ...details };
         if (!req.body.password) {
             const [[user]] = await User.getUser(details.email);
             details.password = user[0].password;
         } else {
             details.password = bcrypt.hashSync(req.body.password, salt);
         }
+
+        await User.updateUser(updatedUser);
+        res.status(200).json(details);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
