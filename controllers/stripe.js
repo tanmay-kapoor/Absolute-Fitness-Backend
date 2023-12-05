@@ -1,5 +1,5 @@
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
-const stripe = require("stripe")(STRIPE_SECRET_KEY);
+const { STRIPE_API_KEY, CLIENT_URL } = require("../util/constants");
+const stripe = require("stripe")(STRIPE_API_KEY);
 
 exports.getAllProducts = async (req, res) => {
     try {
@@ -96,8 +96,8 @@ exports.createCheckoutSession = async (req, res) => {
             },
         ],
         mode: "subscription",
-        success_url: `${process.env.CLIENT_URL}?success=true`,
-        cancel_url: `${process.env.CLIENT_URL}?canceled=true`,
+        success_url: `${CLIENT_URL}?success=true`,
+        cancel_url: `${CLIENT_URL}?canceled=true`,
     });
     res.status(200).json(session.url);
 };

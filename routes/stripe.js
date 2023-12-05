@@ -1,23 +1,17 @@
 const express = require("express");
 
 const stripeController = require("../controllers/stripe");
-const {
-    verifyMemberWithoutEmail,
-} = require("../util/middlewares/authentication");
+const { verifyLoggedIn } = require("../util/middlewares/authentication");
 
 const router = express.Router();
 
-router.get(
-    "/products",
-    verifyMemberWithoutEmail,
-    stripeController.getAllProducts
-);
+router.get("/products", verifyLoggedIn, stripeController.getAllProducts);
 
-router.get("/prices", verifyMemberWithoutEmail, stripeController.getAllPrices);
+router.get("/prices", verifyLoggedIn, stripeController.getAllPrices);
 
 router.get(
     "/gym-membership-pricing",
-    verifyMemberWithoutEmail,
+    verifyLoggedIn,
     stripeController.getGymMembershipPricing
 );
 
