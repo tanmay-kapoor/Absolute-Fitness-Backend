@@ -73,7 +73,7 @@ exports.updateUser = async (req, res) => {
             phone: req.body.phone,
             dob: req.body.dob.substring(0, 10),
             sex: req.body.sex,
-            gymId: req.body.gymId,
+            gymId: req.body.gym_id,
         };
         const updatedUser = { ...details };
         if (!req.body.password) {
