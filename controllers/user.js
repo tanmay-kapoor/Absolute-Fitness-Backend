@@ -83,8 +83,8 @@ exports.updateUser = async (req, res) => {
             details.password = bcrypt.hashSync(req.body.password, salt);
         }
 
-        await User.updateUser(updatedUser);
-        res.status(200).json(details);
+        await User.updateUser(details);
+        res.status(200).json(updatedUser);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
