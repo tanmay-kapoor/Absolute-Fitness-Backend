@@ -5,6 +5,7 @@ const {
     verifyAdminPriviledge,
     verifyToken,
     verifyMember,
+    validateConsistentUsernameInTokens,
     verifyRootPriviledge,
 } = require("../util/middlewares/authentication.js");
 
@@ -15,6 +16,12 @@ router.get("/", verifyRootPriviledge, userController.getAllUsers);
 router.get("/:email", verifyToken, userController.getUser);
 
 router.post("/signup", userController.addUser);
+
+router.post(
+    "/payment",
+    validateConsistentUsernameInTokens,
+    userController.promoteToPayingCustomer
+);
 
 router.put("/:email", verifyMember, userController.updateUser);
 

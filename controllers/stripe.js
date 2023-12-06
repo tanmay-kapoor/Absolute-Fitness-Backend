@@ -1,5 +1,6 @@
 const { STRIPE_API_KEY, CLIENT_URL } = require("../util/constants");
 const stripe = require("stripe")(STRIPE_API_KEY);
+const helpers = require("../util/helpers");
 
 exports.getAllProducts = async (req, res) => {
     try {
@@ -87,19 +88,27 @@ exports.getGymMembershipPricing = async (req, res) => {
 // };
 
 exports.createCheckoutSession = async (req, res) => {
-    const priceId = req.params.priceId;
-    const session = await stripe.checkout.sessions.create({
-        line_items: [
-            {
-                price: priceId,
-                quantity: 1,
-            },
-        ],
-        mode: "subscription",
-        success_url: `${CLIENT_URL}?success=true`,
-        cancel_url: `${CLIENT_URL}?canceled=true`,
-    });
-    res.status(200).json(session.url);
+    try {
+        // TODO: what if user opens the checkout page but pays after 20 mins?
+        const token = helpers.generatePaymentSuccessToken({
+            username: req.body.username,
+        });
+        const priceId = req.params.priceId;
+        const session = await stripe.checkout.sessions.create({
+            line_items: [
+                {
+                    price: priceId,
+                    quantity: 1,
+                },
+            ],
+            mode: "subscription",
+            success_url: `${CLIENT_URL}/payment?token=${token}`,
+            cancel_url: `${CLIENT_URL}?canceled=true`,
+        });
+        res.status(200).json(session.url);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
 };
 
 const formatAmount = (stripeAmount) => {

@@ -50,6 +50,7 @@ exports.addUser = async (req, res) => {
             const accessToken = helpers.generateAccessToken({
                 username: details.email,
                 type: "member",
+                subscribed: false,
                 gymId: details.gymId,
             });
 
@@ -60,6 +61,15 @@ exports.addUser = async (req, res) => {
                 msg: "User with this email already exists",
             });
         }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.promoteToPayingCustomer = async (req, res) => {
+    try {
+        const email = req.user.username;
+        await User.promoteToPayingCustomer(email);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }

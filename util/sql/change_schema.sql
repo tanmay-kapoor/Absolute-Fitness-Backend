@@ -277,9 +277,9 @@ DELIMITER //
 CREATE PROCEDURE getEntryForLogin(IN v_username VARCHAR(30))
 BEGIN
 	with entries as (
-		select email as username, name, phone, dob, sex, "member" as type, password, gym_id from users
+		select email as username, name, phone, dob, sex, "member" as type, subscribed, password, gym_id from users
 		union
-		select staff_id as username, name, phone, dob, sex, type, password, gym_id from staff
+		select staff_id as username, name, phone, dob, sex, type, false as subscribed, password, gym_id from staff
 	)
 	select * from entries where username = v_username;
 END //
@@ -583,3 +583,14 @@ LEFT JOIN meal_choices m1 ON d.breakfast = m1.meal
 LEFT JOIN meal_choices m2 ON d.lunch = m2.meal 
 LEFT JOIN meal_choices m3 ON d.dinner = m3.meal;
 
+
+ALTER TABLE users
+ADD COLUMN subscribed BOOL NOT NULL DEFAULT False AFTER sex;
+
+DROP PROCEDURE IF EXISTS promoteToPayingCustomer;
+DELIMITER //
+CREATE PROCEDURE promoteToPayingCustomer(v_email VARCHAR(30))
+BEGIN
+	UPDATE users SET subscribed = true WHERE email = v_email;
+END //
+DELIMITER ;

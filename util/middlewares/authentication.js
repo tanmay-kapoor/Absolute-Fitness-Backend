@@ -21,6 +21,31 @@ exports.verifyRootPriviledge = async (req, res, next) => {
     });
 };
 
+exports.validateConsistentUsernameInTokens = async (req, res, next) => {
+    const authHeader =
+        req.headers["Authorization"] || req.headers["authorization"];
+    const accessToken = authHeader && authHeader.split(" ")[1];
+    const paymentToken = req.body.paymentToken;
+
+    if (accessToken == null)
+        return res.status(401).json({ msg: "No authorization provided." });
+    if (paymentToken == null)
+        return res.status(422).json({ msg: "No payment token provided." });
+
+    jwt.verify(accessToken, ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ msg: err.message });
+        jwt.verify(paymentToken, ACCESS_TOKEN_SECRET, (error, paymentUser) => {
+            if (error) return res.status(403).json({ msg: error.message });
+            if (user.username !== paymentUser.username)
+                return res.status(403).json({
+                    msg: "Incorrect authorization. Need to be same user.",
+                });
+            req.user = user;
+            next();
+        });
+    });
+};
+
 exports.verifyRootOrAdminPriviledgeOfSameGym = async (req, res, next) => {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
@@ -125,6 +150,7 @@ exports.verifyToken = async (req, res, next) => {
     jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
+            user.type === "root" ||
             user.type === "admin" ||
             (user.type === "member" && user.username === req.params["email"])
         ) {

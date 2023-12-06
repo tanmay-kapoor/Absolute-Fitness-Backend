@@ -38,6 +38,10 @@ module.exports = class User {
         ]);
     }
 
+    static promoteToPayingCustomer(email) {
+        return db.execute("CALL promoteToPayingCustomer(?)", [email]);
+    }
+
     static resetPassword(details) {
         const { username, token, password } = details;
 

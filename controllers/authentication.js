@@ -25,11 +25,15 @@ exports.authenticate = async (req, res) => {
                     res.status(401).json({ msg: "Incorrect password" });
                 } else {
                     // jwt stuff
-                    const accessToken = helpers.generateAccessToken({
+                    const payload = {
                         username,
                         type: entry[0].type,
                         gymId: entry[0].gym_id,
-                    });
+                    };
+                    if (entry[0].type === "member") {
+                        payload.subscribed = entry[0].subscribed == 1;
+                    }
+                    const accessToken = helpers.generateAccessToken(payload);
                     const entryInfo = { ...entry[0] };
                     delete entryInfo["password"];
                     delete entryInfo["type"];

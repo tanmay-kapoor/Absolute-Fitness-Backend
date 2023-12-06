@@ -23,6 +23,12 @@ exports.generateAccessToken = (payload) => {
     });
 };
 
+exports.generatePaymentSuccessToken = (payload) => {
+    return jwt.sign(payload, ACCESS_TOKEN_SECRET, {
+        expiresIn: "10m",
+    });
+};
+
 exports.generateResetToken = (payload) => {
     return jwt.sign(payload, ACCESS_TOKEN_SECRET, {
         expiresIn: "30m",
