@@ -23,6 +23,7 @@ router.get(
 
 router.post(
     "/create-checkout-session/:priceId",
+    verifyLoggedIn,
     stripeController.createCheckoutSession
 );
 

@@ -82,7 +82,6 @@ exports.getGymMembershipPricing = async (req, res) => {
 //             subscriptionId: subscription.id,
 //         });
 //     } catch (err) {
-//         console.log(err.message);
 //         res.status(500).json({ msg: err.message });
 //     }
 // };
@@ -91,7 +90,7 @@ exports.createCheckoutSession = async (req, res) => {
     try {
         // TODO: what if user opens the checkout page but pays after 20 mins?
         const token = helpers.generatePaymentSuccessToken({
-            username: req.body.username,
+            username: req.user.username,
         });
         const priceId = req.params.priceId;
         const session = await stripe.checkout.sessions.create({
