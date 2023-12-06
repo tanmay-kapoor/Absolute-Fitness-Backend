@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get("/", gymController.getAllGyms);
 
-router.get("/:gymId", verifyLoggedIn, gymController.getGym);
+router.get("/:gymId", gymController.getGym);
 
 router.get("/:gymId/facilities", gymController.getAllFacilities);
 
