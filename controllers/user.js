@@ -70,6 +70,12 @@ exports.promoteToPayingCustomer = async (req, res) => {
     try {
         const email = req.user.username;
         await User.promoteToPayingCustomer(email);
+        const accessToken = helpers.generateAccessToken({
+            username: email,
+            type: "member",
+            subscribed: true,
+        });
+        res.status(200).json({ accessToken });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
