@@ -22,7 +22,7 @@ const uploadImagesToS3 = async (req, res, next) => {
         const files = req.file ? [req.file] : req.files;
         if (!files || files.length === 0) {
             return next();
-        } else if (req.body.image_url || req.body.image_urls) {
+        } else if (req.body.image_url || req.body.gym.image_urls) {
             return res.status(400).json({
                 msg: "Should either upload an image or provide an image url, not both",
             });
@@ -33,7 +33,7 @@ const uploadImagesToS3 = async (req, res, next) => {
             if (req.file) {
                 req.body.image_url = publicUrls[0];
             } else {
-                req.body.image_urls = publicUrls;
+                req.body.gym.image_urls = publicUrls;
             }
             return next();
         }

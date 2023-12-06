@@ -39,7 +39,7 @@ exports.addStaff = async (req, res) => {
             phone: req.body.phone,
             dob: req.body.dob,
             sex: req.body.sex,
-            type: "staff",
+            type: req.body.type || req.user.type,
             partTime:
                 req.body.partTime == 1 ||
                 req.body.partTime === "True" ||
@@ -58,7 +58,7 @@ exports.addStaff = async (req, res) => {
             const [[[newStaff]]] = await Staff.getStaff(details.staffId);
             const accessToken = helpers.generateAccessToken({
                 username: details.staffId,
-                type: "staff",
+                type: details.type,
                 gymId: details.gymId,
             });
             res.status(200).json({ ...newStaff, accessToken });

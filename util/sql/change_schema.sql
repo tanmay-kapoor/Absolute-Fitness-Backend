@@ -442,19 +442,75 @@ modify column branch varchar(50);
 alter table gyms
 add column pincode varchar(5) not null default "00000" after branch;
 
-DROP FUNCTION IF EXISTS addGym;
+-- DROP FUNCTION IF EXISTS addGym;
+-- DELIMITER //
+-- CREATE FUNCTION addGym(v_branch VARCHAR(50), 
+-- 						   v_pincode VARCHAR(5),
+--                            v_phone VARCHAR(10), 
+--                            v_location VARCHAR(50), 
+--                            v_membership_fee DECIMAL(65, 2))
+-- RETURNS INT READS SQL DATA 
+-- BEGIN
+-- 	INSERT INTO gyms (branch, pincode, phone, location, membership_fee) 
+--     VALUES (v_branch, v_pincode, v_phone, v_location, v_membership_fee);
+--     
+--     RETURN LAST_INSERT_ID();
+-- END //
+-- DELIMITER ;
+
+DROP PROCEDURE IF EXISTS addGym;
 DELIMITER //
-CREATE FUNCTION addGym(v_branch VARCHAR(50), 
-						   v_pincode VARCHAR(5),
-                           v_phone VARCHAR(10), 
-                           v_location VARCHAR(50), 
-                           v_membership_fee DECIMAL(65, 2))
-RETURNS INT READS SQL DATA 
+CREATE PROCEDURE addGym(in v_branch VARCHAR(50), 
+						   in v_pincode VARCHAR(5),
+                           in v_phone VARCHAR(10), 
+                           in v_location VARCHAR(50), 
+                           in v_membership_fee DECIMAL(65, 2),
+                           
+                           in v_staff_id VARCHAR(30),
+                           in v_name VARCHAR(50), 
+                           in v_admin_phone VARCHAR(10), 
+                           in v_dob DATE,
+                           in v_sex ENUM("Male", "Female", "Other"),
+                           in v_type ENUM("staff", "trainer", "admin"),
+                           in v_part_time BOOLEAN, 
+                           in v_salary DECIMAL(65, 2), 
+                           in v_description VARCHAR(512), 
+                           in v_password VARCHAR(100))
 BEGIN
+	DECLARE error_code INT;
+	DECLARE error_message VARCHAR(16383);
+    declare tp varchar(200);
+    declare new_gym_id int;
+    
+	DECLARE exit handler for sqlexception
+    BEGIN
+        -- If an error occurs, roll back the transaction
+        GET DIAGNOSTICS CONDITION 1
+			error_code = MYSQL_ERRNO, error_message = MESSAGE_TEXT;
+		
+        select substring(error_message, 1, 100) into tp;
+        
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = tp;
+    END;
+    
+    SET AUTOCOMMIT = 0;
+    
+    START TRANSACTION;
+    
 	INSERT INTO gyms (branch, pincode, phone, location, membership_fee) 
     VALUES (v_branch, v_pincode, v_phone, v_location, v_membership_fee);
     
-    RETURN LAST_INSERT_ID();
+    SELECT LAST_INSERT_ID() INTO new_gym_id;
+    
+    INSERT INTO staff (staff_id, name, phone, sex, type, part_time, salary, description, password, gym_id) 
+    VALUES (v_staff_id, v_name, v_admin_phone, v_sex, v_type, v_part_time, v_salary, v_description, v_password, new_gym_id);
+    
+    INSERT INTO gym_admins VALUES (v_staff_id, new_gym_id);
+    
+    COMMIT;
+    
+    SELECT new_gym_id AS gym_id;
 END //
 DELIMITER ;
 

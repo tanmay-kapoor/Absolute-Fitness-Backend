@@ -42,7 +42,7 @@ exports.addAdminForGym = async (req, res) => {
         const details = {
             staffId: req.body.staffId,
             name: req.body.name,
-            phone: req.body.phone,
+            phone: req.body.adminPhone,
             dob: req.body.dob,
             sex: req.body.sex,
             type: "admin",

@@ -4,6 +4,9 @@ const Equipment = require("../models/equipment");
 const Facility = require("../models/facility");
 const User = require("../models/user");
 const Admin = require("../models/admin");
+const bcrypt = require("bcryptjs");
+const { v4: uuidv4 } = require("uuid");
+const salt = 10;
 const stockImage =
     "https://absolute-fitness-tk.s3.amazonaws.com/stock_image.jpeg";
 
@@ -34,17 +37,35 @@ exports.getGym = async (req, res) => {
 
 exports.addGym = async (req, res) => {
     try {
-        const details = {
-            branch: req.body.branch || null,
-            pincode: req.body.pincode,
-            phone: req.body.phone,
-            location: req.body.location,
-            membershipFee: req.body.membershipFee,
+        const { gym: gymDetails, admin: newAdminDetails } = req.body;
+
+        const newGymDetails = {
+            branch:
+                gymDetails.branch && gymDetails.branch !== ""
+                    ? gymDetails.branch
+                    : null,
+            pincode: gymDetails.pincode,
+            phone: gymDetails.phone,
+            location: gymDetails.location,
+            membershipFee: gymDetails.membershipFee,
         };
-        const [[result]] = await Gym.addGym(details);
-        const [[[newGym]]] = await Gym.getGym(result.gym_id);
-        delete newGym["image_url"];
-        const imageUrls = req.body.image_urls || [];
+
+        const [[[result]]] = await Gym.addGym({
+            newGymDetails,
+            newAdminDetails: {
+                ...newAdminDetails,
+                type: "admin",
+                partTime: false,
+                password: bcrypt.hashSync(uuidv4(), salt),
+            },
+        });
+
+        const newGym = {
+            gym_id: result.gym_id,
+            ...newGymDetails,
+        };
+
+        const imageUrls = gymDetails.image_urls || [];
         await Promise.all(
             imageUrls.map((imageUrl) =>
                 Gym.addImageUrlForGym(imageUrl, newGym.gym_id)
