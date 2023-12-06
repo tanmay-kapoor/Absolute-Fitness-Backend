@@ -72,6 +72,7 @@ exports.promoteToPayingCustomer = async (req, res) => {
         await User.promoteToPayingCustomer(email);
         const accessToken = helpers.generateAccessToken({
             username: email,
+            gymId: req.user.gymId,
             type: "member",
             subscribed: true,
         });
