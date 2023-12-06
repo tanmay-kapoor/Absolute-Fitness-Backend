@@ -17,7 +17,16 @@ router.get(
     adminController.getAllAdminsForGym
 );
 
-router.post("/", verifyRootPriviledge, adminController.addAdminForGym);
+// promotes staff to admin (update staff type to admin in mysql)
+router.post("/", verifyRootPriviledge, adminController.createNewAdminForGym);
+
+router.patch(
+    "/:staffId",
+    verifyRootPriviledge,
+    adminController.promoteStaffTOAdmin
+);
+
+// TODO: add a staff of type admin to gym
 
 // router.put("/:staffId", verifyRootPriviledge, adminController.updateAdmin);
 

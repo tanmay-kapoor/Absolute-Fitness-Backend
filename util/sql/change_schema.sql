@@ -142,10 +142,35 @@ BEGIN
 END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS addAdminForGym;
+DROP PROCEDURE IF EXISTS createNewAdminForGym;
 DELIMITER //
-CREATE PROCEDURE addAdminForGym(IN v_staff_id VARCHAR(30), IN v_gym_id INT)
+CREATE PROCEDURE createNewAdminForGym(IN v_staff_id VARCHAR(30),
+								IN v_name VARCHAR(50), 
+								IN v_phone VARCHAR(10), 
+								IN v_dob DATE,
+								IN v_sex ENUM("Male", "Female", "Other"),
+								IN v_part_time BOOLEAN, 
+								IN v_salary DECIMAL(65, 2), 
+								IN v_description VARCHAR(512), 
+								IN v_password VARCHAR(100), 
+								IN v_gym_id INT)
 BEGIN
+	CALL addStaff(v_staff_id, v_name, v_phone, v_dob, v_sex, "admin", v_part_time, v_salary, v_description, v_password, v_gym_id);
+	INSERT INTO gym_admins VALUES (v_staff_id, v_gym_id);
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS promoteStaffToAdmin;
+DELIMITER //
+CREATE PROCEDURE promoteStaffToAdmin(IN v_staff_id VARCHAR(30))
+BEGIN
+	DECLARE v_gym_id INT;
+    
+	UPDATE staff SET type = "admin" WHERE staff_id = v_staff_id;
+    
+    SELECT gym_id INTO v_gym_id WHERE
+    staff_id = v_staff_id;
+    
 	INSERT INTO gym_admins VALUES (v_staff_id, v_gym_id);
 END //
 DELIMITER ;
@@ -441,6 +466,9 @@ modify column branch varchar(50);
 
 alter table gyms
 add column pincode varchar(5) not null default "00000" after branch;
+
+alter table gyms
+modify column location varchar(512) not null unique;
 
 -- DROP FUNCTION IF EXISTS addGym;
 -- DELIMITER //

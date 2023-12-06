@@ -67,6 +67,10 @@ module.exports = class Staff {
         ]);
     }
 
+    static promoteToAdmin(staffId) {
+        return db.execute("CALL promoteStaffToAdmin(?)", [staffId]);
+    }
+
     static deleteStaff(staffId) {
         return db.execute("CALL deleteStaff(?)", [staffId]);
     }

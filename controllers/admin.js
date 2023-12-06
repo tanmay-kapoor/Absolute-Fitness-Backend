@@ -37,7 +37,7 @@ exports.getAllAdminsForGym = async (req, res) => {
     }
 };
 
-exports.addAdminForGym = async (req, res) => {
+exports.createNewAdminForGym = async (req, res) => {
     try {
         const details = {
             staffId: req.body.staffId,
@@ -45,14 +45,7 @@ exports.addAdminForGym = async (req, res) => {
             phone: req.body.phone,
             dob: req.body.dob,
             sex: req.body.sex,
-            type: "admin",
-            partTime:
-                req.body.partTime == 1 ||
-                req.body.partTime === "True" ||
-                req.body.partTime === "true" ||
-                req.body.partTime === true
-                    ? true
-                    : false,
+            partTime: false,
             salary: req.body.salary,
             description: req.body.description,
             password: bcrypt.hashSync(uuidv4(), salt),
@@ -61,15 +54,7 @@ exports.addAdminForGym = async (req, res) => {
 
         const [[admin]] = await Staff.getStaff(details.staffId);
         if (admin.length === 0) {
-            await Staff.addStaff(details);
-
-            const [[[newStaff]]] = await Staff.getStaff(details.staffId);
-            delete newStaff["password"];
-
-            await Admin.addAdminForGym({
-                staffId: details.staffId,
-                gymId: details.gymId,
-            });
+            await Admin.createNewAdminForGym(details);
 
             // send email to admin email id
             const token = await ResetToken.addResetToken({
@@ -84,11 +69,29 @@ exports.addAdminForGym = async (req, res) => {
                 token: token,
             });
 
-            res.status(200).json(newStaff);
+            res.status(200).json({ msg: "Success" });
         } else {
             res.status(409).json({
                 msg: "This staff id is already registered",
             });
+        }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.promoteStaffTOAdmin = async (req, res) => {
+    try {
+        const staffId = req.params.staffId;
+
+        const [[staff]] = await Staff.getStaff(staffId);
+        if (staff.length === 0) {
+            res.status(404).json({
+                msg: "Staff not found",
+            });
+        } else {
+            await Staff.promoteToAdmin(staffId);
+            res.status(200).json({ msg: "Success" });
         }
     } catch (err) {
         res.status(500).json({ msg: err.message });

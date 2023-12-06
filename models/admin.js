@@ -16,10 +16,32 @@ module.exports = class Admin {
         return db.execute(query, [gymId]);
     }
 
-    static addAdminForGym(details) {
-        const { staffId, gymId } = details;
+    static createNewAdminForGym(details) {
+        const {
+            staffId,
+            name,
+            phone,
+            dob,
+            sex,
+            partTime,
+            salary,
+            description,
+            password,
+            gymId,
+        } = details;
 
-        const query = "CALL addAdminForGym(?, ?)";
-        return db.execute(query, [staffId, gymId]);
+        const query = "CALL createNewAdminForGym(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return db.execute(query, [
+            staffId,
+            name,
+            phone,
+            dob,
+            sex,
+            partTime,
+            salary,
+            description,
+            password,
+            gymId,
+        ]);
     }
 };
