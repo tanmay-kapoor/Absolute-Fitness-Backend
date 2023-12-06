@@ -18,6 +18,30 @@ USE `af3`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Temporary view structure for view `diet_plan_details`
+--
+
+DROP TABLE IF EXISTS `diet_plan_details`;
+/*!50001 DROP VIEW IF EXISTS `diet_plan_details`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `diet_plan_details` AS SELECT 
+ 1 AS `email`,
+ 1 AS `plan_id`,
+ 1 AS `name`,
+ 1 AS `description`,
+ 1 AS `breakfast`,
+ 1 AS `lunch`,
+ 1 AS `dinner`,
+ 1 AS `m1_calories`,
+ 1 AS `m1_url`,
+ 1 AS `m2_calories`,
+ 1 AS `m2_url`,
+ 1 AS `m3_calories`,
+ 1 AS `m3_url`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `diet_plans`
 --
 
@@ -65,7 +89,7 @@ CREATE TABLE `equipments` (
   `image_url` varchar(512) NOT NULL,
   PRIMARY KEY (`equipment_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +181,7 @@ CREATE TABLE `gym_admins` (
 
 LOCK TABLES `gym_admins` WRITE;
 /*!40000 ALTER TABLE `gym_admins` DISABLE KEYS */;
-INSERT INTO `gym_admins` VALUES ('11111@gmail.com',1),('22222@gmail.com',2),('33333@gmail.com',3),('44444@gmail.com',4),('55555@gmail.com',5),('66666@gmail.com',6),('66667@gmail.com',6);
+INSERT INTO `gym_admins` VALUES ('11111@gmail.com',1),('22222@gmail.com',2),('33333@gmail.com',3),('44444@gmail.com',4),('55555@gmail.com',5),('66666@gmail.com',6),('66667@gmail.com',6),('gg@wp.com',97);
 /*!40000 ALTER TABLE `gym_admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +264,7 @@ CREATE TABLE `gym_image_urls` (
 
 LOCK TABLES `gym_image_urls` WRITE;
 /*!40000 ALTER TABLE `gym_image_urls` DISABLE KEYS */;
-INSERT INTO `gym_image_urls` VALUES ('https://bodyandstrength.com/Upload/site/wJSUa_cover.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',1),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',2),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',4),('https://gymmboxx.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-09-at-6.32.11-PM.jpeg',5),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',6),('https://absolute-fitness-tk.s3.amazonaws.com/81953f66-70f3-4a09-9b0c-f80605b1aa55',38),('https://absolute-fitness-tk.s3.amazonaws.com/e688fc0e-b5d7-4d18-981c-3a8dc2257036',38),('https://www.frontsigns.com/wp-content/uploads/2021/07/illuminated-gym-building.jpg',40);
+INSERT INTO `gym_image_urls` VALUES ('https://bodyandstrength.com/Upload/site/wJSUa_cover.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',1),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',1),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',2),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',4),('https://gymmboxx.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-09-at-6.32.11-PM.jpeg',5),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',6),('https://images.adsttc.com/media/images/5014/3b01/28ba/0d5b/4900/0409/newsletter/stringio.jpg?1361422898',97);
 /*!40000 ALTER TABLE `gym_image_urls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,12 +280,13 @@ CREATE TABLE `gyms` (
   `branch` varchar(50) DEFAULT NULL,
   `pincode` varchar(5) NOT NULL DEFAULT '00000',
   `phone` varchar(10) NOT NULL,
-  `location` varchar(50) NOT NULL,
+  `location` varchar(512) NOT NULL,
   `membership_fee` decimal(65,2) NOT NULL,
   PRIMARY KEY (`gym_id`),
   UNIQUE KEY `phone` (`phone`),
-  UNIQUE KEY `location` (`location`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `location` (`location`),
+  UNIQUE KEY `location_2` (`location`)
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +295,7 @@ CREATE TABLE `gyms` (
 
 LOCK TABLES `gyms` WRITE;
 /*!40000 ALTER TABLE `gyms` DISABLE KEYS */;
-INSERT INTO `gyms` VALUES (0,NULL,'00000','1100221100','none',0.00),(1,'Austin','56340','2025550118','55 Centre Avenue, #30, Austin, TX, 56340',156.33),(2,'Queens','11385','2025550308','65-45 Otto Rd, Queens, NY 11385',253.99),(3,NULL,'92101','7097534584','350 Tenth Ave, San Diego, CA 92101',75.00),(4,'Boston','02130','8057779321','2565 Washington St Suite B, Boston, MA 02130',59.37),(5,'Los Angeles','90071','6011185333','515 S Figueroa St #102, Los Angeles, CA 90071',195.46),(6,'Seattle','98109','2025550250','1146 Harrison St, Seattle WA 98109',86.98),(38,'Chicago','60647','8899667700','2656 N Elston Ave, Chicago, IL 60647',45.44),(40,'Providence','02903','1345628797','20 N Main St, Providence, RI 02903',125.78);
+INSERT INTO `gyms` VALUES (0,NULL,'00000','1100221100','none',0.00),(1,'Austin','56340','2025550118','55 Centre Avenue, #30, Austin, TX, 56340',156.33),(2,'Queens','11385','2025550308','65-45 Otto Rd, Queens, NY 11385',253.99),(3,NULL,'92101','7097534584','350 Tenth Ave, San Diego, CA 92101',75.00),(4,'Boston','02130','8057779321','2565 Washington St Suite B, Boston, MA 02130',59.37),(5,'Los Angeles','90071','6011185333','515 S Figueroa St #102, Los Angeles, CA 90071',195.46),(6,'Seattle','98109','2025550250','1146 Harrison St, Seattle WA 98109',86.98),(97,NULL,'85303','1677975333','83rd Avenue and, Bethany Home Rd, Glendale, AZ 85303',1925.45);
 /*!40000 ALTER TABLE `gyms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +322,7 @@ CREATE TABLE `health_plans` (
   CONSTRAINT `health_plans_ibfk_2` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `health_plans_ibfk_3` FOREIGN KEY (`workout_plan`) REFERENCES `workout_plans` (`plan_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `health_plans_ibfk_4` FOREIGN KEY (`diet_plan`) REFERENCES `diet_plans` (`plan_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +331,7 @@ CREATE TABLE `health_plans` (
 
 LOCK TABLES `health_plans` WRITE;
 /*!40000 ALTER TABLE `health_plans` DISABLE KEYS */;
-INSERT INTO `health_plans` VALUES (6,NULL,'tanmay.skater@gmail.com',3,2,'Randomly assigned plan'),(8,NULL,'rand@rand.com',3,2,'Randomly assigned plan'),(10,'19995@gmail.com','david@gmail.com',2,5,'Randomly assigned plan'),(11,'19995@gmail.com','ariana@gmail.com',2,2,'Randomly assigned plan'),(12,'19995@gmail.com','selena@gmail.com',3,2,'Randomly assigned plan'),(13,'29999@gmail.com','simon@gmail.com',2,2,'Randomly assigned plan'),(14,'29997@gmail.com','rikc.2000@gmail.com',3,6,'Randomly assigned plan'),(16,'29999@gmail.com','shashwat@gmail.com',2,5,'Randomly assigned plan'),(17,'19998@gmail.com','michelle@gmail.com',2,2,'Randomly assigned plan'),(18,'19999@gmail.com','robert@gmail.com',2,2,'Randomly assigned plan'),(20,'19994@gmail.com','emma@gmail.com',3,2,'Randomly assigned plan'),(21,'19994@gmail.com','ross@gmail.com',2,2,'Randomly assigned plan'),(22,'19994@gmail.com','parth@gmail.com',3,2,'Randomly assigned plan'),(23,'19994@gmail.com','arpan@gmail.com',2,5,'Randomly assigned plan'),(26,'19996@gmail.com','paritosh@gmail.com',1,1,'Randomly assigned plan'),(27,'19996@gmail.com','girish@gmail.com',3,6,'Randomly assigned plan'),(28,'19996@gmail.com','cook@gmail.com',1,2,'Randomly assigned plan'),(29,'29996@gmail.com','alex@gmail.com',3,5,'Randomly assigned plan'),(30,'29996@gmail.com','louis@gmail.com',1,6,'Randomly assigned plan'),(31,'49999@gmail.com','kaldon@hotmail.com',1,5,'Randomly assigned plan'),(32,'49999@gmail.com','kelly@neu.com',1,6,'Randomly assigned plan'),(33,'59999@gmail.com','ziya@google.com',2,1,'Randomly assigned plan'),(34,'29997@gmail.com','mark@gmail.com',1,2,'Randomly assigned plan'),(35,'39996@gmail.com','iggy@gmail.com',3,6,'Randomly assigned plan'),(36,'39996@gmail.com','britney@gmail.com',3,5,'Randomly assigned plan'),(37,NULL,'katy@gmail.com',2,5,'Randomly assigned plan'),(38,'19999@gmail.com','john@gmail.com',2,1,'Randomly assigned plan'),(39,'19994@gmail.com','tom@gmail.com',1,2,'Randomly assigned plan'),(40,'19998@gmail.com','tim@gmail.com',2,2,'Randomly assigned plan'),(41,'39994@gmail.com','4@5.com',1,5,'Randomly assigned plan'),(42,'39998@gmail.com','9@9.com',1,1,'Randomly assigned plan');
+INSERT INTO `health_plans` VALUES (6,NULL,'tanmay.skater@gmail.com',3,2,'Randomly assigned plan'),(8,NULL,'rand@rand.com',3,2,'Randomly assigned plan'),(10,'19995@gmail.com','david@gmail.com',2,5,'Randomly assigned plan'),(11,'19995@gmail.com','ariana@gmail.com',2,2,'Randomly assigned plan'),(12,'19995@gmail.com','selena@gmail.com',3,2,'Randomly assigned plan'),(13,'29999@gmail.com','simon@gmail.com',2,2,'Randomly assigned plan'),(14,'29997@gmail.com','rikc.2000@gmail.com',3,6,'Randomly assigned plan'),(16,'29999@gmail.com','shashwat@gmail.com',2,5,'Randomly assigned plan'),(17,'19998@gmail.com','michelle@gmail.com',2,2,'Randomly assigned plan'),(18,'19999@gmail.com','robert@gmail.com',2,2,'Randomly assigned plan'),(20,'19994@gmail.com','emma@gmail.com',3,2,'Randomly assigned plan'),(21,'19994@gmail.com','ross@gmail.com',2,2,'Randomly assigned plan'),(22,'19994@gmail.com','parth@gmail.com',3,2,'Randomly assigned plan'),(23,'19994@gmail.com','arpan@gmail.com',2,5,'Randomly assigned plan'),(26,'19996@gmail.com','paritosh@gmail.com',1,1,'Randomly assigned plan'),(27,'19996@gmail.com','girish@gmail.com',3,6,'Randomly assigned plan'),(28,'19996@gmail.com','cook@gmail.com',1,2,'Randomly assigned plan'),(29,'29996@gmail.com','alex@gmail.com',3,5,'Randomly assigned plan'),(30,'29996@gmail.com','louis@gmail.com',1,6,'Randomly assigned plan'),(31,'49999@gmail.com','kaldon@hotmail.com',1,5,'Randomly assigned plan'),(32,'49999@gmail.com','kelly@neu.com',1,6,'Randomly assigned plan'),(33,'59999@gmail.com','ziya@google.com',2,1,'Randomly assigned plan'),(34,'29997@gmail.com','mark@gmail.com',1,2,'Randomly assigned plan'),(35,'39996@gmail.com','iggy@gmail.com',3,6,'Randomly assigned plan'),(36,'39996@gmail.com','britney@gmail.com',3,5,'Randomly assigned plan'),(37,NULL,'katy@gmail.com',2,5,'Randomly assigned plan'),(38,'19999@gmail.com','john@gmail.com',2,1,'Randomly assigned plan'),(39,'19994@gmail.com','tom@gmail.com',1,2,'Randomly assigned plan'),(40,'19998@gmail.com','tim@gmail.com',2,2,'Randomly assigned plan'),(41,'39994@gmail.com','4@5.com',1,5,'Randomly assigned plan'),(42,'39998@gmail.com','9@9.com',1,1,'Randomly assigned plan'),(43,'29996@gmail.com','test.yes@gmail.com',3,6,'Randomly assigned plan');
 /*!40000 ALTER TABLE `health_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,53 +424,8 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES ('1@2.com@gmail.com','fname sname','987654321','1994-12-12','Male','staff',0,25000.46,'desc','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('11111@gmail.com','Harvey Smith','1122112211','1985-10-10','Male','admin',0,45000.00,'Manages all staff of his gym. Responsible for ensuring all facilities of gym are working and in good condition. Can analyze trainer performance.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('19994@gmail.com','New Name','5050505051','1975-12-12','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',1),('19995@gmail.com','Anjaneya Gurjar','4499449944','1985-10-10','Male','trainer',0,23322.99,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuCwxVal6AYHpCT0KEatAJ9KCcjp4a2Vy',1),('19996@gmail.com','Kylie Monnet','1100110011','1985-10-10','Male','trainer',0,34342.29,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuDwWRh4kbXXv0SEELVjQo10Mag02pzg6',1),('19997@gmail.com','Janet Andrews','1001100110','1985-10-10','Male','trainer',0,34342.22,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtu2OyHVGaJSjs5t1Vrj.7yLzC04ZDCPh6',1),('19998@gmail.com','Sabrina Mason','8787878787','1985-10-10','Male','trainer',0,11004.33,'Helps in building complex workout routines for members.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuG/4SvUoYETqMt8p620orGST6XiuJ8Fm',1),('19999@gmail.com','Thomas Cook','7878787878','1985-10-10','Male','trainer',0,12000.00,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQZCA3alY1UH60TXmoVY.oqXjUl.sKgG',1),('22222@gmail.com','Mike Ross','1234554321','1985-10-10','Male','admin',0,52000.00,'Supervises over the entire gym staff. Ensure trainer performance, how happy the customers are as well as regularly updates gym facilities and equipment.s.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',2),('29996@gmail.com','Georgie Bennet','1155228890','1985-10-10','Male','trainer',0,25640.70,'Conducts yoga classes for the interested members as well personal training sessions.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuwUfQgbEVAJXol0aJID6RMgS0zOjheJO',2),('29997@gmail.com','Misa Amane','5499449940','1985-10-10','Male','trainer',0,19000.00,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuJnAiIf/o/iy/XMcUp4d1YCQHNup9p.a',2),('29998@gmail.com','Susan Volkov','5499449941','1985-10-10','Male','trainer',0,11243.30,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtutyXEG.ckpq8m5BCJraIVas/bUBZkkWe',2),('29999@gmail.com','Liam Payne','5499449942','1985-10-10','Male','trainer',0,11243.30,'Helps all the members at the gym in figuring out the best workout plan for them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubCOsAKwc.p.84.VEfEC7tiCOx1WPASq',2),('33333@gmail.com','Rachel Zane','2323232323','1985-10-10','Male','admin',0,37346.44,'Manages other employees of the gym. Responsible for regularly adding newly hired staff to the gym\'s database.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',3),('39994@gmail.com','Christina Perez','1155228891','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9qbzxHdHVCr/QVR5NpYUal3r0Voe5fy',3),('39995@gmail.com','Sergio Messi','1155228895','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9mrn.PIauuba0Yn34PgPFRxJkQ5mXn.',3),('39996@gmail.com','Max Ricciardo','1155228894','1985-10-10','Male','trainer',0,35640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuFhzgbsmIY8VrIzj7WW2219JsRW8vJ2e',3),('39998@gmail.com','Sebastian Vettel','1152522888','1985-10-10','Male','trainer',0,18454.00,'Deisgns custom workout plans for all members of the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQxFFEJwyIjpczeB2yVkVVi6epZneKi.',3),('39999@gmail.com','Charles Leclerc','1152522887','1985-10-10','Male','trainer',0,18454.00,'Helps in muscle gain and flexibility.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu23.4fsUK/jdT/C9QsfMqKCtsYjbe4ia',3),('44444@gmail.com','Donna Paulsen','9889988998','1985-10-10','Male','admin',0,27465.88,'First one from the gym staff to be contacted whenever the higher authorities decide to incorporate any changes. Is responsible fo conveying all info to other subordinates and managing them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',4),('49997@gmail.com','Charlie Puth','1152522886','1985-10-10','Male','trainer',0,21000.00,'Helps in building the correct posture for workouts.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubj3ntkYz9bFdKid4OEiykkPjAl/Aoni',4),('49998@gmail.com','Daniel Hardman','1152522885','1985-10-10','Male','trainer',0,21000.00,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuEtZwHkBVmhF9zGgbgZofns5ccysMI0u',4),('49999@gmail.com','Colson Baker','1152522884','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuTVxS/1TZB/Qsv0UHrRDSb0kOku6klji',4),('50@cent.com','50 Cent','5050505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('50@cent2.com','50 Cent2','5051505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('51@cent2.com','51 Cent2','5151505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('512@cent2.com','512 Cent2','5351505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('5123@cent2.com','5123 Cent2','5951505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('52@cent.com','52 Cent','6050505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('55555@gmail.com','Alex Williams','9869833298','1985-10-10','Male','admin',0,46847.14,'Responsible for managing staff, getting the equipment serviced regularly as well adding new equipments to the website whenever needed. Can fire staff if performance is not up to the mark.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',5),('59999@gmail.com','Chris Martin','1152522881','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu19a3IoEPpyCM1KesBc4z8sAkyw8.BvW',5),('61111@gmail.com','Dua Lipa','3548764890','1985-10-10','Male','staff',1,9054.33,'Assists the trainer during yoga class.','$2a$10$0TuGb94iZDd85WkG07QdLeUxJJt8DBTR2Itn1byg3B12hQvuxeGom',6),('66666@gmail.com','Samantha Wheeler','3885379522','1985-10-10','Male','admin',0,75953.20,'Delegates tasks to lower level staff. Makes sure all facilities are open by the required time and also closed for servicing whenever needed. Can hire/fire staff.','$2a$10$7oX5rXE3GYE5QkpyD50Mz.JppDVSriA.hsGb1ExDXZ6oXgiyqpHLK',6),('66667@gmail.com','test','3333333330','1985-10-10','Male','admin',0,33.00,'test','test',6),('69999@mail.com','Anita Gibbs','1152522848','1985-10-10','Female','staff',0,2437.99,'Trains how to do complex workouts for experienced members.','$2a$10$CQTRGg1vWewqTNA9XIi1iermvHA6p8XW6ABILDK5K9NMpS4CU3FW6',6),('85638@gmail.com','Steve Tanaka','9563856375','1985-10-10','Male','staff',0,35000.99,'Manages all the facilitiy\'s billings and schedules appointments with walk in customers','$2a$10$XW0FEDooXV.bKyk9lau6Zu0QEEMo21DrMP6c1xy86zlooObUsJPz6',5),('liam@af.com','Liam Smith','9999900000','1985-10-10','Male','trainer',1,10203.00,'afdf sfsfsd fsdf sd f sdf ds f sd f sdf ds f sd f sd fsd fsdf','not needed',1),('liam2@af.com','Liam Smith','9900990099','1985-10-10','Male','trainer',1,213123.00,'eqw ewqe qw e qw e qwe qw e qw e wqe qw e qw eqw e wq e wq e qwe qw eqw e qwe qw e qwe','not needed',1),('r@x.com','ddd','1122112233','1985-10-10','Male','trainer',0,343434.00,'ergregerg','not needed',1),('random@1.com','random','1122333322','1985-10-10','Female','trainer',0,4453.44,'does everything','not needed',1),('root@absolutefitness.com','Toto Wolff','6176732882','1972-01-12','Male','root',0,1500000.00,'Root user. Can add new gyms, staff and assign admins.','$2a$10$MKaHMW71SBA5bOWoVqVGq.bGC7by3abRw44g7FCzTXCjhmKmNCuia',0);
+INSERT INTO `staff` VALUES ('1@2.com@gmail.com','fname sname','987654321','1994-12-12','Male','staff',0,25000.46,'desc','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('11111@gmail.com','Harvey Smith','1122112211','1985-10-10','Male','admin',0,45000.00,'Manages all staff of his gym. Responsible for ensuring all facilities of gym are working and in good condition. Can analyze trainer performance.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',1),('19994@gmail.com','New Name','5050505051','1975-12-12','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',1),('19995@gmail.com','Anjaneya Gurjar','4499449944','1985-10-10','Male','trainer',0,23322.99,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuCwxVal6AYHpCT0KEatAJ9KCcjp4a2Vy',1),('19996@gmail.com','Kylie Monnet','1100110011','1985-10-10','Male','trainer',0,34342.29,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuDwWRh4kbXXv0SEELVjQo10Mag02pzg6',1),('19997@gmail.com','Janet Andrews','1001100110','1985-10-10','Male','trainer',0,34342.22,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtu2OyHVGaJSjs5t1Vrj.7yLzC04ZDCPh6',1),('19998@gmail.com','Sabrina Mason','8787878787','1985-10-10','Male','trainer',0,11004.33,'Helps in building complex workout routines for members.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuG/4SvUoYETqMt8p620orGST6XiuJ8Fm',1),('19999@gmail.com','Thomas Cook','7878787878','1985-10-10','Male','trainer',0,12000.00,'Trains all the members under him as well as other people working out at the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQZCA3alY1UH60TXmoVY.oqXjUl.sKgG',1),('22222@gmail.com','Mike Ross','1234554321','1985-10-10','Male','admin',0,52000.00,'Supervises over the entire gym staff. Ensure trainer performance, how happy the customers are as well as regularly updates gym facilities and equipment.s.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',2),('29996@gmail.com','Georgie Bennet','1155228890','1985-10-10','Male','trainer',0,25640.70,'Conducts yoga classes for the interested members as well personal training sessions.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuwUfQgbEVAJXol0aJID6RMgS0zOjheJO',2),('29997@gmail.com','Misa Amane','5499449940','1985-10-10','Male','trainer',0,19000.00,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuJnAiIf/o/iy/XMcUp4d1YCQHNup9p.a',2),('29998@gmail.com','Susan Volkov','5499449941','1985-10-10','Male','trainer',0,11243.30,'Helps memebrs improve their posture in the gym.','$2a$10$1CK4fQdkK7WlpHZeRAVgtutyXEG.ckpq8m5BCJraIVas/bUBZkkWe',2),('29999@gmail.com','Liam Payne','5499449942','1985-10-10','Male','trainer',0,11243.30,'Helps all the members at the gym in figuring out the best workout plan for them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubCOsAKwc.p.84.VEfEC7tiCOx1WPASq',2),('33333@gmail.com','Rachel Zane','2323232323','1985-10-10','Male','admin',0,37346.44,'Manages other employees of the gym. Responsible for regularly adding newly hired staff to the gym\'s database.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',3),('39994@gmail.com','Christina Perez','1155228891','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9qbzxHdHVCr/QVR5NpYUal3r0Voe5fy',3),('39995@gmail.com','Sergio Messi','1155228895','1985-10-10','Male','trainer',0,25640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu9mrn.PIauuba0Yn34PgPFRxJkQ5mXn.',3),('39996@gmail.com','Max Ricciardo','1155228894','1985-10-10','Male','trainer',0,35640.70,'Helps members workout out properly.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuFhzgbsmIY8VrIzj7WW2219JsRW8vJ2e',3),('39998@gmail.com','Sebastian Vettel','1152522888','1985-10-10','Male','trainer',0,18454.00,'Deisgns custom workout plans for all members of the gym','$2a$10$1CK4fQdkK7WlpHZeRAVgtuQxFFEJwyIjpczeB2yVkVVi6epZneKi.',3),('39999@gmail.com','Charles Leclerc','1152522887','1985-10-10','Male','trainer',0,18454.00,'Helps in muscle gain and flexibility.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu23.4fsUK/jdT/C9QsfMqKCtsYjbe4ia',3),('44444@gmail.com','Donna Paulsen','9889988998','1985-10-10','Male','admin',0,27465.88,'First one from the gym staff to be contacted whenever the higher authorities decide to incorporate any changes. Is responsible fo conveying all info to other subordinates and managing them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',4),('49997@gmail.com','Charlie Puth','1152522886','1985-10-10','Male','trainer',0,21000.00,'Helps in building the correct posture for workouts.','$2a$10$1CK4fQdkK7WlpHZeRAVgtubj3ntkYz9bFdKid4OEiykkPjAl/Aoni',4),('49998@gmail.com','Daniel Hardman','1152522885','1985-10-10','Male','trainer',0,21000.00,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuEtZwHkBVmhF9zGgbgZofns5ccysMI0u',4),('49999@gmail.com','Colson Baker','1152522884','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuTVxS/1TZB/Qsv0UHrRDSb0kOku6klji',4),('50@cent.com','50 Cent','5050505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('50@cent2.com','50 Cent2','5051505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('51@cent2.com','51 Cent2','5151505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('512@cent2.com','512 Cent2','5351505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('5123@cent2.com','5123 Cent2','5951505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('52@cent.com','52 Cent','6050505050','1985-10-10','Male','trainer',0,45667.99,'Helps everybody and specializes in building the perfect diet for each individual.','not needed',4),('55555@gmail.com','Alex Williams','9869833298','1985-10-10','Male','admin',0,46847.14,'Responsible for managing staff, getting the equipment serviced regularly as well adding new equipments to the website whenever needed. Can fire staff if performance is not up to the mark.','$2a$10$1CK4fQdkK7WlpHZeRAVgtuXSGRJCSE4SkzCrKKz6DdMwdu0xXHVxu',5),('59999@gmail.com','Chris Martin','1152522881','1985-10-10','Male','trainer',0,2437.99,'Helps in understanding gym equipment and using them.','$2a$10$1CK4fQdkK7WlpHZeRAVgtu19a3IoEPpyCM1KesBc4z8sAkyw8.BvW',5),('61111@gmail.com','Dua Lipa','3548764890','1985-10-10','Male','staff',1,9054.33,'Assists the trainer during yoga class.','$2a$10$0TuGb94iZDd85WkG07QdLeUxJJt8DBTR2Itn1byg3B12hQvuxeGom',6),('66666@gmail.com','Samantha Wheeler','3885379522','1985-10-10','Male','admin',0,75953.20,'Delegates tasks to lower level staff. Makes sure all facilities are open by the required time and also closed for servicing whenever needed. Can hire/fire staff.','$2a$10$7oX5rXE3GYE5QkpyD50Mz.JppDVSriA.hsGb1ExDXZ6oXgiyqpHLK',6),('66667@gmail.com','Michelle Wu','2344325671','1985-10-10','Female','admin',0,155000.00,'Helps all staff perform well and manages the gym','$2a$10$YUjCf.n/qe2mdBUxB0Lm3OVeO6jL8IwAXkxtV/TVbNWTNiesdLC1G',6),('69999@mail.com','Anita Gibbs','1152522848','1985-10-10','Female','staff',0,2437.99,'Trains how to do complex workouts for experienced members.','$2a$10$CQTRGg1vWewqTNA9XIi1iermvHA6p8XW6ABILDK5K9NMpS4CU3FW6',6),('85638@gmail.com','Steve Tanaka','9563856375','1985-10-10','Male','staff',0,35000.99,'Manages all the facilitiy\'s billings and schedules appointments with walk in customers','$2a$10$XW0FEDooXV.bKyk9lau6Zu0QEEMo21DrMP6c1xy86zlooObUsJPz6',5),('gg@wp.com','GG WP','5994499449','1985-10-10','Female','admin',0,15599.56,'Helper in all aspects','$2a$10$NyeKXk1Yc1.KEtH5DvAq3ODoYNkZP6Ilezpgf18b/iIJCT5eyslZS',97),('liam@af.com','Liam Smith','9999900000','1985-10-10','Male','trainer',1,10203.00,'afdf sfsfsd fsdf sd f sdf ds f sd f sdf ds f sd f sd fsd fsdf','not needed',1),('liam2@af.com','Liam Smith','9900990099','1985-10-10','Male','trainer',1,213123.00,'eqw ewqe qw e qw e qwe qw e qw e wqe qw e qw eqw e wq e wq e qwe qw eqw e qwe qw e qwe','not needed',1),('r@x.com','ddd','1122112233','1985-10-10','Male','trainer',0,343434.00,'ergregerg','not needed',1),('random@1.com','random','1122333322','1985-10-10','Female','trainer',0,4453.44,'does everything','not needed',1),('root@absolutefitness.com','Toto Wolff','6176732882','1972-01-12','Male','root',0,1500000.00,'Root user. Can add new gyms, staff and assign admins.','$2a$10$MKaHMW71SBA5bOWoVqVGq.bGC7by3abRw44g7FCzTXCjhmKmNCuia',0);
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `admin_delete_check` BEFORE DELETE ON `staff` FOR EACH ROW BEGIN
-	IF OLD.staff_id IN (SELECT staff_id FROM gym_admins) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Cannot delete an admin" ;
-    END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Table structure for table `temp`
---
-
-DROP TABLE IF EXISTS `temp`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `temp` (
-  `image_url` varchar(200) NOT NULL,
-  `gym_id` int NOT NULL,
-  PRIMARY KEY (`image_url`),
-  KEY `gym_id` (`gym_id`),
-  CONSTRAINT `temp_ibfk_1` FOREIGN KEY (`gym_id`) REFERENCES `gyms` (`gym_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `temp`
---
-
-LOCK TABLES `temp` WRITE;
-/*!40000 ALTER TABLE `temp` DISABLE KEYS */;
-INSERT INTO `temp` VALUES ('https://bodyandstrength.com/Upload/site/wJSUa_cover.jpg',1),('https://www.encorefitness.ru/upload/resize/a8/a8709705bb195a5d68f8c72b2b76537f_1024x2000.jpg',2),('https://cdn.abcotvs.com/dip/images/6193988_051820-wpvi-annie-nj-gyms-video-vid.jpg',3),('https://images.squarespace-cdn.com/content/v1/56e487181d07c0743d227289/1557248970918-530M1TO27B7Q41OEE985/fitness-4-1500x77.jpg?format=1500w',4),('https://gymmboxx.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-09-at-6.32.11-PM.jpeg',5),('https://cdn.vox-cdn.com/thumbor/2Bcpu3cwfzZJ2gUnhWaiyWFS0Mw=/0x0:8238x5492/1200x800/filters:focal(3460x2087:4778x3405)/cdn.vox-cdn.com/uploads/chorus_image/image/67606043/GettyImages_1132006407.0.jpg',6);
-/*!40000 ALTER TABLE `temp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -468,6 +448,7 @@ CREATE TABLE `tokens` (
 
 LOCK TABLES `tokens` WRITE;
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
+INSERT INTO `tokens` VALUES ('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY2NjY3QGdtYWlsLmNvbSIsInR5cGUiOiJhZG1pbiIsImlhdCI6MTcwMTY0MjI5NywiZXhwIjoxNzAxNjQ0MDk3fQ.7nfEFobOuNbrH-XWo_WOAKspNFMQYurIlyXSGt-Gs2Q','66667@gmail.com'),('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRhbm1heS5za2F0ZXJAZ21haWwuY29tIiwidHlwZSI6Im1lbWJlciIsImlhdCI6MTcwMTU4MTk5NywiZXhwIjoxNzAxNTgzNzk3fQ.fcYj4pTsxVMm6c0L3cFVJlLQUtO-LG_QgLih4L68fwQ','tanmay.skater@gmail.com');
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,6 +481,36 @@ INSERT INTO `trainers` VALUES ('19994@gmail.com','https://www.muscleandfitness.c
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `user_health_plan_details`
+--
+
+DROP TABLE IF EXISTS `user_health_plan_details`;
+/*!50001 DROP VIEW IF EXISTS `user_health_plan_details`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `user_health_plan_details` AS SELECT 
+ 1 AS `email`,
+ 1 AS `name`,
+ 1 AS `health_plan_description`,
+ 1 AS `trainer_id`,
+ 1 AS `trainer_url`,
+ 1 AS `trainer_name`,
+ 1 AS `trainer_phone`,
+ 1 AS `workout_plan_id`,
+ 1 AS `workout_plan_name`,
+ 1 AS `workout_description`,
+ 1 AS `excercise_1`,
+ 1 AS `excercise_2`,
+ 1 AS `excercise_3`,
+ 1 AS `diet_plan_id`,
+ 1 AS `diet_name`,
+ 1 AS `diet_description`,
+ 1 AS `breakfast`,
+ 1 AS `lunch`,
+ 1 AS `dinner`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `users`
 --
 
@@ -528,31 +539,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('4@5.com','four five','0000000001','1950-02-06','Female','$2a$10$qy/cgMjaQ3hbep2euAd6dubJ51sYfTxZrUv7PVDGxBYGxokCPu9w6',3),('9@9.com','four five','0000000002','1950-02-06','Female','$2a$10$nvOW3uasHN.RI.OvjmnwjuXhJHa.xOREFtz7nLvLvk7IW5yjQep5C',3),('alex@gmail.com','Alex Williams','2244223322','1998-11-12','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('ariana@gmail.com','Ariana Grande','4848484848','1996-10-15','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('arpan@gmail.com','Arpan Patel','2892407243','1994-05-14','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('britney@gmail.com','Britney Spears','2288882266','1979-07-23','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('cook@gmail.com','Samantha Cook','2288440099','1993-06-15','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('david@gmail.com','David Johnson','2344322344','1985-04-10','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('emma@gmail.com','Emma James','7744993322','2003-01-15','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('girish@gmail.com','Girish Mahajan','2288993300','1977-03-16','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('iggy@gmail.com','Iggy Azalea','5676389188','2001-05-24','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('john@gmail.com','John Doe','7564856386','2007-01-10','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('kaldon@hotmail.com','Kaldon Disaint','7563777449','2005-03-31','Male','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('katy@gmail.com','Katy Perry','2288663300','1985-10-24','Female','$2a$10$UxgbriENtd2gJrG9WSsk5u1H0iOYd2ND.2h69UIBPmq/cLU7FbVui',6),('kelly@neu.com','Kelly Termont','5768679321','2007-01-31','Female','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('louis@gmail.com','Louis Litt','2288339900','1985-03-14','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('mark@gmail.com','Mark Johnson','2288447722','1998-06-19','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('michelle@gmail.com','Michelle Ross','7744668833','1993-05-31','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('paritosh@gmail.com','Paritosh Chaudhuri','3388009988','1963-07-08','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('parth@gmail.com','Parth Parikh','8833889944','2000-05-25','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('rand@rand.com','rand','5555566666','2022-12-09','Female','$2a$10$Zr.Wq5MQb0sBU3oOtC9S7e4u.KHog7WGG0LUs5vfl8HsvIQvsAXLa',3),('rikc.2000@gmail.com','Supratik Chaudhuri','3883388338','2000-05-11','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('robert@gmail.com','Robert Zane','3454234543','1967-07-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('ross@gmail.com','Ross Geller','3746383682','1969-06-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('selena@gmail.com','Selena Gomez','8778877833','1993-01-07','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('shashwat@gmail.com','Shashwat Kumar','3399220099','2000-08-05','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('simon@gmail.com','Simon Cowell','2020202020','1968-06-03','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('tanmay.skater@gmail.com','Tanmay Kapoor','6179358069','2000-12-11','Male','$2a$10$H8cb2S07maNr7xhqO41ZBerhZIDdszkTgtaLiZ8lD/5O/h/bejUOm',6),('tim@gmail.com','Tim','8765783725','2007-02-14','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('tom@gmail.com','Tom Doe','7564982645','2002-06-11','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('ziya@google.com','Ziya Quereshi','9580567387','2000-08-08','Female','$2a$10$wQ9mFBDLVhohO7emFunjTeBVp/uWO4OlAERRs8wBNzAInTy6etXm.',5);
+INSERT INTO `users` VALUES ('4@5.com','four five','0000000001','1950-02-06','Female','$2a$10$qy/cgMjaQ3hbep2euAd6dubJ51sYfTxZrUv7PVDGxBYGxokCPu9w6',3),('9@9.com','four five','0000000002','1950-02-06','Female','$2a$10$nvOW3uasHN.RI.OvjmnwjuXhJHa.xOREFtz7nLvLvk7IW5yjQep5C',3),('alex@gmail.com','Alex Williams','2244223322','1998-11-12','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('ariana@gmail.com','Ariana Grande','4848484848','1996-10-15','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('arpan@gmail.com','Arpan Patel','2892407243','1994-05-14','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('britney@gmail.com','Britney Spears','2288882266','1979-07-23','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('cook@gmail.com','Samantha Cook','2288440099','1993-06-15','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('david@gmail.com','David Johnson','2344322344','1985-04-10','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('emma@gmail.com','Emma James','7744993322','2003-01-15','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('girish@gmail.com','Girish Mahajan','2288993300','1977-03-16','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('iggy@gmail.com','Iggy Azalea','5676389188','2001-05-24','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('john@gmail.com','John Doe','7564856386','2007-01-10','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('kaldon@hotmail.com','Kaldon Disaint','7563777449','2005-03-31','Male','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('katy@gmail.com','Katy Perry','2288663300','1985-10-24','Female','$2a$10$UxgbriENtd2gJrG9WSsk5u1H0iOYd2ND.2h69UIBPmq/cLU7FbVui',6),('kelly@neu.com','Kelly Termont','5768679321','2007-01-31','Female','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('louis@gmail.com','Louis Litt','2288339900','1985-03-14','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('mark@gmail.com','Mark Johnson','2288447722','1998-06-19','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('michelle@gmail.com','Michelle Ross','7744668833','1993-05-31','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('paritosh@gmail.com','Paritosh Chaudhuri','3388009988','1963-07-08','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('parth@gmail.com','Parth Parikh','8833889944','2000-05-25','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('rand@rand.com','rand','5555566666','2022-12-09','Female','$2a$10$Zr.Wq5MQb0sBU3oOtC9S7e4u.KHog7WGG0LUs5vfl8HsvIQvsAXLa',3),('rikc.2000@gmail.com','Supratik Chaudhuri','3883388338','2000-05-11','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('robert@gmail.com','Robert Zane','3454234543','1967-07-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('ross@gmail.com','Ross Geller','3746383682','1969-06-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('selena@gmail.com','Selena Gomez','8778877833','1993-01-07','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('shashwat@gmail.com','Shashwat Kumar','3399220099','2000-08-05','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('simon@gmail.com','Simon Cowell','2020202020','1968-06-03','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('tanmay.skater@gmail.com','Tanmay Kapoor','6179358069','2000-12-11','Male','$2a$10$H8cb2S07maNr7xhqO41ZBerhZIDdszkTgtaLiZ8lD/5O/h/bejUOm',6),('test.yes@gmail.com','Test User','0000000089','1980-06-13','Female','$2a$10$tjPv0bvJhuQMDJbMi9I6aOOi1w6UfQHNhnlb0/nr5tZB0NlYC1s5u',2),('tim@gmail.com','Tim','8765783725','2007-02-14','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('tom@gmail.com','Tom Doe','7564982645','2002-06-11','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('ziya@google.com','Ziya Quereshi','9580567387','2000-08-08','Female','$2a$10$wQ9mFBDLVhohO7emFunjTeBVp/uWO4OlAERRs8wBNzAInTy6etXm.',5);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `randomly_assign_health_plan` AFTER INSERT ON `users` FOR EACH ROW BEGIN
-	SELECT getRandomTrainer(NEW.gym_id) INTO @trainer;
-    SELECT getRandomWorkoutPlan() INTO @workout_plan;
-	SELECT getRandomDietPlan() INTO @diet_plan;
-    
-	INSERT INTO health_plans (trainer_id, email, workout_plan, diet_plan, description) 
-    VALUES (@trainer, NEW.email, @workout_plan, @diet_plan, "Randomly assigned plan");
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `workout_plans`
@@ -596,6 +585,28 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'af3'
 --
+/*!50003 DROP FUNCTION IF EXISTS `addEquipment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `addEquipment`(v_name VARCHAR(20), 
+								 v_image_url VARCHAR(512)) RETURNS int
+    READS SQL DATA
+BEGIN
+	INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
+    RETURN LAST_INSERT_ID();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP FUNCTION IF EXISTS `getRandomDietPlan` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -702,28 +713,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `addEquipment` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addEquipment`(IN v_name VARCHAR(20),
-							  IN v_image_url VARCHAR(512),
-                              OUT equipment_id INT)
-BEGIN	
-    INSERT INTO equipments (name, image_url) VALUES (v_name, v_image_url);
-    SELECT LAST_INSERT_ID() INTO equipment_id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `addEquipmentForGym` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -767,17 +756,57 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addGym`(IN v_branch VARCHAR(50), 
-						IN v_pincode VARCHAR(5),
-						IN v_phone VARCHAR(10), 
-                        IN v_location VARCHAR(50), 
-                        IN v_membership_fee DECIMAL(65, 2),
-                        OUT gym_id INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addGym`(in v_branch VARCHAR(50), 
+						   in v_pincode VARCHAR(5),
+                           in v_phone VARCHAR(10), 
+                           in v_location VARCHAR(50), 
+                           in v_membership_fee DECIMAL(65, 2),
+                           
+                           in v_staff_id VARCHAR(30),
+                           in v_name VARCHAR(50), 
+                           in v_admin_phone VARCHAR(10), 
+                           in v_dob DATE,
+                           in v_sex ENUM("Male", "Female", "Other"),
+                           in v_type ENUM("staff", "trainer", "admin"),
+                           in v_part_time BOOLEAN, 
+                           in v_salary DECIMAL(65, 2), 
+                           in v_description VARCHAR(512), 
+                           in v_password VARCHAR(100))
 BEGIN
+	DECLARE error_code INT;
+	DECLARE error_message VARCHAR(16383);
+    declare tp varchar(200);
+    declare new_gym_id int;
+    
+	DECLARE exit handler for sqlexception
+    BEGIN
+        -- If an error occurs, roll back the transaction
+        GET DIAGNOSTICS CONDITION 1
+			error_code = MYSQL_ERRNO, error_message = MESSAGE_TEXT;
+		
+        select substring(error_message, 1, 100) into tp;
+        
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = tp;
+    END;
+    
+    SET AUTOCOMMIT = 0;
+    
+    START TRANSACTION;
+    
 	INSERT INTO gyms (branch, pincode, phone, location, membership_fee) 
     VALUES (v_branch, v_pincode, v_phone, v_location, v_membership_fee);
     
-    SELECT LAST_INSERT_ID() INTO gym_id;
+    SELECT LAST_INSERT_ID() INTO new_gym_id;
+    
+    INSERT INTO staff (staff_id, name, phone, sex, type, part_time, salary, description, password, gym_id) 
+    VALUES (v_staff_id, v_name, v_admin_phone, v_sex, v_type, v_part_time, v_salary, v_description, v_password, new_gym_id);
+    
+    INSERT INTO gym_admins VALUES (v_staff_id, new_gym_id);
+    
+    COMMIT;
+    
+    SELECT new_gym_id AS gym_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -951,6 +980,35 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addWorkoutPlan`(IN v_name VARCHAR(3
 BEGIN
 	INSERT INTO workout_plans (name, description, excercise_1, excercise_2, excercise_3) 
     VALUES (v_name, v_description, v_excercise_1, v_excercise_2, v_excercise_2);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `createNewAdminForGym` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createNewAdminForGym`(IN v_staff_id VARCHAR(30),
+								IN v_name VARCHAR(50), 
+								IN v_phone VARCHAR(10), 
+								IN v_dob DATE,
+								IN v_sex ENUM("Male", "Female", "Other"),
+								IN v_part_time BOOLEAN, 
+								IN v_salary DECIMAL(65, 2), 
+								IN v_description VARCHAR(512), 
+								IN v_password VARCHAR(100), 
+								IN v_gym_id INT)
+BEGIN
+	CALL addStaff(v_staff_id, v_name, v_phone, v_dob, v_sex, "admin", v_part_time, v_salary, v_description, v_password, v_gym_id);
+	INSERT INTO gym_admins VALUES (v_staff_id, v_gym_id);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1142,10 +1200,47 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getAdmin`(IN v_staff_id VARCHAR(30))
 BEGIN 
-	SELECT * FROM 
-    staff s JOIN gym_admins a
-	ON s.staff_id = a.staff_id
-    HAVING a.staff_id = v_staff_id;
+	SELECT * FROM staff 
+    WHERE staff_id = v_staff_id and type = "admin";
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllAdmins` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllAdmins`()
+BEGIN
+	SELECT * FROM staff WHERE type = "admin";
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllAdminsForGym` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllAdminsForGym`(IN v_gym_id INT)
+BEGIN 
+	SELECT * FROM staff 
+    WHERE type = "admin" AND gym_id = v_gym_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1489,16 +1584,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getDietPlanForUser`(IN v_email VARCHAR(30))
 BEGIN 
-	SELECT h.email, d.*, 
-			m1.calories as m1_calories, m1.image_url as m1_url, 
-			m2.calories as m2_calories, m2.image_url as m2_url, 
-			m3.calories as m3_calories, m3.image_url as m3_url FROM 
-	health_plans h LEFT JOIN diet_plans d 
-	ON h.diet_plan = d.plan_id
-	LEFT JOIN meal_choices m1 ON d.breakfast = m1.meal 
-	LEFT JOIN meal_choices m2 ON d.lunch = m2.meal 
-	LEFT JOIN meal_choices m3 ON d.dinner = m3.meal 
-	HAVING h.email = v_email;
+	SELECT * FROM diet_plan_details
+    WHERE email = v_email;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1582,24 +1669,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getHealthPlanForUser`(IN v_email VARCHAR(30))
 BEGIN 
-	SELECT u.email, u.name, h.description as health_plan_description,
-			t.staff_id as trainer_id, t.image_url as trainer_url,
-			s.name as trainer_name, s.phone as trainer_phone, 
-			w.plan_id as workout_plan_id, w.name as workout_plan_name, 
-			w.description as workout_description, w.excercise_1, w.excercise_2, w.excercise_3, 
-			d.plan_id as diet_plan_id, d.name as diet_name, d.description as diet_description, 
-			d.breakfast, d.lunch, d.dinner FROM 
-	((((users u LEFT JOIN health_plans h 
-	ON h.email = u.email) 
-	LEFT JOIN trainers t 
-	ON h.trainer_id = t.staff_id) 
-	LEFT JOIN staff s 
-	ON t.staff_id = s.staff_id)
-	LEFT JOIN workout_plans w  
-	ON h.workout_plan = w.plan_id) 
-	LEFT JOIN diet_plans d 
-	ON h.diet_plan = d.plan_id 
-	HAVING email = v_email;
+	SELECT * FROM user_health_plan_details
+    WHERE email = v_email;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1742,6 +1813,32 @@ BEGIN
 	LEFT JOIN excercises e2 ON w.excercise_2 = e2.name 
 	LEFT JOIN excercises e3 ON w.excercise_3 = e3.name 
 	HAVING h.email = v_email;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `promoteStaffToAdmin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `promoteStaffToAdmin`(IN v_staff_id VARCHAR(30))
+BEGIN
+	DECLARE v_gym_id INT;
+    
+	UPDATE staff SET type = "admin" WHERE staff_id = v_staff_id;
+    
+    SELECT gym_id INTO v_gym_id WHERE
+    staff_id = v_staff_id;
+    
+	INSERT INTO gym_admins VALUES (v_staff_id, v_gym_id);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2020,6 +2117,42 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `diet_plan_details`
+--
+
+/*!50001 DROP VIEW IF EXISTS `diet_plan_details`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `diet_plan_details` AS select `h`.`email` AS `email`,`d`.`plan_id` AS `plan_id`,`d`.`name` AS `name`,`d`.`description` AS `description`,`d`.`breakfast` AS `breakfast`,`d`.`lunch` AS `lunch`,`d`.`dinner` AS `dinner`,`m1`.`calories` AS `m1_calories`,`m1`.`image_url` AS `m1_url`,`m2`.`calories` AS `m2_calories`,`m2`.`image_url` AS `m2_url`,`m3`.`calories` AS `m3_calories`,`m3`.`image_url` AS `m3_url` from ((((`health_plans` `h` left join `diet_plans` `d` on((`h`.`diet_plan` = `d`.`plan_id`))) left join `meal_choices` `m1` on((`d`.`breakfast` = `m1`.`meal`))) left join `meal_choices` `m2` on((`d`.`lunch` = `m2`.`meal`))) left join `meal_choices` `m3` on((`d`.`dinner` = `m3`.`meal`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `user_health_plan_details`
+--
+
+/*!50001 DROP VIEW IF EXISTS `user_health_plan_details`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `user_health_plan_details` AS select `u`.`email` AS `email`,`u`.`name` AS `name`,`h`.`description` AS `health_plan_description`,`t`.`staff_id` AS `trainer_id`,`t`.`image_url` AS `trainer_url`,`s`.`name` AS `trainer_name`,`s`.`phone` AS `trainer_phone`,`w`.`plan_id` AS `workout_plan_id`,`w`.`name` AS `workout_plan_name`,`w`.`description` AS `workout_description`,`w`.`excercise_1` AS `excercise_1`,`w`.`excercise_2` AS `excercise_2`,`w`.`excercise_3` AS `excercise_3`,`d`.`plan_id` AS `diet_plan_id`,`d`.`name` AS `diet_name`,`d`.`description` AS `diet_description`,`d`.`breakfast` AS `breakfast`,`d`.`lunch` AS `lunch`,`d`.`dinner` AS `dinner` from (((((`users` `u` left join `health_plans` `h` on((`h`.`email` = `u`.`email`))) left join `trainers` `t` on((`h`.`trainer_id` = `t`.`staff_id`))) left join `staff` `s` on((`t`.`staff_id` = `s`.`staff_id`))) left join `workout_plans` `w` on((`h`.`workout_plan` = `w`.`plan_id`))) left join `diet_plans` `d` on((`h`.`diet_plan` = `d`.`plan_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2030,4 +2163,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-02 22:17:52
+-- Dump completed on 2023-12-06 16:22:15
