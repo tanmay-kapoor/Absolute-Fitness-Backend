@@ -102,8 +102,8 @@ exports.createCheckoutSession = async (req, res) => {
                 },
             ],
             mode: "subscription",
-            success_url: `${CLIENT_URL}/payment?token=${token}`,
-            cancel_url: `${CLIENT_URL}?canceled=true`,
+            success_url: `${CLIENT_URL}/payment-success?token=${token}`,
+            cancel_url: `${CLIENT_URL}`,
         });
         res.status(200).json(session.url);
     } catch (err) {
