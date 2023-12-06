@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `af3` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `af3`;
--- MySQL dump 10.13  Distrib 8.0.31, for macos12 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for macos12 (x86_64)
 --
 -- Host: localhost    Database: af3
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -523,6 +523,7 @@ CREATE TABLE `users` (
   `phone` varchar(10) NOT NULL,
   `dob` date NOT NULL,
   `sex` enum('Male','Female','Other') NOT NULL,
+  `subscribed` tinyint(1) NOT NULL DEFAULT '0',
   `password` varchar(100) NOT NULL,
   `gym_id` int NOT NULL,
   PRIMARY KEY (`email`),
@@ -539,7 +540,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('4@5.com','four five','0000000001','1950-02-06','Female','$2a$10$qy/cgMjaQ3hbep2euAd6dubJ51sYfTxZrUv7PVDGxBYGxokCPu9w6',3),('9@9.com','four five','0000000002','1950-02-06','Female','$2a$10$nvOW3uasHN.RI.OvjmnwjuXhJHa.xOREFtz7nLvLvk7IW5yjQep5C',3),('alex@gmail.com','Alex Williams','2244223322','1998-11-12','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('ariana@gmail.com','Ariana Grande','4848484848','1996-10-15','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('arpan@gmail.com','Arpan Patel','2892407243','1994-05-14','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('britney@gmail.com','Britney Spears','2288882266','1979-07-23','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('cook@gmail.com','Samantha Cook','2288440099','1993-06-15','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('david@gmail.com','David Johnson','2344322344','1985-04-10','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('emma@gmail.com','Emma James','7744993322','2003-01-15','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('girish@gmail.com','Girish Mahajan','2288993300','1977-03-16','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('iggy@gmail.com','Iggy Azalea','5676389188','2001-05-24','Female','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('john@gmail.com','John Doe','7564856386','2007-01-10','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('kaldon@hotmail.com','Kaldon Disaint','7563777449','2005-03-31','Male','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('katy@gmail.com','Katy Perry','2288663300','1985-10-24','Female','$2a$10$UxgbriENtd2gJrG9WSsk5u1H0iOYd2ND.2h69UIBPmq/cLU7FbVui',6),('kelly@neu.com','Kelly Termont','5768679321','2007-01-31','Female','$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('louis@gmail.com','Louis Litt','2288339900','1985-03-14','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('mark@gmail.com','Mark Johnson','2288447722','1998-06-19','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('michelle@gmail.com','Michelle Ross','7744668833','1993-05-31','Female','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('paritosh@gmail.com','Paritosh Chaudhuri','3388009988','1963-07-08','Male','$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('parth@gmail.com','Parth Parikh','8833889944','2000-05-25','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('rand@rand.com','rand','5555566666','2022-12-09','Female','$2a$10$Zr.Wq5MQb0sBU3oOtC9S7e4u.KHog7WGG0LUs5vfl8HsvIQvsAXLa',3),('rikc.2000@gmail.com','Supratik Chaudhuri','3883388338','2000-05-11','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('robert@gmail.com','Robert Zane','3454234543','1967-07-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('ross@gmail.com','Ross Geller','3746383682','1969-06-09','Male','$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('selena@gmail.com','Selena Gomez','8778877833','1993-01-07','Female','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('shashwat@gmail.com','Shashwat Kumar','3399220099','2000-08-05','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('simon@gmail.com','Simon Cowell','2020202020','1968-06-03','Male','$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('tanmay.skater@gmail.com','Tanmay Kapoor','6179358069','2000-12-11','Male','$2a$10$H8cb2S07maNr7xhqO41ZBerhZIDdszkTgtaLiZ8lD/5O/h/bejUOm',6),('test.yes@gmail.com','Test User','0000000089','1980-06-13','Female','$2a$10$tjPv0bvJhuQMDJbMi9I6aOOi1w6UfQHNhnlb0/nr5tZB0NlYC1s5u',2),('tim@gmail.com','Tim','8765783725','2007-02-14','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('tom@gmail.com','Tom Doe','7564982645','2002-06-11','Male','$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('ziya@google.com','Ziya Quereshi','9580567387','2000-08-08','Female','$2a$10$wQ9mFBDLVhohO7emFunjTeBVp/uWO4OlAERRs8wBNzAInTy6etXm.',5);
+INSERT INTO `users` VALUES ('4@5.com','four five','0000000001','1950-02-06','Female',0,'$2a$10$qy/cgMjaQ3hbep2euAd6dubJ51sYfTxZrUv7PVDGxBYGxokCPu9w6',3),('9@9.com','four five','0000000002','1950-02-06','Female',0,'$2a$10$nvOW3uasHN.RI.OvjmnwjuXhJHa.xOREFtz7nLvLvk7IW5yjQep5C',3),('alex@gmail.com','Alex Williams','2244223322','1998-11-12','Male',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('ariana@gmail.com','Ariana Grande','4848484848','1996-10-15','Female',0,'$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('arpan@gmail.com','Arpan Patel','2892407243','1994-05-14','Male',0,'$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('britney@gmail.com','Britney Spears','2288882266','1979-07-23','Female',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('cook@gmail.com','Samantha Cook','2288440099','1993-06-15','Female',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('david@gmail.com','David Johnson','2344322344','1985-04-10','Male',0,'$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('emma@gmail.com','Emma James','7744993322','2003-01-15','Female',0,'$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('girish@gmail.com','Girish Mahajan','2288993300','1977-03-16','Male',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('iggy@gmail.com','Iggy Azalea','5676389188','2001-05-24','Female',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',3),('john@gmail.com','John Doe','7564856386','2007-01-10','Male',0,'$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('kaldon@hotmail.com','Kaldon Disaint','7563777449','2005-03-31','Male',0,'$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('katy@gmail.com','Katy Perry','2288663300','1985-10-24','Female',0,'$2a$10$UxgbriENtd2gJrG9WSsk5u1H0iOYd2ND.2h69UIBPmq/cLU7FbVui',6),('kelly@neu.com','Kelly Termont','5768679321','2007-01-31','Female',0,'$2a$10$wQ9mFBDLVhohO7emFunjTefJb/trQghBOBskeaUZO1hnrDdnG0Ft6',4),('louis@gmail.com','Louis Litt','2288339900','1985-03-14','Male',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('mark@gmail.com','Mark Johnson','2288447722','1998-06-19','Male',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',2),('michelle@gmail.com','Michelle Ross','7744668833','1993-05-31','Female',0,'$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('paritosh@gmail.com','Paritosh Chaudhuri','3388009988','1963-07-08','Male',0,'$2a$10$wQ9mFBDLVhohO7emFunjTedMsKYvQekKszBJM8oVbXRjNIYjs/aZm',1),('parth@gmail.com','Parth Parikh','8833889944','2000-05-25','Male',0,'$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('rand@rand.com','rand','5555566666','2022-12-09','Female',0,'$2a$10$Zr.Wq5MQb0sBU3oOtC9S7e4u.KHog7WGG0LUs5vfl8HsvIQvsAXLa',3),('rikc.2000@gmail.com','Supratik Chaudhuri','3883388338','2000-05-11','Male',0,'$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('robert@gmail.com','Robert Zane','3454234543','1967-07-09','Male',0,'$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('ross@gmail.com','Ross Geller','3746383682','1969-06-09','Male',0,'$2a$10$k2tlY6ks9aJcVQt8ncSH5uHWVjliu18a3Y7cZy4cdrm6YkDMag5UK',1),('selena@gmail.com','Selena Gomez','8778877833','1993-01-07','Female',0,'$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',1),('shashwat@gmail.com','Shashwat Kumar','3399220099','2000-08-05','Male',0,'$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('simon@gmail.com','Simon Cowell','2020202020','1968-06-03','Male',0,'$2a$10$eXYWi2f/GHdYumaNlbaqdORL4QPTF/GmB3Xi6B0gSIelvgz4OyWNe',2),('tanmay.skater@gmail.com','Tanmay Kapoor','6179358069','2000-12-11','Male',0,'$2a$10$H8cb2S07maNr7xhqO41ZBerhZIDdszkTgtaLiZ8lD/5O/h/bejUOm',6),('test.yes@gmail.com','Test User','0000000089','1980-06-13','Female',0,'$2a$10$tjPv0bvJhuQMDJbMi9I6aOOi1w6UfQHNhnlb0/nr5tZB0NlYC1s5u',2),('tim@gmail.com','Tim','8765783725','2007-02-14','Male',0,'$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('tom@gmail.com','Tom Doe','7564982645','2002-06-11','Male',0,'$2a$10$cCLc6xUcpSvuIkP0QfYe.Ot64GZMLvWTjt1mp1dFxdQdiq38wEr6m',1),('ziya@google.com','Ziya Quereshi','9580567387','2000-08-08','Female',0,'$2a$10$wQ9mFBDLVhohO7emFunjTeBVp/uWO4OlAERRs8wBNzAInTy6etXm.',5);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1605,9 +1606,9 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getEntryForLogin`(IN v_username VARCHAR(30))
 BEGIN
 	with entries as (
-		select email as username, name, phone, dob, sex, "member" as type, password, gym_id from users
+		select email as username, name, phone, dob, sex, "member" as type, subscribed, password, gym_id from users
 		union
-		select staff_id as username, name, phone, dob, sex, type, password, gym_id from staff
+		select staff_id as username, name, phone, dob, sex, type, false as subscribed, password, gym_id from staff
 	)
 	select * from entries where username = v_username;
 END ;;
@@ -1839,6 +1840,25 @@ BEGIN
     staff_id = v_staff_id;
     
 	INSERT INTO gym_admins VALUES (v_staff_id, v_gym_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `promoteToPayingCustomer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `promoteToPayingCustomer`(v_email VARCHAR(30))
+BEGIN
+	UPDATE users SET subscribed = true WHERE email = v_email;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2163,4 +2183,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-06 16:50:44
+-- Dump completed on 2023-12-06 18:18:17
