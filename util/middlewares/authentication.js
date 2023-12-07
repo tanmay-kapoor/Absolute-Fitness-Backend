@@ -141,12 +141,13 @@ exports.verifyRootOrEmployeeOrAdminOfSameGym = async (req, res, next) => {
         if (err) return res.status(403).json({ msg: err.message });
 
         const [[[staff]]] = await Staff.getStaff(req.params["staffId"]);
+
         if (!staff) {
             return res.status(401).json({ msg: "Staff does not exist" });
         } else if (
             user.type === "root" ||
-            (user.type === "admin" && user.gymId === staff.gymId) ||
-            (user.gymId === staff.gymId &&
+            (user.type === "admin" && user.gymId === staff.gym_id) ||
+            (user.gymId === staff.gym_id &&
                 user.type === "staff" &&
                 user.username === req.params["staffId"])
         ) {
