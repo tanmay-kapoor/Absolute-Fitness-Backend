@@ -605,7 +605,7 @@ CREATE PROCEDURE updateGym(in v_branch VARCHAR(50),
                         IN v_gym_id INT)
 BEGIN
 	UPDATE gyms SET 
-    phone = v_phone, location = v_location, membership_fee = v_membership_fee 
+    phone = v_phone, location = v_location, membership_fee = v_membership_fee, branch = v_branch
     WHERE gym_id = v_gym_id;
 END //
 DELIMITER ;
