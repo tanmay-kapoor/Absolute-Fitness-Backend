@@ -95,24 +95,25 @@ exports.updateStaff = async (req, res) => {
         if (req.user.username === details.staffId) {
             details.type = req.body.type || req.user.type;
         } else {
-            details.type = req.body.type || getStaff(details.staffId).type;
+            details.type =
+                req.body.type || (await getStaffLocal(details.staffId)).type;
         }
 
         details.password = req.body.password
             ? bcrypt.hashSync(req.body.password, salt)
-            : getStaff(details.staffId).password;
+            : (await getStaffLocal(details.staffId)).password;
 
         details.partTime = req.body.partTime
             ? getPartTimeValue(req.body.partTime)
-            : getStaff(details.staffId).partTime;
+            : (await getStaffLocal(details.staffId)).part_time;
 
         details.salary = req.body.salary
             ? req.body.salary
-            : getStaff(details.staffId).salary;
+            : (await getStaffLocal(details.staffId)).salary;
 
         details.description = req.body.description
             ? req.body.description
-            : getStaff(details.staffId).description;
+            : (await getStaffLocal(details.staffId)).description;
 
         await Staff.updateStaff(details);
         res.status(200).json({ msg: "Success" });
@@ -132,7 +133,7 @@ exports.deleteStaff = async (req, res) => {
 };
 
 let staffMember;
-const getStaff = async (staffId) => {
+const getStaffLocal = async (staffId) => {
     if (!staffMember) {
         [[[staffMember]]] = await Staff.getStaff(staffId);
     }
