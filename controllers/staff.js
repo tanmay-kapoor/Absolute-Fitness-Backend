@@ -43,7 +43,7 @@ exports.addStaff = async (req, res) => {
             partTime: false,
             salary: req.body.salary,
             description: req.body.description,
-            password: bcrypt.hashSync(req.body.password, salt),
+            password: bcrypt.hashSync(req.body.password || "random", salt),
             gymId: req.body.gymId,
         };
         const [[staff]] = await Staff.getStaff(details.staffId);

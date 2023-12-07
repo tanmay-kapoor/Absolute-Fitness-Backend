@@ -610,4 +610,5 @@ BEGIN
 END //
 DELIMITER ;
 
-select * from staff;
+ALTER TABLE trainers
+MODIFY COLUMN image_url VARCHAR(200);
