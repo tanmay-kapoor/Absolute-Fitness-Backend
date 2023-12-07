@@ -547,7 +547,7 @@ DELIMITER //
 CREATE PROCEDURE addImageUrlForGym(IN v_image_url VARCHAR(200), 
 								   IN v_gym_id INT)
 BEGIN
-	INSERT INTO gym_image_urls VALUES (v_image_url, v_gym_id);
+	INSERT IGNORE INTO gym_image_urls VALUES (v_image_url, v_gym_id);
 END //
 DELIMITER ;
 
@@ -605,7 +605,7 @@ CREATE PROCEDURE updateGym(in v_branch VARCHAR(50),
                         IN v_gym_id INT)
 BEGIN
 	UPDATE gyms SET 
-    image_url = v_image_url, phone = v_phone, location = v_location, membership_fee = v_membership_fee 
+    phone = v_phone, location = v_location, membership_fee = v_membership_fee 
     WHERE gym_id = v_gym_id;
 END //
 DELIMITER ;
