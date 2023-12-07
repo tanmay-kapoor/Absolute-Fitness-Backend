@@ -40,13 +40,7 @@ exports.addStaff = async (req, res) => {
             dob: req.body.dob,
             sex: req.body.sex,
             type: req.body.type || req.user.type,
-            partTime:
-                req.body.partTime == 1 ||
-                req.body.partTime === "True" ||
-                req.body.partTime === "true" ||
-                req.body.partTime === true
-                    ? true
-                    : false,
+            partTime: false,
             salary: req.body.salary,
             description: req.body.description,
             password: bcrypt.hashSync(req.body.password, salt),
@@ -81,13 +75,7 @@ exports.updateStaff = async (req, res) => {
             dob: req.body.dob,
             sex: req.body.sex,
             type: req.body.type || req.user.type,
-            partTime:
-                req.body.partTime == 1 ||
-                req.body.partTime === "True" ||
-                req.body.partTime === "true" ||
-                req.body.partTime === true
-                    ? true
-                    : false,
+            partTime: false,
             salary: req.body.salary,
             description: req.body.description,
         };
@@ -141,10 +129,11 @@ const getStaffLocal = async (staffId) => {
 };
 
 const getPartTimeValue = (partTime) => {
-    return (
-        partTime == 1 ||
-        partTime === "True" ||
-        partTime === "true" ||
-        partTime === true
-    );
+    // return (
+    //     partTime == 1 ||
+    //     partTime === "True" ||
+    //     partTime === "true" ||
+    //     partTime === true
+    // );
+    return false;
 };

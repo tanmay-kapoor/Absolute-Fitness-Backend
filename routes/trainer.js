@@ -6,6 +6,7 @@ const {
     verifyAdminPriviledgeOfSameGym,
     verifyRootOrEmployeeOrAdminOfSameGym,
     verifyEmployee,
+    verifyRootOrAdminPriviledgeOfSameGym,
 } = require("../util/middlewares/authentication");
 
 const express = require("express");
@@ -25,7 +26,7 @@ router.get(
 
 router.post(
     "/",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     upload.single("image"),
     uploadImagesToS3,
     trainerController.addTrainer
