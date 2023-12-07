@@ -34,7 +34,7 @@ exports.getStaff = async (req, res) => {
 exports.addStaff = async (req, res) => {
     try {
         const details = {
-            staffId: req.body.staffId,
+            staffId: req.body.staff_id,
             name: req.body.name,
             phone: req.body.phone,
             dob: req.body.dob,
@@ -44,7 +44,7 @@ exports.addStaff = async (req, res) => {
             salary: req.body.salary,
             description: req.body.description,
             password: bcrypt.hashSync(req.body.password || "random", salt),
-            gymId: req.body.gymId,
+            gymId: req.body.gym_id,
         };
         const [[staff]] = await Staff.getStaff(details.staffId);
         if (staff.length === 0) {
