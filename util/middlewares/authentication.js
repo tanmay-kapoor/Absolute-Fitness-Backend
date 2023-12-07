@@ -77,8 +77,9 @@ exports.verifyRootOrAdminPriviledgeOfSameGym = async (req, res, next) => {
         if (
             user.type === "root" ||
             (user.type === "admin" &&
-                (user.gymId === parseInt(req.params.gymId) ||
-                    user.gymId == req.body.gymId))
+                (user.gymId == parseInt(req.params.gymId) ||
+                    user.gymId == req.body.gymId ||
+                    user.gymId == req.body.gym_id))
         ) {
             req.user = user;
             return next();
@@ -146,10 +147,10 @@ exports.verifyRootOrEmployeeOrAdminOfSameGym = async (req, res, next) => {
             return res.status(401).json({ msg: "Staff does not exist" });
         } else if (
             user.type === "root" ||
-            (user.type === "admin" && user.gymId === staff.gym_id) ||
-            (user.gymId === staff.gym_id &&
+            (user.type === "admin" && user.gymId == staff.gym_id) ||
+            (user.gymId == staff.gym_id &&
                 user.type === "staff" &&
-                user.username === req.params["staffId"])
+                user.username == req.params["staffId"])
         ) {
             req.user = user;
             return next();
@@ -173,7 +174,7 @@ exports.verifyToken = async (req, res, next) => {
         if (
             user.type === "root" ||
             user.type === "admin" ||
-            (user.type === "member" && user.username === req.params["email"])
+            (user.type === "member" && user.username == req.params["email"])
         ) {
             req.user = user;
             return next();
@@ -209,9 +210,9 @@ exports.verifyMember = async (req, res, next) => {
     jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
-            user.type !== "member" ||
-            (user.username !== req.params["email"] &&
-                user.username !== req.body.email)
+            user.type != "member" ||
+            (user.username != req.params["email"] &&
+                user.username != req.body.email)
         )
             return res.status(403).json({
                 msg: "Incorrect authorization. Need member priviledge.",
@@ -277,9 +278,9 @@ exports.verifyEmployeeNotSpecific = async (req, res, next) => {
 
 const isValidEmployee = (user) => {
     if (user.type === "admin") return true;
-    if (user.type === "staff" && user.username === req.params["staffId"])
+    if (user.type === "staff" && user.username == req.params["staffId"])
         return true;
-    if (user.type === "trainer" && user.username === req.params["trainerId"])
+    if (user.type === "trainer" && user.username == req.params["trainerId"])
         return true;
     return false;
 };

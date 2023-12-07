@@ -34,7 +34,11 @@ exports.getStaff = async (req, res) => {
 exports.addStaff = async (req, res) => {
     try {
         const details = {
-            staffId: req.body.staff_id,
+            staffId:
+                req.body.staff_id ||
+                req.body.username ||
+                req.body.email ||
+                req.body.staffId,
             name: req.body.name,
             phone: req.body.phone,
             dob: req.body.dob,
