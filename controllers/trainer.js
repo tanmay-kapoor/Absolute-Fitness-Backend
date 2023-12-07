@@ -60,18 +60,14 @@ exports.addTrainer = async (req, res) => {
             phone: req.body.phone,
             dob: req.body.dob,
             sex: req.body.sex,
-            partTime:
-                req.body.partTime == 1 ||
-                req.body.partTime === "True" ||
-                req.body.partTime === "true" ||
-                req.body.partTime === true
-                    ? true
-                    : false,
+            partTime: false,
             salary: req.body.salary,
             description: req.body.description,
             password: "", // because no login flow for trainer
             gymId: req.body.gymId,
-            imageUrl: req.body.image_url,
+            imageUrl:
+                req.body.image_url ||
+                "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg",
             yearsOfExp: req.body.yearsOfExp,
             speciality: req.body.speciality,
         };

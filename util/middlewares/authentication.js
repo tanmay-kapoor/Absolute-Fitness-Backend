@@ -118,9 +118,9 @@ exports.verifyAdminPriviledgeOfSameGym = async (req, res, next) => {
     jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
         if (
-            user.type !== "admin" ||
-            (user.gymId !== req.body.gymId &&
-                user.gymId !== parseInt(req.params["gymId"]))
+            user.type !== "admin" &&
+            user.gymId !== req.body.gymId &&
+            user.gymId !== parseInt(req.params["gymId"])
         )
             return res.status(403).json({
                 msg: "Incorrect authorization. Need admin priviledge of same gym.",
