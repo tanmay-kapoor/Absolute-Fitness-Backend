@@ -609,3 +609,11 @@ BEGIN
     WHERE gym_id = v_gym_id;
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getGymIdForStaff;
+DELIMITER //
+CREATE PROCEDURE getGymIdForStaff(IN v_staff_id VARCHAR(30))
+BEGIN
+	SELECT gym_id FROM staff where staff_id = v_staff_id;
+END //
+DELIMITER ;
