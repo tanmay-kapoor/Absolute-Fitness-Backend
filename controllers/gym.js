@@ -47,7 +47,7 @@ exports.addGym = async (req, res) => {
             pincode: gymDetails.pincode,
             phone: gymDetails.phone,
             location: gymDetails.location,
-            membershipFee: gymDetails.membershipFee,
+            membershipFee: gymDetails.membershipFee || 100,
         };
 
         const [[[result]]] = await Gym.addGym({
@@ -253,6 +253,5 @@ const formImageUrlsArray = (rows) => {
             gyms[gym_id].image_urls.push(row.image_url);
         }
     });
-
     return Object.values(gyms);
 };

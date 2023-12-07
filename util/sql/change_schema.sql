@@ -609,3 +609,5 @@ BEGIN
     WHERE gym_id = v_gym_id;
 END //
 DELIMITER ;
+
+select * from staff;
