@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get("/", verifyRootOrAdminPriviledge, userController.getAllUsers);
 
-router.get("/:email", verifyToken, userController.getUser);
+router.get("/:email", userController.getUser);
 
 router.post("/signup", userController.addUser);
 
