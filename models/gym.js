@@ -69,11 +69,13 @@ module.exports = class Gym {
     }
 
     static updateGym(details) {
-        const { gymId, imageUrl, phone, location, membershipFee } = details;
+        const { gymId, phone, location, membershipFee, branch, pincode } =
+            details;
 
-        const query = "CALL updateGym(?, ?, ?, ?, ?)";
+        const query = "CALL updateGym(?, ?, ?, ?, ?, ?)";
         return db.execute(query, [
-            imageUrl,
+            branch,
+            pincode,
             phone,
             location,
             membershipFee,

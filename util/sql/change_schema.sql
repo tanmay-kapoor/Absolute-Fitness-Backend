@@ -594,3 +594,18 @@ BEGIN
 	UPDATE users SET subscribed = true WHERE email = v_email;
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS updateGym;
+DELIMITER //
+CREATE PROCEDURE updateGym(in v_branch VARCHAR(50), 
+						   in v_pincode VARCHAR(5),
+						IN v_phone VARCHAR(10), 
+                        IN v_location VARCHAR(50), 
+                        IN v_membership_fee DECIMAL(65, 2),
+                        IN v_gym_id INT)
+BEGIN
+	UPDATE gyms SET 
+    image_url = v_image_url, phone = v_phone, location = v_location, membership_fee = v_membership_fee 
+    WHERE gym_id = v_gym_id;
+END //
+DELIMITER ;

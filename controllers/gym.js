@@ -83,13 +83,23 @@ exports.updateGym = async (req, res) => {
     try {
         const details = {
             gymId: req.params["gymId"],
-            imageUrl: req.body.imageUrl,
             phone: req.body.phone,
             location: req.body.location,
-            membershipFee: req.body.membershipFee,
+            branch: req.body.branch || null,
+            pincode: req.body.pincode,
+            membershipFee: 100,
         };
         await Gym.updateGym(details);
-        res.status(200).json({ msg: "Success" });
+
+        const imageUrls = req.body.image_urls || [];
+        await Promise.all(
+            imageUrls.map((imageUrl) =>
+                Gym.addImageUrlForGym(imageUrl, details.gymId)
+            )
+        );
+        details.image_urls =
+            !imageUrls || imageUrls.length === 0 ? [stockImage] : imageUrls;
+        res.status(200).json(details);
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
