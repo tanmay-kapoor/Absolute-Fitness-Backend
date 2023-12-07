@@ -121,7 +121,7 @@ exports.verifyRootOrEmployeeOrAdminOfSameGym = async (req, res, next) => {
     jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, user) => {
         if (err) return res.status(403).json({ msg: err.message });
 
-        const [[[staff]]] = await Staff.getGymId(req.params["staffId"]);
+        const [[[staff]]] = await Staff.getStaff(req.params["staffId"]);
         if (!staff) {
             return res.status(401).json({ msg: "Staff does not exist" });
         } else if (

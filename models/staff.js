@@ -9,10 +9,6 @@ module.exports = class Staff {
         return db.execute("CALL getStaff(?)", [staffId]);
     }
 
-    static getGymId(staffId) {
-        return db.execute("CALL getGymIdForStaff(?)", [staffId]);
-    }
-
     static addStaff(details) {
         const {
             staffId,
