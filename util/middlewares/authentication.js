@@ -111,7 +111,7 @@ exports.verifyAdminPriviledgeOfSameGym = async (req, res, next) => {
     });
 };
 
-exports.verifyEmployeeOrAdminOfSameGym = async (req, res, next) => {
+exports.verifyRootOrEmployeeOrAdminOfSameGym = async (req, res, next) => {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
@@ -125,8 +125,9 @@ exports.verifyEmployeeOrAdminOfSameGym = async (req, res, next) => {
         if (!staff) {
             return res.status(401).json({ msg: "Staff does not exist" });
         } else if (
-            (user.type === "admin" && user.gymId === gymId) ||
-            (user.gymId === gymId &&
+            user.type === "root" ||
+            (user.type === "admin" && user.gymId === staff.gymId) ||
+            (user.gymId === staff.gymId &&
                 user.type === "staff" &&
                 user.username === req.params["staffId"])
         ) {

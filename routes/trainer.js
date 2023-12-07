@@ -4,7 +4,7 @@ const uploadImagesToS3 = require("../util/middlewares/uploadImagesToS3");
 const {
     verifyLoggedIn,
     verifyAdminPriviledgeOfSameGym,
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
     verifyEmployee,
 } = require("../util/middlewares/authentication");
 
@@ -19,7 +19,7 @@ router.get(
 
 router.get(
     "/:staffId",
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
     trainerController.getTrainer
 );
 
@@ -33,7 +33,7 @@ router.post(
 
 router.put(
     "/:staffId",
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
     trainerController.updateTrainer
 );
 

@@ -26,13 +26,13 @@ router.get("/:gymId/trainers", gymController.getAllTrainers);
 
 router.get(
     "/:gymId/members",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     gymController.getAllUsers
 );
 
 router.get(
     "/:gymId/staff",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     gymController.getAllStaff
 );
 
@@ -46,7 +46,7 @@ router.post(
 
 router.post(
     "/:gymId/equipment",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     upload.single("image"),
     uploadImagesToS3,
     gymController.addEquipmentForGym
@@ -54,13 +54,13 @@ router.post(
 
 router.put(
     "/:gymId/equipment/:equipmentId",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     gymController.updateEquipmentForGym
 );
 
 router.delete(
     "/:gymId/equipment/:equipmentId",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     gymController.deleteEquipmentForGym
 );
 

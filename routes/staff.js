@@ -4,35 +4,37 @@ const staffController = require("../controllers/staff");
 const {
     verifyEmployee,
     verifyAdminPriviledge,
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootPriviledge,
     verifyAdminPriviledgeOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
 } = require("../util/middlewares/authentication");
 
 const router = express.Router();
 
-router.get("/", verifyAdminPriviledgeOfSameGym, staffController.getAllStaff);
+router.get("/", verifyRootPriviledge, staffController.getAllStaff);
 
 router.get(
     "/:staffId",
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
     staffController.getStaff
 );
 
 router.post(
     "/signup",
-    verifyAdminPriviledgeOfSameGym,
+    verifyRootOrAdminPriviledgeOfSameGym,
     staffController.addStaff
 );
 
 router.put(
     "/:staffId",
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
     staffController.updateStaff
 );
 
 router.delete(
     "/:staffId",
-    verifyEmployeeOrAdminOfSameGym,
+    verifyRootOrEmployeeOrAdminOfSameGym,
     staffController.deleteStaff
 );
 
