@@ -6,6 +6,7 @@ const {
     verifyMember,
     verifyAdminPriviledge,
     verifyMemberWithoutEmail,
+    verifyLoggedIn,
 } = require("../util/middlewares/authentication");
 
 const router = express.Router();
@@ -22,7 +23,7 @@ router.get(
     healthRecordController.getAllHealthRecordsWithName
 );
 
-router.post("/", verifyMember, healthRecordController.addHealthRecord);
+router.post("/", verifyLoggedIn, healthRecordController.addHealthRecord);
 
 router.put(
     "/:recordId",
@@ -38,7 +39,7 @@ router.delete(
 
 router.get(
     "/:email",
-    verifyToken,
+    verifyLoggedIn,
     healthRecordController.getHealthRecordsForUser
 );
 
