@@ -46,6 +46,25 @@ exports.validateConsistentUsernameInTokens = async (req, res, next) => {
     });
 };
 
+exports.verifyRootOrAdminPriviledge = async (req, res, next) => {
+    const authHeader =
+        req.headers["Authorization"] || req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (token == null)
+        return res.status(401).json({ msg: "No authorization provided." });
+
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ msg: err.message });
+        if (user.type !== "root" && user.type !== "admin")
+            return res.status(403).json({
+                msg: "Incorrect authorization. Need root priviledge or admin priviledge.",
+            });
+        req.user = user;
+        next();
+    });
+};
+
 exports.verifyRootOrAdminPriviledgeOfSameGym = async (req, res, next) => {
     const authHeader =
         req.headers["Authorization"] || req.headers["authorization"];

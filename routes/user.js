@@ -7,11 +7,12 @@ const {
     verifyMember,
     validateConsistentUsernameInTokens,
     verifyRootPriviledge,
+    verifyRootOrAdminPriviledge,
 } = require("../util/middlewares/authentication.js");
 
 const router = express.Router();
 
-router.get("/", verifyRootPriviledge, userController.getAllUsers);
+router.get("/", verifyRootOrAdminPriviledge, userController.getAllUsers);
 
 router.get("/:email", verifyToken, userController.getUser);
 
