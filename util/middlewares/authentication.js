@@ -77,7 +77,7 @@ exports.verifyRootOrAdminPriviledgeOfSameGym = async (req, res, next) => {
         if (
             user.type === "root" ||
             (user.type === "admin" &&
-                (user.gymId === req.params.gymId ||
+                (user.gymId === parseInt(req.params.gymId) ||
                     user.gymId === req.body.gymId))
         ) {
             req.user = user;
