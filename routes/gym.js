@@ -2,7 +2,10 @@ const express = require("express");
 
 const gymController = require("../controllers/gym");
 const upload = require("../util/middlewares/fileUpload");
-const uploadImagesToS3 = require("../util/middlewares/uploadImagesToS3.js");
+const {
+    uploadSingleImageToS3,
+    uploadMultipleImagesToS3,
+} = require("../util/middlewares/uploadImagesToS3.js");
 const {
     verifyRootPriviledge,
     verifyRootOrAdminPriviledgeOfSameGym,
@@ -40,7 +43,7 @@ router.post(
     "/",
     verifyRootPriviledge,
     upload.array("images"),
-    uploadImagesToS3,
+    uploadMultipleImagesToS3,
     gymController.addGym
 );
 
@@ -48,7 +51,7 @@ router.post(
     "/:gymId/equipment",
     verifyRootOrAdminPriviledgeOfSameGym,
     upload.single("image"),
-    uploadImagesToS3,
+    uploadSingleImageToS3,
     gymController.addEquipmentForGym
 );
 

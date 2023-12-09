@@ -19,7 +19,7 @@ module.exports = class Equipment {
             ]);
             return db.execute("SELECT @equipment_id as equipment_id");
         } else {
-            return db.execute("SELECT addEquipmentFunc(?, ?) as equipment_id", [
+            return db.execute("SELECT addEquipment(?, ?) as equipment_id", [
                 name,
                 imageUrl,
             ]);

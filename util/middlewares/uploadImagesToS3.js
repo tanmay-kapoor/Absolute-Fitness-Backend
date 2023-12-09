@@ -17,9 +17,28 @@ const s3Client = new S3Client({
     },
 });
 
-const uploadImagesToS3 = async (req, res, next) => {
+exports.uploadSingleImageToS3 = async (req, res, next) => {
     try {
-        const files = req.file ? [req.file] : req.files;
+        const file = req.file;
+        if (!file) {
+            return next();
+        } else if (req.body.image_url) {
+            return res.status(400).json({
+                msg: "Should either upload an image or provide an image url, not both",
+            });
+        } else {
+            const publicUrl = await addToS3(file);
+            req.body.image_url = publicUrl;
+            return next();
+        }
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.uploadMultipleImagesToS3 = async (req, res, next) => {
+    try {
+        const files = req.files;
         if (!files || files.length === 0) {
             return next();
         } else if (req.body.image_url || req.body.gym.image_urls) {
@@ -28,13 +47,9 @@ const uploadImagesToS3 = async (req, res, next) => {
             });
         } else {
             const publicUrls = await Promise.all(
-                files.map(async (file) => addToS3(file))
+                files.map((file) => addToS3(file))
             );
-            if (req.file) {
-                req.body.image_url = publicUrls[0];
-            } else {
-                req.body.gym.image_urls = publicUrls;
-            }
+            req.body.gym.image_urls = publicUrls;
             return next();
         }
     } catch (err) {
@@ -59,5 +74,3 @@ const addToS3 = async (file) => {
     const publicUrl = `https://${bucketName}.s3.amazonaws.com/${fileName}`;
     return publicUrl;
 };
-
-module.exports = uploadImagesToS3;
