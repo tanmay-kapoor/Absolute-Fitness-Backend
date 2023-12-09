@@ -24,6 +24,15 @@ module.exports = class User {
         ]);
     }
 
+    static randomlyAssignHealthPlan(details) {
+        const { gymId, email } = details;
+
+        return db.execute("CALL randomly_assign_health_plan(?, ?)", [
+            gymId,
+            email,
+        ]);
+    }
+
     static updateUser(details) {
         const { email, name, phone, dob, sex, gymId, password } = details;
 

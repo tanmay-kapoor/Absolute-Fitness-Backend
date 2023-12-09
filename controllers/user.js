@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const ResetToken = require("../models/resetToken");
 const helpers = require("../util/helpers");
+const { NODE_ENV } = require("../util/constants");
 
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
@@ -46,6 +47,13 @@ exports.addUser = async (req, res) => {
         const [[user]] = await User.getUser(details.email);
         if (user.length === 0) {
             await User.addUser(details);
+
+            if (NODE_ENV !== "development") {
+                await User.randomlyAssignHealthPlan({
+                    gymId: details.gymId,
+                    email: details.email,
+                });
+            }
 
             const accessToken = helpers.generateAccessToken({
                 username: details.email,

@@ -1,3 +1,5 @@
+exports.NODE_ENV = process.env.NODE_ENV;
+
 exports.DB_HOST = process.env.DB_HOST;
 exports.DB_USER = process.env.DB_USER;
 exports.DATABASE = process.env.DATABASE;

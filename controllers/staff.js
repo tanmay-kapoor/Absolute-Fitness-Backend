@@ -3,6 +3,7 @@ const Admin = require("../models/admin");
 const helpers = require("../util/helpers");
 const bcrypt = require("bcryptjs");
 const Trainer = require("../models/trainer");
+const { NODE_ENV } = require("../util/constants");
 const salt = bcrypt.genSaltSync(10);
 
 exports.getAllStaff = async (req, res) => {
@@ -117,6 +118,15 @@ exports.updateStaff = async (req, res) => {
 exports.deleteStaff = async (req, res) => {
     try {
         const staffId = req.params["staffId"];
+        if (NODE_ENV !== "development") {
+            const [[result]] = await Staff.canDeleteStaff(staffId);
+            if (result.canDelete != "1") {
+                res.status(401).json({
+                    msg: "Assign a new admin before deleteing the last admin of this gym.",
+                });
+                return;
+            }
+        }
         await Staff.deleteStaff(staffId);
         res.status(200).json({ msg: "Success" });
     } catch (err) {

@@ -9,6 +9,11 @@ module.exports = class Staff {
         return db.execute("CALL getStaff(?)", [staffId]);
     }
 
+    static async canDeleteStaff(staffId) {
+        await db.execute("CALL admin_delete_check(?, @canDelete)", [staffId]);
+        return db.execute("SELECT @canDelete as canDelete");
+    }
+
     static addStaff(details) {
         const {
             staffId,

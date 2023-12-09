@@ -1,4 +1,5 @@
 const db = require("../util/database");
+const { NODE_ENV } = require("../util/constants");
 
 module.exports = class Equipment {
     static getAllEquipments() {
@@ -9,12 +10,20 @@ module.exports = class Equipment {
         return db.execute("CALL getEquipment(?)", [equipmentId]);
     }
 
-    static addEquipment(details) {
+    static async addEquipment(details) {
         const { name, imageUrl } = details;
-        return db.execute("SELECT addEquipmentFunc(?, ?) as equipment_id", [
-            name,
-            imageUrl,
-        ]);
+        if (NODE_ENV !== "development") {
+            await db.execute("CALL addEquipment(?, ?, @equipment_id)", [
+                name,
+                imageUrl,
+            ]);
+            return db.execute("SELECT @equipment_id as equipment_id");
+        } else {
+            return db.execute("SELECT addEquipmentFunc(?, ?) as equipment_id", [
+                name,
+                imageUrl,
+            ]);
+        }
     }
 
     static updateEquipment(details) {
