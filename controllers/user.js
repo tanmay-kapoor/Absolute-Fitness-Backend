@@ -63,7 +63,12 @@ exports.addUser = async (req, res) => {
             });
 
             const [[[newUser]]] = await User.getUser(details.email);
-            res.status(200).json({ ...newUser, accessToken });
+            newUser.username = newUser.email;
+            delete newUser["email"];
+            res.status(200).json({
+                ...newUser,
+                accessToken,
+            });
         } else {
             res.status(409).json({
                 msg: "User with this email already exists",
