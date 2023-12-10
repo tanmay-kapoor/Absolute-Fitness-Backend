@@ -395,7 +395,7 @@ CREATE PROCEDURE addEquipmentForGym(IN v_gym_id INT,
                                     IN v_last_serviced DATE)
 BEGIN
 	IF v_equipment_id IS NULL THEN 
-		CALL addEquipment(v_name, v_image_url, v_equipment_id);
+		SELECT addEquipment(v_name, v_image_url) INTO v_equipment_id;
     END IF;
     
     INSERT INTO gym_equipments VALUES (v_gym_id, v_equipment_id, v_quantity, v_last_serviced);

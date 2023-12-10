@@ -89,7 +89,7 @@ CREATE TABLE `equipments` (
   `image_url` varchar(512) NOT NULL,
   PRIMARY KEY (`equipment_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `equipments` (
 
 LOCK TABLES `equipments` WRITE;
 /*!40000 ALTER TABLE `equipments` DISABLE KEYS */;
-INSERT INTO `equipments` VALUES (1,'Chest Press Machine','https://www.technogym.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/M/G/MG1500_purestrength_inclinechestpress_hero_01_22.jpg'),(2,'Seated Dip Machine','https://static.strengthlevel.com/images/illustrations/seated-dip-machine-1000x1000.jpg'),(3,'Treadmill','https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6514/6514023_sd.jpg;maxHeight=640;maxWidth=550'),(4,'Excercise Bike','https://res.cloudinary.com/iconfitness/image/upload/dpr_3.0,f_auto,q_auto,w_500/v1/site--6/PFEX16718_1-01068.jpg'),(5,'Dumbbells','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/210310_Dumbbells_2270x1500_d524e6c4-85b9-4244-abad-2e3e876e4a84_600x.jpg?v=1645084642'),(6,'Barbell','https://www.mensjournal.com/wp-content/uploads/mf/barbell_abs_main.jpg?w=1188&h=630&crop=1&quality=86&strip=all'),(7,'Leg press machine','https://truefitness.com/wp-content/uploads/2019/11/SPL0300-Acrylic-Alabaster_960-1.png'),(8,'Pullup bar','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/XGYM-LSR-3.0-01-F07_main_1035x@2x.jpg?v=1669753609%202x'),(9,'Kettle bells','https://m.media-amazon.com/images/I/41luBUoSyFL._AC_SY1000_.jpg'),(10,'Pec fly machine','https://www.titan.fitness/dw/image/v2/BDBZ_PRD/on/demandware.static/-/Sites-masterCatalog_Titan/default/dw5058b97d/images/hi-res/Fitness/401494_01.jpg?sw=1001&sh=1000'),(28,'Rowing Machine','https://absolute-fitness-tk.s3.amazonaws.com/6bcaf682-2250-4fdb-869d-ef9cda6acf94'),(41,'Crosstrainer','https://absolute-fitness-tk.s3.amazonaws.com/82c4b5e3-496b-4ac6-9341-174226d093e3'),(42,'Stairmaster','https://images-na.ssl-images-amazon.com/images/I/71dkN94jjsL._AC_UL600_SR600,600_.jpg');
+INSERT INTO `equipments` VALUES (1,'Chest Press Machine','https://www.technogym.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/M/G/MG1500_purestrength_inclinechestpress_hero_01_22.jpg'),(2,'Seated Dip Machine','https://static.strengthlevel.com/images/illustrations/seated-dip-machine-1000x1000.jpg'),(3,'Treadmill','https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6514/6514023_sd.jpg;maxHeight=640;maxWidth=550'),(4,'Excercise Bike','https://res.cloudinary.com/iconfitness/image/upload/dpr_3.0,f_auto,q_auto,w_500/v1/site--6/PFEX16718_1-01068.jpg'),(5,'Dumbbells','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/210310_Dumbbells_2270x1500_d524e6c4-85b9-4244-abad-2e3e876e4a84_600x.jpg?v=1645084642'),(6,'Barbell','https://www.mensjournal.com/wp-content/uploads/mf/barbell_abs_main.jpg?w=1188&h=630&crop=1&quality=86&strip=all'),(7,'Leg press machine','https://truefitness.com/wp-content/uploads/2019/11/SPL0300-Acrylic-Alabaster_960-1.png'),(8,'Pullup bar','https://cdn.shopify.com/s/files/1/0471/3879/9774/products/XGYM-LSR-3.0-01-F07_main_1035x@2x.jpg?v=1669753609%202x'),(9,'Kettle bells','https://m.media-amazon.com/images/I/41luBUoSyFL._AC_SY1000_.jpg'),(10,'Pec fly machine','https://www.titan.fitness/dw/image/v2/BDBZ_PRD/on/demandware.static/-/Sites-masterCatalog_Titan/default/dw5058b97d/images/hi-res/Fitness/401494_01.jpg?sw=1001&sh=1000'),(28,'Rowing Machine','https://absolute-fitness-tk.s3.amazonaws.com/6bcaf682-2250-4fdb-869d-ef9cda6acf94'),(41,'Crosstrainer','https://absolute-fitness-tk.s3.amazonaws.com/82c4b5e3-496b-4ac6-9341-174226d093e3'),(42,'Stairmaster','https://images-na.ssl-images-amazon.com/images/I/71dkN94jjsL._AC_UL600_SR600,600_.jpg'),(43,'Resistance bands','https://i.ebayimg.com/images/g/7IYAAOSwjkFf5v2F/s-l400.jpg');
 /*!40000 ALTER TABLE `equipments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +211,7 @@ CREATE TABLE `gym_equipments` (
 
 LOCK TABLES `gym_equipments` WRITE;
 /*!40000 ALTER TABLE `gym_equipments` DISABLE KEYS */;
-INSERT INTO `gym_equipments` VALUES (1,1,16,'2023-12-07'),(1,3,17,'2022-12-09'),(1,5,21,'2019-09-15'),(1,7,20,'2021-11-11'),(1,9,20,NULL),(1,28,12,'2021-10-09'),(2,1,10,NULL),(2,2,15,'2019-10-10'),(2,3,18,'2015-01-01'),(2,4,12,'2022-08-08'),(2,5,38,NULL),(2,6,27,'2021-12-12'),(2,7,14,NULL),(2,8,7,NULL),(2,9,29,'2010-01-01'),(2,10,22,'2009-01-01'),(3,1,10,'2022-10-10'),(3,2,22,'2022-10-10'),(3,4,4,'2010-10-10'),(3,8,14,'2021-10-10'),(3,9,2,NULL),(4,3,10,NULL),(4,7,12,'2022-01-01'),(5,2,11,'2022-09-15'),(5,4,10,'2022-11-11'),(5,5,22,'2022-11-11'),(6,2,34,'2022-09-09'),(6,7,38,'2021-09-08'),(6,8,8,'2020-10-10'),(6,9,7,'2016-12-15');
+INSERT INTO `gym_equipments` VALUES (1,1,16,'2023-12-07'),(1,3,17,'2022-12-09'),(1,5,21,'2019-09-15'),(1,7,20,'2021-11-11'),(1,9,20,NULL),(1,28,12,'2021-10-09'),(1,43,45,NULL),(2,1,10,NULL),(2,2,15,'2019-10-10'),(2,3,18,'2015-01-01'),(2,4,12,'2022-08-08'),(2,5,38,NULL),(2,6,27,'2021-12-12'),(2,7,14,NULL),(2,8,7,NULL),(2,9,29,'2010-01-01'),(2,10,22,'2009-01-01'),(3,1,10,'2022-10-10'),(3,2,22,'2022-10-10'),(3,4,4,'2010-10-10'),(3,8,14,'2021-10-10'),(3,9,2,NULL),(4,3,10,NULL),(4,7,12,'2022-01-01'),(5,2,11,'2022-09-15'),(5,4,10,'2022-11-11'),(5,5,22,'2022-11-11'),(6,2,34,'2022-09-09'),(6,7,38,'2021-09-08'),(6,8,8,'2020-10-10'),(6,9,7,'2016-12-15');
 /*!40000 ALTER TABLE `gym_equipments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -783,7 +783,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addEquipmentForGym`(IN v_gym_id INT
                                     IN v_last_serviced DATE)
 BEGIN
 	IF v_equipment_id IS NULL THEN 
-		CALL addEquipment(v_name, v_image_url, v_equipment_id);
+		SELECT addEquipment(v_name, v_image_url) INTO v_equipment_id;
     END IF;
     
     INSERT INTO gym_equipments VALUES (v_gym_id, v_equipment_id, v_quantity, v_last_serviced);
@@ -2235,4 +2235,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-10 14:00:54
+-- Dump completed on 2023-12-10 14:20:39
