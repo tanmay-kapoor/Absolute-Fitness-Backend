@@ -1,7 +1,10 @@
 const express = require("express");
 
 const equipmentController = require("../controllers/equipment");
-const { verifyAdminPriviledge } = require("../util/middlewares/authentication");
+const {
+    verifyAdminPriviledge,
+    verifyRootPriviledge,
+} = require("../util/middlewares/authentication");
 const upload = require("../util/middlewares/fileUpload");
 // const uploadImagesToS3 = require("../util/middlewares/uploadImagesToS3");
 const {
@@ -20,7 +23,7 @@ router.get(
 
 router.post(
     "/",
-    verifyAdminPriviledge,
+    verifyRootPriviledge,
     upload.single("image"),
     uploadSingleImageToS3,
     equipmentController.addEquipment
