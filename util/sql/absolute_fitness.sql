@@ -709,7 +709,7 @@ BEGIN
     
     IF OLD.staff_id IN (SELECT staff_id FROM staff WHERE type = "admin") THEN
 		SELECT COUNT(*) INTO gym_admins_count FROM staff 
-		WHERE gym_id = (OLD.gym_id);
+		WHERE type = "admin" AND gym_id = (OLD.gym_id);
 		
 		IF gym_admins_count <= 1 THEN
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Assign another admin to delete the last admin for this gym." ;
