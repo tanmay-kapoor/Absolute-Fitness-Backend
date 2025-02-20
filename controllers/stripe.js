@@ -86,23 +86,35 @@ exports.getGymMembershipPricing = async (req, res) => {
 //     }
 // };
 
+exports.subscribeWithoutPayment = async (req, res) => {
+    try {
+        const token = helpers.generatePaymentSuccessToken({
+            username: req.user.username
+        });
+        const success_url = `${CLIENT_URL}/payment-success?token=${token}`;
+        res.status(200).json(success_url);
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.createCheckoutSession = async (req, res) => {
     try {
         // TODO: what if user opens the checkout page but pays after 20 mins?
         const token = helpers.generatePaymentSuccessToken({
-            username: req.user.username,
+            username: req.user.username
         });
         const priceId = req.params.priceId;
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
                     price: priceId,
-                    quantity: 1,
-                },
+                    quantity: 1
+                }
             ],
             mode: "subscription",
             success_url: `${CLIENT_URL}/payment-success?token=${token}`,
-            cancel_url: `${CLIENT_URL}`,
+            cancel_url: `${CLIENT_URL}`
         });
         res.status(200).json(session.url);
     } catch (err) {

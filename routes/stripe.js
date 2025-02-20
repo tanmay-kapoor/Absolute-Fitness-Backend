@@ -22,6 +22,12 @@ router.get(
 // );
 
 router.post(
+    "/subscribe-without-payment/:priceId",
+    verifyLoggedIn,
+    stripeController.subscribeWithoutPayment
+);
+
+router.post(
     "/create-checkout-session/:priceId",
     verifyLoggedIn,
     stripeController.createCheckoutSession
